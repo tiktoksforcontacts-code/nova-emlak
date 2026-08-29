@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+
+<html lang="tr">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Nova Emlak - İlan Detayı</title>
+
+<style>
+
+*{
+box-sizing:border-box;
+}
+
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:#f5f7fa;
+color:#1f2937;
+}
+
+header{
+background:#111827;
+color:white;
+padding:20px 7%;
+display:flex;
+align-items:center;
+justify-content:space-between;
+}
+
+header h1{
+margin:0;
+font-size:24px;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+margin-left:20px;
+}
+
+.container{
+max-width:1100px;
+margin:35px auto;
+padding:0 20px;
+}
+
+.back{
+display:inline-block;
+color:#2563eb;
+text-decoration:none;
+font-weight:bold;
+margin-bottom:20px;
+}
+
+.detail{
+background:white;
+border-radius:18px;
+overflow:hidden;
+box-shadow:0 8px 30px rgba(0,0,0,.10);
+}
+
+.main-image{
+width:100%;
+height:500px;
+object-fit:cover;
+display:block;
+}
+
+.content{
+padding:30px;
+}
+
+.top{
+display:flex;
+justify-content:space-between;
+align-items:flex-start;
+gap:20px;
+}
+
+.title-area h2{
+font-size:32px;
+margin:8px 0;
+}
+
+.location{
+color:#6b7280;
+font-size:16px;
+}
+
+.badge{
+display:inline-block;
+background:#2563eb;
+color:white;
+padding:7px 12px;
+border-radius:7px;
+font-size:13px;
+font-weight:bold;
+}
+
+.price{
+font-size:30px;
+font-weight:bold;
+color:#2563eb;
+margin-top:10px;
+white-space:nowrap;
+}
+
+.features{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:15px;
+margin:30px 0;
+}
+
+.feature{
+background:#f5f7fa;
+padding:20px;
+border-radius:12px;
+text-align:center;
+}
+
+.feature strong{
+display:block;
+font-size:21px;
+margin-bottom:7px;
+}
+
+.feature span{
+color:#6b7280;
+font-size:14px;
+}
+
+.description{
+border-top:1px solid #eee;
+padding-top:25px;
+}
+
+.description h3{
+font-size:22px;
+}
+
+.description p{
+line-height:1.8;
+color:#4b5563;
+white-space:pre-line;
+}
+
+.contact{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:15px;
+margin-top:30px;
+}
+
+.contact a{
+padding:16px;
+border-radius:9px;
+text-align:center;
+text-decoration:none;
+color:white;
+font-weight:bold;
+font-size:16px;
+}
+
+.phone{
+background:#2563eb;
+}
+
+.whatsapp{
+background:#16a34a;
+}
+
+.favorite{
+width:100%;
+margin-top:15px;
+padding:15px;
+border:0;
+border-radius:9px;
+background:#f3f4f6;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.favorite.active{
+background:#fee2e2;
+color:#dc2626;
+}
+
+.loading{
+background:white;
+padding:50px;
+border-radius:15px;
+text-align:center;
+}
+
+.error{
+background:#fee2e2;
+color:#991b1b;
+padding:25px;
+border-radius:12px;
+text-align:center;
+}
+
+footer{
+margin-top:70px;
+background:#111827;
+color:white;
+padding:35px 7%;
+text-align:center;
+}
+
+footer p{
+margin:8px;
+}
+
+@media(max-width:700px){
+
+header{
+flex-direction:column;
+gap:15px;
+}
+
+nav a{
+margin:0 7px;
+}
+
+.main-image{
+height:280px;
+}
+
+.top{
+flex-direction:column;
+}
+
+.title-area h2{
+font-size:25px;
+}
+
+.price{
+font-size:25px;
+}
+
+.features{
+grid-template-columns:1fr;
+}
+
+.contact{
+grid-template-columns:1fr;
+}
+
+.content{
+padding:20px;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>🏠 NOVA EMLAK</h1>
+
+<nav>
+
+<a href="index.html">
+Ana Sayfa
+</a>
+
+<a href="index.html#ilanlar">
+İlanlar
+</a>
+
+<a href="index.html#favoriler">
+❤️ Favoriler
+</a>
+
+</nav>
+
+</header>
+
+<div class="container">
+
+<a
+class="back"
+href="index.html"
+
+>
+
+← İlanlara Dön </a>
+
+<div id="app">
+
+<div class="loading">
+İlan yükleniyor...
+</div>
+
+</div>
+
+</div>
+
+<footer>
+
+<h3>
+Nova Emlak
+</h3>
+
+<p>
+📞 0555 555 55 55
+</p>
+
+<p>
+📍 İstanbul
+</p>
+
+<p>
+© 2026 Nova Emlak
+</p>
+
+</footer>
+
+<script>
+
+
+let ilan = null;
+
+let favorites =
+JSON.parse(
+localStorage.getItem("novaFavorites") || "[]"
+);
+
+
+// ======================
+// URL'DEN ID AL
+// ======================
+
+const params =
+new URLSearchParams(
+window.location.search
+);
+
+const id =
+params.get("id");
+
+
+// ======================
+// İLANI GETİR
+// ======================
+
+async function loadListing(){
+
+if(!id){
+
+showError(
+"İlan numarası bulunamadı."
+);
+
+return;
+
+}
+
+
+try{
+
+const response =
+await fetch("/api/ilanlar");
+
+const ilanlar =
+await response.json();
+
+
+ilan =
+ilanlar.find(
+x => String(x.id) === String(id)
+);
+
+
+if(!ilan){
+
+showError(
+"Aradığınız ilan bulunamadı."
+);
+
+return;
+
+}
+
+
+document.title =
+ilan.title +
+" - Nova Emlak";
+
+
+showListing();
+
+
+}catch(error){
+
+showError(
+"İlan yüklenirken bir hata oluştu."
+);
+
+}
+
+}
+
+
+// ======================
+// İLANI GÖSTER
+// ======================
+
+function showListing(){
+
+const app =
+document.getElementById("app");
+
+
+const favorite =
+favorites.includes(
+Number(ilan.id)
+);
+
+
+app.innerHTML = `
+
+<div class="detail">
+
+<img
+class="main-image"
+src="${ilan.image}"
+alt="${ilan.title}"
+>
+
+
+<div class="content">
+
+<div class="top">
+
+<div class="title-area">
+
+<span class="badge">
+${ilan.type}
+</span>
+
+<h2>
+${ilan.title}
+</h2>
+
+<div class="location">
+📍 ${ilan.city}
+</div>
+
+</div>
+
+
+<div class="price">
+
+${Number(ilan.price)
+.toLocaleString("tr-TR")} TL
+
+</div>
+
+</div>
+
+
+<div class="features">
+
+<div class="feature">
+
+<strong>
+🛏️ ${ilan.rooms}
+</strong>
+
+<span>
+Oda Sayısı
+</span>
+
+</div>
+
+
+<div class="feature">
+
+<strong>
+📐 ${ilan.area} m²
+</strong>
+
+<span>
+Alan
+</span>
+
+</div>
+
+
+<div class="feature">
+
+<strong>
+📍 ${ilan.city}
+</strong>
+
+<span>
+Şehir
+</span>
+
+</div>
+
+</div>
+
+
+<div class="description">
+
+<h3>
+📝 İlan Açıklaması
+</h3>
+
+<p>
+${ilan.description || "Bu ilan için açıklama bulunmuyor."}
+</p>
+
+</div>
+
+
+<div class="contact">
+
+<a
+class="phone"
+href="tel:05555555555"
+>
+📞 Telefon
+</a>
+
+
+<a
+class="whatsapp"
+href="https://wa.me/905555555555"
+target="_blank"
+>
+💬 WhatsApp
+</a>
+
+</div>
+
+
+<button
+class="favorite ${favorite ? "active" : ""}"
+onclick="toggleFavorite()"
+id="favoriteButton"
+>
+
+${favorite ? "❤️ Favorilerden Çıkar" : "♡ Favorilere Ekle"}
+
+</button>
+
+
+</div>
+
+</div>
+
+`;
+
+}
+
+
+// ======================
+// FAVORİ
+// ======================
+
+function toggleFavorite(){
+
+const numberId =
+Number(ilan.id);
+
+
+if(favorites.includes(numberId)){
+
+favorites =
+favorites.filter(
+x => x !== numberId
+);
+
+}else{
+
+favorites.push(numberId);
+
+}
+
+
+localStorage.setItem(
+"novaFavorites",
+JSON.stringify(favorites)
+);
+
+
+const button =
+document.getElementById(
+"favoriteButton"
+);
+
+
+if(favorites.includes(numberId)){
+
+button.className =
+"favorite active";
+
+button.textContent =
+"❤️ Favorilerden Çıkar";
+
+}else{
+
+button.className =
+"favorite";
+
+button.textContent =
+"♡ Favorilere Ekle";
+
+}
+
+}
+
+
+// ======================
+// HATA
+// ======================
+
+function showError(message){
+
+document.getElementById("app")
+.innerHTML = `
+
+<div class="error">
+
+<h2>😔 ${message}</h2>
+
+<br>
+
+<a href="index.html">
+← İlanlara Dön
+</a>
+
+</div>
+
+`;
+
+}
+
+
+// ======================
+// BAŞLAT
+// ======================
+
+loadListing();
+
+</script>
+
+</body>
+
+</html>
