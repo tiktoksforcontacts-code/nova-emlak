@@ -287,10 +287,8 @@ try {
 
 app.listen(PORT, () => {
 
-```
-console.log(
-    `Nova Emlak sunucusu çalışıyor: http://localhost:${PORT}`
-);
-```
+    console.log(
+        `Nova Emlak sunucusu çalışıyor: http://localhost:${PORT}`
+    );
 
 });
