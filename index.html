@@ -18,7 +18,7 @@ html{
 body{
     margin:0;
     font-family:Arial, Helvetica, sans-serif;
-    background:#f6f8fb;
+    background:#f6f8fc;
     color:#172033;
 }
 
@@ -29,11 +29,11 @@ body{
 header{
     position:sticky;
     top:0;
-    z-index:1000;
-    background:rgba(17,24,39,.96);
+    z-index:100;
+    background:rgba(15,23,42,.96);
     backdrop-filter:blur(12px);
     color:white;
-    padding:17px 6%;
+    padding:18px 6%;
     display:flex;
     align-items:center;
     justify-content:space-between;
@@ -41,46 +41,29 @@ header{
 }
 
 .logo{
-    display:flex;
-    align-items:center;
-    gap:10px;
-}
-
-.logo-icon{
-    width:42px;
-    height:42px;
-    border-radius:12px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:#2563eb;
-    font-size:22px;
-}
-
-.logo-text{
-    font-size:22px;
+    color:white;
+    text-decoration:none;
+    font-size:24px;
     font-weight:800;
-    letter-spacing:.5px;
+    letter-spacing:.3px;
 }
 
 nav{
     display:flex;
     align-items:center;
-    gap:8px;
+    gap:25px;
 }
 
 nav a{
     color:#e5e7eb;
     text-decoration:none;
-    padding:10px 14px;
-    border-radius:8px;
-    font-size:14px;
+    font-size:15px;
+    font-weight:600;
     transition:.2s;
 }
 
 nav a:hover{
-    background:rgba(255,255,255,.1);
-    color:white;
+    color:#60a5fa;
 }
 
 /* =========================
@@ -88,20 +71,19 @@ nav a:hover{
 ========================= */
 
 .hero{
-    min-height:510px;
+    min-height:480px;
     display:flex;
     align-items:center;
     justify-content:center;
     text-align:center;
-    color:white;
-    padding:80px 20px 120px;
+    padding:70px 20px 120px;
 
     background:
-        linear-gradient(
-            rgba(8,15,30,.62),
-            rgba(8,15,30,.72)
-        ),
-        url("https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1800&q=85");
+    linear-gradient(
+        rgba(15,23,42,.72),
+        rgba(15,23,42,.58)
+    ),
+    url("https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1800&q=85");
 
     background-size:cover;
     background-position:center;
@@ -109,32 +91,31 @@ nav a:hover{
 
 .hero-content{
     max-width:850px;
+    color:white;
 }
 
-.hero-label{
+.hero-badge{
     display:inline-block;
     padding:8px 15px;
     border-radius:30px;
     background:rgba(255,255,255,.14);
     border:1px solid rgba(255,255,255,.25);
-    backdrop-filter:blur(5px);
     font-size:14px;
-    margin-bottom:20px;
+    margin-bottom:18px;
 }
 
 .hero h1{
     margin:0;
     font-size:52px;
     line-height:1.1;
-    letter-spacing:-1.5px;
 }
 
 .hero p{
+    font-size:19px;
+    color:#e5e7eb;
     margin:20px auto 0;
     max-width:650px;
-    font-size:18px;
-    line-height:1.7;
-    color:#e5e7eb;
+    line-height:1.6;
 }
 
 /* =========================
@@ -142,28 +123,28 @@ nav a:hover{
 ========================= */
 
 .search-wrapper{
-    max-width:1150px;
-    margin:-70px auto 0;
+    max-width:1180px;
+    margin:-75px auto 60px;
     padding:0 20px;
     position:relative;
-    z-index:5;
+    z-index:10;
 }
 
 .search-box{
     background:white;
     border-radius:20px;
-    padding:25px;
-    box-shadow:0 15px 50px rgba(15,23,42,.16);
+    padding:28px;
+    box-shadow:0 15px 45px rgba(15,23,42,.16);
     border:1px solid #e5e7eb;
 }
 
 .search-title{
-    margin-bottom:18px;
+    margin-bottom:20px;
 }
 
 .search-title h2{
     margin:0 0 5px;
-    font-size:21px;
+    font-size:23px;
 }
 
 .search-title p{
@@ -174,7 +155,12 @@ nav a:hover{
 
 .filters{
     display:grid;
-    grid-template-columns:repeat(5,1fr);
+    grid-template-columns:
+        1fr
+        1fr
+        1fr
+        1fr
+        1fr;
     gap:12px;
 }
 
@@ -187,7 +173,7 @@ nav a:hover{
     font-size:12px;
     font-weight:bold;
     color:#6b7280;
-    margin:0 0 6px 2px;
+    margin-bottom:7px;
 }
 
 .filters select,
@@ -199,8 +185,8 @@ nav a:hover{
     border-radius:10px;
     background:#fff;
     color:#172033;
-    outline:none;
     font-size:14px;
+    outline:none;
     transition:.2s;
 }
 
@@ -211,15 +197,15 @@ nav a:hover{
 }
 
 .search-button{
+    margin-top:18px;
     width:100%;
-    margin-top:15px;
-    height:50px;
+    height:52px;
     border:0;
-    border-radius:10px;
+    border-radius:11px;
     background:#2563eb;
     color:white;
-    font-size:15px;
-    font-weight:bold;
+    font-size:16px;
+    font-weight:800;
     cursor:pointer;
     transition:.2s;
 }
@@ -230,42 +216,36 @@ nav a:hover{
 }
 
 /* =========================
-   CONTAINER
+   MAIN
 ========================= */
 
 .container{
-    max-width:1200px;
+    max-width:1180px;
     margin:auto;
-    padding:70px 20px 0;
+    padding:0 20px;
 }
 
-/* =========================
-   SECTION TITLE
-========================= */
-
-.section-title{
+.section-header{
     display:flex;
     justify-content:space-between;
-    align-items:flex-end;
-    gap:20px;
-    margin-bottom:12px;
+    align-items:end;
+    margin-bottom:22px;
 }
 
-.section-title h2{
+.section-header h2{
     margin:0;
     font-size:30px;
-    letter-spacing:-.5px;
 }
 
-.section-title p{
+.section-header p{
     margin:7px 0 0;
     color:#6b7280;
 }
 
 .result{
+    margin-bottom:22px;
     color:#6b7280;
     font-size:14px;
-    margin-bottom:25px;
 }
 
 /* =========================
@@ -274,30 +254,30 @@ nav a:hover{
 
 .listings{
     display:grid;
-    grid-template-columns:repeat(3,1fr);
+    grid-template-columns:
+        repeat(3,1fr);
     gap:24px;
 }
 
 .card{
-    background:white;
-    border-radius:18px;
-    overflow:hidden;
-    border:1px solid #e8ebf0;
-    box-shadow:0 5px 22px rgba(15,23,42,.07);
-    transition:.25s;
     position:relative;
+    background:white;
+    border-radius:17px;
+    overflow:hidden;
+    border:1px solid #e8ecf2;
+    box-shadow:0 7px 25px rgba(15,23,42,.07);
+    transition:.25s;
 }
 
 .card:hover{
-    transform:translateY(-6px);
-    box-shadow:0 16px 38px rgba(15,23,42,.13);
+    transform:translateY(-5px);
+    box-shadow:0 15px 35px rgba(15,23,42,.13);
 }
 
-.image-wrapper{
+.image-wrap{
     position:relative;
-    height:235px;
+    height:230px;
     overflow:hidden;
-    background:#e5e7eb;
 }
 
 .card img{
@@ -312,7 +292,7 @@ nav a:hover{
     transform:scale(1.04);
 }
 
-.card-badge{
+.badge{
     position:absolute;
     left:14px;
     top:14px;
@@ -321,29 +301,29 @@ nav a:hover{
     padding:7px 11px;
     border-radius:7px;
     font-size:12px;
-    font-weight:bold;
-    box-shadow:0 4px 12px rgba(0,0,0,.18);
+    font-weight:800;
+    z-index:2;
 }
 
 .favorite{
     position:absolute;
-    right:14px;
-    top:14px;
+    right:13px;
+    top:13px;
     width:42px;
     height:42px;
-    border-radius:50%;
     border:0;
-    background:rgba(255,255,255,.96);
-    color:#374151;
+    border-radius:50%;
+    background:white;
+    color:#64748b;
     font-size:22px;
     cursor:pointer;
-    box-shadow:0 4px 14px rgba(0,0,0,.16);
-    z-index:3;
+    box-shadow:0 4px 15px rgba(0,0,0,.18);
+    z-index:5;
     transition:.2s;
 }
 
 .favorite:hover{
-    transform:scale(1.08);
+    transform:scale(1.07);
 }
 
 .favorite.active{
@@ -354,59 +334,49 @@ nav a:hover{
     padding:20px;
 }
 
-.location{
-    color:#6b7280;
-    font-size:13px;
-    margin-bottom:9px;
+.card h3{
+    margin:0 0 10px;
+    font-size:20px;
+    line-height:1.35;
 }
 
-.card h3{
-    margin:0 0 12px;
-    font-size:19px;
-    line-height:1.35;
-    color:#111827;
+.location{
+    color:#64748b;
+    font-size:14px;
+    margin-bottom:14px;
 }
 
 .details{
     display:flex;
-    gap:14px;
-    flex-wrap:wrap;
-    color:#667085;
-    font-size:13px;
-    border-top:1px solid #edf0f4;
-    padding-top:13px;
-}
-
-.price-row{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
     gap:10px;
-    margin-top:18px;
+    flex-wrap:wrap;
+    color:#64748b;
+    font-size:13px;
+    padding-bottom:15px;
+    border-bottom:1px solid #edf0f4;
 }
 
 .price{
-    font-size:21px;
-    font-weight:800;
     color:#2563eb;
+    font-size:23px;
+    font-weight:900;
+    margin:16px 0;
 }
 
 .detail-button{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    text-decoration:none;
+    display:block;
+    text-align:center;
     background:#111827;
     color:white;
-    padding:10px 14px;
-    border-radius:8px;
-    font-size:13px;
-    font-weight:bold;
+    padding:13px;
+    border-radius:9px;
+    text-decoration:none;
+    font-weight:800;
     transition:.2s;
 }
 
 .detail-button:hover{
-    background:#2563eb;
+    background:#1f2937;
 }
 
 /* =========================
@@ -416,27 +386,15 @@ nav a:hover{
 .empty{
     grid-column:1/-1;
     background:white;
+    border:1px solid #e5e7eb;
     padding:60px 20px;
     text-align:center;
-    border-radius:18px;
-    border:1px solid #e5e7eb;
-    color:#6b7280;
+    border-radius:17px;
+    color:#64748b;
 }
 
 .empty h2{
     color:#172033;
-    margin-top:0;
-}
-
-.empty button{
-    margin-top:10px;
-    padding:12px 20px;
-    border:0;
-    border-radius:8px;
-    background:#2563eb;
-    color:white;
-    cursor:pointer;
-    font-weight:bold;
 }
 
 /* =========================
@@ -444,50 +402,50 @@ nav a:hover{
 ========================= */
 
 .favorites-section{
-    margin-top:90px;
-    padding-top:10px;
+    margin-top:80px;
     margin-bottom:80px;
 }
 
 .favorite-count{
-    color:#6b7280;
+    color:#64748b;
     font-size:14px;
-    font-weight:normal;
 }
 
 /* =========================
-   CONTACT
+   INFO SECTION
 ========================= */
 
-.contact-section{
-    margin-top:70px;
-    background:#111827;
-    color:white;
-    border-radius:22px;
-    padding:45px 35px;
+.info-section{
+    margin:80px 0;
+}
+
+.info-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.info-box{
+    background:white;
+    padding:28px;
+    border-radius:16px;
+    border:1px solid #e8ecf2;
     text-align:center;
 }
 
-.contact-section h2{
+.info-icon{
+    font-size:34px;
+    margin-bottom:12px;
+}
+
+.info-box h3{
     margin:0 0 10px;
-    font-size:28px;
 }
 
-.contact-section p{
-    color:#cbd5e1;
-    max-width:600px;
-    margin:0 auto 25px;
-    line-height:1.7;
-}
-
-.contact-button{
-    display:inline-block;
-    background:#2563eb;
-    color:white;
-    text-decoration:none;
-    padding:13px 24px;
-    border-radius:9px;
-    font-weight:bold;
+.info-box p{
+    color:#64748b;
+    line-height:1.6;
+    font-size:14px;
 }
 
 /* =========================
@@ -495,116 +453,137 @@ nav a:hover{
 ========================= */
 
 footer{
-    margin-top:80px;
-    background:#0b1120;
+    margin-top:90px;
+    background:#0f172a;
     color:white;
-    padding:45px 20px;
-    text-align:center;
+    padding:50px 20px 30px;
 }
 
+.footer-content{
+    max-width:1180px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr;
+    gap:40px;
+}
+
+footer h2,
 footer h3{
-    margin:0 0 10px;
+    margin-top:0;
 }
 
 footer p{
-    margin:7px;
-    color:#9ca3af;
-    font-size:14px;
+    color:#cbd5e1;
+    line-height:1.7;
+}
+
+.footer-links{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.footer-links a{
+    color:#cbd5e1;
+    text-decoration:none;
+}
+
+.footer-bottom{
+    max-width:1180px;
+    margin:35px auto 0;
+    padding-top:20px;
+    border-top:1px solid rgba(255,255,255,.1);
+    text-align:center;
+    color:#94a3b8;
+    font-size:13px;
 }
 
 /* =========================
    MOBILE
 ========================= */
 
-@media(max-width:950px){
+@media(max-width:900px){
 
     .filters{
-        grid-template-columns:repeat(2,1fr);
+        grid-template-columns:
+            repeat(2,1fr);
     }
 
     .listings{
-        grid-template-columns:repeat(2,1fr);
+        grid-template-columns:
+            repeat(2,1fr);
     }
 
-    .hero h1{
-        font-size:42px;
+    .info-grid{
+        grid-template-columns:1fr;
     }
+
+    .footer-content{
+        grid-template-columns:1fr 1fr;
+    }
+
 }
 
-@media(max-width:650px){
+@media(max-width:600px){
 
     header{
-        position:relative;
-        padding:15px 18px;
+        padding:16px 20px;
         flex-direction:column;
-        gap:12px;
+        gap:14px;
     }
 
     nav{
-        width:100%;
-        justify-content:center;
+        gap:14px;
         flex-wrap:wrap;
+        justify-content:center;
     }
 
     nav a{
-        padding:7px 8px;
         font-size:13px;
     }
 
     .hero{
         min-height:430px;
-        padding:70px 20px 100px;
+        padding:60px 20px 100px;
     }
 
     .hero h1{
-        font-size:34px;
+        font-size:35px;
     }
 
     .hero p{
-        font-size:15px;
+        font-size:16px;
     }
 
     .search-wrapper{
-        margin:-55px auto 0;
+        margin:-55px auto 45px;
     }
 
     .search-box{
-        padding:18px;
-        border-radius:15px;
+        padding:20px;
     }
 
     .filters{
         grid-template-columns:1fr;
     }
 
-    .container{
-        padding-top:50px;
-    }
-
-    .section-title h2{
-        font-size:25px;
-    }
-
     .listings{
         grid-template-columns:1fr;
     }
 
-    .image-wrapper{
-        height:240px;
-    }
-
-    .price-row{
-        align-items:stretch;
+    .section-header{
+        align-items:start;
         flex-direction:column;
     }
 
-    .detail-button{
-        width:100%;
+    .section-header h2{
+        font-size:26px;
     }
 
-    .contact-section{
-        padding:35px 20px;
+    .footer-content{
+        grid-template-columns:1fr;
     }
+
 }
 </style>
 </head>
@@ -617,17 +596,16 @@ footer p{
 
 <header>
 
-    <div class="logo">
-        <div class="logo-icon">🏠</div>
-        <div class="logo-text">NOVA EMLAK</div>
-    </div>
+<a href="index.html" class="logo">
+🏠 NOVA EMLAK
+</a>
 
-    <nav>
-        <a href="index.html">Ana Sayfa</a>
-        <a href="#ilanlar">İlanlar</a>
-        <a href="#favoriler">❤️ Favoriler</a>
-        <a href="#iletisim">İletişim</a>
-    </nav>
+<nav>
+<a href="index.html">Ana Sayfa</a>
+<a href="#ilanlar">İlanlar</a>
+<a href="#favoriler">❤️ Favoriler</a>
+<a href="#iletisim">İletişim</a>
+</nav>
 
 </header>
 
@@ -638,24 +616,22 @@ footer p{
 
 <section class="hero">
 
-    <div class="hero-content">
+<div class="hero-content">
 
-        <div class="hero-label">
-            ✨ Güvenilir Gayrimenkul
-        </div>
+<div class="hero-badge">
+🏡 Güvenilir Gayrimenkul Platformu
+</div>
 
-        <h1>
-            Hayalinizdeki<br>
-            Evi Bulun
-        </h1>
+<h1>
+Hayalinizdeki Evi Bulun
+</h1>
 
-        <p>
-            Satılık ve kiralık gayrimenkulleri
-            kolayca keşfedin. Size en uygun
-            yaşam alanını Nova Emlak ile bulun.
-        </p>
+<p>
+Satılık ve kiralık gayrimenkulleri kolayca keşfedin.
+Size uygun evi birkaç saniyede bulun.
+</p>
 
-    </div>
+</div>
 
 </section>
 
@@ -666,141 +642,147 @@ footer p{
 
 <div class="search-wrapper">
 
-    <div class="search-box">
+<div class="search-box">
 
-        <div class="search-title">
+<div class="search-title">
 
-            <h2>🔎 İlan Ara</h2>
+<h2>
+🔎 Gayrimenkul Ara
+</h2>
 
-            <p>
-                Aradığınız gayrimenkulü birkaç saniyede bulun.
-            </p>
+<p>
+Size uygun ilanları filtreleyerek kolayca bulun.
+</p>
 
-        </div>
-
-        <div class="filters">
-
-            <div class="field">
-
-                <label>İLAN TÜRÜ</label>
-
-                <select id="type">
-
-                    <option value="">
-                        Satılık + Kiralık
-                    </option>
-
-                    <option value="Satılık">
-                        Satılık
-                    </option>
-
-                    <option value="Kiralık">
-                        Kiralık
-                    </option>
-
-                </select>
-
-            </div>
+</div>
 
 
-            <div class="field">
+<div class="filters">
 
-                <label>ŞEHİR</label>
+<div class="field">
 
-                <select id="city">
+<label>İlan Türü</label>
 
-                    <option value="">
-                        Tüm şehirler
-                    </option>
+<select id="type">
 
-                    <option value="İstanbul">
-                        İstanbul
-                    </option>
+<option value="">
+Satılık + Kiralık
+</option>
 
-                    <option value="Ankara">
-                        Ankara
-                    </option>
+<option value="Satılık">
+Satılık
+</option>
 
-                    <option value="İzmir">
-                        İzmir
-                    </option>
+<option value="Kiralık">
+Kiralık
+</option>
 
-                </select>
+</select>
 
-            </div>
+</div>
 
 
-            <div class="field">
+<div class="field">
 
-                <label>ODA</label>
+<label>Şehir</label>
 
-                <select id="rooms">
+<select id="city">
 
-                    <option value="">
-                        Tüm oda sayıları
-                    </option>
+<option value="">
+Tüm şehirler
+</option>
 
-                    <option value="1+1">
-                        1+1
-                    </option>
+<option value="İstanbul">
+İstanbul
+</option>
 
-                    <option value="2+1">
-                        2+1
-                    </option>
+<option value="Ankara">
+Ankara
+</option>
 
-                    <option value="3+1">
-                        3+1
-                    </option>
+<option value="İzmir">
+İzmir
+</option>
 
-                    <option value="4+1">
-                        4+1
-                    </option>
+<option value="Bursa">
+Bursa
+</option>
 
-                    <option value="5+1">
-                        5+1
-                    </option>
+</select>
 
-                </select>
-
-            </div>
+</div>
 
 
-            <div class="field">
+<div class="field">
 
-                <label>EN AZ FİYAT</label>
+<label>İlçe</label>
 
-                <input
-                    id="minPrice"
-                    type="number"
-                    placeholder="Örn. 2.000.000"
-                >
+<input
+id="district"
+type="text"
+placeholder="Örn. Kadıköy"
+>
 
-            </div>
-
-
-            <div class="field">
-
-                <label>EN FAZLA FİYAT</label>
-
-                <input
-                    id="maxPrice"
-                    type="number"
-                    placeholder="Örn. 10.000.000"
-                >
-
-            </div>
-
-        </div>
+</div>
 
 
-        <button
-            class="search-button"
-            onclick="searchListings()"
-        >
-            🔎 İlanları Ara
-        </button>
+<div class="field">
 
-    </div>
+<label>Oda Sayısı</label>
+
+<select id="rooms">
+
+<option value="">
+Tüm odalar
+</option>
+
+<option value="1+1">1+1</option>
+<option value="2+1">2+1</option>
+<option value="3+1">3+1</option>
+<option value="4+1">4+1</option>
+<option value="5+1">5+1</option>
+
+</select>
+
+</div>
+
+
+<div class="field">
+
+<label>Minimum Fiyat</label>
+
+<input
+id="minPrice"
+type="number"
+placeholder="TL"
+>
+
+</div>
+
+
+<div class="field">
+
+<label>Maksimum Fiyat</label>
+
+<input
+id="maxPrice"
+type="number"
+placeholder="TL"
+>
+
+</div>
+
+</div>
+
+
+<button
+class="search-button"
+onclick="searchListings()"
+>
+🔎 İlanları Ara
+</button>
+
+</div>
 
 </div>
 
@@ -809,137 +791,239 @@ footer p{
      İLANLAR
 ========================= -->
 
-<div
-    class="container"
-    id="ilanlar"
->
+<main class="container" id="ilanlar">
 
-    <div class="section-title">
+<div class="section-header">
 
-        <div>
+<div>
 
-            <h2>
-                🏡 Güncel İlanlar
-            </h2>
+<h2>
+🏡 Öne Çıkan İlanlar
+</h2>
 
-            <p>
-                Sizin için seçtiğimiz gayrimenkuller
-            </p>
-
-        </div>
-
-    </div>
-
-
-    <div
-        class="result"
-        id="result"
-    >
-        İlanlar yükleniyor...
-    </div>
-
-
-    <div
-        class="listings"
-        id="listings"
-    >
-    </div>
-
-
-    <!-- =========================
-         FAVORİLER
-    ========================= -->
-
-    <section
-        class="favorites-section"
-        id="favoriler"
-    >
-
-        <div class="section-title">
-
-            <div>
-
-                <h2>
-                    ❤️ Favorilerim
-                </h2>
-
-                <p>
-                    Beğendiğiniz ilanları burada görebilirsiniz.
-                </p>
-
-            </div>
-
-            <span
-                class="favorite-count"
-                id="favoriteCount"
-            >
-                0 favori
-            </span>
-
-        </div>
-
-
-        <div
-            class="listings"
-            id="favoriteListings"
-        >
-        </div>
-
-    </section>
-
-
-    <!-- =========================
-         CONTACT
-    ========================= -->
-
-    <section
-        class="contact-section"
-        id="iletisim"
-    >
-
-        <h2>
-            Gayrimenkul hakkında bilgi mi arıyorsunuz?
-        </h2>
-
-        <p>
-            İlanlarımız hakkında detaylı bilgi almak,
-            fiyatları öğrenmek veya yeni bir ilan
-            hakkında görüşmek için bizimle iletişime geçebilirsiniz.
-        </p>
-
-        <a
-            class="contact-button"
-            href="tel:05555555555"
-        >
-            📞 Bize Ulaşın
-        </a>
-
-    </section>
+<p>
+Güncel gayrimenkul ilanlarımızı keşfedin.
+</p>
 
 </div>
+
+</div>
+
+
+<div
+class="result"
+id="result"
+>
+İlanlar yükleniyor...
+</div>
+
+
+<div
+class="listings"
+id="listings"
+>
+</div>
+
+
+<!-- =========================
+     FAVORİLER
+========================= -->
+
+<section
+class="favorites-section"
+id="favoriler"
+>
+
+<div class="section-header">
+
+<div>
+
+<h2>
+❤️ Favorilerim
+</h2>
+
+<p>
+Beğendiğiniz ilanları burada görebilirsiniz.
+</p>
+
+</div>
+
+<span
+class="favorite-count"
+id="favoriteCount"
+>
+0 favori
+</span>
+
+</div>
+
+
+<div
+class="listings"
+id="favoriteListings"
+>
+</div>
+
+</section>
+
+
+<!-- =========================
+     NEDEN NOVA EMLAK
+========================= -->
+
+<section class="info-section">
+
+<div class="section-header">
+
+<div>
+
+<h2>
+✨ Neden Nova Emlak?
+</h2>
+
+<p>
+Aradığınız gayrimenkulü kolayca keşfedin.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="info-grid">
+
+<div class="info-box">
+
+<div class="info-icon">
+🏠
+</div>
+
+<h3>
+Geniş İlan Seçeneği
+</h3>
+
+<p>
+Farklı özelliklere ve bütçelere uygun gayrimenkul ilanlarını keşfedin.
+</p>
+
+</div>
+
+
+<div class="info-box">
+
+<div class="info-icon">
+🔎
+</div>
+
+<h3>
+Kolay Arama
+</h3>
+
+<p>
+Şehir, oda sayısı ve fiyat gibi filtrelerle aradığınız evi hızlıca bulun.
+</p>
+
+</div>
+
+
+<div class="info-box">
+
+<div class="info-icon">
+❤️
+</div>
+
+<h3>
+Favorilerinizi Kaydedin
+</h3>
+
+<p>
+Beğendiğiniz ilanları favorilerinize ekleyerek daha sonra tekrar inceleyin.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+</main>
 
 
 <!-- =========================
      FOOTER
 ========================= -->
 
-<footer>
+<footer id="iletisim">
 
-    <h3>
-        🏠 Nova Emlak
-    </h3>
+<div class="footer-content">
 
-    <p>
-        📞 0555 555 55 55
-    </p>
+<div>
 
-    <p>
-        📍 İstanbul
-    </p>
+<h2>
+🏠 NOVA EMLAK
+</h2>
 
-    <p>
-        © 2026 Nova Emlak — Tüm hakları saklıdır.
-    </p>
+<p>
+Hayalinizdeki eve ulaşmanız için
+modern ve kolay bir gayrimenkul deneyimi.
+</p>
+
+</div>
+
+
+<div>
+
+<h3>
+Hızlı Menü
+</h3>
+
+<div class="footer-links">
+
+<a href="index.html">
+Ana Sayfa
+</a>
+
+<a href="#ilanlar">
+İlanlar
+</a>
+
+<a href="#favoriler">
+Favoriler
+</a>
+
+</div>
+
+</div>
+
+
+<div>
+
+<h3>
+İletişim
+</h3>
+
+<div class="footer-links">
+
+<a href="tel:05555555555">
+📞 0555 555 55 55
+</a>
+
+<a href="#">
+📍 İstanbul
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="footer-bottom">
+
+© 2026 Nova Emlak — Tüm hakları saklıdır.
+
+</div>
 
 </footer>
 
@@ -947,7 +1031,7 @@ footer p{
 <script>
 
 /* =========================
-   İLANLAR
+   GLOBAL
 ========================= */
 
 let allListings = [];
@@ -958,57 +1042,52 @@ let allListings = [];
 ========================= */
 
 let favorites =
-    JSON.parse(
-        localStorage.getItem("novaFavorites") || "[]"
-    );
+JSON.parse(
+localStorage.getItem("novaFavorites") || "[]"
+);
 
 
 function saveFavorites(){
 
-    localStorage.setItem(
-        "novaFavorites",
-        JSON.stringify(favorites)
-    );
+localStorage.setItem(
+"novaFavorites",
+JSON.stringify(favorites)
+);
 
 }
 
 
 function isFavorite(id){
 
-    return favorites.includes(Number(id));
+return favorites.includes(Number(id));
 
 }
 
 
-/* =========================
-   FAVORİ EKLE / ÇIKAR
-========================= */
-
 function toggleFavorite(id){
 
-    id = Number(id);
+id = Number(id);
 
-    if(favorites.includes(id)){
+if(favorites.includes(id)){
 
-        favorites =
-            favorites.filter(
-                favoriteId =>
-                    favoriteId !== id
-            );
+favorites =
+favorites.filter(
+favoriteId => favoriteId !== id
+);
 
-    }else{
+}else{
 
-        favorites.push(id);
+favorites.push(id);
 
-    }
+}
 
-    saveFavorites();
+saveFavorites();
 
-    displayListings(
-        getCurrentFilteredListings()
-    );
+displayListings(
+getCurrentFilteredListings()
+);
 
-    displayFavorites();
+displayFavorites();
 
 }
 
@@ -1019,512 +1098,461 @@ function toggleFavorite(id){
 
 async function loadListings(){
 
-    try{
+try{
 
-        const response =
-            await fetch("/api/ilanlar");
+const response =
+await fetch("/api/ilanlar");
 
-        if(!response.ok){
+if(!response.ok){
 
-            throw new Error(
-                "İlanlar alınamadı."
-            );
+throw new Error(
+"İlan API bağlantısı başarısız."
+);
 
-        }
+}
 
-        const data =
-            await response.json();
+const data =
+await response.json();
 
-        allListings =
-            Array.isArray(data)
-                ? data
-                : [];
+if(!Array.isArray(data)){
 
-        displayListings(
-            allListings
-        );
+throw new Error(
+"API geçerli ilan listesi göndermedi."
+);
 
-        displayFavorites();
+}
 
-    }catch(error){
+allListings = data;
 
-        console.error(
-            "İlan yükleme hatası:",
-            error
-        );
+displayListings(allListings);
 
-        const result =
-            document.getElementById("result");
+displayFavorites();
 
-        const container =
-            document.getElementById("listings");
+}catch(error){
 
-        if(result){
+console.error(
+"İlan yükleme hatası:",
+error
+);
 
-            result.textContent =
-                "İlanlar yüklenemedi.";
+const result =
+document.getElementById("result");
 
-        }
+if(result){
 
-        if(container){
+result.textContent =
+"İlanlar şu anda yüklenemiyor.";
 
-            container.innerHTML = `
+}
 
-                <div class="empty">
+const container =
+document.getElementById("listings");
 
-                    <h2>⚠️ İlanlar yüklenemedi</h2>
+if(container){
 
-                    <p>
-                        Sunucu bağlantısını kontrol edip
-                        sayfayı yenileyin.
-                    </p>
+container.innerHTML = `
 
-                </div>
+<div class="empty">
 
-            `;
+<h2>😔 İlanlar yüklenemedi</h2>
 
-        }
+<p>
+Lütfen sayfayı yenileyip tekrar deneyin.
+</p>
 
-    }
+</div>
+
+`;
+
+}
+
+}
 
 }
 
 
 /* =========================
-   İLANLARI GÖSTER
+   İLAN KARTLARI
 ========================= */
 
 function displayListings(ilanlar){
 
-    const container =
-        document.getElementById("listings");
+const container =
+document.getElementById("listings");
 
-    const result =
-        document.getElementById("result");
+const result =
+document.getElementById("result");
 
+if(!container || !result){
 
-    if(!container) return;
+return;
 
+}
 
-    container.innerHTML = "";
+container.innerHTML = "";
 
+result.textContent =
+ilanlar.length + " ilan bulundu.";
 
-    if(result){
 
-        result.textContent =
-            ilanlar.length +
-            " ilan bulundu.";
+if(ilanlar.length === 0){
 
-    }
+container.innerHTML = `
 
+<div class="empty">
 
-    if(ilanlar.length === 0){
+<h2>😔 İlan bulunamadı</h2>
 
-        container.innerHTML = `
+<p>
+Arama kriterlerinizi değiştirip tekrar deneyin.
+</p>
 
-            <div class="empty">
+</div>
 
-                <h2>😔 İlan bulunamadı</h2>
+`;
 
-                <p>
-                    Arama kriterlerini değiştirip
-                    tekrar deneyin.
-                </p>
+return;
 
-                <button
-                    onclick="clearSearch()"
-                >
-                    Filtreleri Temizle
-                </button>
+}
 
-            </div>
 
-        `;
+ilanlar.forEach(function(ilan){
 
-        return;
+const card =
+document.createElement("article");
 
-    }
+card.className = "card";
 
 
-    ilanlar.forEach(
-        function(ilan){
+const active =
+isFavorite(ilan.id)
+? "active"
+: "";
 
-            const card =
-                document.createElement("div");
 
-            card.className = "card";
+const heart =
+isFavorite(ilan.id)
+? "❤️"
+: "♡";
 
 
-            const favoriteActive =
-                isFavorite(ilan.id)
-                    ? "active"
-                    : "";
+const image =
+ilan.image ||
+(
+Array.isArray(ilan.images)
+&& ilan.images[0]
+)
+||
+"https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80";
 
-            const heart =
-                isFavorite(ilan.id)
-                    ? "❤️"
-                    : "♡";
 
+card.innerHTML = `
 
-            const image =
-                ilan.image ||
-                (
-                    Array.isArray(ilan.images)
-                    && ilan.images.length
-                        ? ilan.images[0]
-                        : "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80"
-                );
+<div class="image-wrap">
 
+<span class="badge">
+${escapeHTML(ilan.type || "İlan")}
+</span>
 
-            const city =
-                ilan.city || "-";
+<button
+class="favorite ${active}"
+onclick="toggleFavorite(${Number(ilan.id)})"
+title="Favorilere ekle"
+>
+${heart}
+</button>
 
+<img
+src="${escapeHTML(image)}"
+alt="${escapeHTML(ilan.title || "Gayrimenkul")}"
+loading="lazy"
+>
 
-            const district =
-                ilan.district
-                    ? " • " + ilan.district
-                    : "";
+</div>
 
 
-            const rooms =
-                ilan.rooms || "-";
+<div class="card-content">
 
+<h3>
+${escapeHTML(ilan.title || "İlan")}
+</h3>
 
-            const area =
-                ilan.area || 0;
 
+<div class="location">
 
-            const price =
-                Number(ilan.price || 0)
-                    .toLocaleString("tr-TR");
+📍 ${escapeHTML(ilan.city || "-")}
+${ilan.district ? " • " + escapeHTML(ilan.district) : ""}
 
+</div>
 
-            card.innerHTML = `
 
-                <div class="image-wrapper">
+<div class="details">
 
-                    <img
-                        src="${image}"
-                        alt="${escapeHTML(ilan.title || "İlan")}"
-                        loading="lazy"
-                        onerror="this.src='https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80'"
-                    >
+<span>🛏️ ${escapeHTML(ilan.rooms || "-")}</span>
 
-                    <span class="card-badge">
-                        ${escapeHTML(ilan.type || "İlan")}
-                    </span>
+<span>📐 ${Number(ilan.area || 0).toLocaleString("tr-TR")} m²</span>
 
-                    <button
-                        class="favorite ${favoriteActive}"
-                        onclick="toggleFavorite(${Number(ilan.id)})"
-                        title="Favorilere ekle"
-                    >
-                        ${heart}
-                    </button>
+${ilan.buildingAge ? `<span>🏢 ${Number(ilan.buildingAge)} yaş</span>` : ""}
 
-                </div>
+</div>
 
 
-                <div class="card-content">
+<div class="price">
 
-                    <div class="location">
-                        📍 ${escapeHTML(city)}${escapeHTML(district)}
-                    </div>
+${Number(ilan.price || 0).toLocaleString("tr-TR")} TL
 
-                    <h3>
-                        ${escapeHTML(
-                            ilan.title || "İlan"
-                        )}
-                    </h3>
+</div>
 
 
-                    <div class="details">
+<a
+class="detail-button"
+href="ilan.html?id=${Number(ilan.id)}"
+>
+İlanı İncele →
+</a>
 
-                        <span>
-                            🛏️ ${escapeHTML(rooms)}
-                        </span>
+</div>
 
-                        <span>
-                            📐 ${area} m²
-                        </span>
+`;
 
-                        ${
-                            ilan.buildingAge
-                                ? `
-                                    <span>
-                                        🏢 ${ilan.buildingAge} yaş
-                                    </span>
-                                  `
-                                : ""
-                        }
 
-                    </div>
+container.appendChild(card);
 
-
-                    <div class="price-row">
-
-                        <div class="price">
-                            ${price} TL
-                        </div>
-
-                        <a
-                            class="detail-button"
-                            href="ilan.html?id=${Number(ilan.id)}"
-                        >
-                            İncele →
-                        </a>
-
-                    </div>
-
-                </div>
-
-            `;
-
-
-            container.appendChild(card);
-
-        }
-    );
+});
 
 }
 
 
 /* =========================
-   FAVORİLERİ GÖSTER
+   FAVORİLER
 ========================= */
 
 function displayFavorites(){
 
-    const container =
-        document.getElementById(
-            "favoriteListings"
-        );
+const container =
+document.getElementById(
+"favoriteListings"
+);
 
-    const count =
-        document.getElementById(
-            "favoriteCount"
-        );
+const count =
+document.getElementById(
+"favoriteCount"
+);
 
+if(!container || !count){
 
-    if(!container) return;
+return;
 
-
-    const favoriteListings =
-        allListings.filter(
-            ilan =>
-                favorites.includes(
-                    Number(ilan.id)
-                )
-        );
+}
 
 
-    if(count){
-
-        count.textContent =
-            favoriteListings.length +
-            " favori";
-
-    }
-
-
-    container.innerHTML = "";
+const favoriteListings =
+allListings.filter(
+ilan =>
+favorites.includes(
+Number(ilan.id)
+)
+);
 
 
-    if(favoriteListings.length === 0){
+count.textContent =
+favoriteListings.length + " favori";
 
-        container.innerHTML = `
-
-            <div class="empty">
-
-                <h2>
-                    ❤️ Henüz favori ilanınız yok
-                </h2>
-
-                <p>
-                    Beğendiğiniz ilanların üzerindeki
-                    ❤️ butonuna basarak favorilerinize ekleyebilirsiniz.
-                </p>
-
-                <button
-                    onclick="document.getElementById('ilanlar').scrollIntoView({behavior:'smooth'})"
-                >
-                    İlanlara Göz At
-                </button>
-
-            </div>
-
-        `;
-
-        return;
-
-    }
+container.innerHTML = "";
 
 
-    favoriteListings.forEach(
-        function(ilan){
+if(favoriteListings.length === 0){
 
-            const card =
-                document.createElement("div");
+container.innerHTML = `
 
-            card.className =
-                "card";
+<div class="empty">
 
+<h2>❤️ Henüz favori ilanınız yok</h2>
 
-            const image =
-                ilan.image ||
-                (
-                    Array.isArray(ilan.images)
-                    && ilan.images.length
-                        ? ilan.images[0]
-                        : ""
-                );
+<p>
+Beğendiğiniz ilanların üzerindeki ❤️
+butonuna basarak favorilerinize ekleyebilirsiniz.
+</p>
 
+</div>
 
-            const price =
-                Number(ilan.price || 0)
-                    .toLocaleString("tr-TR");
+`;
+
+return;
+
+}
 
 
-            card.innerHTML = `
+favoriteListings.forEach(function(ilan){
 
-                <div class="image-wrapper">
+const card =
+document.createElement("article");
 
-                    <img
-                        src="${image}"
-                        alt="${escapeHTML(ilan.title || "İlan")}"
-                        loading="lazy"
-                    >
-
-                    <span class="card-badge">
-                        ${escapeHTML(ilan.type || "İlan")}
-                    </span>
-
-                    <button
-                        class="favorite active"
-                        onclick="toggleFavorite(${Number(ilan.id)})"
-                    >
-                        ❤️
-                    </button>
-
-                </div>
+card.className = "card";
 
 
-                <div class="card-content">
-
-                    <div class="location">
-                        📍 ${escapeHTML(ilan.city || "-")}
-                    </div>
-
-                    <h3>
-                        ${escapeHTML(
-                            ilan.title || "İlan"
-                        )}
-                    </h3>
+const image =
+ilan.image ||
+(
+Array.isArray(ilan.images)
+&& ilan.images[0]
+)
+||
+"https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80";
 
 
-                    <div class="details">
+card.innerHTML = `
 
-                        <span>
-                            🛏️ ${escapeHTML(
-                                ilan.rooms || "-"
-                            )}
-                        </span>
+<div class="image-wrap">
 
-                        <span>
-                            📐 ${ilan.area || 0} m²
-                        </span>
+<span class="badge">
+${escapeHTML(ilan.type || "İlan")}
+</span>
 
-                    </div>
+<button
+class="favorite active"
+onclick="toggleFavorite(${Number(ilan.id)})"
+title="Favorilerden çıkar"
+>
+❤️
+</button>
 
+<img
+src="${escapeHTML(image)}"
+alt="${escapeHTML(ilan.title || "Gayrimenkul")}"
+loading="lazy"
+>
 
-                    <div class="price-row">
-
-                        <div class="price">
-                            ${price} TL
-                        </div>
-
-                        <a
-                            class="detail-button"
-                            href="ilan.html?id=${Number(ilan.id)}"
-                        >
-                            İncele →
-                        </a>
-
-                    </div>
-
-                </div>
-
-            `;
+</div>
 
 
-            container.appendChild(card);
+<div class="card-content">
 
-        }
-    );
+<h3>
+${escapeHTML(ilan.title || "İlan")}
+</h3>
+
+
+<div class="location">
+
+📍 ${escapeHTML(ilan.city || "-")}
+${ilan.district ? " • " + escapeHTML(ilan.district) : ""}
+
+</div>
+
+
+<div class="details">
+
+<span>🛏️ ${escapeHTML(ilan.rooms || "-")}</span>
+
+<span>📐 ${Number(ilan.area || 0).toLocaleString("tr-TR")} m²</span>
+
+</div>
+
+
+<div class="price">
+
+${Number(ilan.price || 0).toLocaleString("tr-TR")} TL
+
+</div>
+
+
+<a
+class="detail-button"
+href="ilan.html?id=${Number(ilan.id)}"
+>
+İlanı İncele →
+</a>
+
+</div>
+
+`;
+
+container.appendChild(card);
+
+});
 
 }
 
 
 /* =========================
-   ARAMA
+   FİLTRE
 ========================= */
 
 function getCurrentFilteredListings(){
 
-    const type =
-        document.getElementById("type").value;
+const type =
+document.getElementById("type").value;
 
-    const city =
-        document.getElementById("city").value;
+const city =
+document.getElementById("city").value;
 
-    const rooms =
-        document.getElementById("rooms").value;
+const district =
+document.getElementById("district").value
+.trim()
+.toLowerCase();
 
+const rooms =
+document.getElementById("rooms").value;
 
-    const minPrice =
-        Number(
-            document.getElementById("minPrice").value
-        ) || 0;
+const minPrice =
+Number(
+document.getElementById("minPrice").value
+) || 0;
 
+const maxPriceValue =
+Number(
+document.getElementById("maxPrice").value
+);
 
-    const maxPrice =
-        Number(
-            document.getElementById("maxPrice").value
-        ) || Infinity;
-
-
-    return allListings.filter(
-        function(ilan){
-
-            const typeOK =
-                !type ||
-                ilan.type === type;
-
-
-            const cityOK =
-                !city ||
-                ilan.city === city;
+const maxPrice =
+maxPriceValue > 0
+? maxPriceValue
+: Infinity;
 
 
-            const roomsOK =
-                !rooms ||
-                ilan.rooms === rooms;
+return allListings.filter(function(ilan){
+
+const typeOK =
+!type ||
+ilan.type === type;
 
 
-            const priceOK =
-                Number(ilan.price || 0) >= minPrice &&
-                Number(ilan.price || 0) <= maxPrice;
+const cityOK =
+!city ||
+ilan.city === city;
 
 
-            return (
-                typeOK &&
-                cityOK &&
-                roomsOK &&
-                priceOK
-            );
+const districtOK =
+!district ||
+String(ilan.district || "")
+.toLowerCase()
+.includes(district);
 
-        }
-    );
+
+const roomsOK =
+!rooms ||
+ilan.rooms === rooms;
+
+
+const price =
+Number(ilan.price || 0);
+
+
+const priceOK =
+price >= minPrice &&
+price <= maxPrice;
+
+
+return (
+typeOK &&
+cityOK &&
+districtOK &&
+roomsOK &&
+priceOK
+);
+
+});
 
 }
 
@@ -1535,39 +1563,16 @@ function getCurrentFilteredListings(){
 
 function searchListings(){
 
-    displayListings(
-        getCurrentFilteredListings()
-    );
+const filtered =
+getCurrentFilteredListings();
 
-    document.getElementById(
-        "ilanlar"
-    ).scrollIntoView({
-        behavior:"smooth"
-    });
+displayListings(filtered);
 
-}
-
-
-/* =========================
-   FİLTRELERİ TEMİZLE
-========================= */
-
-function clearSearch(){
-
-    document.getElementById("type").value = "";
-
-    document.getElementById("city").value = "";
-
-    document.getElementById("rooms").value = "";
-
-    document.getElementById("minPrice").value = "";
-
-    document.getElementById("maxPrice").value = "";
-
-
-    displayListings(
-        allListings
-    );
+document.getElementById(
+"ilanlar"
+).scrollIntoView({
+behavior:"smooth"
+});
 
 }
 
@@ -1578,12 +1583,12 @@ function clearSearch(){
 
 function escapeHTML(value){
 
-    return String(value)
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;");
+return String(value)
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
 
 }
 
