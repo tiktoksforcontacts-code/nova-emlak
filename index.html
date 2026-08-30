@@ -1,19 +1,13 @@
-```html
 <!DOCTYPE html>
 <html lang="tr">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Nova Emlak | Hayalinizdeki Evi Bulun</title>
 
 <style>
-
-*{
-    box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 body{
     margin:0;
@@ -49,11 +43,8 @@ nav a{
 
     background-size:cover;
     background-position:center;
-
     padding:90px 20px;
-
     text-align:center;
-
     color:white;
 }
 
@@ -102,10 +93,6 @@ nav a{
     font-size:16px;
     font-weight:bold;
     cursor:pointer;
-}
-
-.search-button:hover{
-    background:#1d4ed8;
 }
 
 .container{
@@ -221,10 +208,6 @@ nav a{
     font-weight:bold;
 }
 
-.detail-button:hover{
-    background:#1f2937;
-}
-
 .favorites-section{
     margin-top:55px;
     margin-bottom:50px;
@@ -253,6 +236,15 @@ nav a{
     color:white;
     cursor:pointer;
     font-weight:bold;
+}
+
+.error-box{
+    background:#fff1f2;
+    border:1px solid #fecdd3;
+    color:#9f1239;
+    padding:20px;
+    border-radius:12px;
+    grid-column:1/-1;
 }
 
 footer{
@@ -291,249 +283,185 @@ footer p{
     }
 
 }
-
 </style>
-
 </head>
-
 
 <body>
 
-
 <header>
 
-    <h1>🏠 NOVA EMLAK</h1>
+<h1>🏠 NOVA EMLAK</h1>
 
-    <nav>
-
-        <a href="index.html">
-            Ana Sayfa
-        </a>
-
-        <a href="#ilanlar">
-            İlanlar
-        </a>
-
-        <a href="#favoriler">
-            ❤️ Favoriler
-        </a>
-
-        <a href="#iletisim">
-            İletişim
-        </a>
-
-    </nav>
+<nav>
+<a href="index.html">Ana Sayfa</a>
+<a href="#ilanlar">İlanlar</a>
+<a href="#favoriler">❤️ Favoriler</a>
+<a href="#iletisim">İletişim</a>
+</nav>
 
 </header>
 
 
 <section class="hero">
 
-    <h2>
-        Hayalinizdeki Evi Bulun
-    </h2>
+<h2>Hayalinizdeki Evi Bulun</h2>
 
-    <p>
-        Satılık ve kiralık gayrimenkulleri kolayca keşfedin.
-    </p>
+<p>
+Satılık ve kiralık gayrimenkulleri kolayca keşfedin.
+</p>
 
 </section>
 
 
 <div class="search-box">
 
-    <div class="filters">
+<div class="filters">
 
-        <select id="type">
+<select id="type">
+<option value="">Satılık + Kiralık</option>
+<option value="Satılık">Satılık</option>
+<option value="Kiralık">Kiralık</option>
+</select>
 
-            <option value="">
-                Satılık + Kiralık
-            </option>
+<select id="city">
+<option value="">Tüm şehirler</option>
+<option value="İstanbul">İstanbul</option>
+<option value="Ankara">Ankara</option>
+<option value="İzmir">İzmir</option>
+</select>
 
-            <option value="Satılık">
-                Satılık
-            </option>
+<select id="rooms">
+<option value="">Tüm oda sayıları</option>
+<option value="1+1">1+1</option>
+<option value="2+1">2+1</option>
+<option value="3+1">3+1</option>
+<option value="4+1">4+1</option>
+<option value="5+1">5+1</option>
+</select>
 
-            <option value="Kiralık">
-                Kiralık
-            </option>
+<input
+id="minPrice"
+type="number"
+placeholder="Min. fiyat TL"
+>
 
-        </select>
+<input
+id="maxPrice"
+type="number"
+placeholder="Max. fiyat TL"
+>
 
+</div>
 
-        <select id="city">
-
-            <option value="">
-                Tüm şehirler
-            </option>
-
-            <option value="İstanbul">
-                İstanbul
-            </option>
-
-            <option value="Ankara">
-                Ankara
-            </option>
-
-            <option value="İzmir">
-                İzmir
-            </option>
-
-        </select>
-
-
-        <select id="rooms">
-
-            <option value="">
-                Tüm oda sayıları
-            </option>
-
-            <option value="1+1">
-                1+1
-            </option>
-
-            <option value="2+1">
-                2+1
-            </option>
-
-            <option value="3+1">
-                3+1
-            </option>
-
-            <option value="4+1">
-                4+1
-            </option>
-
-            <option value="5+1">
-                5+1
-            </option>
-
-        </select>
-
-
-        <input
-            id="minPrice"
-            type="number"
-            placeholder="Min. fiyat TL"
-        >
-
-
-        <input
-            id="maxPrice"
-            type="number"
-            placeholder="Max. fiyat TL"
-        >
-
-    </div>
-
-
-    <button
-        class="search-button"
-        onclick="searchListings()"
-    >
-        🔎 İlanları Ara
-    </button>
+<button
+class="search-button"
+onclick="searchListings()"
+>
+🔎 İlanları Ara
+</button>
 
 </div>
 
 
+<div class="container" id="ilanlar">
+
+<div class="section-title">
+<h2>🏡 İlanlar</h2>
+</div>
+
 <div
-    class="container"
-    id="ilanlar"
+class="result"
+id="result"
+>
+İlanlar yükleniyor...
+</div>
+
+<div
+class="listings"
+id="listings"
+>
+</div>
+
+
+<section
+class="favorites-section"
+id="favoriler"
 >
 
-    <div class="section-title">
+<div class="section-title">
 
-        <h2>
-            🏡 İlanlar
-        </h2>
+<h2>❤️ Favorilerim</h2>
 
-    </div>
+<span
+class="favorite-count"
+id="favoriteCount"
+>
+0 favori
+</span>
 
+</div>
 
-    <div
-        class="result"
-        id="result"
-    >
-        İlanlar yükleniyor...
-    </div>
+<div
+class="listings"
+id="favoriteListings"
+>
+</div>
 
-
-    <div
-        class="listings"
-        id="listings"
-    ></div>
-
-
-    <section
-        class="favorites-section"
-        id="favoriler"
-    >
-
-        <div class="section-title">
-
-            <h2>
-                ❤️ Favorilerim
-            </h2>
-
-            <span
-                class="favorite-count"
-                id="favoriteCount"
-            >
-                0 favori
-            </span>
-
-        </div>
-
-
-        <div
-            class="listings"
-            id="favoriteListings"
-        ></div>
-
-    </section>
+</section>
 
 </div>
 
 
 <footer id="iletisim">
 
-    <h3>
-        Nova Emlak
-    </h3>
+<h3>Nova Emlak</h3>
 
-    <p>
-        📞 0555 555 55 55
-    </p>
+<p>📞 0555 555 55 55</p>
 
-    <p>
-        📍 İstanbul
-    </p>
+<p>📍 İstanbul</p>
 
-    <p>
-        © 2026 Nova Emlak
-    </p>
+<p>© 2026 Nova Emlak</p>
 
 </footer>
 
 
 <script>
 
-
-/* =========================
-   DEĞİŞKENLER
-========================= */
-
 let allListings = [];
 
+let favorites = [];
 
-let favorites = JSON.parse(
-    localStorage.getItem("novaFavorites") || "[]"
-);
+try{
+
+    favorites =
+        JSON.parse(
+            localStorage.getItem("novaFavorites") || "[]"
+        );
+
+    if(!Array.isArray(favorites)){
+        favorites=[];
+    }
+
+}catch(error){
+
+    favorites=[];
+
+}
 
 
 /* =========================
-   FAVORİLERİ KAYDET
+   GÜVENLİ ELEMENT
+========================= */
+
+function el(id){
+
+    return document.getElementById(id);
+
+}
+
+
+/* =========================
+   FAVORİLER
 ========================= */
 
 function saveFavorites(){
@@ -546,33 +474,23 @@ function saveFavorites(){
 }
 
 
-/* =========================
-   FAVORİ KONTROL
-========================= */
-
 function isFavorite(id){
 
-    return favorites.includes(
-        Number(id)
-    );
+    return favorites.includes(Number(id));
 
 }
 
 
-/* =========================
-   FAVORİ EKLE / ÇIKAR
-========================= */
-
 function toggleFavorite(id){
 
-    id = Number(id);
+    id=Number(id);
 
+    if(isFavorite(id)){
 
-    if(favorites.includes(id)){
-
-        favorites = favorites.filter(
-            favoriteId => favoriteId !== id
-        );
+        favorites =
+            favorites.filter(
+                x => x !== id
+            );
 
     }else{
 
@@ -580,14 +498,11 @@ function toggleFavorite(id){
 
     }
 
-
     saveFavorites();
-
 
     displayListings(
         getCurrentFilteredListings()
     );
-
 
     displayFavorites();
 
@@ -595,10 +510,50 @@ function toggleFavorite(id){
 
 
 /* =========================
-   İLANLARI API'DEN GETİR
+   FOTOĞRAF
+========================= */
+
+function getImage(ilan){
+
+    if(
+        Array.isArray(ilan.images) &&
+        ilan.images.length > 0
+    ){
+
+        return ilan.images[0];
+
+    }
+
+    if(ilan.image){
+
+        return ilan.image;
+
+    }
+
+    return "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80";
+
+}
+
+
+/* =========================
+   İLANLARI GETİR
 ========================= */
 
 async function loadListings(){
+
+    const result=el("result");
+    const container=el("listings");
+
+    if(!result || !container){
+
+        console.error(
+            "İlan alanları bulunamadı."
+        );
+
+        return;
+
+    }
+
 
     try{
 
@@ -614,7 +569,7 @@ async function loadListings(){
         if(!response.ok){
 
             throw new Error(
-                "API hatası: " +
+                "API hata kodu: " +
                 response.status
             );
 
@@ -628,19 +583,16 @@ async function loadListings(){
         if(!Array.isArray(data)){
 
             throw new Error(
-                "API ilan listesi döndürmedi."
+                "API dizi döndürmedi."
             );
 
         }
 
 
-        allListings = data;
+        allListings=data;
 
 
-        displayListings(
-            allListings
-        );
-
+        displayListings(allListings);
 
         displayFavorites();
 
@@ -653,45 +605,29 @@ async function loadListings(){
         );
 
 
-        const result =
-            document.getElementById(
-                "result"
-            );
+        result.textContent =
+            "İlanlar yüklenemedi.";
 
 
-        const listings =
-            document.getElementById(
-                "listings"
-            );
+        container.innerHTML=`
 
+        <div class="error-box">
 
-        if(result){
+            <h3>⚠️ İlanlar yüklenemedi</h3>
 
-            result.textContent =
-                "İlanlar yüklenemedi.";
+            <p>
+            Sunucuya bağlanırken bir sorun oluştu.
+            </p>
 
-        }
+            <button
+            onclick="loadListings()"
+            >
+            🔄 Tekrar Dene
+            </button>
 
+        </div>
 
-        if(listings){
-
-            listings.innerHTML = `
-
-                <div class="empty">
-
-                    <h2>
-                        ⚠️ İlanlar yüklenemedi
-                    </h2>
-
-                    <p>
-                        Lütfen sayfayı yenileyin.
-                    </p>
-
-                </div>
-
-            `;
-
-        }
+        `;
 
     }
 
@@ -704,30 +640,18 @@ async function loadListings(){
 
 function displayListings(ilanlar){
 
-    const container =
-        document.getElementById(
-            "listings"
-        );
-
-
-    const result =
-        document.getElementById(
-            "result"
-        );
+    const container=el("listings");
+    const result=el("result");
 
 
     if(!container){
-
-        console.error(
-            "#listings bulunamadı."
-        );
 
         return;
 
     }
 
 
-    container.innerHTML = "";
+    container.innerHTML="";
 
 
     if(result){
@@ -739,22 +663,22 @@ function displayListings(ilanlar){
     }
 
 
-    if(ilanlar.length === 0){
+    if(
+        !Array.isArray(ilanlar) ||
+        ilanlar.length===0
+    ){
 
-        container.innerHTML = `
+        container.innerHTML=`
 
-            <div class="empty">
+        <div class="empty">
 
-                <h2>
-                    😔 İlan bulunamadı
-                </h2>
+            <h2>😔 İlan bulunamadı</h2>
 
-                <p>
-                    Arama kriterlerini
-                    değiştirip tekrar deneyin.
-                </p>
+            <p>
+            Arama kriterlerini değiştirip tekrar deneyin.
+            </p>
 
-            </div>
+        </div>
 
         `;
 
@@ -763,156 +687,94 @@ function displayListings(ilanlar){
     }
 
 
-    ilanlar.forEach(
-        function(ilan){
+    ilanlar.forEach(function(ilan){
 
-            const card =
-                document.createElement(
-                    "div"
-                );
+        const card =
+            document.createElement("div");
 
-
-            card.className =
-                "card";
+        card.className="card";
 
 
-            const favoriteActive =
-                isFavorite(ilan.id);
+        const favorite =
+            isFavorite(ilan.id);
 
 
-            const heart =
-                favoriteActive
-                    ? "❤️"
-                    : "♡";
+        const heart =
+            favorite ? "❤️" : "♡";
 
 
-            let image =
-                ilan.image;
+        const active =
+            favorite ? "active" : "";
 
 
-            if(
-                !image &&
-                Array.isArray(ilan.images)
-            ){
-
-                image =
-                    ilan.images[0];
-
-            }
+        const image =
+            getImage(ilan);
 
 
-            if(!image){
+        card.innerHTML=`
 
-                image =
-                    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80";
+        <button
+        class="favorite ${active}"
+        onclick="toggleFavorite(${Number(ilan.id)})"
+        title="Favorilere ekle"
+        >
+        ${heart}
+        </button>
 
-            }
+        <img
+        src="${image}"
+        alt="${ilan.title || "İlan"}"
+        loading="lazy"
+        >
 
+        <div class="card-content">
 
-            card.innerHTML = `
+        <span class="badge">
+        ${ilan.type || "İlan"}
+        </span>
 
-                <button
-                    class="favorite ${
-                        favoriteActive
-                        ? "active"
-                        : ""
-                    }"
-                    onclick="
-                        toggleFavorite(${Number(ilan.id)})
-                    "
-                    title="Favorilere ekle"
-                >
-                    ${heart}
-                </button>
+        <h3>
+        ${ilan.title || "İsimsiz ilan"}
+        </h3>
 
+        <div class="details">
 
-                <img
-                    src="${image}"
-                    alt="${ilan.title || "İlan"}"
-                    onerror="
-                        this.src='https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80'
-                    "
-                >
+        📍 ${ilan.city || ""}
 
+        ${ilan.district ? " / " + ilan.district : ""}
 
-                <div class="card-content">
+        <br>
 
+        🛏️ ${ilan.rooms || "-"}
 
-                    <span class="badge">
-                        ${ilan.type || ""}
-                    </span>
+        &nbsp; • &nbsp;
 
+        📐 ${ilan.area || 0} m²
 
-                    <h3>
-                        ${ilan.title || "İlan"}
-                    </h3>
+        </div>
 
+        <div class="price">
 
-                    <div class="details">
+        ${Number(ilan.price || 0)
+            .toLocaleString("tr-TR")} TL
 
-                        📍
-                        ${ilan.city || ""}
+        </div>
 
-                        ${
-                            ilan.district
-                            ? " / " + ilan.district
-                            : ""
-                        }
+        <a
+        class="detail-button"
+        href="ilan.html?id=${encodeURIComponent(ilan.id)}"
+        >
+        İlanı İncele →
+        </a>
 
-                        <br>
+        </div>
 
-                        🛏️
-                        ${ilan.rooms || "-"}
-
-                        &nbsp; • &nbsp;
-
-                        📐
-                        ${ilan.area || 0}
-                        m²
-
-                    </div>
+        `;
 
 
-                    <div class="price">
+        container.appendChild(card);
 
-                        ${
-                            Number(
-                                ilan.price || 0
-                            ).toLocaleString(
-                                "tr-TR"
-                            )
-                        }
-
-                        TL
-
-                    </div>
-
-
-                    <a
-                        class="detail-button"
-                        href="
-                            ilan.html?id=${
-                                encodeURIComponent(
-                                    ilan.id
-                                )
-                            }
-                        "
-                    >
-                        İlanı İncele →
-                    </a>
-
-
-                </div>
-
-            `;
-
-
-            container.appendChild(
-                card
-            );
-
-        }
-    );
+    });
 
 }
 
@@ -924,15 +786,10 @@ function displayListings(ilanlar){
 function displayFavorites(){
 
     const container =
-        document.getElementById(
-            "favoriteListings"
-        );
-
+        el("favoriteListings");
 
     const count =
-        document.getElementById(
-            "favoriteCount"
-        );
+        el("favoriteCount");
 
 
     if(!container){
@@ -944,13 +801,10 @@ function displayFavorites(){
 
     const favoriteListings =
         allListings.filter(
-            function(ilan){
-
-                return favorites.includes(
-                    Number(ilan.id)
-                );
-
-            }
+            ilan =>
+            favorites.includes(
+                Number(ilan.id)
+            )
         );
 
 
@@ -963,42 +817,32 @@ function displayFavorites(){
     }
 
 
-    container.innerHTML = "";
+    container.innerHTML="";
 
 
-    if(
-        favoriteListings.length === 0
-    ){
+    if(favoriteListings.length===0){
 
-        container.innerHTML = `
+        container.innerHTML=`
 
-            <div class="empty">
+        <div class="empty">
 
-                <h2>
-                    ❤️ Henüz favori ilanınız yok
-                </h2>
+        <h2>❤️ Henüz favori ilanınız yok</h2>
 
-                <p>
-                    Beğendiğiniz ilanların
-                    üzerindeki ❤️ butonuna
-                    basarak favorilerinize
-                    ekleyebilirsiniz.
-                </p>
+        <p>
+        Beğendiğiniz ilanların üzerindeki ❤️
+        butonuna basarak favorilerinize ekleyebilirsiniz.
+        </p>
 
+        <button
+        onclick="
+        document.getElementById('ilanlar')
+        .scrollIntoView({behavior:'smooth'})
+        "
+        >
+        İlanlara Göz At
+        </button>
 
-                <button
-                    onclick="
-                        document
-                        .getElementById('ilanlar')
-                        .scrollIntoView({
-                            behavior:'smooth'
-                        })
-                    "
-                >
-                    İlanlara Göz At
-                </button>
-
-            </div>
+        </div>
 
         `;
 
@@ -1007,217 +851,153 @@ function displayFavorites(){
     }
 
 
-    favoriteListings.forEach(
-        function(ilan){
+    favoriteListings.forEach(function(ilan){
 
-            const card =
-                document.createElement(
-                    "div"
-                );
+        const card =
+            document.createElement("div");
 
-
-            card.className =
-                "card";
+        card.className="card";
 
 
-            let image =
-                ilan.image;
+        const image =
+            getImage(ilan);
 
 
-            if(
-                !image &&
-                Array.isArray(ilan.images)
-            ){
+        card.innerHTML=`
 
-                image =
-                    ilan.images[0];
+        <button
+        class="favorite active"
+        onclick="toggleFavorite(${Number(ilan.id)})"
+        >
+        ❤️
+        </button>
 
-            }
+        <img
+        src="${image}"
+        alt="${ilan.title || "İlan"}"
+        loading="lazy"
+        >
 
+        <div class="card-content">
 
-            card.innerHTML = `
+        <span class="badge">
+        ${ilan.type || "İlan"}
+        </span>
 
-                <button
-                    class="favorite active"
-                    onclick="
-                        toggleFavorite(${Number(ilan.id)})
-                    "
-                    title="Favorilerden çıkar"
-                >
-                    ❤️
-                </button>
+        <h3>
+        ${ilan.title || "İsimsiz ilan"}
+        </h3>
 
+        <div class="details">
 
-                <img
-                    src="${image}"
-                    alt="${ilan.title || "İlan"}"
-                >
+        📍 ${ilan.city || ""}
 
+        <br>
 
-                <div class="card-content">
+        🛏️ ${ilan.rooms || "-"}
 
-                    <span class="badge">
-                        ${ilan.type || ""}
-                    </span>
+        &nbsp; • &nbsp;
 
+        📐 ${ilan.area || 0} m²
 
-                    <h3>
-                        ${ilan.title || "İlan"}
-                    </h3>
+        </div>
 
+        <div class="price">
 
-                    <div class="details">
+        ${Number(ilan.price || 0)
+            .toLocaleString("tr-TR")} TL
 
-                        📍
-                        ${ilan.city || ""}
+        </div>
 
-                        ${
-                            ilan.district
-                            ? " / " + ilan.district
-                            : ""
-                        }
+        <a
+        class="detail-button"
+        href="ilan.html?id=${encodeURIComponent(ilan.id)}"
+        >
+        İlanı İncele →
+        </a>
 
-                        <br>
+        </div>
 
-                        🛏️
-                        ${ilan.rooms || "-"}
-
-                        &nbsp; • &nbsp;
-
-                        📐
-                        ${ilan.area || 0}
-                        m²
-
-                    </div>
+        `;
 
 
-                    <div class="price">
+        container.appendChild(card);
 
-                        ${
-                            Number(
-                                ilan.price || 0
-                            ).toLocaleString(
-                                "tr-TR"
-                            )
-                        }
-
-                        TL
-
-                    </div>
-
-
-                    <a
-                        class="detail-button"
-                        href="
-                            ilan.html?id=${
-                                encodeURIComponent(
-                                    ilan.id
-                                )
-                            }
-                        "
-                    >
-                        İlanı İncele →
-                    </a>
-
-                </div>
-
-            `;
-
-
-            container.appendChild(
-                card
-            );
-
-        }
-    );
+    });
 
 }
 
 
 /* =========================
-   FİLTRELEME
+   FİLTRE
 ========================= */
 
 function getCurrentFilteredListings(){
 
     const type =
-        document.getElementById(
-            "type"
-        ).value;
+        el("type")
+        ? el("type").value
+        : "";
 
 
     const city =
-        document.getElementById(
-            "city"
-        ).value;
+        el("city")
+        ? el("city").value
+        : "";
 
 
     const rooms =
-        document.getElementById(
-            "rooms"
-        ).value;
+        el("rooms")
+        ? el("rooms").value
+        : "";
 
 
     const minPrice =
-        Number(
-            document.getElementById(
-                "minPrice"
-            ).value
-        ) || 0;
-
-
-    const maxInput =
-        Number(
-            document.getElementById(
-                "maxPrice"
-            ).value
-        );
+        el("minPrice")
+        ? Number(el("minPrice").value) || 0
+        : 0;
 
 
     const maxPrice =
-        maxInput > 0
-            ? maxInput
-            : Infinity;
+        el("maxPrice")
+        ? Number(el("maxPrice").value) || Infinity
+        : Infinity;
 
 
-    return allListings.filter(
-        function(ilan){
+    return allListings.filter(function(ilan){
 
-            const typeOK =
-                !type ||
-                ilan.type === type;
-
-
-            const cityOK =
-                !city ||
-                ilan.city === city;
+        const typeOK =
+            !type ||
+            ilan.type === type;
 
 
-            const roomsOK =
-                !rooms ||
-                ilan.rooms === rooms;
+        const cityOK =
+            !city ||
+            ilan.city === city;
 
 
-            const price =
-                Number(
-                    ilan.price
-                ) || 0;
+        const roomsOK =
+            !rooms ||
+            ilan.rooms === rooms;
 
 
-            const priceOK =
-                price >= minPrice &&
-                price <= maxPrice;
+        const price =
+            Number(ilan.price) || 0;
 
 
-            return (
-                typeOK &&
-                cityOK &&
-                roomsOK &&
-                priceOK
-            );
+        const priceOK =
+            price >= minPrice &&
+            price <= maxPrice;
 
-        }
-    );
+
+        return (
+            typeOK &&
+            cityOK &&
+            roomsOK &&
+            priceOK
+        );
+
+    });
 
 }
 
@@ -1236,7 +1016,7 @@ function searchListings(){
 
 
 /* =========================
-   SAYFA BAŞLAT
+   BAŞLAT
 ========================= */
 
 document.addEventListener(
@@ -1252,4 +1032,3 @@ document.addEventListener(
 
 </body>
 </html>
-```
