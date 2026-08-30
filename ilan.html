@@ -8,6 +8,7 @@
 <title>Nova Emlak - İlan Detayı</title>
 
 <style>
+
 *{
     box-sizing:border-box;
 }
@@ -134,10 +135,39 @@ h2{
 }
 
 .contact{
-    margin-top:25px;
-    padding:22px;
+    margin-top:30px;
+    padding:25px;
     background:#eff6ff;
     border-radius:12px;
+}
+
+.contact h3{
+    margin-top:0;
+}
+
+.contact-buttons{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+    margin-top:18px;
+}
+
+.phone-button,
+.whatsapp-button{
+    display:inline-block;
+    text-decoration:none;
+    color:white;
+    padding:14px 20px;
+    border-radius:8px;
+    font-weight:bold;
+}
+
+.phone-button{
+    background:#2563eb;
+}
+
+.whatsapp-button{
+    background:#16a34a;
 }
 
 .loading,
@@ -146,6 +176,10 @@ h2{
     padding:40px;
     text-align:center;
     border-radius:15px;
+}
+
+.error a{
+    color:#2563eb;
 }
 
 footer{
@@ -165,6 +199,11 @@ footer{
 
     nav a{
         margin:0 8px;
+        font-size:14px;
+    }
+
+    .container{
+        margin:25px auto;
     }
 
     .main-image{
@@ -182,7 +221,15 @@ footer{
     .content{
         padding:20px;
     }
+
+    .phone-button,
+    .whatsapp-button{
+        width:100%;
+        text-align:center;
+    }
+
 }
+
 </style>
 
 </head>
@@ -194,10 +241,23 @@ footer{
 <h1>🏠 NOVA EMLAK</h1>
 
 <nav>
-<a href="index.html">Ana Sayfa</a>
-<a href="index.html#ilanlar">İlanlar</a>
-<a href="index.html#favoriler">❤️ Favoriler</a>
-<a href="index.html#iletisim">İletişim</a>
+
+<a href="index.html">
+Ana Sayfa
+</a>
+
+<a href="index.html#ilanlar">
+İlanlar
+</a>
+
+<a href="index.html#favoriler">
+❤️ Favoriler
+</a>
+
+<a href="index.html#iletisim">
+İletişim
+</a>
+
 </nav>
 
 </header>
@@ -213,14 +273,28 @@ footer{
 </div>
 
 <div id="error" class="error" style="display:none;">
+
 <h2>😔 İlan bulunamadı</h2>
-<p>Bu ilan silinmiş veya mevcut değil.</p>
-<a href="index.html">Ana sayfaya dön</a>
+
+<p>
+Bu ilan silinmiş veya mevcut değil.
+</p>
+
+<a href="index.html">
+Ana sayfaya dön
+</a>
+
 </div>
 
 <div id="detail" class="detail" style="display:none;">
 
-<img id="mainImage" class="main-image" src="" alt="">
+<img
+id="mainImage"
+class="main-image"
+src=""
+alt=""
+
+>
 
 <div class="content">
 
@@ -233,29 +307,51 @@ footer{
 <div class="info-grid">
 
 <div class="info">
-<strong>📍 Konum</strong>
+
+<strong>
+📍 Konum
+</strong>
+
 <span id="city"></span>
+
 </div>
 
 <div class="info">
-<strong>🛏️ Oda Sayısı</strong>
+
+<strong>
+🛏️ Oda Sayısı
+</strong>
+
 <span id="rooms"></span>
+
 </div>
 
 <div class="info">
-<strong>📐 Metrekare</strong>
+
+<strong>
+📐 Metrekare
+</strong>
+
 <span id="area"></span>
-</div>
 
 </div>
 
-<button id="favoriteButton" class="favorite" onclick="toggleFavorite()">
-♡ Favorilere Ekle
-</button>
+</div>
+
+<button
+id="favoriteButton"
+class="favorite"
+onclick="toggleFavorite()"
+
+>
+
+♡ Favorilere Ekle </button>
 
 <div class="description">
 
-<h3>📝 İlan Açıklaması</h3>
+<h3>
+📝 İlan Açıklaması
+</h3>
 
 <p id="description"></p>
 
@@ -263,17 +359,37 @@ footer{
 
 <div class="contact">
 
-<h3>📞 İletişim</h3>
+<h3>
+📞 İlan Hakkında Bilgi Al
+</h3>
 
 <p>
-Bu ilan hakkında detaylı bilgi almak için bizimle iletişime geçebilirsiniz.
+Bu ilan hakkında daha fazla bilgi almak,
+fiyat ve detayları öğrenmek için bizimle
+iletişime geçebilirsiniz.
 </p>
 
-<strong>📞 0555 555 55 55</strong>
+<div class="contact-buttons">
 
-<br><br>
+<a
+class="phone-button"
+href="tel:05555555555"
 
-<strong>📍 İstanbul</strong>
+>
+
+📞 Telefonla Ara </a>
+
+<a
+class="whatsapp-button"
+id="whatsappButton"
+href="#"
+target="_blank"
+
+>
+
+💬 WhatsApp'tan Yaz </a>
+
+</div>
 
 </div>
 
@@ -285,9 +401,21 @@ Bu ilan hakkında detaylı bilgi almak için bizimle iletişime geçebilirsiniz.
 
 <footer>
 
-<h3>Nova Emlak</h3>
+<h3>
+Nova Emlak
+</h3>
 
-<p>© 2026 Nova Emlak</p>
+<p>
+📞 0555 555 55 55
+</p>
+
+<p>
+📍 İstanbul
+</p>
+
+<p>
+© 2026 Nova Emlak
+</p>
 
 </footer>
 
@@ -295,49 +423,82 @@ Bu ilan hakkında detaylı bilgi almak için bizimle iletişime geçebilirsiniz.
 
 let currentListing = null;
 
-let favorites = JSON.parse(
-    localStorage.getItem("novaFavorites") || "[]"
+
+// ==========================
+// FAVORİLER
+// ==========================
+
+let favorites =
+JSON.parse(
+localStorage.getItem("novaFavorites") || "[]"
 );
 
 
-// URL'den ilan ID'sini al
-const params = new URLSearchParams(window.location.search);
+// ==========================
+// URL'DEN İLAN ID AL
+// ==========================
 
-const id = Number(params.get("id"));
+const params =
+new URLSearchParams(
+window.location.search
+);
+
+const id =
+Number(params.get("id"));
 
 
-// İlanları getir
+// ==========================
+// İLANI GETİR
+// ==========================
+
 async function loadListing(){
 
     if(!id){
 
         showError();
+
         return;
 
     }
 
+
     try{
 
-        const response = await fetch("/api/ilanlar");
+        const response =
+        await fetch("/api/ilanlar");
+
 
         if(!response.ok){
-            throw new Error("Sunucu hatası");
+
+            throw new Error(
+                "Sunucu hatası"
+            );
+
         }
 
-        const listings = await response.json();
 
-        currentListing = listings.find(
-            ilan => Number(ilan.id) === id
+        const listings =
+        await response.json();
+
+
+        currentListing =
+        listings.find(
+            ilan =>
+            Number(ilan.id) === id
         );
+
 
         if(!currentListing){
 
             showError();
+
             return;
 
         }
 
+
         showListing();
+
 
     }catch(error){
 
@@ -350,53 +511,104 @@ async function loadListing(){
 }
 
 
-// İlanı göster
+// ==========================
+// İLANI GÖSTER
+// ==========================
+
 function showListing(){
 
-    document.getElementById("loading").style.display="none";
+    document.getElementById(
+        "loading"
+    ).style.display="none";
 
-    document.getElementById("detail").style.display="block";
+
+    document.getElementById(
+        "detail"
+    ).style.display="block";
 
 
-    document.getElementById("mainImage").src =
+    document.getElementById(
+        "mainImage"
+    ).src =
         currentListing.image || "";
 
 
-    document.getElementById("mainImage").alt =
+    document.getElementById(
+        "mainImage"
+    ).alt =
         currentListing.title || "Nova Emlak";
 
 
-    document.getElementById("title").textContent =
+    document.getElementById(
+        "title"
+    ).textContent =
         currentListing.title || "İlan";
 
 
-    document.getElementById("type").textContent =
+    document.getElementById(
+        "type"
+    ).textContent =
         currentListing.type || "";
 
 
-    document.getElementById("city").textContent =
+    document.getElementById(
+        "city"
+    ).textContent =
         currentListing.city || "-";
 
 
-    document.getElementById("rooms").textContent =
+    document.getElementById(
+        "rooms"
+    ).textContent =
         currentListing.rooms || "-";
 
 
-    document.getElementById("area").textContent =
-        (currentListing.area || 0) + " m²";
+    document.getElementById(
+        "area"
+    ).textContent =
+        (currentListing.area || 0)
+        + " m²";
 
 
-    document.getElementById("price").textContent =
-        Number(currentListing.price || 0)
-        .toLocaleString("tr-TR") + " TL";
+    document.getElementById(
+        "price"
+    ).textContent =
+        Number(
+            currentListing.price || 0
+        ).toLocaleString("tr-TR")
+        + " TL";
 
 
-    document.getElementById("description").textContent =
+    document.getElementById(
+        "description"
+    ).textContent =
         currentListing.description ||
         "Bu ilan için henüz açıklama eklenmemiş.";
 
 
+    // WhatsApp mesajı
+
+    const whatsappNumber =
+        "905555555555";
+
+
+    const message =
+        "Merhaba, Nova Emlak sitesindeki " +
+        currentListing.title +
+        " ilanı hakkında bilgi almak istiyorum.";
+
+
+    document.getElementById(
+        "whatsappButton"
+    ).href =
+        "https://wa.me/" +
+        whatsappNumber +
+        "?text=" +
+        encodeURIComponent(message);
+
+
     updateFavoriteButton();
+
 
     document.title =
         "Nova Emlak - " +
@@ -405,52 +617,81 @@ function showListing(){
 }
 
 
-// Hata göster
+// ==========================
+// HATA
+// ==========================
+
 function showError(){
 
-    document.getElementById("loading").style.display="none";
+    document.getElementById(
+        "loading"
+    ).style.display="none";
 
-    document.getElementById("detail").style.display="none";
 
-    document.getElementById("error").style.display="block";
+    document.getElementById(
+        "detail"
+    ).style.display="none";
+
+
+    document.getElementById(
+        "error"
+    ).style.display="block";
 
 }
 
 
-// Favori durumunu güncelle
+// ==========================
+// FAVORİ BUTONU
+// ==========================
+
 function updateFavoriteButton(){
 
     const button =
-        document.getElementById("favoriteButton");
+        document.getElementById(
+            "favoriteButton"
+        );
 
-    if(favorites.includes(id)){
+
+    if(
+        favorites.includes(id)
+    ){
 
         button.textContent =
             "❤️ Favorilerden Çıkar";
 
-        button.classList.add("active");
+        button.classList.add(
+            "active"
+        );
 
     }else{
 
         button.textContent =
             "♡ Favorilere Ekle";
 
-        button.classList.remove("active");
+        button.classList.remove(
+            "active"
+        );
 
     }
 
 }
 
 
-// Favori ekle / çıkar
+// ==========================
+// FAVORİ EKLE / ÇIKAR
+// ==========================
+
 function toggleFavorite(){
 
-    if(favorites.includes(id)){
+    if(
+        favorites.includes(id)
+    ){
 
         favorites =
-            favorites.filter(
-                favoriteId => favoriteId !== id
-            );
+        favorites.filter(
+            favoriteId =>
+            favoriteId !== id
+        );
 
     }else{
 
@@ -458,17 +699,24 @@ function toggleFavorite(){
 
     }
 
+
     localStorage.setItem(
         "novaFavorites",
-        JSON.stringify(favorites)
+        JSON.stringify(
+            favorites
+        )
     );
+
 
     updateFavoriteButton();
 
 }
 
 
-// Başlat
+// ==========================
+// BAŞLAT
+// ==========================
+
 loadListing();
 
 </script>
