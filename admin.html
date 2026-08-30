@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Nova Emlak - Admin</title>
 
 <style>
@@ -115,6 +114,21 @@ button:hover{opacity:.9}
     border-radius:10px;
 }
 
+.photo-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:10px;
+    margin-top:15px;
+}
+
+.photo-grid img{
+    width:100%;
+    height:130px;
+    object-fit:cover;
+    border-radius:10px;
+    border:1px solid #ddd;
+}
+
 .listing{
     border:1px solid #ddd;
     border-radius:12px;
@@ -182,8 +196,6 @@ button:hover{opacity:.9}
     border-radius:15px;
 }
 
-.modal-box h2{margin-top:0}
-
 .login-box{
     max-width:420px;
     margin:100px auto;
@@ -217,10 +229,6 @@ button:hover{opacity:.9}
     gap:15px;
 }
 
-.grid > div{
-    min-width:0;
-}
-
 .section{
     margin-top:25px;
     padding-top:20px;
@@ -228,18 +236,31 @@ button:hover{opacity:.9}
 }
 
 @media(max-width:600px){
-    .panel{padding:20px}
+
+    .panel{
+        padding:20px;
+    }
+
     .listing img{
         width:100%;
         height:200px;
     }
+
     .edit-button,
     .delete-button{
         margin-top:8px;
     }
-    header{padding:20px}
+
+    header{
+        padding:20px;
+    }
+
     .grid{
         grid-template-columns:1fr;
+    }
+
+    .photo-grid{
+        grid-template-columns:1fr 1fr;
     }
 }
 </style>
@@ -247,9 +268,7 @@ button:hover{opacity:.9}
 
 <body>
 
-<!-- ========================= -->
 <!-- GİRİŞ -->
-<!-- ========================= -->
 
 <div id="loginScreen" class="login-box">
 
@@ -280,9 +299,7 @@ button:hover{opacity:.9}
 </div>
 
 
-<!-- ========================= -->
-<!-- ADMIN PANEL -->
-<!-- ========================= -->
+<!-- ADMIN -->
 
 <div id="adminPanel" style="display:none">
 
@@ -303,9 +320,7 @@ button:hover{opacity:.9}
 <div class="container">
 
 
-<!-- ========================= -->
 <!-- YENİ İLAN -->
-<!-- ========================= -->
 
 <div class="panel">
 
@@ -358,9 +373,11 @@ button:hover{opacity:.9}
     placeholder="Örn: Kadıköy"
     required
 >
+
 </div>
 
 <div>
+
 <label>Mahalle</label>
 
 <input
@@ -368,6 +385,7 @@ button:hover{opacity:.9}
     type="text"
     placeholder="Örn: Fenerbahçe Mahallesi"
 >
+
 </div>
 
 </div>
@@ -376,6 +394,7 @@ button:hover{opacity:.9}
 <div class="grid">
 
 <div>
+
 <label>Fiyat</label>
 
 <input
@@ -385,9 +404,11 @@ button:hover{opacity:.9}
     placeholder="8500000"
     required
 >
+
 </div>
 
 <div>
+
 <label>Oda Sayısı</label>
 
 <input
@@ -396,6 +417,7 @@ button:hover{opacity:.9}
     placeholder="3+1"
     required
 >
+
 </div>
 
 </div>
@@ -404,6 +426,7 @@ button:hover{opacity:.9}
 <div class="grid">
 
 <div>
+
 <label>Metrekare</label>
 
 <input
@@ -413,9 +436,11 @@ button:hover{opacity:.9}
     placeholder="145"
     required
 >
+
 </div>
 
 <div>
+
 <label>Bina Yaşı</label>
 
 <input
@@ -424,6 +449,7 @@ button:hover{opacity:.9}
     min="0"
     placeholder="5"
 >
+
 </div>
 
 </div>
@@ -432,16 +458,19 @@ button:hover{opacity:.9}
 <div class="grid">
 
 <div>
+
 <label>Bulunduğu Kat</label>
 
 <input
     id="floor"
     type="text"
-    placeholder="3. Kat"
+    placeholder="4. Kat"
 >
+
 </div>
 
 <div>
+
 <label>Toplam Kat</label>
 
 <input
@@ -450,6 +479,7 @@ button:hover{opacity:.9}
     min="0"
     placeholder="8"
 >
+
 </div>
 
 </div>
@@ -458,28 +488,36 @@ button:hover{opacity:.9}
 <div class="grid">
 
 <div>
+
 <label>Isıtma</label>
 
 <select id="heating">
-    <option value="">Seçiniz</option>
-    <option value="Doğalgaz Kombi">Doğalgaz Kombi</option>
-    <option value="Merkezi Sistem">Merkezi Sistem</option>
-    <option value="Yerden Isıtma">Yerden Isıtma</option>
-    <option value="Klima">Klima</option>
-    <option value="Diğer">Diğer</option>
+
+<option value="">Seçiniz</option>
+<option value="Doğalgaz Kombi">Doğalgaz Kombi</option>
+<option value="Merkezi Sistem">Merkezi Sistem</option>
+<option value="Yerden Isıtma">Yerden Isıtma</option>
+<option value="Klima">Klima</option>
+<option value="Diğer">Diğer</option>
+
 </select>
+
 </div>
 
 <div>
+
 <label>Banyo Sayısı</label>
 
 <select id="bathrooms">
-    <option value="">Seçiniz</option>
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4+">4+</option>
+
+<option value="">Seçiniz</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+<option value="4+">4+</option>
+
 </select>
+
 </div>
 
 </div>
@@ -488,21 +526,29 @@ button:hover{opacity:.9}
 <div class="grid">
 
 <div>
+
 <label>Balkon</label>
 
 <select id="balcony">
-    <option value="Var">Var</option>
-    <option value="Yok">Yok</option>
+
+<option value="Var">Var</option>
+<option value="Yok">Yok</option>
+
 </select>
+
 </div>
 
 <div>
+
 <label>Krediye Uygun</label>
 
 <select id="credit">
-    <option value="Evet">Evet</option>
-    <option value="Hayır">Hayır</option>
+
+<option value="Evet">Evet</option>
+<option value="Hayır">Hayır</option>
+
 </select>
+
 </div>
 
 </div>
@@ -511,27 +557,30 @@ button:hover{opacity:.9}
 <label>Tapu Durumu</label>
 
 <select id="deed">
-    <option value="">Seçiniz</option>
-    <option value="Kat Mülkiyeti">Kat Mülkiyeti</option>
-    <option value="Kat İrtifakı">Kat İrtifakı</option>
-    <option value="Arsa Tapulu">Arsa Tapulu</option>
-    <option value="Hisseli Tapu">Hisseli Tapu</option>
+
+<option value="">Seçiniz</option>
+<option value="Kat Mülkiyeti">Kat Mülkiyeti</option>
+<option value="Kat İrtifakı">Kat İrtifakı</option>
+<option value="Arsa Tapulu">Arsa Tapulu</option>
+<option value="Hisseli Tapu">Hisseli Tapu</option>
+
 </select>
 
 
-<label>📷 Fotoğraf</label>
+<label>📷 Fotoğraflar — En fazla 4 adet</label>
 
 <input
     id="imageFile"
     type="file"
     accept="image/*"
+    multiple
     required
 >
 
-<img
-    id="preview"
-    class="preview"
->
+<div
+    id="photoPreview"
+    class="photo-grid"
+></div>
 
 
 <label>Açıklama</label>
@@ -561,9 +610,7 @@ button:hover{opacity:.9}
 </div>
 
 
-<!-- ========================= -->
 <!-- İLAN YÖNETİMİ -->
-<!-- ========================= -->
 
 <div class="panel">
 
@@ -589,9 +636,7 @@ button:hover{opacity:.9}
 </div>
 
 
-<!-- ========================= -->
-<!-- DÜZENLEME MODALI -->
-<!-- ========================= -->
+<!-- DÜZENLEME -->
 
 <div id="editModal" class="modal">
 
@@ -609,20 +654,30 @@ button:hover{opacity:.9}
 <div class="grid">
 
 <div>
+
 <label>İlan Türü</label>
+
 <select id="editType">
-    <option value="Satılık">Satılık</option>
-    <option value="Kiralık">Kiralık</option>
+
+<option value="Satılık">Satılık</option>
+<option value="Kiralık">Kiralık</option>
+
 </select>
+
 </div>
 
 <div>
+
 <label>Şehir</label>
+
 <select id="editCity">
-    <option value="İstanbul">İstanbul</option>
-    <option value="Ankara">Ankara</option>
-    <option value="İzmir">İzmir</option>
+
+<option value="İstanbul">İstanbul</option>
+<option value="Ankara">Ankara</option>
+<option value="İzmir">İzmir</option>
+
 </select>
+
 </div>
 
 </div>
@@ -631,13 +686,17 @@ button:hover{opacity:.9}
 <div class="grid">
 
 <div>
+
 <label>İlçe</label>
 <input id="editDistrict" type="text">
+
 </div>
 
 <div>
+
 <label>Mahalle</label>
 <input id="editNeighborhood" type="text">
+
 </div>
 
 </div>
@@ -646,13 +705,17 @@ button:hover{opacity:.9}
 <div class="grid">
 
 <div>
+
 <label>Fiyat</label>
 <input id="editPrice" type="number">
+
 </div>
 
 <div>
+
 <label>Oda Sayısı</label>
 <input id="editRooms" type="text">
+
 </div>
 
 </div>
@@ -661,13 +724,17 @@ button:hover{opacity:.9}
 <div class="grid">
 
 <div>
+
 <label>Metrekare</label>
 <input id="editArea" type="number">
+
 </div>
 
 <div>
+
 <label>Bina Yaşı</label>
 <input id="editBuildingAge" type="number">
+
 </div>
 
 </div>
@@ -676,13 +743,17 @@ button:hover{opacity:.9}
 <div class="grid">
 
 <div>
+
 <label>Bulunduğu Kat</label>
 <input id="editFloor" type="text">
+
 </div>
 
 <div>
+
 <label>Toplam Kat</label>
 <input id="editTotalFloors" type="number">
+
 </div>
 
 </div>
@@ -691,26 +762,36 @@ button:hover{opacity:.9}
 <div class="grid">
 
 <div>
+
 <label>Isıtma</label>
+
 <select id="editHeating">
-    <option value="">Seçiniz</option>
-    <option value="Doğalgaz Kombi">Doğalgaz Kombi</option>
-    <option value="Merkezi Sistem">Merkezi Sistem</option>
-    <option value="Yerden Isıtma">Yerden Isıtma</option>
-    <option value="Klima">Klima</option>
-    <option value="Diğer">Diğer</option>
+
+<option value="">Seçiniz</option>
+<option value="Doğalgaz Kombi">Doğalgaz Kombi</option>
+<option value="Merkezi Sistem">Merkezi Sistem</option>
+<option value="Yerden Isıtma">Yerden Isıtma</option>
+<option value="Klima">Klima</option>
+<option value="Diğer">Diğer</option>
+
 </select>
+
 </div>
 
 <div>
+
 <label>Banyo Sayısı</label>
+
 <select id="editBathrooms">
-    <option value="">Seçiniz</option>
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4+">4+</option>
+
+<option value="">Seçiniz</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+<option value="4+">4+</option>
+
 </select>
+
 </div>
 
 </div>
@@ -719,19 +800,29 @@ button:hover{opacity:.9}
 <div class="grid">
 
 <div>
+
 <label>Balkon</label>
+
 <select id="editBalcony">
-    <option value="Var">Var</option>
-    <option value="Yok">Yok</option>
+
+<option value="Var">Var</option>
+<option value="Yok">Yok</option>
+
 </select>
+
 </div>
 
 <div>
+
 <label>Krediye Uygun</label>
+
 <select id="editCredit">
-    <option value="Evet">Evet</option>
-    <option value="Hayır">Hayır</option>
+
+<option value="Evet">Evet</option>
+<option value="Hayır">Hayır</option>
+
 </select>
+
 </div>
 
 </div>
@@ -740,23 +831,29 @@ button:hover{opacity:.9}
 <label>Tapu Durumu</label>
 
 <select id="editDeed">
-    <option value="">Seçiniz</option>
-    <option value="Kat Mülkiyeti">Kat Mülkiyeti</option>
-    <option value="Kat İrtifakı">Kat İrtifakı</option>
-    <option value="Arsa Tapulu">Arsa Tapulu</option>
-    <option value="Hisseli Tapu">Hisseli Tapu</option>
+
+<option value="">Seçiniz</option>
+<option value="Kat Mülkiyeti">Kat Mülkiyeti</option>
+<option value="Kat İrtifakı">Kat İrtifakı</option>
+<option value="Arsa Tapulu">Arsa Tapulu</option>
+<option value="Hisseli Tapu">Hisseli Tapu</option>
+
 </select>
 
 
-<label>📷 Yeni Fotoğraf (isteğe bağlı)</label>
+<label>📷 Fotoğraflar — En fazla 4 adet</label>
 
 <input
     id="editImageFile"
     type="file"
     accept="image/*"
+    multiple
 >
 
-<img id="editPreview" class="preview">
+<div
+    id="editPhotoPreview"
+    class="photo-grid"
+></div>
 
 
 <label>Açıklama</label>
@@ -784,10 +881,6 @@ button:hover{opacity:.9}
 
 
 <script>
-
-/* =========================
-   ADMIN TOKEN
-========================= */
 
 let adminToken =
     sessionStorage.getItem("novaAdminToken") || "";
@@ -820,7 +913,7 @@ async function login(){
 
         if(data.success){
 
-            adminToken = data.token;
+            adminToken=data.token;
 
             sessionStorage.setItem(
                 "novaAdminToken",
@@ -847,8 +940,6 @@ async function login(){
 }
 
 
-/* ENTER */
-
 document.getElementById("password")
 .addEventListener("keydown",function(event){
 
@@ -860,27 +951,21 @@ document.getElementById("password")
 
 
 /* =========================
-   ADMIN GÖSTER
+   ADMIN
 ========================= */
 
 function showAdmin(){
 
-    document.getElementById(
-        "loginScreen"
-    ).style.display="none";
+    document.getElementById("loginScreen")
+    .style.display="none";
 
-    document.getElementById(
-        "adminPanel"
-    ).style.display="block";
+    document.getElementById("adminPanel")
+    .style.display="block";
 
     loadListings();
 
 }
 
-
-/* =========================
-   OTURUM VARSA AÇ
-========================= */
 
 if(adminToken){
 
@@ -929,46 +1014,92 @@ async function logout(){
 document.getElementById("imageFile")
 .addEventListener("change",function(){
 
-    const file=this.files[0];
+    const files =
+        Array.from(this.files);
 
-    const preview=
-        document.getElementById("preview");
+    const preview =
+        document.getElementById("photoPreview");
 
-    if(!file){
+    preview.innerHTML="";
 
-        preview.style.display="none";
+    if(files.length > 4){
+
+        alert("En fazla 4 fotoğraf seçebilirsin.");
+
+        this.value="";
+
         return;
 
     }
 
-    const reader=new FileReader();
+    files.forEach(function(file){
 
-    reader.onload=function(e){
+        const reader =
+            new FileReader();
 
-        preview.src=e.target.result;
+        reader.onload=function(e){
 
-        preview.style.display="block";
+            const img =
+                document.createElement("img");
 
-    };
+            img.src=e.target.result;
 
-    reader.readAsDataURL(file);
+            preview.appendChild(img);
+
+        };
+
+        reader.readAsDataURL(file);
+
+    });
 
 });
 
 
 /* =========================
-   YENİ İLAN EKLE
+   FOTOĞRAFLARI BASE64 OKU
+========================= */
+
+function readFiles(files){
+
+    return Promise.all(
+        files.map(function(file){
+
+            return new Promise(function(resolve,reject){
+
+                const reader =
+                    new FileReader();
+
+                reader.onload=function(e){
+                    resolve(e.target.result);
+                };
+
+                reader.onerror=reject;
+
+                reader.readAsDataURL(file);
+
+            });
+
+        })
+    );
+
+}
+
+
+/* =========================
+   YENİ İLAN
 ========================= */
 
 document.getElementById("listingForm")
-.addEventListener("submit",function(event){
+.addEventListener("submit",async function(event){
 
     event.preventDefault();
 
-    const file=
-        document.getElementById("imageFile").files[0];
+    const files =
+        Array.from(
+            document.getElementById("imageFile").files
+        );
 
-    if(!file){
+    if(files.length===0){
 
         alert("Lütfen fotoğraf seç.");
 
@@ -976,70 +1107,100 @@ document.getElementById("listingForm")
 
     }
 
-    const reader=new FileReader();
+    if(files.length>4){
 
-    reader.onload=async function(e){
+        alert("En fazla 4 fotoğraf seçebilirsin.");
+
+        return;
+
+    }
+
+
+    try{
+
+        const images =
+            await readFiles(files);
+
 
         const ilan={
 
             title:
-                document.getElementById("title").value.trim(),
+                document.getElementById("title")
+                .value.trim(),
 
             type:
-                document.getElementById("type").value,
+                document.getElementById("type")
+                .value,
 
             city:
-                document.getElementById("city").value,
+                document.getElementById("city")
+                .value,
 
             district:
-                document.getElementById("district").value.trim(),
+                document.getElementById("district")
+                .value.trim(),
 
             neighborhood:
-                document.getElementById("neighborhood").value.trim(),
+                document.getElementById("neighborhood")
+                .value.trim(),
 
             price:
                 Number(
-                    document.getElementById("price").value
+                    document.getElementById("price")
+                    .value
                 ),
 
             rooms:
-                document.getElementById("rooms").value.trim(),
+                document.getElementById("rooms")
+                .value.trim(),
 
             area:
                 Number(
-                    document.getElementById("area").value
+                    document.getElementById("area")
+                    .value
                 ),
 
             buildingAge:
                 Number(
-                    document.getElementById("buildingAge").value
+                    document.getElementById("buildingAge")
+                    .value
                 ) || 0,
 
             floor:
-                document.getElementById("floor").value.trim(),
+                document.getElementById("floor")
+                .value.trim(),
 
             totalFloors:
                 Number(
-                    document.getElementById("totalFloors").value
+                    document.getElementById("totalFloors")
+                    .value
                 ) || 0,
 
             heating:
-                document.getElementById("heating").value,
+                document.getElementById("heating")
+                .value,
 
             bathrooms:
-                document.getElementById("bathrooms").value,
+                document.getElementById("bathrooms")
+                .value,
 
             balcony:
-                document.getElementById("balcony").value,
+                document.getElementById("balcony")
+                .value,
 
             credit:
-                document.getElementById("credit").value,
+                document.getElementById("credit")
+                .value,
 
             deed:
-                document.getElementById("deed").value,
+                document.getElementById("deed")
+                .value,
 
             image:
-                e.target.result,
+                images[0],
+
+            images:
+                images,
 
             description:
                 document.getElementById("description")
@@ -1048,85 +1209,82 @@ document.getElementById("listingForm")
         };
 
 
-        try{
+        const response =
+            await fetch("/api/ilanlar",{
 
-            const response=
-                await fetch("/api/ilanlar",{
+                method:"POST",
 
-                    method:"POST",
+                headers:{
 
-                    headers:{
-                        "Content-Type":
-                            "application/json",
+                    "Content-Type":
+                        "application/json",
 
-                        "Authorization":
-                            "Bearer " + adminToken
-                    },
+                    "Authorization":
+                        "Bearer " + adminToken
 
-                    body:
-                        JSON.stringify(ilan)
+                },
 
-                });
+                body:
+                    JSON.stringify(ilan)
 
-
-            if(response.status===401){
-
-                alert(
-                    "Admin oturumunun süresi dolmuş. Tekrar giriş yap."
-                );
-
-                logout();
-
-                return;
-
-            }
+            });
 
 
-            const data=
-                await response.json();
+        if(response.status===401){
+
+            alert(
+                "Admin oturumunun süresi dolmuş. Tekrar giriş yap."
+            );
+
+            logout();
+
+            return;
+
+        }
 
 
-            if(data.success){
+        const data =
+            await response.json();
 
-                showMessage(
-                    "✅ İlan başarıyla kaydedildi!",
-                    true
-                );
 
-                document.getElementById(
-                    "listingForm"
-                ).reset();
-
-                document.getElementById(
-                    "preview"
-                ).style.display="none";
-
-                loadListings();
-
-            }else{
-
-                showMessage(
-                    "❌ " +
-                    (data.error || "İlan kaydedilemedi."),
-                    false
-                );
-
-            }
-
-        }catch(error){
-
-            console.error(error);
+        if(data.success){
 
             showMessage(
-                "❌ Sunucu bağlantı hatası.",
+                "✅ İlan başarıyla kaydedildi!",
+                true
+            );
+
+            document.getElementById(
+                "listingForm"
+            ).reset();
+
+            document.getElementById(
+                "photoPreview"
+            ).innerHTML="";
+
+            loadListings();
+
+        }else{
+
+            showMessage(
+                "❌ " +
+                (data.error ||
+                "İlan kaydedilemedi."),
                 false
             );
 
         }
 
-    };
+    }catch(error){
 
-    reader.readAsDataURL(file);
+        console.error(error);
+
+        showMessage(
+            "❌ Sunucu bağlantı hatası.",
+            false
+        );
+
+    }
 
 });
 
@@ -1137,12 +1295,12 @@ document.getElementById("listingForm")
 
 function showMessage(text,success){
 
-    const message=
+    const message =
         document.getElementById("message");
 
     message.textContent=text;
 
-    message.className=
+    message.className =
         success
         ? "message success"
         : "message error";
@@ -1166,25 +1324,27 @@ async function loadListings(){
 
     try{
 
-        const response=
+        const response =
             await fetch("/api/ilanlar");
 
-        const ilanlar=
+        const ilanlar =
             await response.json();
 
         document.getElementById("count")
-        .textContent=
+        .textContent =
             "Toplam " + ilanlar.length + " ilan";
 
-        const container=
+
+        const container =
             document.getElementById("listings");
 
         container.innerHTML="";
 
 
-        if(!Array.isArray(ilanlar) || ilanlar.length===0){
+        if(!Array.isArray(ilanlar) ||
+           ilanlar.length===0){
 
-            container.innerHTML=
+            container.innerHTML =
                 '<p class="empty">Henüz ilan yok.</p>';
 
             return;
@@ -1194,37 +1354,59 @@ async function loadListings(){
 
         ilanlar.forEach(function(ilan){
 
-            const item=
+            const item =
                 document.createElement("div");
 
             item.className="listing";
 
 
-            const image=
-                document.createElement("img");
-
-            image.src=ilan.image || "";
-
-            image.alt=ilan.title || "İlan";
-
-            item.appendChild(image);
+            const images =
+                Array.isArray(ilan.images)
+                ? ilan.images
+                : (ilan.image ? [ilan.image] : []);
 
 
-            const title=
+            if(images.length){
+
+                const photoGrid =
+                    document.createElement("div");
+
+                photoGrid.className="photo-grid";
+
+
+                images.slice(0,4).forEach(function(src){
+
+                    const image =
+                        document.createElement("img");
+
+                    image.src=src;
+
+                    image.alt=ilan.title || "İlan";
+
+                    photoGrid.appendChild(image);
+
+                });
+
+                item.appendChild(photoGrid);
+
+            }
+
+
+            const title =
                 document.createElement("h3");
 
-            title.textContent=
+            title.textContent =
                 ilan.title || "";
 
             item.appendChild(title);
 
 
-            const info=
+            const info =
                 document.createElement("div");
 
             info.className="info";
 
-            info.textContent=
+            info.textContent =
                 (ilan.type || "") +
                 " • " +
                 (ilan.city || "") +
@@ -1239,30 +1421,28 @@ async function loadListings(){
             item.appendChild(info);
 
 
-            const extra=
+            const extra =
                 document.createElement("div");
 
             extra.className="info";
 
-            extra.textContent=
+            extra.textContent =
                 "🏢 " +
                 (ilan.buildingAge || 0) +
-                " yaş • " +
-                "Kat: " +
+                " yaş • Kat: " +
                 (ilan.floor || "-") +
-                " • " +
-                "🔥 " +
+                " • 🔥 " +
                 (ilan.heating || "-");
 
             item.appendChild(extra);
 
 
-            const price=
+            const price =
                 document.createElement("div");
 
             price.className="price";
 
-            price.textContent=
+            price.textContent =
                 Number(ilan.price || 0)
                 .toLocaleString("tr-TR") +
                 " TL";
@@ -1270,14 +1450,14 @@ async function loadListings(){
             item.appendChild(price);
 
 
-            const editButton=
+            const editButton =
                 document.createElement("button");
 
             editButton.className="edit-button";
 
             editButton.textContent="✏️ Düzenle";
 
-            editButton.onclick=
+            editButton.onclick =
                 function(){
                     openEdit(ilan.id);
                 };
@@ -1285,14 +1465,14 @@ async function loadListings(){
             item.appendChild(editButton);
 
 
-            const deleteButton=
+            const deleteButton =
                 document.createElement("button");
 
             deleteButton.className="delete-button";
 
             deleteButton.textContent="🗑️ Sil";
 
-            deleteButton.onclick=
+            deleteButton.onclick =
                 function(){
                     deleteListing(ilan.id);
                 };
@@ -1310,7 +1490,7 @@ async function loadListings(){
         console.error(error);
 
         document.getElementById("count")
-        .textContent=
+        .textContent =
             "İlanlar yüklenemedi.";
 
     }
@@ -1326,13 +1506,13 @@ async function openEdit(id){
 
     try{
 
-        const response=
+        const response =
             await fetch("/api/ilanlar");
 
-        const ilanlar=
+        const ilanlar =
             await response.json();
 
-        const ilan=
+        const ilan =
             ilanlar.find(
                 x=>String(x.id)===String(id)
             );
@@ -1347,82 +1527,95 @@ async function openEdit(id){
         }
 
 
-        document.getElementById("editId").value=
+        document.getElementById("editId").value =
             ilan.id;
 
-        document.getElementById("editTitle").value=
+        document.getElementById("editTitle").value =
             ilan.title || "";
 
-        document.getElementById("editType").value=
+        document.getElementById("editType").value =
             ilan.type || "Satılık";
 
-        document.getElementById("editCity").value=
+        document.getElementById("editCity").value =
             ilan.city || "İstanbul";
 
-        document.getElementById("editDistrict").value=
+        document.getElementById("editDistrict").value =
             ilan.district || "";
 
-        document.getElementById("editNeighborhood").value=
+        document.getElementById("editNeighborhood").value =
             ilan.neighborhood || "";
 
-        document.getElementById("editPrice").value=
+        document.getElementById("editPrice").value =
             ilan.price || "";
 
-        document.getElementById("editRooms").value=
+        document.getElementById("editRooms").value =
             ilan.rooms || "";
 
-        document.getElementById("editArea").value=
+        document.getElementById("editArea").value =
             ilan.area || "";
 
-        document.getElementById("editBuildingAge").value=
+        document.getElementById("editBuildingAge").value =
             ilan.buildingAge || "";
 
-        document.getElementById("editFloor").value=
+        document.getElementById("editFloor").value =
             ilan.floor || "";
 
-        document.getElementById("editTotalFloors").value=
+        document.getElementById("editTotalFloors").value =
             ilan.totalFloors || "";
 
-        document.getElementById("editHeating").value=
+        document.getElementById("editHeating").value =
             ilan.heating || "";
 
-        document.getElementById("editBathrooms").value=
+        document.getElementById("editBathrooms").value =
             ilan.bathrooms || "";
 
-        document.getElementById("editBalcony").value=
+        document.getElementById("editBalcony").value =
             ilan.balcony || "Var";
 
-        document.getElementById("editCredit").value=
+        document.getElementById("editCredit").value =
             ilan.credit || "Evet";
 
-        document.getElementById("editDeed").value=
+        document.getElementById("editDeed").value =
             ilan.deed || "";
 
-        document.getElementById("editDescription").value=
+        document.getElementById("editDescription").value =
             ilan.description || "";
 
 
-        const preview=
-            document.getElementById("editPreview");
+        const preview =
+            document.getElementById(
+                "editPhotoPreview"
+            );
+
+        preview.innerHTML="";
 
 
-        if(ilan.image){
-
-            preview.src=ilan.image;
-
-            preview.style.display="block";
-
-        }else{
-
-            preview.style.display="none";
-
-        }
+        const images =
+            Array.isArray(ilan.images)
+            ? ilan.images
+            : (ilan.image ? [ilan.image] : []);
 
 
-        document.getElementById("editImageFile").value="";
+        images.slice(0,4).forEach(function(src){
 
-        document.getElementById("editModal")
-        .style.display="block";
+            const img =
+                document.createElement("img");
+
+            img.src=src;
+
+            preview.appendChild(img);
+
+        });
+
+
+        document.getElementById(
+            "editImageFile"
+        ).value="";
+
+
+        document.getElementById(
+            "editModal"
+        ).style.display="block";
 
 
     }catch(error){
@@ -1437,30 +1630,53 @@ async function openEdit(id){
 
 
 /* =========================
-   FOTOĞRAF ÖNİZLEME
+   DÜZENLEME FOTOĞRAFLARI
 ========================= */
 
 document.getElementById("editImageFile")
 .addEventListener("change",function(){
 
-    const file=this.files[0];
+    const files =
+        Array.from(this.files);
 
-    if(!file)return;
+    const preview =
+        document.getElementById(
+            "editPhotoPreview"
+        );
 
-    const reader=new FileReader();
+    preview.innerHTML="";
 
-    reader.onload=function(e){
 
-        const preview=
-            document.getElementById("editPreview");
+    if(files.length>4){
 
-        preview.src=e.target.result;
+        alert("En fazla 4 fotoğraf seçebilirsin.");
 
-        preview.style.display="block";
+        this.value="";
 
-    };
+        return;
 
-    reader.readAsDataURL(file);
+    }
+
+
+    files.forEach(function(file){
+
+        const reader =
+            new FileReader();
+
+        reader.onload=function(e){
+
+            const img =
+                document.createElement("img");
+
+            img.src=e.target.result;
+
+            preview.appendChild(img);
+
+        };
+
+        reader.readAsDataURL(file);
+
+    });
 
 });
 
@@ -1471,22 +1687,18 @@ document.getElementById("editImageFile")
 
 async function saveEdit(){
 
-    const id=
+    const id =
         document.getElementById("editId").value;
-
-    const file=
-        document.getElementById("editImageFile").files[0];
-
 
     try{
 
-        const response=
+        const response =
             await fetch("/api/ilanlar");
 
-        const ilanlar=
+        const ilanlar =
             await response.json();
 
-        const mevcut=
+        const mevcut =
             ilanlar.find(
                 x=>String(x.id)===String(id)
             );
@@ -1501,30 +1713,45 @@ async function saveEdit(){
         }
 
 
-        if(file){
+        const files =
+            Array.from(
+                document.getElementById(
+                    "editImageFile"
+                ).files
+            );
 
-            const reader=new FileReader();
 
-            reader.onload=
-                async function(e){
+        let images;
 
-                    await sendUpdate(
-                        id,
-                        e.target.result
-                    );
 
-                };
+        if(files.length){
 
-            reader.readAsDataURL(file);
+            if(files.length>4){
+
+                alert(
+                    "En fazla 4 fotoğraf seçebilirsin."
+                );
+
+                return;
+
+            }
+
+            images =
+                await readFiles(files);
 
         }else{
 
-            await sendUpdate(
-                id,
-                mevcut.image
-            );
+            images =
+                Array.isArray(mevcut.images)
+                ? mevcut.images
+                : (mevcut.image
+                    ? [mevcut.image]
+                    : []);
 
         }
+
+
+        await sendUpdate(id,images);
 
 
     }catch(error){
@@ -1542,7 +1769,7 @@ async function saveEdit(){
    GÜNCELLE
 ========================= */
 
-async function sendUpdate(id,image){
+async function sendUpdate(id,images){
 
     const updated={
 
@@ -1618,7 +1845,11 @@ async function sendUpdate(id,image){
             document.getElementById("editDeed")
             .value,
 
-        image:image,
+        image:
+            images[0] || "",
+
+        images:
+            images,
 
         description:
             document.getElementById("editDescription")
@@ -1629,7 +1860,7 @@ async function sendUpdate(id,image){
 
     try{
 
-        const response=
+        const response =
             await fetch(
                 "/api/ilanlar/" + id,
                 {
@@ -1662,7 +1893,7 @@ async function sendUpdate(id,image){
         }
 
 
-        const data=
+        const data =
             await response.json();
 
 
@@ -1704,15 +1935,12 @@ async function sendUpdate(id,image){
 
 function closeModal(){
 
-    document.getElementById("editModal")
-    .style.display="none";
+    document.getElementById(
+        "editModal"
+    ).style.display="none";
 
 }
 
-
-/* =========================
-   MODAL DIŞINA TIKLAMA
-========================= */
 
 document.getElementById("editModal")
 .addEventListener("click",function(event){
@@ -1743,7 +1971,7 @@ async function deleteListing(id){
 
     try{
 
-        const response=
+        const response =
             await fetch(
                 "/api/ilanlar/" + id,
                 {
@@ -1770,7 +1998,7 @@ async function deleteListing(id){
         }
 
 
-        const data=
+        const data =
             await response.json();
 
 
