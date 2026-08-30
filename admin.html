@@ -1,85 +1,310 @@
+```html
 <!DOCTYPE html>
-
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Nova Emlak - Admin</title>
 
 <style>
-*{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:#f4f6f8;color:#1f2937}
-header{background:#111827;color:white;padding:22px 7%}
-header h1{margin:0}
-.container{max-width:1000px;margin:35px auto;padding:0 20px}
-.panel{background:white;padding:28px;border-radius:15px;margin-bottom:25px;box-shadow:0 5px 25px rgba(0,0,0,.08)}
-label{display:block;margin-top:16px;margin-bottom:7px;font-weight:bold}
-input,select,textarea{width:100%;padding:13px;border:1px solid #ddd;border-radius:8px;font-size:15px}
-textarea{min-height:110px;resize:vertical}
-button{border:0;border-radius:8px;padding:11px 16px;cursor:pointer;font-weight:bold}
-.add-button{width:100%;margin-top:22px;background:#2563eb;color:white;padding:15px;font-size:16px}
-.edit-button{background:#2563eb;color:white;margin-right:8px}
-.delete-button{background:#dc2626;color:white}
-.cancel-button{background:#6b7280;color:white;margin-left:8px}
-.preview{display:none;width:100%;max-width:450px;height:250px;object-fit:cover;margin-top:15px;border-radius:10px}
-.listing{border:1px solid #ddd;border-radius:12px;padding:18px;margin-bottom:15px}
-.listing img{width:180px;height:110px;object-fit:cover;border-radius:8px;margin-bottom:12px}
-.listing h3{margin:0 0 8px}
-.info{color:#6b7280;margin-bottom:8px}
-.price{color:#2563eb;font-size:20px;font-weight:bold;margin-bottom:15px}
-.message{display:none;padding:14px;border-radius:8px;margin-top:15px}
-.success{background:#dcfce7;color:#166534}
-.error{background:#fee2e2;color:#991b1b}
-.modal{display:none;position:fixed;z-index:1000;inset:0;background:rgba(0,0,0,.55);padding:20px;overflow:auto}
-.modal-box{background:white;max-width:650px;margin:40px auto;padding:28px;border-radius:15px}
-.modal-box h2{margin-top:0}
-.logout{float:right;background:#dc2626;color:white}
-.back{color:#2563eb;text-decoration:none}
-</style>
+* {
+    box-sizing: border-box;
+}
 
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f6f8;
+    color: #1f2937;
+}
+
+header {
+    background: #111827;
+    color: white;
+    padding: 22px 7%;
+}
+
+header h1 {
+    margin: 0;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 35px auto;
+    padding: 0 20px;
+}
+
+.panel {
+    background: white;
+    padding: 28px;
+    border-radius: 15px;
+    margin-bottom: 25px;
+    box-shadow: 0 5px 25px rgba(0,0,0,.08);
+}
+
+label {
+    display: block;
+    margin-top: 16px;
+    margin-bottom: 7px;
+    font-weight: bold;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 15px;
+}
+
+textarea {
+    min-height: 110px;
+    resize: vertical;
+}
+
+button {
+    border: 0;
+    border-radius: 8px;
+    padding: 11px 16px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover {
+    opacity: .9;
+}
+
+.add-button {
+    width: 100%;
+    margin-top: 22px;
+    background: #2563eb;
+    color: white;
+    padding: 15px;
+    font-size: 16px;
+}
+
+.edit-button {
+    background: #2563eb;
+    color: white;
+    margin-right: 8px;
+}
+
+.delete-button {
+    background: #dc2626;
+    color: white;
+}
+
+.cancel-button {
+    background: #6b7280;
+    color: white;
+    margin-left: 8px;
+}
+
+.logout {
+    float: right;
+    background: #dc2626;
+    color: white;
+}
+
+.back {
+    color: #2563eb;
+    text-decoration: none;
+}
+
+.preview {
+    display: none;
+    width: 100%;
+    max-width: 450px;
+    height: 250px;
+    object-fit: cover;
+    margin-top: 15px;
+    border-radius: 10px;
+}
+
+.listing {
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 18px;
+    margin-bottom: 15px;
+}
+
+.listing img {
+    width: 180px;
+    height: 110px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 12px;
+}
+
+.listing h3 {
+    margin: 0 0 8px;
+}
+
+.info {
+    color: #6b7280;
+    margin-bottom: 8px;
+}
+
+.price {
+    color: #2563eb;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.message {
+    display: none;
+    padding: 14px;
+    border-radius: 8px;
+    margin-top: 15px;
+}
+
+.success {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.error {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    inset: 0;
+    background: rgba(0,0,0,.55);
+    padding: 20px;
+    overflow: auto;
+}
+
+.modal-box {
+    background: white;
+    max-width: 650px;
+    margin: 40px auto;
+    padding: 28px;
+    border-radius: 15px;
+}
+
+.modal-box h2 {
+    margin-top: 0;
+}
+
+.login-box {
+    max-width: 420px;
+    margin: 100px auto;
+    background: white;
+    padding: 35px;
+    border-radius: 15px;
+    box-shadow: 0 8px 30px rgba(0,0,0,.1);
+}
+
+.login-button {
+    width: 100%;
+    margin-top: 15px;
+    background: #2563eb;
+    color: white;
+}
+
+.login-error {
+    display: none;
+    color: #dc2626;
+    text-align: center;
+}
+
+.empty {
+    color: #777;
+    padding: 15px 0;
+}
+
+@media(max-width:600px) {
+
+    .panel {
+        padding: 20px;
+    }
+
+    .listing img {
+        width: 100%;
+        height: 200px;
+    }
+
+    .edit-button,
+    .delete-button {
+        margin-top: 8px;
+    }
+
+    header {
+        padding: 20px;
+    }
+}
+</style>
 </head>
 
 <body>
 
-<!-- GİRİŞ EKRANI -->
+<!-- ========================= -->
+<!-- GİRİŞ -->
+<!-- ========================= -->
 
-<div id="loginScreen" style="max-width:420px;margin:100px auto;background:white;padding:35px;border-radius:15px;box-shadow:0 8px 30px rgba(0,0,0,.1)">
+<div id="loginScreen" class="login-box">
 
-<h2 style="text-align:center">🔐 Admin Girişi</h2>
+    <h2 style="text-align:center">🔐 Admin Girişi</h2>
 
-<p style="text-align:center;color:#666">
-Nova Emlak Yönetim Paneli
-</p>
+    <p style="text-align:center;color:#666">
+        Nova Emlak Yönetim Paneli
+    </p>
 
-<input id="password" type="password" placeholder="Admin şifresi">
+    <input
+        id="password"
+        type="password"
+        placeholder="Admin şifresi"
+        autocomplete="current-password"
+    >
 
-<button onclick="login()" style="width:100%;margin-top:15px;background:#2563eb;color:white">
-Giriş Yap
-</button>
+    <button
+        onclick="login()"
+        class="login-button"
+    >
+        Giriş Yap
+    </button>
 
-<p id="loginError" style="display:none;color:#dc2626;text-align:center">
-❌ Şifre yanlış.
-</p>
+    <p id="loginError" class="login-error">
+        ❌ Şifre yanlış.
+    </p>
 
 </div>
 
-<!-- ADMIN -->
+
+<!-- ========================= -->
+<!-- ADMIN PANEL -->
+<!-- ========================= -->
 
 <div id="adminPanel" style="display:none">
 
 <header>
 
-<button class="logout" onclick="logout()">
-Çıkış
-</button>
+    <button
+        class="logout"
+        onclick="logout()"
+    >
+        Çıkış
+    </button>
 
-<h1>🏠 NOVA EMLAK — ADMIN</h1>
+    <h1>🏠 NOVA EMLAK — ADMIN</h1>
 
 </header>
 
+
 <div class="container">
 
+
+<!-- ========================= -->
 <!-- YENİ İLAN -->
+<!-- ========================= -->
 
 <div class="panel">
 
@@ -87,645 +312,1256 @@ Giriş Yap
 
 <form id="listingForm">
 
-<label>İlan Başlığı</label> <input id="title" type="text" placeholder="Örn: 3+1 Lüks Daire" required>
+<label>İlan Başlığı</label>
 
-<label>İlan Türü</label> <select id="type">
+<input
+    id="title"
+    type="text"
+    placeholder="Örn: 3+1 Lüks Daire"
+    required
+>
+
+
+<label>İlan Türü</label>
+
+<select id="type">
 
 <option value="Satılık">Satılık</option>
 <option value="Kiralık">Kiralık</option>
+
 </select>
 
-<label>Şehir</label> <select id="city">
+
+<label>Şehir</label>
+
+<select id="city">
 
 <option value="İstanbul">İstanbul</option>
 <option value="Ankara">Ankara</option>
 <option value="İzmir">İzmir</option>
+
 </select>
 
-<label>Fiyat</label> <input id="price" type="number" required>
 
-<label>Oda Sayısı</label> <input id="rooms" type="text" placeholder="3+1" required>
+<label>Fiyat</label>
 
-<label>Metrekare</label> <input id="area" type="number" required>
+<input
+    id="price"
+    type="number"
+    min="0"
+    required
+>
 
-<label>📷 Fotoğraf</label> <input id="imageFile" type="file" accept="image/*" required>
 
-<img id="preview" class="preview">
+<label>Oda Sayısı</label>
+
+<input
+    id="rooms"
+    type="text"
+    placeholder="3+1"
+    required
+>
+
+
+<label>Metrekare</label>
+
+<input
+    id="area"
+    type="number"
+    min="0"
+    required
+>
+
+
+<label>📷 Fotoğraf</label>
+
+<input
+    id="imageFile"
+    type="file"
+    accept="image/*"
+    required
+>
+
+<img
+    id="preview"
+    class="preview"
+>
+
 
 <label>Açıklama</label>
 
-<textarea id="description" required></textarea>
+<textarea
+    id="description"
+    placeholder="İlan hakkında detaylı açıklama..."
+    required
+></textarea>
 
-<button class="add-button" type="submit">
-🚀 İlanı Kaydet
+
+<button
+    class="add-button"
+    type="submit"
+>
+    🚀 İlanı Kaydet
 </button>
 
-<div id="message" class="message"></div>
+
+<div
+    id="message"
+    class="message"
+></div>
 
 </form>
 
 </div>
 
-<!-- İLANLAR -->
+
+<!-- ========================= -->
+<!-- İLAN YÖNETİMİ -->
+<!-- ========================= -->
 
 <div class="panel">
 
 <h2>📋 İlan Yönetimi</h2>
 
-<p id="count">İlanlar yükleniyor...</p>
+<p id="count">
+    İlanlar yükleniyor...
+</p>
 
 <div id="listings"></div>
 
 </div>
 
-<a class="back" href="index.html">
-← Ana sayfaya dön
+
+<a
+    class="back"
+    href="index.html"
+>
+    ← Ana sayfaya dön
 </a>
 
 </div>
 </div>
 
-<!-- DÜZENLEME MODALI -->
 
-<div id="editModal" class="modal">
+<!-- ========================= -->
+<!-- DÜZENLEME MODALI -->
+<!-- ========================= -->
+
+<div
+    id="editModal"
+    class="modal"
+>
 
 <div class="modal-box">
 
 <h2>✏️ İlanı Düzenle</h2>
 
-<input type="hidden" id="editId">
+<input
+    type="hidden"
+    id="editId"
+>
 
-<label>İlan Başlığı</label> <input id="editTitle">
 
-<label>İlan Türü</label> <select id="editType">
+<label>İlan Başlığı</label>
+
+<input
+    id="editTitle"
+    type="text"
+>
+
+
+<label>İlan Türü</label>
+
+<select id="editType">
 
 <option value="Satılık">Satılık</option>
 <option value="Kiralık">Kiralık</option>
+
 </select>
 
-<label>Şehir</label> <select id="editCity">
+
+<label>Şehir</label>
+
+<select id="editCity">
 
 <option value="İstanbul">İstanbul</option>
 <option value="Ankara">Ankara</option>
 <option value="İzmir">İzmir</option>
+
 </select>
 
-<label>Fiyat</label> <input id="editPrice" type="number">
 
-<label>Oda Sayısı</label> <input id="editRooms">
+<label>Fiyat</label>
 
-<label>Metrekare</label> <input id="editArea" type="number">
+<input
+    id="editPrice"
+    type="number"
+    min="0"
+>
 
-<label>📷 Yeni Fotoğraf (isteğe bağlı)</label> <input id="editImageFile" type="file" accept="image/*">
 
-<img id="editPreview" class="preview">
+<label>Oda Sayısı</label>
+
+<input
+    id="editRooms"
+    type="text"
+>
+
+
+<label>Metrekare</label>
+
+<input
+    id="editArea"
+    type="number"
+    min="0"
+>
+
+
+<label>📷 Yeni Fotoğraf (isteğe bağlı)</label>
+
+<input
+    id="editImageFile"
+    type="file"
+    accept="image/*"
+>
+
+
+<img
+    id="editPreview"
+    class="preview"
+>
+
 
 <label>Açıklama</label>
 
-<textarea id="editDescription"></textarea>
+<textarea
+    id="editDescription"
+></textarea>
 
-<br><br>
 
-<button onclick="saveEdit()" style="background:#2563eb;color:white">
-💾 Değişiklikleri Kaydet
+<br>
+<br>
+
+
+<button
+    onclick="saveEdit()"
+    style="background:#2563eb;color:white"
+>
+    💾 Değişiklikleri Kaydet
 </button>
 
-<button onclick="closeModal()" class="cancel-button">
-İptal
+
+<button
+    onclick="closeModal()"
+    class="cancel-button"
+>
+    İptal
 </button>
 
 </div>
 </div>
+
 
 <script>
+
+/* =========================
+   ADMIN ŞİFRESİ
+========================= */
 
 const ADMIN_PASSWORD = "Nova2026";
 
 
-// =======================
-// GİRİŞ
-// =======================
+/* =========================
+   GİRİŞ
+========================= */
 
-function login(){
+function login() {
 
-const password =
-document.getElementById("password").value;
+    const password =
+        document.getElementById("password").value;
 
-if(password === ADMIN_PASSWORD){
+    if (password === ADMIN_PASSWORD) {
 
-sessionStorage.setItem("novaAdmin","true");
+        sessionStorage.setItem(
+            "novaAdmin",
+            "true"
+        );
 
-showAdmin();
+        showAdmin();
 
-}else{
+    } else {
 
-document.getElementById("loginError").style.display="block";
+        document.getElementById(
+            "loginError"
+        ).style.display = "block";
 
-}
-
-}
-
-
-function showAdmin(){
-
-document.getElementById("loginScreen").style.display="none";
-
-document.getElementById("adminPanel").style.display="block";
-
-loadListings();
-
+    }
 }
 
 
-function logout(){
+/* ENTER TUŞU */
 
-sessionStorage.removeItem("novaAdmin");
+document.getElementById("password").addEventListener(
+    "keydown",
+    function(event) {
 
-location.reload();
+        if (event.key === "Enter") {
+            login();
+        }
 
-}
-
-
-if(sessionStorage.getItem("novaAdmin")==="true"){
-
-showAdmin();
-
-}
-
-
-// =======================
-// YENİ FOTOĞRAF ÖNİZLEME
-// =======================
-
-document.getElementById("imageFile").addEventListener("change",function(){
-
-const file=this.files[0];
-
-if(!file){
-
-document.getElementById("preview").style.display="none";
-
-return;
-
-}
-
-const reader=new FileReader();
-
-reader.onload=function(e){
-
-const preview=document.getElementById("preview");
-
-preview.src=e.target.result;
-
-preview.style.display="block";
-
-};
-
-reader.readAsDataURL(file);
-
-});
-
-
-// =======================
-// YENİ İLAN EKLE
-// =======================
-
-document.getElementById("listingForm").addEventListener("submit",function(event){
-
-event.preventDefault();
-
-const file=document.getElementById("imageFile").files[0];
-
-if(!file){
-
-alert("Lütfen fotoğraf seç.");
-
-return;
-
-}
-
-const reader=new FileReader();
-
-reader.onload=async function(e){
-
-const ilan={
-
-title:document.getElementById("title").value,
-
-type:document.getElementById("type").value,
-
-city:document.getElementById("city").value,
-
-price:Number(document.getElementById("price").value),
-
-rooms:document.getElementById("rooms").value,
-
-area:Number(document.getElementById("area").value),
-
-image:e.target.result,
-
-description:document.getElementById("description").value
-
-};
-
-try{
-
-const response=await fetch("/api/ilanlar",{
-
-method:"POST",
-
-headers:{
-"Content-Type":"application/json"
-},
-
-body:JSON.stringify(ilan)
-
-});
-
-const data=await response.json();
-
-if(data.success){
-
-showMessage("✅ İlan başarıyla kaydedildi!",true);
-
-document.getElementById("listingForm").reset();
-
-document.getElementById("preview").style.display="none";
-
-loadListings();
-
-}else{
-
-showMessage("❌ İlan kaydedilemedi.",false);
-
-}
-
-}catch(error){
-
-showMessage("❌ Sunucu bağlantı hatası.",false);
-
-}
-
-};
-
-reader.readAsDataURL(file);
-
-});
-
-
-// =======================
-// MESAJ
-// =======================
-
-function showMessage(text,success){
-
-const message=document.getElementById("message");
-
-message.textContent=text;
-
-message.className=success
-?"message success"
-:"message error";
-
-message.style.display="block";
-
-setTimeout(function(){
-
-message.style.display="none";
-
-},3000);
-
-}
-
-
-// =======================
-// İLANLARI GETİR
-// =======================
-
-async function loadListings(){
-
-try{
-
-const response=await fetch("/api/ilanlar");
-
-const ilanlar=await response.json();
-
-document.getElementById("count").textContent=
-"Toplam "+ilanlar.length+" ilan";
-
-const container=document.getElementById("listings");
-
-container.innerHTML="";
-
-if(ilanlar.length===0){
-
-container.innerHTML="<p>Henüz ilan yok.</p>";
-
-return;
-
-}
-
-ilanlar.forEach(function(ilan){
-
-const item=document.createElement("div");
-
-item.className="listing";
-
-item.innerHTML=`
-
-<img src="${ilan.image}" alt="${ilan.title}">
-
-<h3>${ilan.title}</h3>
-
-<div class="info">
-${ilan.type} • ${ilan.city} • ${ilan.rooms} • ${ilan.area} m²
-</div>
-
-<div class="price">
-${Number(ilan.price).toLocaleString("tr-TR")} TL
-</div>
-
-<button class="edit-button" onclick="openEdit(${ilan.id})">
-✏️ Düzenle
-</button>
-
-<button class="delete-button" onclick="deleteListing(${ilan.id})">
-🗑️ Sil
-</button>
-
-`;
-
-container.appendChild(item);
-
-});
-
-}catch(error){
-
-console.error(error);
-
-}
-
-}
-
-
-// =======================
-// DÜZENLEME EKRANINI AÇ
-// =======================
-
-async function openEdit(id){
-
-const response=await fetch("/api/ilanlar");
-
-const ilanlar=await response.json();
-
-const ilan=ilanlar.find(x=>x.id===id);
-
-if(!ilan){
-
-alert("İlan bulunamadı.");
-
-return;
-
-}
-
-document.getElementById("editId").value=ilan.id;
-
-document.getElementById("editTitle").value=ilan.title || "";
-
-document.getElementById("editType").value=ilan.type || "Satılık";
-
-document.getElementById("editCity").value=ilan.city || "İstanbul";
-
-document.getElementById("editPrice").value=ilan.price || "";
-
-document.getElementById("editRooms").value=ilan.rooms || "";
-
-document.getElementById("editArea").value=ilan.area || "";
-
-document.getElementById("editDescription").value=ilan.description || "";
-
-
-// Mevcut fotoğrafı göster
-
-const preview=document.getElementById("editPreview");
-
-if(ilan.image){
-
-preview.src=ilan.image;
-
-preview.style.display="block";
-
-}else{
-
-preview.style.display="none";
-
-}
-
-document.getElementById("editImageFile").value="";
-
-document.getElementById("editModal").style.display="block";
-
-}
-
-
-// =======================
-// YENİ FOTOĞRAF ÖNİZLEME
-// =======================
-
-document.getElementById("editImageFile").addEventListener("change",function(){
-
-const file=this.files[0];
-
-if(!file)return;
-
-const reader=new FileReader();
-
-reader.onload=function(e){
-
-const preview=document.getElementById("editPreview");
-
-preview.src=e.target.result;
-
-preview.style.display="block";
-
-};
-
-reader.readAsDataURL(file);
-
-});
-
-
-// =======================
-// DÜZENLEMEYİ KAYDET
-// =======================
-
-async function saveEdit(){
-
-const id=document.getElementById("editId").value;
-
-const file=document.getElementById("editImageFile").files[0];
-
-
-// Önce mevcut ilanı bul
-
-const response=await fetch("/api/ilanlar");
-
-const ilanlar=await response.json();
-
-const mevcut=ilanlar.find(x=>String(x.id)===String(id));
-
-if(!mevcut){
-
-alert("İlan bulunamadı.");
-
-return;
-
-}
-
-
-// Fotoğraf değiştirildiyse oku
-
-if(file){
-
-const reader=new FileReader();
-
-reader.onload=async function(e){
-
-await sendUpdate(
-id,
-e.target.result
+    }
 );
 
-};
 
-reader.readAsDataURL(file);
+/* =========================
+   ADMIN PANELİNİ GÖSTER
+========================= */
 
-}else{
+function showAdmin() {
 
-await sendUpdate(
-id,
-mevcut.image
+    document.getElementById(
+        "loginScreen"
+    ).style.display = "none";
+
+    document.getElementById(
+        "adminPanel"
+    ).style.display = "block";
+
+    loadListings();
+}
+
+
+/* =========================
+   ÇIKIŞ
+========================= */
+
+function logout() {
+
+    sessionStorage.removeItem(
+        "novaAdmin"
+    );
+
+    location.reload();
+}
+
+
+/* =========================
+   OTURUM KONTROLÜ
+========================= */
+
+if (
+    sessionStorage.getItem("novaAdmin")
+    === "true"
+) {
+
+    showAdmin();
+
+}
+
+
+/* =========================
+   YENİ FOTOĞRAF ÖNİZLEME
+========================= */
+
+document.getElementById(
+    "imageFile"
+).addEventListener(
+    "change",
+    function() {
+
+        const file = this.files[0];
+
+        const preview =
+            document.getElementById("preview");
+
+        if (!file) {
+
+            preview.style.display = "none";
+            return;
+
+        }
+
+        const reader =
+            new FileReader();
+
+        reader.onload = function(e) {
+
+            preview.src =
+                e.target.result;
+
+            preview.style.display =
+                "block";
+
+        };
+
+        reader.readAsDataURL(file);
+
+    }
 );
 
-}
 
-}
+/* =========================
+   YENİ İLAN EKLE
+========================= */
+
+document.getElementById(
+    "listingForm"
+).addEventListener(
+    "submit",
+    function(event) {
+
+        event.preventDefault();
+
+        const file =
+            document.getElementById(
+                "imageFile"
+            ).files[0];
+
+        if (!file) {
+
+            alert(
+                "Lütfen fotoğraf seç."
+            );
+
+            return;
+        }
+
+        const reader =
+            new FileReader();
+
+        reader.onload =
+            async function(e) {
+
+                const ilan = {
+
+                    title:
+                        document.getElementById(
+                            "title"
+                        ).value.trim(),
+
+                    type:
+                        document.getElementById(
+                            "type"
+                        ).value,
+
+                    city:
+                        document.getElementById(
+                            "city"
+                        ).value,
+
+                    price:
+                        Number(
+                            document.getElementById(
+                                "price"
+                            ).value
+                        ),
+
+                    rooms:
+                        document.getElementById(
+                            "rooms"
+                        ).value.trim(),
+
+                    area:
+                        Number(
+                            document.getElementById(
+                                "area"
+                            ).value
+                        ),
+
+                    image:
+                        e.target.result,
+
+                    description:
+                        document.getElementById(
+                            "description"
+                        ).value.trim()
+
+                };
 
 
-// Güncelleme isteği
+                try {
 
-async function sendUpdate(id,image){
+                    const response =
+                        await fetch(
+                            "/api/ilanlar",
+                            {
+                                method: "POST",
 
-const updated={
+                                headers: {
+                                    "Content-Type":
+                                        "application/json"
+                                },
 
-title:document.getElementById("editTitle").value,
-
-type:document.getElementById("editType").value,
-
-city:document.getElementById("editCity").value,
-
-price:Number(document.getElementById("editPrice").value),
-
-rooms:document.getElementById("editRooms").value,
-
-area:Number(document.getElementById("editArea").value),
-
-image:image,
-
-description:document.getElementById("editDescription").value
-
-};
+                                body:
+                                    JSON.stringify(
+                                        ilan
+                                    )
+                            }
+                        );
 
 
-try{
+                    const data =
+                        await response.json();
 
-const response=await fetch(
-"/api/ilanlar/"+id,
-{
 
-method:"PUT",
+                    if (data.success) {
 
-headers:{
-"Content-Type":"application/json"
-},
+                        showMessage(
+                            "✅ İlan başarıyla kaydedildi!",
+                            true
+                        );
 
-body:JSON.stringify(updated)
+                        document.getElementById(
+                            "listingForm"
+                        ).reset();
 
-}
+                        document.getElementById(
+                            "preview"
+                        ).style.display = "none";
+
+                        loadListings();
+
+                    } else {
+
+                        showMessage(
+                            "❌ İlan kaydedilemedi.",
+                            false
+                        );
+
+                    }
+
+                } catch (error) {
+
+                    console.error(error);
+
+                    showMessage(
+                        "❌ Sunucu bağlantı hatası.",
+                        false
+                    );
+
+                }
+
+            };
+
+        reader.readAsDataURL(file);
+
+    }
 );
 
-const data=await response.json();
 
-if(data.success){
+/* =========================
+   MESAJ
+========================= */
 
-alert("✅ İlan başarıyla güncellendi!");
+function showMessage(
+    text,
+    success
+) {
 
-closeModal();
+    const message =
+        document.getElementById(
+            "message"
+        );
 
-loadListings();
+    message.textContent =
+        text;
 
-}else{
+    message.className =
+        success
+        ? "message success"
+        : "message error";
 
-alert("❌ İlan güncellenemedi.");
+    message.style.display =
+        "block";
 
+
+    setTimeout(
+        function() {
+
+            message.style.display =
+                "none";
+
+        },
+        3000
+    );
 }
 
-}catch(error){
 
-alert("❌ Sunucu bağlantı hatası.");
+/* =========================
+   İLANLARI GETİR
+========================= */
 
+async function loadListings() {
+
+    try {
+
+        const response =
+            await fetch(
+                "/api/ilanlar"
+            );
+
+
+        if (!response.ok) {
+            throw new Error(
+                "İlanlar alınamadı"
+            );
+        }
+
+
+        const ilanlar =
+            await response.json();
+
+
+        document.getElementById(
+            "count"
+        ).textContent =
+            "Toplam " +
+            ilanlar.length +
+            " ilan";
+
+
+        const container =
+            document.getElementById(
+                "listings"
+            );
+
+        container.innerHTML = "";
+
+
+        if (
+            !Array.isArray(ilanlar)
+            || ilanlar.length === 0
+        ) {
+
+            container.innerHTML =
+                '<p class="empty">Henüz ilan yok.</p>';
+
+            return;
+        }
+
+
+        ilanlar.forEach(
+            function(ilan) {
+
+                const item =
+                    document.createElement(
+                        "div"
+                    );
+
+                item.className =
+                    "listing";
+
+
+                const image =
+                    document.createElement(
+                        "img"
+                    );
+
+                image.src =
+                    ilan.image || "";
+
+                image.alt =
+                    ilan.title || "İlan";
+
+                item.appendChild(image);
+
+
+                const title =
+                    document.createElement(
+                        "h3"
+                    );
+
+                title.textContent =
+                    ilan.title || "";
+
+                item.appendChild(title);
+
+
+                const info =
+                    document.createElement(
+                        "div"
+                    );
+
+                info.className =
+                    "info";
+
+                info.textContent =
+                    (ilan.type || "") +
+                    " • " +
+                    (ilan.city || "") +
+                    " • " +
+                    (ilan.rooms || "") +
+                    " • " +
+                    (ilan.area || 0) +
+                    " m²";
+
+                item.appendChild(info);
+
+
+                const price =
+                    document.createElement(
+                        "div"
+                    );
+
+                price.className =
+                    "price";
+
+                price.textContent =
+                    Number(
+                        ilan.price || 0
+                    ).toLocaleString(
+                        "tr-TR"
+                    ) +
+                    " TL";
+
+                item.appendChild(price);
+
+
+                const editButton =
+                    document.createElement(
+                        "button"
+                    );
+
+                editButton.className =
+                    "edit-button";
+
+                editButton.textContent =
+                    "✏️ Düzenle";
+
+                editButton.onclick =
+                    function() {
+                        openEdit(ilan.id);
+                    };
+
+                item.appendChild(
+                    editButton
+                );
+
+
+                const deleteButton =
+                    document.createElement(
+                        "button"
+                    );
+
+                deleteButton.className =
+                    "delete-button";
+
+                deleteButton.textContent =
+                    "🗑️ Sil";
+
+                deleteButton.onclick =
+                    function() {
+                        deleteListing(
+                            ilan.id
+                        );
+                    };
+
+                item.appendChild(
+                    deleteButton
+                );
+
+
+                container.appendChild(
+                    item
+                );
+
+            }
+        );
+
+    } catch (error) {
+
+        console.error(
+            "İlan yükleme hatası:",
+            error
+        );
+
+        document.getElementById(
+            "count"
+        ).textContent =
+            "İlanlar yüklenemedi.";
+
+    }
 }
 
+
+/* =========================
+   DÜZENLEME EKRANINI AÇ
+========================= */
+
+async function openEdit(id) {
+
+    try {
+
+        const response =
+            await fetch(
+                "/api/ilanlar"
+            );
+
+        const ilanlar =
+            await response.json();
+
+
+        const ilan =
+            ilanlar.find(
+                x =>
+                    String(x.id)
+                    === String(id)
+            );
+
+
+        if (!ilan) {
+
+            alert(
+                "İlan bulunamadı."
+            );
+
+            return;
+        }
+
+
+        document.getElementById(
+            "editId"
+        ).value =
+            ilan.id;
+
+
+        document.getElementById(
+            "editTitle"
+        ).value =
+            ilan.title || "";
+
+
+        document.getElementById(
+            "editType"
+        ).value =
+            ilan.type || "Satılık";
+
+
+        document.getElementById(
+            "editCity"
+        ).value =
+            ilan.city || "İstanbul";
+
+
+        document.getElementById(
+            "editPrice"
+        ).value =
+            ilan.price || "";
+
+
+        document.getElementById(
+            "editRooms"
+        ).value =
+            ilan.rooms || "";
+
+
+        document.getElementById(
+            "editArea"
+        ).value =
+            ilan.area || "";
+
+
+        document.getElementById(
+            "editDescription"
+        ).value =
+            ilan.description || "";
+
+
+        const preview =
+            document.getElementById(
+                "editPreview"
+            );
+
+
+        if (ilan.image) {
+
+            preview.src =
+                ilan.image;
+
+            preview.style.display =
+                "block";
+
+        } else {
+
+            preview.style.display =
+                "none";
+
+        }
+
+
+        document.getElementById(
+            "editImageFile"
+        ).value = "";
+
+
+        document.getElementById(
+            "editModal"
+        ).style.display =
+            "block";
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert(
+            "İlan bilgileri alınamadı."
+        );
+
+    }
 }
 
 
-// =======================
-// MODALI KAPAT
-// =======================
+/* =========================
+   DÜZENLEME FOTOĞRAF ÖNİZLEME
+========================= */
 
-function closeModal(){
+document.getElementById(
+    "editImageFile"
+).addEventListener(
+    "change",
+    function() {
 
-document.getElementById("editModal").style.display="none";
+        const file =
+            this.files[0];
 
-}
+        const preview =
+            document.getElementById(
+                "editPreview"
+            );
 
 
-// =======================
-// İLAN SİL
-// =======================
+        if (!file) {
+            return;
+        }
 
-async function deleteListing(id){
 
-if(!confirm("Bu ilanı silmek istediğine emin misin?")){
+        const reader =
+            new FileReader();
 
-return;
 
-}
+        reader.onload =
+            function(e) {
 
-const response=await fetch(
-"/api/ilanlar/"+id,
-{
-method:"DELETE"
-}
+                preview.src =
+                    e.target.result;
+
+                preview.style.display =
+                    "block";
+
+            };
+
+
+        reader.readAsDataURL(
+            file
+        );
+
+    }
 );
 
-const data=await response.json();
 
-if(data.success){
+/* =========================
+   DÜZENLEMEYİ KAYDET
+========================= */
 
-alert("✅ İlan silindi!");
+async function saveEdit() {
 
-loadListings();
+    const id =
+        document.getElementById(
+            "editId"
+        ).value;
 
-}else{
 
-alert("❌ İlan silinemedi.");
+    const file =
+        document.getElementById(
+            "editImageFile"
+        ).files[0];
+
+
+    try {
+
+        const response =
+            await fetch(
+                "/api/ilanlar"
+            );
+
+        const ilanlar =
+            await response.json();
+
+
+        const mevcut =
+            ilanlar.find(
+                x =>
+                    String(x.id)
+                    === String(id)
+            );
+
+
+        if (!mevcut) {
+
+            alert(
+                "İlan bulunamadı."
+            );
+
+            return;
+        }
+
+
+        if (file) {
+
+            const reader =
+                new FileReader();
+
+
+            reader.onload =
+                async function(e) {
+
+                    await sendUpdate(
+                        id,
+                        e.target.result
+                    );
+
+                };
+
+
+            reader.readAsDataURL(
+                file
+            );
+
+        } else {
+
+            await sendUpdate(
+                id,
+                mevcut.image
+            );
+
+        }
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert(
+            "İlan bilgileri alınamadı."
+        );
+
+    }
+}
+
+
+/* =========================
+   GÜNCELLEME
+========================= */
+
+async function sendUpdate(
+    id,
+    image
+) {
+
+    const updated = {
+
+        title:
+            document.getElementById(
+                "editTitle"
+            ).value.trim(),
+
+        type:
+            document.getElementById(
+                "editType"
+            ).value,
+
+        city:
+            document.getElementById(
+                "editCity"
+            ).value,
+
+        price:
+            Number(
+                document.getElementById(
+                    "editPrice"
+                ).value
+            ),
+
+        rooms:
+            document.getElementById(
+                "editRooms"
+            ).value.trim(),
+
+        area:
+            Number(
+                document.getElementById(
+                    "editArea"
+                ).value
+            ),
+
+        image:
+            image,
+
+        description:
+            document.getElementById(
+                "editDescription"
+            ).value.trim()
+
+    };
+
+
+    try {
+
+        const response =
+            await fetch(
+                "/api/ilanlar/" +
+                id,
+                {
+                    method: "PUT",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body:
+                        JSON.stringify(
+                            updated
+                        )
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (data.success) {
+
+            alert(
+                "✅ İlan başarıyla güncellendi!"
+            );
+
+            closeModal();
+
+            loadListings();
+
+        } else {
+
+            alert(
+                "❌ İlan güncellenemedi."
+            );
+
+        }
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert(
+            "❌ Sunucu bağlantı hatası."
+        );
+
+    }
+}
+
+
+/* =========================
+   MODALI KAPAT
+========================= */
+
+function closeModal() {
+
+    document.getElementById(
+        "editModal"
+    ).style.display =
+        "none";
 
 }
 
+
+/* =========================
+   MODAL DIŞINA TIKLAYINCA KAPAT
+========================= */
+
+document.getElementById(
+    "editModal"
+).addEventListener(
+    "click",
+    function(event) {
+
+        if (
+            event.target ===
+            this
+        ) {
+
+            closeModal();
+
+        }
+
+    }
+);
+
+
+/* =========================
+   İLAN SİL
+========================= */
+
+async function deleteListing(id) {
+
+    if (
+        !confirm(
+            "Bu ilanı silmek istediğine emin misin?"
+        )
+    ) {
+
+        return;
+    }
+
+
+    try {
+
+        const response =
+            await fetch(
+                "/api/ilanlar/" +
+                id,
+                {
+                    method: "DELETE"
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (data.success) {
+
+            alert(
+                "✅ İlan silindi!"
+            );
+
+            loadListings();
+
+        } else {
+
+            alert(
+                "❌ İlan silinemedi."
+            );
+
+        }
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert(
+            "❌ Sunucu bağlantı hatası."
+        );
+
+    }
 }
 
 </script>
 
 </body>
 </html>
+```
