@@ -1,285 +1,551 @@
 <!DOCTYPE html>
 
 <html lang="tr">
-
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Nova Emlak</title>
+<title>Nova Emlak | Hayalinizdeki Evi Bulun</title>
 
 <style>
 
 *{
-box-sizing:border-box;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
 }
 
 body{
-margin:0;
-font-family:Arial,sans-serif;
-background:#f5f7fa;
-color:#1f2937;
+    margin:0;
+    font-family:Arial, Helvetica, sans-serif;
+    background:#f5f7fb;
+    color:#172033;
 }
+
+/* =========================
+   HEADER
+========================= */
 
 header{
-background:#111827;
-color:white;
-padding:20px 7%;
-display:flex;
-align-items:center;
-justify-content:space-between;
+    background:#101827;
+    color:white;
+    padding:18px 6%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    position:sticky;
+    top:0;
+    z-index:100;
+    box-shadow:0 4px 20px rgba(0,0,0,.15);
 }
 
-header h1{
-margin:0;
-font-size:24px;
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.logo-icon{
+    width:42px;
+    height:42px;
+    background:#2563eb;
+    border-radius:11px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:22px;
+}
+
+.logo h1{
+    margin:0;
+    font-size:21px;
+    letter-spacing:.5px;
+}
+
+.logo span{
+    display:block;
+    font-size:11px;
+    color:#9ca3af;
+    margin-top:2px;
+}
+
+nav{
+    display:flex;
+    align-items:center;
+    gap:25px;
 }
 
 nav a{
-color:white;
-text-decoration:none;
-margin-left:20px;
+    color:#e5e7eb;
+    text-decoration:none;
+    font-size:14px;
+    transition:.2s;
 }
 
+nav a:hover{
+    color:#60a5fa;
+}
+
+.nav-favorite{
+    background:#1f2937;
+    padding:10px 14px;
+    border-radius:9px;
+}
+
+/* =========================
+   HERO
+========================= */
+
 .hero{
-background:
-linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
-url("https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80");
+    min-height:480px;
 
-background-size:cover;
-background-position:center;
+    background:
+    linear-gradient(
+        rgba(10,18,32,.65),
+        rgba(10,18,32,.65)
+    ),
+    url("https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1800&q=85");
 
-padding:90px 20px;
+    background-size:cover;
+    background-position:center;
 
-text-align:center;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
-color:white;
+    text-align:center;
+    color:white;
+
+    padding:70px 20px;
+}
+
+.hero-content{
+    max-width:800px;
+}
+
+.hero-label{
+    display:inline-block;
+    background:rgba(37,99,235,.9);
+    padding:8px 15px;
+    border-radius:30px;
+    font-size:13px;
+    font-weight:bold;
+    margin-bottom:20px;
 }
 
 .hero h2{
-font-size:42px;
-margin:0 0 15px;
+    font-size:48px;
+    line-height:1.1;
+    margin:0 0 18px;
 }
 
 .hero p{
-font-size:18px;
+    font-size:18px;
+    color:#e5e7eb;
+    margin:0;
+}
+
+/* =========================
+   SEARCH
+========================= */
+
+.search-wrapper{
+    max-width:1150px;
+    margin:-55px auto 55px;
+    padding:0 20px;
+    position:relative;
+    z-index:5;
 }
 
 .search-box{
-max-width:1100px;
-margin:-40px auto 40px;
-background:white;
-padding:25px;
-border-radius:15px;
-box-shadow:0 8px 30px rgba(0,0,0,.15);
-position:relative;
+    background:white;
+    padding:25px;
+    border-radius:18px;
+    box-shadow:0 15px 45px rgba(15,23,42,.15);
+}
+
+.search-title{
+    margin-bottom:18px;
+}
+
+.search-title h3{
+    margin:0 0 5px;
+    font-size:19px;
+}
+
+.search-title p{
+    margin:0;
+    color:#6b7280;
+    font-size:13px;
 }
 
 .filters{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
-gap:15px;
+    display:grid;
+    grid-template-columns:
+        repeat(5,1fr);
+    gap:12px;
 }
 
 .filters select,
 .filters input{
-width:100%;
-padding:13px;
-border:1px solid #ddd;
-border-radius:8px;
-font-size:15px;
+    width:100%;
+    height:48px;
+    padding:0 13px;
+    border:1px solid #e2e8f0;
+    border-radius:9px;
+    background:#fff;
+    color:#374151;
+    font-size:14px;
+    outline:none;
+}
+
+.filters select:focus,
+.filters input:focus{
+    border-color:#2563eb;
+    box-shadow:0 0 0 3px rgba(37,99,235,.1);
 }
 
 .search-button{
-margin-top:18px;
-width:100%;
-padding:14px;
-border:0;
-border-radius:8px;
-background:#2563eb;
-color:white;
-font-size:16px;
-font-weight:bold;
-cursor:pointer;
+    width:100%;
+    height:50px;
+    margin-top:14px;
+    border:0;
+    border-radius:9px;
+    background:#2563eb;
+    color:white;
+    font-size:15px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.2s;
 }
+
+.search-button:hover{
+    background:#1d4ed8;
+    transform:translateY(-1px);
+}
+
+/* =========================
+   MAIN
+========================= */
 
 .container{
-max-width:1200px;
-margin:auto;
-padding:0 20px;
+    max-width:1200px;
+    margin:auto;
+    padding:0 20px;
 }
 
-.section-title{
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin-bottom:20px;
+.section-header{
+    display:flex;
+    align-items:end;
+    justify-content:space-between;
+    margin-bottom:12px;
 }
 
-.section-title h2{
-margin:0;
+.section-header h2{
+    margin:0;
+    font-size:28px;
+}
+
+.section-header p{
+    margin:5px 0 0;
+    color:#6b7280;
+    font-size:14px;
 }
 
 .result{
-margin-bottom:20px;
-color:#6b7280;
+    color:#64748b;
+    margin-bottom:25px;
+    font-size:14px;
 }
 
+/* =========================
+   LISTINGS
+========================= */
+
 .listings{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-gap:25px;
+    display:grid;
+    grid-template-columns:
+        repeat(auto-fill,minmax(280px,1fr));
+    gap:24px;
 }
 
 .card{
-background:white;
-border-radius:15px;
-overflow:hidden;
-box-shadow:0 5px 20px rgba(0,0,0,.08);
-transition:.2s;
-position:relative;
+    background:white;
+    border-radius:16px;
+    overflow:hidden;
+    box-shadow:0 5px 22px rgba(15,23,42,.07);
+    transition:.25s;
+    position:relative;
+    border:1px solid #edf0f4;
 }
 
 .card:hover{
-transform:translateY(-4px);
-box-shadow:0 10px 30px rgba(0,0,0,.13);
+    transform:translateY(-5px);
+    box-shadow:0 15px 35px rgba(15,23,42,.13);
 }
 
-.card img{
-width:100%;
-height:210px;
-object-fit:cover;
+/* =========================
+   CARD IMAGE
+========================= */
+
+.image-area{
+    position:relative;
+    height:225px;
+    background:#e5e7eb;
+    overflow:hidden;
+}
+
+.image-area img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+    transition:.3s;
+}
+
+.card:hover .image-area img{
+    transform:scale(1.03);
+}
+
+.image-count{
+    position:absolute;
+    left:12px;
+    bottom:12px;
+    background:rgba(0,0,0,.65);
+    color:white;
+    padding:7px 10px;
+    border-radius:7px;
+    font-size:12px;
+    backdrop-filter:blur(5px);
 }
 
 .favorite{
-position:absolute;
-right:12px;
-top:12px;
-width:43px;
-height:43px;
-border-radius:50%;
-border:0;
-background:white;
-font-size:23px;
-cursor:pointer;
-box-shadow:0 3px 12px rgba(0,0,0,.2);
-z-index:2;
+    position:absolute;
+    right:12px;
+    top:12px;
+    width:42px;
+    height:42px;
+    border:0;
+    border-radius:50%;
+    background:white;
+    font-size:22px;
+    cursor:pointer;
+    box-shadow:0 4px 15px rgba(0,0,0,.2);
+    z-index:3;
 }
 
 .favorite.active{
-color:#ef4444;
+    color:#ef4444;
 }
 
+/* =========================
+   CARD CONTENT
+========================= */
+
 .card-content{
-padding:20px;
+    padding:18px;
 }
 
 .badge{
-display:inline-block;
-background:#2563eb;
-color:white;
-padding:6px 10px;
-border-radius:6px;
-font-size:12px;
-font-weight:bold;
-margin-bottom:10px;
+    display:inline-block;
+    background:#eff6ff;
+    color:#2563eb;
+    padding:6px 10px;
+    border-radius:6px;
+    font-size:11px;
+    font-weight:bold;
+    margin-bottom:10px;
 }
 
 .card h3{
-margin:5px 0 10px;
-font-size:21px;
+    margin:0 0 9px;
+    font-size:18px;
+    line-height:1.35;
+}
+
+.location{
+    color:#64748b;
+    font-size:13px;
+    margin-bottom:13px;
 }
 
 .details{
-color:#6b7280;
-font-size:14px;
-margin-bottom:12px;
-line-height:1.7;
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    color:#64748b;
+    font-size:13px;
+    border-top:1px solid #edf0f4;
+    border-bottom:1px solid #edf0f4;
+    padding:12px 0;
+    margin-bottom:14px;
+}
+
+.detail-item{
+    white-space:nowrap;
 }
 
 .price{
-font-size:22px;
-font-weight:bold;
-color:#2563eb;
-margin-bottom:15px;
+    color:#2563eb;
+    font-size:21px;
+    font-weight:bold;
+    margin-bottom:14px;
 }
 
 .detail-button{
-display:block;
-text-align:center;
-background:#111827;
-color:white;
-padding:12px;
-border-radius:8px;
-text-decoration:none;
-font-weight:bold;
+    display:block;
+    text-align:center;
+    background:#101827;
+    color:white;
+    padding:12px;
+    border-radius:9px;
+    text-decoration:none;
+    font-size:14px;
+    font-weight:bold;
+    transition:.2s;
 }
 
+.detail-button:hover{
+    background:#2563eb;
+}
+
+/* =========================
+   FAVORITES
+========================= */
+
 .favorites-section{
-margin-top:55px;
-margin-bottom:50px;
+    margin-top:75px;
+    margin-bottom:60px;
 }
 
 .favorite-count{
-font-size:14px;
-color:#6b7280;
+    color:#64748b;
+    font-size:13px;
 }
 
 .empty{
-background:white;
-padding:50px 20px;
-text-align:center;
-border-radius:15px;
-color:#6b7280;
+    grid-column:1/-1;
+    background:white;
+    padding:55px 20px;
+    text-align:center;
+    border-radius:16px;
+    color:#64748b;
+    border:1px solid #edf0f4;
+}
+
+.empty-icon{
+    font-size:40px;
+    margin-bottom:10px;
+}
+
+.empty h2{
+    color:#1f2937;
+    margin:0 0 8px;
+}
+
+.empty p{
+    margin:0;
 }
 
 .empty button{
-margin-top:10px;
-padding:12px 20px;
-border:0;
-border-radius:8px;
-background:#2563eb;
-color:white;
-cursor:pointer;
-font-weight:bold;
+    margin-top:18px;
+    padding:12px 20px;
+    border:0;
+    border-radius:8px;
+    background:#2563eb;
+    color:white;
+    cursor:pointer;
+    font-weight:bold;
 }
 
+/* =========================
+   FOOTER
+========================= */
+
 footer{
-margin-top:70px;
-background:#111827;
-color:white;
-padding:35px 7%;
-text-align:center;
+    margin-top:80px;
+    background:#101827;
+    color:white;
+    padding:45px 20px;
+    text-align:center;
+}
+
+.footer-logo{
+    font-size:20px;
+    font-weight:bold;
 }
 
 footer p{
-margin:8px;
+    color:#9ca3af;
+    margin:8px;
+    font-size:14px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:900px){
+
+    .filters{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
 }
 
 @media(max-width:600px){
 
-header{
-flex-direction:column;
-gap:15px;
-}
+    header{
+        padding:15px 20px;
+    }
 
-nav a{
-margin:0 8px;
-}
+    nav{
+        gap:8px;
+    }
 
-.hero{
-padding:70px 20px;
-}
+    nav a{
+        font-size:12px;
+    }
 
-.hero h2{
-font-size:30px;
-}
+    nav a:not(.nav-favorite){
+        display:none;
+    }
 
-.search-box{
-margin:20px;
-}
+    .hero{
+        min-height:410px;
+        padding:60px 20px;
+    }
+
+    .hero h2{
+        font-size:34px;
+    }
+
+    .hero p{
+        font-size:15px;
+    }
+
+    .search-wrapper{
+        margin:20px auto 40px;
+    }
+
+    .search-box{
+        padding:18px;
+    }
+
+    .filters{
+        grid-template-columns:1fr;
+    }
+
+    .section-header h2{
+        font-size:23px;
+    }
+
+    .listings{
+        grid-template-columns:1fr;
+    }
 
 }
 
@@ -289,9 +555,24 @@ margin:20px;
 
 <body>
 
+<!-- =========================
+     HEADER
+========================= -->
+
 <header>
 
-<h1>🏠 NOVA EMLAK</h1>
+<div class="logo">
+
+<div class="logo-icon">
+🏠
+</div>
+
+<div>
+<h1>NOVA EMLAK</h1>
+<span>Güvenilir gayrimenkul</span>
+</div>
+
+</div>
 
 <nav>
 
@@ -303,7 +584,7 @@ Ana Sayfa
 İlanlar
 </a>
 
-<a href="#favoriler">
+<a href="#favoriler" class="nav-favorite">
 ❤️ Favoriler
 </a>
 
@@ -315,7 +596,17 @@ Ana Sayfa
 
 </header>
 
+<!-- =========================
+     HERO
+========================= -->
+
 <section class="hero">
+
+<div class="hero-content">
+
+<div class="hero-label">
+🏡 NOVA EMLAK
+</div>
 
 <h2>
 Hayalinizdeki Evi Bulun
@@ -325,9 +616,29 @@ Hayalinizdeki Evi Bulun
 Satılık ve kiralık gayrimenkulleri kolayca keşfedin.
 </p>
 
+</div>
+
 </section>
 
+<!-- =========================
+     SEARCH
+========================= -->
+
+<div class="search-wrapper">
+
 <div class="search-box">
+
+<div class="search-title">
+
+<h3>
+🔎 Gayrimenkul Ara
+</h3>
+
+<p>
+Size uygun ilanı birkaç saniyede bulun.
+</p>
+
+</div>
 
 <div class="filters">
 
@@ -417,22 +728,31 @@ onclick="searchListings()"
 
 >
 
-🔎 İlanları Ara
-
-</button>
+🔎 İlanları Ara </button>
 
 </div>
 
-<div
-class="container"
-id="ilanlar"
->
+</div>
 
-<div class="section-title">
+<!-- =========================
+     İLANLAR
+========================= -->
+
+<main class="container" id="ilanlar">
+
+<div class="section-header">
+
+<div>
 
 <h2>
-🏡 İlanlar
+🏡 Güncel İlanlar
 </h2>
+
+<p>
+Nova Emlak'taki güncel gayrimenkuller
+</p>
+
+</div>
 
 </div>
 
@@ -449,18 +769,24 @@ id="listings"
 >
 </div>
 
-<!-- FAVORİLER -->
+<!-- =========================
+     FAVORİLER
+========================= -->
 
 <section
 class="favorites-section"
 id="favoriler"
 >
 
-<div class="section-title">
+<div class="section-header">
+
+<div>
 
 <h2>
 ❤️ Favorilerim
 </h2>
+
+</div>
 
 <span
 class="favorite-count"
@@ -480,13 +806,21 @@ id="favoriteListings"
 
 </section>
 
-</div>
+</main>
+
+<!-- =========================
+     FOOTER
+========================= -->
 
 <footer id="iletisim">
 
-<h3>
-Nova Emlak
-</h3>
+<div class="footer-logo">
+🏠 NOVA EMLAK
+</div>
+
+<p>
+Güvenilir gayrimenkul çözümleri
+</p>
 
 <p>
 📞 0555 555 55 55
@@ -504,23 +838,18 @@ Nova Emlak
 
 <script>
 
-
 let allListings = [];
 
 
-// ==========================
-// FAVORİLERİ LOCAL STORAGE'DAN AL
-// ==========================
+/* =========================
+   FAVORİLER
+========================= */
 
 let favorites =
 JSON.parse(
 localStorage.getItem("novaFavorites") || "[]"
 );
 
-
-// ==========================
-// FAVORİLERİ KAYDET
-// ==========================
 
 function saveFavorites(){
 
@@ -532,20 +861,12 @@ JSON.stringify(favorites)
 }
 
 
-// ==========================
-// FAVORİ KONTROL
-// ==========================
-
 function isFavorite(id){
 
 return favorites.includes(Number(id));
 
 }
 
-
-// ==========================
-// FAVORİ EKLE / ÇIKAR
-// ==========================
 
 function toggleFavorite(id){
 
@@ -575,9 +896,37 @@ displayFavorites();
 }
 
 
-// ==========================
-// İLANLARI GETİR
-// ==========================
+/* =========================
+   FOTOĞRAF LİSTESİ
+========================= */
+
+function getImages(ilan){
+
+if(
+Array.isArray(ilan.images) &&
+ilan.images.length > 0
+){
+
+return ilan.images.slice(0,4);
+
+}
+
+if(ilan.image){
+
+return [ilan.image];
+
+}
+
+return [
+"https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80"
+];
+
+}
+
+
+/* =========================
+   İLANLARI GETİR
+========================= */
 
 async function loadListings(){
 
@@ -586,14 +935,27 @@ try{
 const response =
 await fetch("/api/ilanlar");
 
-allListings =
+if(!response.ok){
+
+throw new Error("Sunucu hatası");
+
+}
+
+const data =
 await response.json();
+
+allListings =
+Array.isArray(data)
+? data
+: [];
 
 displayListings(allListings);
 
 displayFavorites();
 
 }catch(error){
+
+console.error(error);
 
 document.getElementById("result")
 .textContent =
@@ -604,9 +966,9 @@ document.getElementById("result")
 }
 
 
-// ==========================
-// İLANLARI GÖSTER
-// ==========================
+/* =========================
+   İLANLARI GÖSTER
+========================= */
 
 function displayListings(ilanlar){
 
@@ -627,7 +989,9 @@ container.innerHTML = `
 
 <div class="empty">
 
-<h2>😔 İlan bulunamadı</h2>
+<div class="empty-icon">😔</div>
+
+<h2>İlan bulunamadı</h2>
 
 <p>
 Arama kriterlerini değiştirip tekrar deneyin.
@@ -647,7 +1011,14 @@ ilanlar.forEach(function(ilan){
 const card =
 document.createElement("div");
 
-card.className = "card";
+card.className="card";
+
+
+const images =
+getImages(ilan);
+
+const firstImage =
+images[0];
 
 
 const active =
@@ -662,55 +1033,98 @@ isFavorite(ilan.id)
 : "♡";
 
 
+const location =
+[
+ilan.city,
+ilan.district,
+ilan.neighborhood
+]
+.filter(Boolean)
+.join(" / ");
+
+
 card.innerHTML = `
+
+<div class="image-area">
+
+<img
+src="${firstImage}"
+alt="${ilan.title || "Gayrimenkul"}"
+loading="lazy"
+>
+
+${
+images.length > 1
+?
+`<div class="image-count">
+📷 ${images.length} fotoğraf
+</div>`
+:
+""
+}
 
 <button
 class="favorite ${active}"
-onclick="toggleFavorite(${ilan.id})"
+onclick="toggleFavorite(${Number(ilan.id)})"
 title="Favorilere ekle"
 >
 ${heart}
 </button>
 
-<img
-src="${ilan.image}"
-alt="${ilan.title}"
->
+</div>
+
 
 <div class="card-content">
 
 <span class="badge">
-${ilan.type}
+${ilan.type || "İlan"}
 </span>
 
+
 <h3>
-${ilan.title}
+${ilan.title || "İsimsiz ilan"}
 </h3>
+
+
+<div class="location">
+📍 ${location || "Konum belirtilmemiş"}
+</div>
+
 
 <div class="details">
 
-📍 ${ilan.city}
+<span class="detail-item">
+🛏️ ${ilan.rooms || "-"}
+</span>
 
-<br>
+<span class="detail-item">
+📐 ${ilan.area || 0} m²
+</span>
 
-🛏️ ${ilan.rooms}
-
-&nbsp; • &nbsp;
-
-📐 ${ilan.area} m²
+${
+ilan.bathrooms
+?
+`<span class="detail-item">
+🚿 ${ilan.bathrooms} Banyo
+</span>`
+:
+""
+}
 
 </div>
 
+
 <div class="price">
 
-${Number(ilan.price)
+${Number(ilan.price || 0)
 .toLocaleString("tr-TR")} TL
 
 </div>
 
+
 <a
 class="detail-button"
-href="ilan.html?id=${ilan.id}"
+href="ilan.html?id=${encodeURIComponent(ilan.id)}"
 >
 İlanı İncele →
 </a>
@@ -727,9 +1141,9 @@ container.appendChild(card);
 }
 
 
-// ==========================
-// FAVORİLERİ GÖSTER
-// ==========================
+/* =========================
+   FAVORİLER
+========================= */
 
 function displayFavorites(){
 
@@ -737,7 +1151,6 @@ const container =
 document.getElementById(
 "favoriteListings"
 );
-
 
 const count =
 document.getElementById(
@@ -747,24 +1160,34 @@ document.getElementById(
 
 const favoriteListings =
 allListings.filter(
-ilan => favorites.includes(Number(ilan.id))
+ilan =>
+favorites.includes(
+Number(ilan.id)
+)
 );
 
 
 count.textContent =
-favoriteListings.length + " favori";
+favoriteListings.length +
+" favori";
 
 
-container.innerHTML = "";
+container.innerHTML="";
 
 
-if(favoriteListings.length === 0){
+if(favoriteListings.length===0){
 
-container.innerHTML = `
+container.innerHTML=`
 
 <div class="empty">
 
-<h2>❤️ Henüz favori ilanınız yok</h2>
+<div class="empty-icon">
+❤️
+</div>
+
+<h2>
+Henüz favori ilanınız yok
+</h2>
 
 <p>
 Beğendiğiniz ilanların üzerindeki ❤️
@@ -786,63 +1209,95 @@ return;
 }
 
 
+/*
+ * Favorilerde de aynı kart tasarımını kullan.
+ */
+
 favoriteListings.forEach(function(ilan){
+
+const images =
+getImages(ilan);
+
+const location =
+[
+ilan.city,
+ilan.district,
+ilan.neighborhood
+]
+.filter(Boolean)
+.join(" / ");
+
 
 const card =
 document.createElement("div");
 
-card.className = "card";
+card.className="card";
 
 
-card.innerHTML = `
+card.innerHTML=`
+
+<div class="image-area">
+
+<img
+src="${images[0]}"
+alt="${ilan.title || "Gayrimenkul"}"
+loading="lazy"
+>
+
+${
+images.length > 1
+?
+`<div class="image-count">
+📷 ${images.length} fotoğraf
+</div>`
+:
+""
+}
 
 <button
 class="favorite active"
-onclick="toggleFavorite(${ilan.id})"
-title="Favorilerden çıkar"
+onclick="toggleFavorite(${Number(ilan.id)})"
 >
 ❤️
 </button>
 
-<img
-src="${ilan.image}"
-alt="${ilan.title}"
->
+</div>
+
 
 <div class="card-content">
 
 <span class="badge">
-${ilan.type}
+${ilan.type || "İlan"}
 </span>
 
 <h3>
-${ilan.title}
+${ilan.title || "İsimsiz ilan"}
 </h3>
+
+<div class="location">
+📍 ${location || "Konum belirtilmemiş"}
+</div>
 
 <div class="details">
 
-📍 ${ilan.city}
+<span class="detail-item">
+🛏️ ${ilan.rooms || "-"}
+</span>
 
-<br>
-
-🛏️ ${ilan.rooms}
-
-&nbsp; • &nbsp;
-
-📐 ${ilan.area} m²
+<span class="detail-item">
+📐 ${ilan.area || 0} m²
+</span>
 
 </div>
 
 <div class="price">
-
-${Number(ilan.price)
+${Number(ilan.price || 0)
 .toLocaleString("tr-TR")} TL
-
 </div>
 
 <a
 class="detail-button"
-href="ilan.html?id=${ilan.id}"
+href="ilan.html?id=${encodeURIComponent(ilan.id)}"
 >
 İlanı İncele →
 </a>
@@ -851,6 +1306,7 @@ href="ilan.html?id=${ilan.id}"
 
 `;
 
+
 container.appendChild(card);
 
 });
@@ -858,9 +1314,9 @@ container.appendChild(card);
 }
 
 
-// ==========================
-// ARAMA
-// ==========================
+/* =========================
+   FİLTRE
+========================= */
 
 function getCurrentFilteredListings(){
 
@@ -873,10 +1329,12 @@ document.getElementById("city").value;
 const rooms =
 document.getElementById("rooms").value;
 
+
 const minPrice =
 Number(
 document.getElementById("minPrice").value
 ) || 0;
+
 
 const maxPrice =
 Number(
@@ -887,17 +1345,27 @@ document.getElementById("maxPrice").value
 return allListings.filter(function(ilan){
 
 const typeOK =
-!type || ilan.type === type;
+!type ||
+ilan.type === type;
+
 
 const cityOK =
-!city || ilan.city === city;
+!city ||
+ilan.city === city;
+
 
 const roomsOK =
-!rooms || ilan.rooms === rooms;
+!rooms ||
+ilan.rooms === rooms;
+
+
+const price =
+Number(ilan.price) || 0;
+
 
 const priceOK =
-Number(ilan.price) >= minPrice &&
-Number(ilan.price) <= maxPrice;
+price >= minPrice &&
+price <= maxPrice;
 
 
 return (
@@ -914,21 +1382,27 @@ priceOK
 
 function searchListings(){
 
-displayListings(
-getCurrentFilteredListings()
-);
+const filtered =
+getCurrentFilteredListings();
+
+displayListings(filtered);
+
+document.getElementById("ilanlar")
+.scrollIntoView({
+behavior:"smooth",
+block:"start"
+});
 
 }
 
 
-// ==========================
-// BAŞLAT
-// ==========================
+/* =========================
+   BAŞLAT
+========================= */
 
 loadListings();
 
 </script>
 
 </body>
-
 </html>
