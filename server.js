@@ -7,47 +7,39 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 const DATA_FILE = path.join(__dirname, "ilanlar.json");
-const UPLOAD_DIR = path.join(__dirname, "uploads");
 
-// ===============================
-// AYARLAR
-// ===============================
-
-app.use(express.json({ limit: "20mb" }));
+app.use(express.json({ limit: "50mb" }));
 app.use(express.static(__dirname));
 
-// ===============================
-// DOSYALAR
-// ===============================
+/* =========================
+   DOSYA
+========================= */
 
 if (!fs.existsSync(DATA_FILE)) {
     fs.writeFileSync(DATA_FILE, "[]", "utf8");
 }
 
-if (!fs.existsSync(UPLOAD_DIR)) {
-    fs.mkdirSync(UPLOAD_DIR, { recursive: true });
-}
-
-app.use("/uploads", express.static(UPLOAD_DIR));
-
-// ===============================
-// ADMIN OTURUMU
-// ===============================
+/* =========================
+   ADMIN OTURUMU
+========================= */
 
 const adminTokens = new Set();
 
-// ===============================
-// ADMIN GİRİŞ
-// ===============================
+/* =========================
+   ADMIN GİRİŞ
+========================= */
 
 app.post("/api/admin-login", (req, res) => {
+
     const password = req.body.password;
 
     if (
         process.env.ADMIN_PASSWORD &&
         password === process.env.ADMIN_PASSWORD
     ) {
-        const token = crypto.randomBytes(32).toString("hex");
+
+        const token =
+            crypto.randomBytes(32).toString("hex");
 
         adminTokens.add(token);
 
@@ -63,23 +55,28 @@ app.post("/api/admin-login", (req, res) => {
     });
 });
 
-// ===============================
-// ADMIN KONTROLÜ
-// ===============================
+/* =========================
+   ADMIN KONTROL
+========================= */
 
 function requireAdmin(req, res, next) {
-    const auth = req.headers.authorization || "";
+
+    const auth =
+        req.headers.authorization || "";
 
     if (!auth.startsWith("Bearer ")) {
+
         return res.status(401).json({
             success: false,
             error: "Admin girişi gerekli."
         });
     }
 
-    const token = auth.substring(7);
+    const token =
+        auth.substring(7);
 
     if (!adminTokens.has(token)) {
+
         return res.status(401).json({
             success: false,
             error: "Oturum geçersiz veya süresi dolmuş."
@@ -89,32 +86,46 @@ function requireAdmin(req, res, next) {
     next();
 }
 
-// ===============================
-// ADMIN ÇIKIŞ
-// ===============================
+/* =========================
+   ADMIN ÇIKIŞ
+========================= */
 
-app.post("/api/admin-logout", requireAdmin, (req, res) => {
-    const token = req.headers.authorization.substring(7);
+app.post(
+    "/api/admin-logout",
+    requireAdmin,
+    (req, res) => {
 
-    adminTokens.delete(token);
+        const token =
+            req.headers.authorization.substring(7);
 
-    res.json({
-        success: true
-    });
-});
+        adminTokens.delete(token);
 
-// ===============================
-// İLANLARI GETİR
-// ===============================
+        res.json({
+            success: true
+        });
+    }
+);
+
+/* =========================
+   İLANLARI GETİR
+========================= */
 
 app.get("/api/ilanlar", (req, res) => {
+
     try {
-        const ilanlar = JSON.parse(
-            fs.readFileSync(DATA_FILE, "utf8")
-        );
+
+        const ilanlar =
+            JSON.parse(
+                fs.readFileSync(
+                    DATA_FILE,
+                    "utf8"
+                )
+            );
 
         res.json(ilanlar);
+
     } catch (error) {
+
         console.error(error);
 
         res.status(500).json({
@@ -124,140 +135,338 @@ app.get("/api/ilanlar", (req, res) => {
     }
 });
 
-// ===============================
-// YENİ İLAN EKLE
-// ===============================
+/* =========================
+   YENİ İLAN EKLE
+========================= */
 
-app.post("/api/ilanlar", requireAdmin, (req, res) => {
-    try {
-        const ilanlar = JSON.parse(
-            fs.readFileSync(DATA_FILE, "utf8")
-        );
+app.post(
+    "/api/ilanlar",
+    requireAdmin,
+    (req, res) => {
 
-        const yeniIlan = {
-            id: Date.now(),
-            title: req.body.title || "",
-            type: req.body.type || "",
-            city: req.body.city || "",
-            price: Number(req.body.price) || 0,
-            rooms: req.body.rooms || "",
-            area: Number(req.body.area) || 0,
-            image: req.body.image || "",
-            description: req.body.description || ""
-        };
+        try {
 
-        ilanlar.push(yeniIlan);
+            const ilanlar =
+                JSON.parse(
+                    fs.readFileSync(
+                        DATA_FILE,
+                        "utf8"
+                    )
+                );
 
-        fs.writeFileSync(
-            DATA_FILE,
-            JSON.stringify(ilanlar, null, 2),
-            "utf8"
-        );
+            /*
+             * FOTOĞRAFLAR
+             *
+             * Yeni sistem:
+             * images: ["foto1", "foto2", "foto3", "foto4"]
+             *
+             * Eski sistem:
+             * image: "foto1"
+             */
 
-        res.json({
-            success: true,
-            ilan: yeniIlan
-        });
-    } catch (error) {
-        console.error(error);
+            let images = [];
 
-        res.status(500).json({
-            success: false,
-            error: "İlan kaydedilemedi."
-        });
-    }
-});
+            if (
+                Array.isArray(req.body.images)
+            ) {
 
-// ===============================
-// İLAN SİL
-// ===============================
+                images =
+                    req.body.images
+                    .filter(Boolean)
+                    .slice(0, 4);
 
-app.delete("/api/ilanlar/:id", requireAdmin, (req, res) => {
-    try {
-        const ilanlar = JSON.parse(
-            fs.readFileSync(DATA_FILE, "utf8")
-        );
+            }
 
-        const id = Number(req.params.id);
+            /*
+             * Eğer images gönderilmezse
+             * eski image alanını kullan.
+             */
 
-        const yeniListe = ilanlar.filter(
-            ilan => Number(ilan.id) !== id
-        );
+            if (
+                images.length === 0 &&
+                req.body.image
+            ) {
 
-        fs.writeFileSync(
-            DATA_FILE,
-            JSON.stringify(yeniListe, null, 2),
-            "utf8"
-        );
+                images = [
+                    req.body.image
+                ];
+            }
 
-        res.json({
-            success: true
-        });
-    } catch (error) {
-        console.error(error);
+            const yeniIlan = {
 
-        res.status(500).json({
-            success: false,
-            error: "İlan silinemedi."
-        });
-    }
-});
+                id: Date.now(),
 
-// ===============================
-// İLAN DÜZENLE
-// ===============================
+                title:
+                    req.body.title || "",
 
-app.put("/api/ilanlar/:id", requireAdmin, (req, res) => {
-    try {
-        const ilanlar = JSON.parse(
-            fs.readFileSync(DATA_FILE, "utf8")
-        );
+                type:
+                    req.body.type || "",
 
-        const id = Number(req.params.id);
+                city:
+                    req.body.city || "",
 
-        const index = ilanlar.findIndex(
-            ilan => Number(ilan.id) === id
-        );
+                district:
+                    req.body.district || "",
 
-        if (index === -1) {
-            return res.status(404).json({
+                neighborhood:
+                    req.body.neighborhood || "",
+
+                price:
+                    Number(req.body.price) || 0,
+
+                rooms:
+                    req.body.rooms || "",
+
+                area:
+                    Number(req.body.area) || 0,
+
+                buildingAge:
+                    Number(req.body.buildingAge) || 0,
+
+                floor:
+                    req.body.floor || "",
+
+                totalFloors:
+                    Number(req.body.totalFloors) || 0,
+
+                heating:
+                    req.body.heating || "",
+
+                bathrooms:
+                    req.body.bathrooms || "",
+
+                balcony:
+                    req.body.balcony || "",
+
+                credit:
+                    req.body.credit || "",
+
+                deed:
+                    req.body.deed || "",
+
+                /*
+                 * 4 FOTOĞRAF
+                 */
+
+                images: images,
+
+                /*
+                 * Eski sistemle uyumluluk
+                 */
+
+                image:
+                    images[0] || "",
+
+                description:
+                    req.body.description || ""
+            };
+
+            ilanlar.push(yeniIlan);
+
+            fs.writeFileSync(
+                DATA_FILE,
+                JSON.stringify(
+                    ilanlar,
+                    null,
+                    2
+                ),
+                "utf8"
+            );
+
+            res.json({
+                success: true,
+                ilan: yeniIlan
+            });
+
+        } catch (error) {
+
+            console.error(error);
+
+            res.status(500).json({
                 success: false,
-                error: "İlan bulunamadı."
+                error: "İlan kaydedilemedi."
             });
         }
+    }
+);
 
-        ilanlar[index] = {
-            ...ilanlar[index],
-            ...req.body,
-            id: id
-        };
+/* =========================
+   İLAN DÜZENLE
+========================= */
 
-        fs.writeFileSync(
-            DATA_FILE,
-            JSON.stringify(ilanlar, null, 2),
-            "utf8"
+app.put(
+    "/api/ilanlar/:id",
+    requireAdmin,
+    (req, res) => {
+
+        try {
+
+            const ilanlar =
+                JSON.parse(
+                    fs.readFileSync(
+                        DATA_FILE,
+                        "utf8"
+                    )
+                );
+
+            const id =
+                Number(req.params.id);
+
+            const index =
+                ilanlar.findIndex(
+                    ilan =>
+                        Number(ilan.id) === id
+                );
+
+            if (index === -1) {
+
+                return res.status(404).json({
+                    success: false,
+                    error: "İlan bulunamadı."
+                });
+            }
+
+            /*
+             * Fotoğrafları kontrol et
+             */
+
+            let images =
+                ilanlar[index].images || [];
+
+            if (
+                Array.isArray(req.body.images)
+            ) {
+
+                images =
+                    req.body.images
+                    .filter(Boolean)
+                    .slice(0, 4);
+            }
+
+            /*
+             * Eski ilanlarda sadece image olabilir.
+             */
+
+            if (
+                images.length === 0 &&
+                ilanlar[index].image
+            ) {
+
+                images = [
+                    ilanlar[index].image
+                ];
+            }
+
+            ilanlar[index] = {
+
+                ...ilanlar[index],
+
+                ...req.body,
+
+                id: id,
+
+                images: images,
+
+                image:
+                    images[0] ||
+                    req.body.image ||
+                    ilanlar[index].image ||
+                    ""
+            };
+
+            fs.writeFileSync(
+                DATA_FILE,
+                JSON.stringify(
+                    ilanlar,
+                    null,
+                    2
+                ),
+                "utf8"
+            );
+
+            res.json({
+                success: true,
+                ilan: ilanlar[index]
+            });
+
+        } catch (error) {
+
+            console.error(error);
+
+            res.status(500).json({
+                success: false,
+                error: "İlan düzenlenemedi."
+            });
+        }
+    }
+);
+
+/* =========================
+   İLAN SİL
+========================= */
+
+app.delete(
+    "/api/ilanlar/:id",
+    requireAdmin,
+    (req, res) => {
+
+        try {
+
+            const ilanlar =
+                JSON.parse(
+                    fs.readFileSync(
+                        DATA_FILE,
+                        "utf8"
+                    )
+                );
+
+            const id =
+                Number(req.params.id);
+
+            const yeniListe =
+                ilanlar.filter(
+                    ilan =>
+                        Number(ilan.id) !== id
+                );
+
+            fs.writeFileSync(
+                DATA_FILE,
+                JSON.stringify(
+                    yeniListe,
+                    null,
+                    2
+                ),
+                "utf8"
+            );
+
+            res.json({
+                success: true
+            });
+
+        } catch (error) {
+
+            console.error(error);
+
+            res.status(500).json({
+                success: false,
+                error: "İlan silinemedi."
+            });
+        }
+    }
+);
+
+/* =========================
+   SUNUCU
+========================= */
+
+app.listen(
+    PORT,
+    "0.0.0.0",
+    () => {
+
+        console.log(
+            `Nova Emlak sunucusu ${PORT} portunda çalışıyor.`
         );
 
-        res.json({
-            success: true,
-            ilan: ilanlar[index]
-        });
-    } catch (error) {
-        console.error(error);
-
-        res.status(500).json({
-            success: false,
-            error: "İlan düzenlenemedi."
-        });
     }
-});
-
-// ===============================
-// SUNUCU
-// ===============================
-
-app.listen(PORT, "0.0.0.0", () => {
-    console.log(
-        `Nova Emlak sunucusu ${PORT} portunda çalışıyor.`
-    );
-});
+);
