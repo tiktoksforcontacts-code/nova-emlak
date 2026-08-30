@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-
 <html lang="tr">
 
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -55,6 +55,10 @@ nav a{
     font-weight:bold;
 }
 
+/* =========================
+   GALERİ
+========================= */
+
 .detail{
     background:white;
     border-radius:16px;
@@ -62,12 +66,7 @@ nav a{
     box-shadow:0 8px 30px rgba(0,0,0,.1);
 }
 
-/* =========================
-   FOTOĞRAF GALERİSİ
-========================= */
-
 .gallery{
-    position:relative;
     background:#111827;
 }
 
@@ -76,62 +75,27 @@ nav a{
     height:500px;
     object-fit:cover;
     display:block;
-}
-
-.gallery-button{
-    position:absolute;
-    top:50%;
-    transform:translateY(-50%);
-    width:48px;
-    height:48px;
-    border:0;
-    border-radius:50%;
-    background:rgba(0,0,0,.6);
-    color:white;
-    font-size:28px;
     cursor:pointer;
-    z-index:5;
-}
-
-.gallery-button:hover{
-    background:rgba(0,0,0,.8);
-}
-
-.prev{
-    left:18px;
-}
-
-.next{
-    right:18px;
-}
-
-.photo-counter{
-    position:absolute;
-    right:18px;
-    bottom:18px;
-    background:rgba(0,0,0,.65);
-    color:white;
-    padding:8px 13px;
-    border-radius:20px;
-    font-size:14px;
 }
 
 .thumbnails{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
+    display:flex;
     gap:10px;
     padding:12px;
+    overflow-x:auto;
     background:#111827;
 }
 
 .thumbnail{
-    width:100%;
-    height:100px;
+    width:90px;
+    height:70px;
     object-fit:cover;
     border-radius:8px;
     cursor:pointer;
-    border:3px solid transparent;
     opacity:.65;
+    border:3px solid transparent;
+    flex-shrink:0;
+    transition:.2s;
 }
 
 .thumbnail:hover{
@@ -139,8 +103,8 @@ nav a{
 }
 
 .thumbnail.active{
-    border-color:#2563eb;
     opacity:1;
+    border-color:#2563eb;
 }
 
 /* =========================
@@ -293,29 +257,9 @@ footer{
         height:280px;
     }
 
-    .gallery-button{
-        width:42px;
-        height:42px;
-        font-size:23px;
-    }
-
-    .prev{
-        left:10px;
-    }
-
-    .next{
-        right:10px;
-    }
-
-    .thumbnails{
-        grid-template-columns:repeat(4,1fr);
-        gap:6px;
-        padding:8px;
-    }
-
     .thumbnail{
-        height:65px;
-        border-width:2px;
+        width:75px;
+        height:60px;
     }
 
     h2{
@@ -370,15 +314,18 @@ Ana Sayfa
 
 </header>
 
+
 <div class="container">
 
 <a class="back" href="index.html">
 ← İlanlara Geri Dön
 </a>
 
+
 <div id="loading" class="loading">
 İlan yükleniyor...
 </div>
+
 
 <div id="error" class="error" style="display:none;">
 
@@ -394,9 +341,10 @@ Ana sayfaya dön
 
 </div>
 
+
 <div id="detail" class="detail" style="display:none;">
 
-<!-- FOTOĞRAF GALERİSİ -->
+<!-- GALERİ -->
 
 <div class="gallery">
 
@@ -405,43 +353,18 @@ id="mainImage"
 class="main-image"
 src=""
 alt=""
-
 >
-
-<button
-id="prevButton"
-class="gallery-button prev"
-onclick="previousImage()"
-
->
-
-‹ </button>
-
-<button
-id="nextButton"
-class="gallery-button next"
-onclick="nextImage()"
-
->
-
-› </button>
-
-<div
-id="photoCounter"
-class="photo-counter"
->
-1 / 1
-</div>
-
-</div>
-
-<!-- KÜÇÜK FOTOĞRAFLAR -->
 
 <div
 id="thumbnails"
 class="thumbnails"
 >
 </div>
+
+</div>
+
+
+<!-- İLAN BİLGİLERİ -->
 
 <div class="content">
 
@@ -450,6 +373,7 @@ class="thumbnails"
 <h2 id="title"></h2>
 
 <div id="price" class="price"></div>
+
 
 <div class="info-grid">
 
@@ -463,25 +387,6 @@ class="thumbnails"
 
 </div>
 
-<div class="info">
-
-<strong>
-🏘️ İlçe
-</strong>
-
-<span id="district"></span>
-
-</div>
-
-<div class="info">
-
-<strong>
-📍 Mahalle
-</strong>
-
-<span id="neighborhood"></span>
-
-</div>
 
 <div class="info">
 
@@ -493,6 +398,7 @@ class="thumbnails"
 
 </div>
 
+
 <div class="info">
 
 <strong>
@@ -503,96 +409,17 @@ class="thumbnails"
 
 </div>
 
-<div class="info">
-
-<strong>
-🏢 Bina Yaşı
-</strong>
-
-<span id="buildingAge"></span>
-
 </div>
 
-<div class="info">
-
-<strong>
-🏠 Bulunduğu Kat
-</strong>
-
-<span id="floor"></span>
-
-</div>
-
-<div class="info">
-
-<strong>
-🏢 Toplam Kat
-</strong>
-
-<span id="totalFloors"></span>
-
-</div>
-
-<div class="info">
-
-<strong>
-🔥 Isıtma
-</strong>
-
-<span id="heating"></span>
-
-</div>
-
-<div class="info">
-
-<strong>
-🚿 Banyo
-</strong>
-
-<span id="bathrooms"></span>
-
-</div>
-
-<div class="info">
-
-<strong>
-🌳 Balkon
-</strong>
-
-<span id="balcony"></span>
-
-</div>
-
-<div class="info">
-
-<strong>
-🏦 Krediye Uygun
-</strong>
-
-<span id="credit"></span>
-
-</div>
-
-<div class="info">
-
-<strong>
-📜 Tapu Durumu
-</strong>
-
-<span id="deed"></span>
-
-</div>
-
-</div>
 
 <button
 id="favoriteButton"
 class="favorite"
 onclick="toggleFavorite()"
-
 >
+♡ Favorilere Ekle
+</button>
 
-♡ Favorilere Ekle </button>
 
 <div class="description">
 
@@ -603,6 +430,7 @@ onclick="toggleFavorite()"
 <p id="description"></p>
 
 </div>
+
 
 <div class="contact">
 
@@ -616,27 +444,25 @@ fiyat ve detayları öğrenmek için bizimle
 iletişime geçebilirsiniz.
 </p>
 
+
 <div class="contact-buttons">
 
 <a
 class="phone-button"
 href="tel:05555555555"
-
 >
+📞 Telefonla Ara
+</a>
 
-📞 Telefonla Ara </a>
 
 <a
 class="whatsapp-button"
 id="whatsappButton"
 href="#"
 target="_blank"
-
 >
-
-💬 WhatsApp'tan Yaz </a>
-
-</div>
+💬 WhatsApp'tan Yaz
+</a>
 
 </div>
 
@@ -645,6 +471,9 @@ target="_blank"
 </div>
 
 </div>
+
+</div>
+
 
 <footer>
 
@@ -666,13 +495,12 @@ Nova Emlak
 
 </footer>
 
+
 <script>
 
 let currentListing = null;
 
 let currentImages = [];
-
-let currentImageIndex = 0;
 
 
 // ==========================
@@ -686,7 +514,7 @@ localStorage.getItem("novaFavorites") || "[]"
 
 
 // ==========================
-// URL'DEN İLAN ID AL
+// URL'DEN ID AL
 // ==========================
 
 const params =
@@ -779,15 +607,23 @@ function showListing(){
 
 
     /*
-     * Yeni sistem:
-     * images: [foto1, foto2, foto3, foto4]
+     * YENİ SİSTEM
      *
-     * Eski sistem:
-     * image: foto1
+     * images:
+     * [
+     *   "foto1",
+     *   "foto2",
+     *   "foto3",
+     *   "foto4"
+     * ]
      */
 
+
     if(
-        Array.isArray(currentListing.images) &&
+        Array.isArray(
+            currentListing.images
+        )
+        &&
         currentListing.images.length > 0
     ){
 
@@ -796,21 +632,28 @@ function showListing(){
         .filter(Boolean)
         .slice(0,4);
 
-    }else if(currentListing.image){
+    }
+
+    /*
+     * ESKİ SİSTEM
+     */
+
+    if(
+        currentImages.length === 0
+        &&
+        currentListing.image
+    ){
 
         currentImages = [
             currentListing.image
         ];
 
-    }else{
-
-        currentImages = [];
-
     }
 
 
-    currentImageIndex = 0;
-
+    /*
+     * GALERİYİ OLUŞTUR
+     */
 
     createGallery();
 
@@ -834,18 +677,6 @@ function showListing(){
 
 
     document.getElementById(
-        "district"
-    ).textContent =
-        currentListing.district || "-";
-
-
-    document.getElementById(
-        "neighborhood"
-    ).textContent =
-        currentListing.neighborhood || "-";
-
-
-    document.getElementById(
         "rooms"
     ).textContent =
         currentListing.rooms || "-";
@@ -854,57 +685,8 @@ function showListing(){
     document.getElementById(
         "area"
     ).textContent =
-        (currentListing.area || 0) +
-        " m²";
-
-
-    document.getElementById(
-        "buildingAge"
-    ).textContent =
-        (currentListing.buildingAge || 0) +
-        " yaş";
-
-
-    document.getElementById(
-        "floor"
-    ).textContent =
-        currentListing.floor || "-";
-
-
-    document.getElementById(
-        "totalFloors"
-    ).textContent =
-        currentListing.totalFloors || "-";
-
-
-    document.getElementById(
-        "heating"
-    ).textContent =
-        currentListing.heating || "-";
-
-
-    document.getElementById(
-        "bathrooms"
-    ).textContent =
-        currentListing.bathrooms || "-";
-
-
-    document.getElementById(
-        "balcony"
-    ).textContent =
-        currentListing.balcony || "-";
-
-
-    document.getElementById(
-        "credit"
-    ).textContent =
-        currentListing.credit || "-";
-
-
-    document.getElementById(
-        "deed"
-    ).textContent =
-        currentListing.deed || "-";
+        (currentListing.area || 0)
+        + " m²";
 
 
     document.getElementById(
@@ -974,179 +756,83 @@ function createGallery(){
         );
 
 
-    const counter =
-        document.getElementById(
-            "photoCounter"
-        );
-
-
-    thumbnails.innerHTML="";
+    thumbnails.innerHTML = "";
 
 
     if(currentImages.length === 0){
 
-        mainImage.src="";
-
-        mainImage.alt="Fotoğraf yok";
-
-        counter.textContent="0 / 0";
-
-        document.getElementById(
-            "prevButton"
-        ).style.display="none";
-
-        document.getElementById(
-            "nextButton"
-        ).style.display="none";
+        mainImage.style.display =
+            "none";
 
         return;
 
     }
 
 
-    mainImage.src =
-        currentImages[0];
-
-    mainImage.alt =
-        currentListing.title || "Nova Emlak";
-
-
-    counter.textContent =
-        "1 / " +
-        currentImages.length;
+    mainImage.style.display =
+        "block";
 
 
     /*
-     * Tek fotoğraf varsa
-     * okları gizle.
+     * İlk fotoğraf
      */
 
-    if(currentImages.length <= 1){
+    mainImage.src =
+        currentImages[0];
 
-        document.getElementById(
-            "prevButton"
-        ).style.display="none";
 
-        document.getElementById(
-            "nextButton"
-        ).style.display="none";
+    mainImage.alt =
+        currentListing.title ||
+        "Nova Emlak";
 
-    }else{
 
-        document.getElementById(
-            "prevButton"
-        ).style.display="block";
-
-        document.getElementById(
-            "nextButton"
-        ).style.display="block";
-
-    }
-
+    /*
+     * Küçük fotoğraflar
+     */
 
     currentImages.forEach(
-        function(src,index){
+        function(image,index){
 
-            const img =
-                document.createElement("img");
-
-
-            img.src=src;
-
-            img.alt =
-                currentListing.title ||
-                "Nova Emlak";
+            const thumbnail =
+                document.createElement(
+                    "img"
+                );
 
 
-            img.className =
+            thumbnail.className =
                 "thumbnail";
 
 
             if(index === 0){
 
-                img.classList.add(
+                thumbnail.classList.add(
                     "active"
                 );
 
             }
 
 
-            img.onclick =
+            thumbnail.src =
+                image;
+
+
+            thumbnail.alt =
+                "Fotoğraf " +
+                (index + 1);
+
+
+            thumbnail.onclick =
                 function(){
 
-                    showImage(index);
+                    changeMainImage(
+                        index
+                    );
 
                 };
 
 
-            thumbnails.appendChild(img);
-
-        }
-    );
-
-}
-
-
-// ==========================
-// FOTOĞRAF DEĞİŞTİR
-// ==========================
-
-function showImage(index){
-
-    if(currentImages.length === 0){
-
-        return;
-
-    }
-
-
-    if(index < 0){
-
-        index =
-            currentImages.length - 1;
-
-    }
-
-
-    if(
-        index >=
-        currentImages.length
-    ){
-
-        index=0;
-
-    }
-
-
-    currentImageIndex=index;
-
-
-    document.getElementById(
-        "mainImage"
-    ).src =
-        currentImages[index];
-
-
-    document.getElementById(
-        "photoCounter"
-    ).textContent =
-        (index + 1) +
-        " / " +
-        currentImages.length;
-
-
-    const thumbnails =
-        document.querySelectorAll(
-            ".thumbnail"
-        );
-
-
-    thumbnails.forEach(
-        function(img,i){
-
-            img.classList.toggle(
-                "active",
-                i === index
+            thumbnails.appendChild(
+                thumbnail
             );
 
         }
@@ -1156,53 +842,44 @@ function showImage(index){
 
 
 // ==========================
-// ÖNCEKİ FOTOĞRAF
+// BÜYÜK FOTOĞRAFI DEĞİŞTİR
 // ==========================
 
-function previousImage(){
+function changeMainImage(index){
 
-    showImage(
-        currentImageIndex - 1
-    );
+    if(
+        !currentImages[index]
+    ){
 
-}
-
-
-// ==========================
-// SONRAKİ FOTOĞRAF
-// ==========================
-
-function nextImage(){
-
-    showImage(
-        currentImageIndex + 1
-    );
-
-}
-
-
-// ==========================
-// KLAVYE İLE FOTOĞRAF
-// ==========================
-
-document.addEventListener(
-    "keydown",
-    function(event){
-
-        if(event.key === "ArrowLeft"){
-
-            previousImage();
-
-        }
-
-        if(event.key === "ArrowRight"){
-
-            nextImage();
-
-        }
+        return;
 
     }
-);
+
+
+    document.getElementById(
+        "mainImage"
+    ).src =
+        currentImages[index];
+
+
+    const thumbnails =
+        document.querySelectorAll(
+            ".thumbnail"
+        );
+
+
+    thumbnails.forEach(
+        function(thumbnail,i){
+
+            thumbnail.classList.toggle(
+                "active",
+                i === index
+            );
+
+        }
+    );
+
+}
 
 
 // ==========================
