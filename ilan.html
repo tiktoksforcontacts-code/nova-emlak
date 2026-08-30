@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
 <html lang="tr">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -61,12 +62,90 @@ nav a{
     box-shadow:0 8px 30px rgba(0,0,0,.1);
 }
 
+/* =========================
+   FOTOĞRAF GALERİSİ
+========================= */
+
+.gallery{
+    position:relative;
+    background:#111827;
+}
+
 .main-image{
     width:100%;
     height:500px;
     object-fit:cover;
     display:block;
 }
+
+.gallery-button{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    width:48px;
+    height:48px;
+    border:0;
+    border-radius:50%;
+    background:rgba(0,0,0,.6);
+    color:white;
+    font-size:28px;
+    cursor:pointer;
+    z-index:5;
+}
+
+.gallery-button:hover{
+    background:rgba(0,0,0,.8);
+}
+
+.prev{
+    left:18px;
+}
+
+.next{
+    right:18px;
+}
+
+.photo-counter{
+    position:absolute;
+    right:18px;
+    bottom:18px;
+    background:rgba(0,0,0,.65);
+    color:white;
+    padding:8px 13px;
+    border-radius:20px;
+    font-size:14px;
+}
+
+.thumbnails{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:10px;
+    padding:12px;
+    background:#111827;
+}
+
+.thumbnail{
+    width:100%;
+    height:100px;
+    object-fit:cover;
+    border-radius:8px;
+    cursor:pointer;
+    border:3px solid transparent;
+    opacity:.65;
+}
+
+.thumbnail:hover{
+    opacity:1;
+}
+
+.thumbnail.active{
+    border-color:#2563eb;
+    opacity:1;
+}
+
+/* =========================
+   İÇERİK
+========================= */
 
 .content{
     padding:30px;
@@ -190,6 +269,10 @@ footer{
     padding:35px;
 }
 
+/* =========================
+   MOBİL
+========================= */
+
 @media(max-width:600px){
 
     header{
@@ -208,6 +291,31 @@ footer{
 
     .main-image{
         height:280px;
+    }
+
+    .gallery-button{
+        width:42px;
+        height:42px;
+        font-size:23px;
+    }
+
+    .prev{
+        left:10px;
+    }
+
+    .next{
+        right:10px;
+    }
+
+    .thumbnails{
+        grid-template-columns:repeat(4,1fr);
+        gap:6px;
+        padding:8px;
+    }
+
+    .thumbnail{
+        height:65px;
+        border-width:2px;
     }
 
     h2{
@@ -288,6 +396,10 @@ Ana sayfaya dön
 
 <div id="detail" class="detail" style="display:none;">
 
+<!-- FOTOĞRAF GALERİSİ -->
+
+<div class="gallery">
+
 <img
 id="mainImage"
 class="main-image"
@@ -295,6 +407,41 @@ src=""
 alt=""
 
 >
+
+<button
+id="prevButton"
+class="gallery-button prev"
+onclick="previousImage()"
+
+>
+
+‹ </button>
+
+<button
+id="nextButton"
+class="gallery-button next"
+onclick="nextImage()"
+
+>
+
+› </button>
+
+<div
+id="photoCounter"
+class="photo-counter"
+>
+1 / 1
+</div>
+
+</div>
+
+<!-- KÜÇÜK FOTOĞRAFLAR -->
+
+<div
+id="thumbnails"
+class="thumbnails"
+>
+</div>
 
 <div class="content">
 
@@ -319,6 +466,26 @@ alt=""
 <div class="info">
 
 <strong>
+🏘️ İlçe
+</strong>
+
+<span id="district"></span>
+
+</div>
+
+<div class="info">
+
+<strong>
+📍 Mahalle
+</strong>
+
+<span id="neighborhood"></span>
+
+</div>
+
+<div class="info">
+
+<strong>
 🛏️ Oda Sayısı
 </strong>
 
@@ -333,6 +500,86 @@ alt=""
 </strong>
 
 <span id="area"></span>
+
+</div>
+
+<div class="info">
+
+<strong>
+🏢 Bina Yaşı
+</strong>
+
+<span id="buildingAge"></span>
+
+</div>
+
+<div class="info">
+
+<strong>
+🏠 Bulunduğu Kat
+</strong>
+
+<span id="floor"></span>
+
+</div>
+
+<div class="info">
+
+<strong>
+🏢 Toplam Kat
+</strong>
+
+<span id="totalFloors"></span>
+
+</div>
+
+<div class="info">
+
+<strong>
+🔥 Isıtma
+</strong>
+
+<span id="heating"></span>
+
+</div>
+
+<div class="info">
+
+<strong>
+🚿 Banyo
+</strong>
+
+<span id="bathrooms"></span>
+
+</div>
+
+<div class="info">
+
+<strong>
+🌳 Balkon
+</strong>
+
+<span id="balcony"></span>
+
+</div>
+
+<div class="info">
+
+<strong>
+🏦 Krediye Uygun
+</strong>
+
+<span id="credit"></span>
+
+</div>
+
+<div class="info">
+
+<strong>
+📜 Tapu Durumu
+</strong>
+
+<span id="deed"></span>
 
 </div>
 
@@ -422,6 +669,10 @@ Nova Emlak
 <script>
 
 let currentListing = null;
+
+let currentImages = [];
+
+let currentImageIndex = 0;
 
 
 // ==========================
@@ -527,16 +778,41 @@ function showListing(){
     ).style.display="block";
 
 
-    document.getElementById(
-        "mainImage"
-    ).src =
-        currentListing.image || "";
+    /*
+     * Yeni sistem:
+     * images: [foto1, foto2, foto3, foto4]
+     *
+     * Eski sistem:
+     * image: foto1
+     */
+
+    if(
+        Array.isArray(currentListing.images) &&
+        currentListing.images.length > 0
+    ){
+
+        currentImages =
+        currentListing.images
+        .filter(Boolean)
+        .slice(0,4);
+
+    }else if(currentListing.image){
+
+        currentImages = [
+            currentListing.image
+        ];
+
+    }else{
+
+        currentImages = [];
+
+    }
 
 
-    document.getElementById(
-        "mainImage"
-    ).alt =
-        currentListing.title || "Nova Emlak";
+    currentImageIndex = 0;
+
+
+    createGallery();
 
 
     document.getElementById(
@@ -558,6 +834,18 @@ function showListing(){
 
 
     document.getElementById(
+        "district"
+    ).textContent =
+        currentListing.district || "-";
+
+
+    document.getElementById(
+        "neighborhood"
+    ).textContent =
+        currentListing.neighborhood || "-";
+
+
+    document.getElementById(
         "rooms"
     ).textContent =
         currentListing.rooms || "-";
@@ -566,8 +854,57 @@ function showListing(){
     document.getElementById(
         "area"
     ).textContent =
-        (currentListing.area || 0)
-        + " m²";
+        (currentListing.area || 0) +
+        " m²";
+
+
+    document.getElementById(
+        "buildingAge"
+    ).textContent =
+        (currentListing.buildingAge || 0) +
+        " yaş";
+
+
+    document.getElementById(
+        "floor"
+    ).textContent =
+        currentListing.floor || "-";
+
+
+    document.getElementById(
+        "totalFloors"
+    ).textContent =
+        currentListing.totalFloors || "-";
+
+
+    document.getElementById(
+        "heating"
+    ).textContent =
+        currentListing.heating || "-";
+
+
+    document.getElementById(
+        "bathrooms"
+    ).textContent =
+        currentListing.bathrooms || "-";
+
+
+    document.getElementById(
+        "balcony"
+    ).textContent =
+        currentListing.balcony || "-";
+
+
+    document.getElementById(
+        "credit"
+    ).textContent =
+        currentListing.credit || "-";
+
+
+    document.getElementById(
+        "deed"
+    ).textContent =
+        currentListing.deed || "-";
 
 
     document.getElementById(
@@ -586,7 +923,9 @@ function showListing(){
         "Bu ilan için henüz açıklama eklenmemiş.";
 
 
-    // WhatsApp mesajı
+    // ==========================
+    // WHATSAPP
+    // ==========================
 
     const whatsappNumber =
         "905555555555";
@@ -615,6 +954,255 @@ function showListing(){
         currentListing.title;
 
 }
+
+
+// ==========================
+// GALERİ OLUŞTUR
+// ==========================
+
+function createGallery(){
+
+    const mainImage =
+        document.getElementById(
+            "mainImage"
+        );
+
+
+    const thumbnails =
+        document.getElementById(
+            "thumbnails"
+        );
+
+
+    const counter =
+        document.getElementById(
+            "photoCounter"
+        );
+
+
+    thumbnails.innerHTML="";
+
+
+    if(currentImages.length === 0){
+
+        mainImage.src="";
+
+        mainImage.alt="Fotoğraf yok";
+
+        counter.textContent="0 / 0";
+
+        document.getElementById(
+            "prevButton"
+        ).style.display="none";
+
+        document.getElementById(
+            "nextButton"
+        ).style.display="none";
+
+        return;
+
+    }
+
+
+    mainImage.src =
+        currentImages[0];
+
+    mainImage.alt =
+        currentListing.title || "Nova Emlak";
+
+
+    counter.textContent =
+        "1 / " +
+        currentImages.length;
+
+
+    /*
+     * Tek fotoğraf varsa
+     * okları gizle.
+     */
+
+    if(currentImages.length <= 1){
+
+        document.getElementById(
+            "prevButton"
+        ).style.display="none";
+
+        document.getElementById(
+            "nextButton"
+        ).style.display="none";
+
+    }else{
+
+        document.getElementById(
+            "prevButton"
+        ).style.display="block";
+
+        document.getElementById(
+            "nextButton"
+        ).style.display="block";
+
+    }
+
+
+    currentImages.forEach(
+        function(src,index){
+
+            const img =
+                document.createElement("img");
+
+
+            img.src=src;
+
+            img.alt =
+                currentListing.title ||
+                "Nova Emlak";
+
+
+            img.className =
+                "thumbnail";
+
+
+            if(index === 0){
+
+                img.classList.add(
+                    "active"
+                );
+
+            }
+
+
+            img.onclick =
+                function(){
+
+                    showImage(index);
+
+                };
+
+
+            thumbnails.appendChild(img);
+
+        }
+    );
+
+}
+
+
+// ==========================
+// FOTOĞRAF DEĞİŞTİR
+// ==========================
+
+function showImage(index){
+
+    if(currentImages.length === 0){
+
+        return;
+
+    }
+
+
+    if(index < 0){
+
+        index =
+            currentImages.length - 1;
+
+    }
+
+
+    if(
+        index >=
+        currentImages.length
+    ){
+
+        index=0;
+
+    }
+
+
+    currentImageIndex=index;
+
+
+    document.getElementById(
+        "mainImage"
+    ).src =
+        currentImages[index];
+
+
+    document.getElementById(
+        "photoCounter"
+    ).textContent =
+        (index + 1) +
+        " / " +
+        currentImages.length;
+
+
+    const thumbnails =
+        document.querySelectorAll(
+            ".thumbnail"
+        );
+
+
+    thumbnails.forEach(
+        function(img,i){
+
+            img.classList.toggle(
+                "active",
+                i === index
+            );
+
+        }
+    );
+
+}
+
+
+// ==========================
+// ÖNCEKİ FOTOĞRAF
+// ==========================
+
+function previousImage(){
+
+    showImage(
+        currentImageIndex - 1
+    );
+
+}
+
+
+// ==========================
+// SONRAKİ FOTOĞRAF
+// ==========================
+
+function nextImage(){
+
+    showImage(
+        currentImageIndex + 1
+    );
+
+}
+
+
+// ==========================
+// KLAVYE İLE FOTOĞRAF
+// ==========================
+
+document.addEventListener(
+    "keydown",
+    function(event){
+
+        if(event.key === "ArrowLeft"){
+
+            previousImage();
+
+        }
+
+        if(event.key === "ArrowRight"){
+
+            nextImage();
+
+        }
+
+    }
+);
 
 
 // ==========================
@@ -659,6 +1247,7 @@ function updateFavoriteButton(){
         button.textContent =
             "❤️ Favorilerden Çıkar";
 
+
         button.classList.add(
             "active"
         );
@@ -667,6 +1256,7 @@ function updateFavoriteButton(){
 
         button.textContent =
             "♡ Favorilere Ekle";
+
 
         button.classList.remove(
             "active"
