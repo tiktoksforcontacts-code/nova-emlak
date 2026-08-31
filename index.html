@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
@@ -22,13 +21,14 @@ header{
     position:sticky;
     top:0;
     z-index:1000;
-    background:#0f172a;
+    background:rgba(15,23,42,.96);
+    backdrop-filter:blur(12px);
     color:white;
     padding:18px 6%;
     display:flex;
     align-items:center;
     justify-content:space-between;
-    box-shadow:0 5px 25px rgba(0,0,0,.15);
+    box-shadow:0 5px 25px rgba(15,23,42,.15);
 }
 
 .logo{
@@ -36,11 +36,13 @@ header{
     text-decoration:none;
     font-size:25px;
     font-weight:900;
+    letter-spacing:-.5px;
 }
 
 nav{
     display:flex;
-    gap:25px;
+    gap:28px;
+    align-items:center;
 }
 
 nav a{
@@ -48,70 +50,89 @@ nav a{
     text-decoration:none;
     font-size:14px;
     font-weight:bold;
+    transition:.2s;
 }
 
-nav a:hover{color:#60a5fa}
+nav a:hover{
+    color:#60a5fa;
+}
+
+/* HERO */
 
 .hero{
-    min-height:520px;
+    min-height:610px;
     display:flex;
     align-items:center;
     justify-content:center;
     text-align:center;
     color:white;
-    padding:70px 20px;
+    padding:90px 20px 140px;
     background:
-        linear-gradient(rgba(15,23,42,.72),rgba(15,23,42,.55)),
-        url("https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1800&q=85");
+        linear-gradient(120deg,rgba(15,23,42,.92),rgba(15,23,42,.45)),
+        url("https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2000&q=90");
     background-size:cover;
     background-position:center;
 }
 
 .hero-content{
-    max-width:850px;
+    max-width:900px;
 }
 
 .hero-badge{
     display:inline-block;
-    padding:9px 16px;
+    padding:10px 18px;
     border-radius:50px;
-    background:rgba(255,255,255,.15);
-    border:1px solid rgba(255,255,255,.3);
+    background:rgba(255,255,255,.12);
+    border:1px solid rgba(255,255,255,.25);
+    backdrop-filter:blur(8px);
     font-size:13px;
     font-weight:bold;
-    margin-bottom:18px;
+    margin-bottom:22px;
 }
 
 .hero h1{
-    font-size:55px;
-    margin:0 0 18px;
+    font-size:64px;
+    line-height:1.05;
+    letter-spacing:-2px;
+    margin:0 0 22px;
+}
+
+.hero h1 span{
+    color:#60a5fa;
 }
 
 .hero p{
-    max-width:650px;
-    margin:0 auto;
-    font-size:18px;
+    max-width:700px;
+    margin:auto;
+    font-size:19px;
     line-height:1.7;
-    color:#e5e7eb;
+    color:#e2e8f0;
 }
 
+/* SEARCH */
+
 .search-box{
-    max-width:1120px;
-    margin:-60px auto 55px;
+    max-width:1150px;
+    margin:-85px auto 70px;
     position:relative;
-    z-index:10;
-    padding:28px;
+    z-index:20;
+    padding:30px;
     background:white;
-    border-radius:20px;
-    box-shadow:0 15px 45px rgba(15,23,42,.15);
+    border-radius:24px;
+    box-shadow:0 20px 55px rgba(15,23,42,.18);
+}
+
+.search-title{
+    margin-bottom:20px;
 }
 
 .search-title h2{
-    margin:0 0 5px;
+    margin:0 0 6px;
+    font-size:25px;
 }
 
 .search-title p{
-    margin:0 0 18px;
+    margin:0;
     color:#64748b;
 }
 
@@ -124,29 +145,76 @@ nav a:hover{color:#60a5fa}
 .filters select,
 .filters input{
     width:100%;
-    padding:14px;
+    padding:15px;
     border:1px solid #dbe1ea;
-    border-radius:10px;
+    border-radius:12px;
     background:white;
     outline:none;
+    font-size:14px;
+    transition:.2s;
+}
+
+.filters select:focus,
+.filters input:focus{
+    border-color:#2563eb;
+    box-shadow:0 0 0 3px rgba(37,99,235,.1);
 }
 
 .search-button{
     width:100%;
     margin-top:15px;
-    padding:15px;
+    padding:16px;
     border:0;
-    border-radius:10px;
+    border-radius:12px;
     background:#2563eb;
     color:white;
     font-size:16px;
     font-weight:bold;
     cursor:pointer;
+    transition:.2s;
 }
 
 .search-button:hover{
     background:#1d4ed8;
+    transform:translateY(-1px);
 }
+
+/* STATS */
+
+.stats{
+    max-width:1200px;
+    margin:0 auto 75px;
+    padding:0 20px;
+}
+
+.stats-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.stat{
+    background:white;
+    border:1px solid #e5e7eb;
+    border-radius:18px;
+    padding:28px;
+    text-align:center;
+    box-shadow:0 8px 25px rgba(15,23,42,.05);
+}
+
+.stat-number{
+    color:#2563eb;
+    font-size:31px;
+    font-weight:900;
+}
+
+.stat-text{
+    color:#64748b;
+    margin-top:7px;
+    font-size:14px;
+}
+
+/* CONTAINER */
 
 .container{
     max-width:1200px;
@@ -155,12 +223,13 @@ nav a:hover{color:#60a5fa}
 }
 
 .section-title{
-    margin-bottom:10px;
+    margin-bottom:25px;
 }
 
 .section-title h2{
-    font-size:30px;
+    font-size:32px;
     margin:0;
+    letter-spacing:-.5px;
 }
 
 .result{
@@ -168,30 +237,33 @@ nav a:hover{color:#60a5fa}
     margin-bottom:25px;
 }
 
+/* LISTINGS */
+
 .listings{
     display:grid;
     grid-template-columns:repeat(3,1fr);
-    gap:24px;
+    gap:25px;
 }
 
 .card{
     position:relative;
     background:white;
-    border-radius:18px;
+    border-radius:20px;
     overflow:hidden;
     border:1px solid #e5e7eb;
-    box-shadow:0 7px 25px rgba(15,23,42,.07);
+    box-shadow:0 8px 28px rgba(15,23,42,.07);
     transition:.25s;
 }
 
 .card:hover{
-    transform:translateY(-5px);
-    box-shadow:0 18px 40px rgba(15,23,42,.13);
+    transform:translateY(-7px);
+    box-shadow:0 20px 45px rgba(15,23,42,.14);
 }
 
 .card-image{
     position:relative;
-    height:230px;
+    height:240px;
+    overflow:hidden;
 }
 
 .card-image img{
@@ -199,16 +271,21 @@ nav a:hover{color:#60a5fa}
     height:100%;
     object-fit:cover;
     display:block;
+    transition:.4s;
+}
+
+.card:hover .card-image img{
+    transform:scale(1.04);
 }
 
 .badge{
     position:absolute;
-    top:13px;
-    left:13px;
+    top:15px;
+    left:15px;
     background:#2563eb;
     color:white;
-    padding:7px 11px;
-    border-radius:7px;
+    padding:8px 12px;
+    border-radius:8px;
     font-size:12px;
     font-weight:bold;
 }
@@ -217,14 +294,19 @@ nav a:hover{color:#60a5fa}
     position:absolute;
     top:13px;
     right:13px;
-    width:43px;
-    height:43px;
+    width:44px;
+    height:44px;
     border:0;
     border-radius:50%;
     background:white;
     font-size:22px;
     cursor:pointer;
-    box-shadow:0 4px 15px rgba(0,0,0,.2);
+    box-shadow:0 5px 18px rgba(0,0,0,.18);
+    transition:.2s;
+}
+
+.favorite:hover{
+    transform:scale(1.08);
 }
 
 .favorite.active{
@@ -232,7 +314,7 @@ nav a:hover{color:#60a5fa}
 }
 
 .card-content{
-    padding:20px;
+    padding:21px;
 }
 
 .card h3{
@@ -243,20 +325,20 @@ nav a:hover{color:#60a5fa}
 .location{
     color:#64748b;
     font-size:14px;
-    margin-bottom:13px;
+    margin-bottom:14px;
 }
 
 .details{
     display:flex;
     flex-wrap:wrap;
     gap:8px;
-    margin-bottom:17px;
+    margin-bottom:18px;
 }
 
 .detail-item{
     background:#f1f5f9;
-    padding:7px 9px;
-    border-radius:7px;
+    padding:8px 10px;
+    border-radius:8px;
     font-size:13px;
     color:#64748b;
 }
@@ -274,17 +356,124 @@ nav a:hover{color:#60a5fa}
     background:#0f172a;
     color:white;
     padding:13px;
-    border-radius:9px;
+    border-radius:10px;
     text-decoration:none;
     font-weight:bold;
+    transition:.2s;
+}
+
+.detail-button:hover{
+    background:#2563eb;
+}
+
+/* POPÜLER BÖLGELER */
+
+.popular{
+    margin:90px 0;
+}
+
+.region-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.region{
+    height:220px;
+    border-radius:20px;
+    overflow:hidden;
+    position:relative;
+    background-size:cover;
+    background-position:center;
+    display:flex;
+    align-items:flex-end;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.region:hover{
+    transform:translateY(-5px);
+    box-shadow:0 18px 35px rgba(15,23,42,.18);
+}
+
+.region:after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(transparent,rgba(15,23,42,.85));
+}
+
+.region-content{
+    position:relative;
+    z-index:2;
+    color:white;
+    padding:22px;
+}
+
+.region-content h3{
+    margin:0 0 5px;
+    font-size:23px;
+}
+
+.region-content p{
+    margin:0;
+    color:#e2e8f0;
+}
+
+/* WHY */
+
+.why{
+    margin:90px 0;
+}
+
+.why-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+}
+
+.why-card{
+    background:white;
+    border:1px solid #e5e7eb;
+    border-radius:18px;
+    padding:25px;
+}
+
+.why-icon{
+    font-size:32px;
+    margin-bottom:15px;
+}
+
+.why-card h3{
+    margin:0 0 8px;
+}
+
+.why-card p{
+    margin:0;
+    color:#64748b;
+    line-height:1.6;
+    font-size:14px;
+}
+
+/* FAVORITES */
+
+.favorites-section{
+    margin-top:90px;
+    margin-bottom:70px;
+}
+
+.favorite-count{
+    display:block;
+    margin-top:7px;
+    color:#64748b;
 }
 
 .empty{
     grid-column:1/-1;
     background:white;
-    padding:50px 20px;
+    padding:55px 20px;
     text-align:center;
-    border-radius:18px;
+    border-radius:20px;
     border:1px solid #e5e7eb;
 }
 
@@ -293,62 +482,60 @@ nav a:hover{color:#60a5fa}
 }
 
 .empty button{
-    padding:12px 20px;
+    padding:13px 22px;
     border:0;
-    border-radius:9px;
+    border-radius:10px;
     background:#2563eb;
     color:white;
     cursor:pointer;
     font-weight:bold;
 }
 
-.stats{
-    max-width:1200px;
-    margin:0 auto 65px;
-    padding:0 20px;
-}
+/* CTA */
 
-.stats-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:18px;
-}
-
-.stat{
-    background:white;
-    border:1px solid #e5e7eb;
-    border-radius:15px;
-    padding:25px;
+.cta{
+    margin:90px 0 0;
+    padding:65px 25px;
+    border-radius:25px;
     text-align:center;
+    color:white;
+    background:
+        linear-gradient(120deg,rgba(15,23,42,.96),rgba(37,99,235,.85)),
+        url("https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1800&q=85");
+    background-size:cover;
+    background-position:center;
 }
 
-.stat-number{
-    color:#2563eb;
-    font-size:28px;
-    font-weight:900;
+.cta h2{
+    font-size:36px;
+    margin:0 0 12px;
 }
 
-.stat-text{
-    color:#64748b;
-    margin-top:5px;
-    font-size:14px;
+.cta p{
+    color:#dbeafe;
+    margin:0 auto 25px;
+    max-width:600px;
+    line-height:1.6;
 }
 
-.favorites-section{
-    margin-top:75px;
-    margin-bottom:60px;
+.cta-button{
+    display:inline-block;
+    background:white;
+    color:#172033;
+    padding:14px 25px;
+    border-radius:10px;
+    text-decoration:none;
+    font-weight:bold;
 }
 
-.favorite-count{
-    color:#64748b;
-}
+/* WHATSAPP */
 
 .whatsapp-float{
     position:fixed;
     right:22px;
     bottom:22px;
-    width:57px;
-    height:57px;
+    width:59px;
+    height:59px;
     border-radius:50%;
     background:#16a34a;
     color:white;
@@ -356,24 +543,37 @@ nav a:hover{color:#60a5fa}
     align-items:center;
     justify-content:center;
     text-decoration:none;
-    font-size:27px;
+    font-size:28px;
     z-index:900;
-    box-shadow:0 7px 25px rgba(22,163,74,.35);
+    box-shadow:0 8px 28px rgba(22,163,74,.35);
+    transition:.2s;
 }
 
+.whatsapp-float:hover{
+    transform:scale(1.08);
+}
+
+/* FOOTER */
+
 footer{
-    margin-top:80px;
+    margin-top:90px;
     background:#0f172a;
     color:white;
-    padding:50px 20px;
+    padding:55px 20px;
     text-align:center;
+}
+
+footer h2{
+    margin-top:0;
 }
 
 footer p{
     color:#cbd5e1;
 }
 
-@media(max-width:950px){
+/* RESPONSIVE */
+
+@media(max-width:1000px){
 
     .filters{
         grid-template-columns:repeat(2,1fr);
@@ -382,14 +582,18 @@ footer p{
     .listings{
         grid-template-columns:repeat(2,1fr);
     }
+
+    .why-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
 }
 
-@media(max-width:650px){
+@media(max-width:700px){
 
     header{
         flex-direction:column;
-        gap:14px;
-        padding:15px;
+        gap:15px;
+        padding:16px;
     }
 
     nav{
@@ -399,11 +603,13 @@ footer p{
     }
 
     .hero{
-        min-height:450px;
+        min-height:500px;
+        padding:70px 20px 110px;
     }
 
     .hero h1{
-        font-size:38px;
+        font-size:42px;
+        letter-spacing:-1px;
     }
 
     .hero p{
@@ -412,6 +618,7 @@ footer p{
 
     .search-box{
         margin:20px;
+        padding:22px;
     }
 
     .filters{
@@ -425,18 +632,31 @@ footer p{
     .stats-grid{
         grid-template-columns:1fr;
     }
+
+    .region-grid{
+        grid-template-columns:1fr;
+    }
+
+    .why-grid{
+        grid-template-columns:1fr;
+    }
+
+    .section-title h2{
+        font-size:27px;
+    }
+
+    .cta h2{
+        font-size:29px;
+    }
 }
 </style>
-
 </head>
 
 <body>
 
 <header>
 
-<a href="index.html" class="logo">
-🏠 NOVA EMLAK
-</a>
+<a href="index.html" class="logo">🏠 NOVA EMLAK</a>
 
 <nav>
 <a href="index.html">Ana Sayfa</a>
@@ -456,12 +676,12 @@ footer p{
 </div>
 
 <h1>
-Hayalinizdeki Evi Bulun
+Hayalinizdeki <span>Evi</span> Bulun
 </h1>
 
 <p>
 Satılık ve kiralık gayrimenkulleri keşfedin.
-Size uygun evi kolayca bulun ve ilan detaylarını inceleyin.
+Size en uygun evi kolayca bulun ve detaylarını inceleyin.
 </p>
 
 </div>
@@ -472,11 +692,9 @@ Size uygun evi kolayca bulun ve ilan detaylarını inceleyin.
 
 <div class="search-title">
 
-<h2>🔎 Gayrimenkul Ara</h2>
+<h2>🔎 Hayalinizdeki Evi Arayın</h2>
 
-<p>
-Filtrelerinizi seçin ve size uygun ilanları bulun.
-</p>
+<p>Filtrelerinizi seçin ve size uygun ilanları saniyeler içinde bulun.</p>
 
 </div>
 
@@ -526,8 +744,8 @@ Filtrelerinizi seçin ve size uygun ilanları bulun.
 </div>
 
 <div class="stat">
-<div class="stat-number">❤️</div>
-<div class="stat-text">Favorilerinizi Kaydedin</div>
+<div class="stat-number" id="totalFavorites">0</div>
+<div class="stat-text">Favori İlanınız</div>
 </div>
 
 <div class="stat">
@@ -539,7 +757,9 @@ Filtrelerinizi seçin ve size uygun ilanları bulun.
 
 </div>
 
-<div class="container" id="ilanlar">
+<div class="container">
+
+<section id="ilanlar">
 
 <div class="section-title">
 <h2>🏡 Güncel İlanlar</h2>
@@ -550,6 +770,113 @@ Filtrelerinizi seçin ve size uygun ilanları bulun.
 </div>
 
 <div class="listings" id="listings"></div>
+
+</section>
+
+
+<!-- POPÜLER BÖLGELER -->
+
+<section class="popular">
+
+<div class="section-title">
+<h2>📍 Popüler Bölgeler</h2>
+</div>
+
+<div class="region-grid">
+
+
+<!-- İSTANBUL -->
+
+<div class="region"
+style="background-image:url('https://images.unsplash.com/photo-blVUWwIUfUc?auto=format&fit=crop&w=1200&q=90')">
+
+<div class="region-content">
+
+<h3>İstanbul</h3>
+
+<p>Boğaz manzarası ve şehir hayatı</p>
+
+</div>
+
+</div>
+
+
+<!-- ANKARA -->
+
+<div class="region"
+style="background-image:url('https://images.unsplash.com/photo-kgAhA1rt3Qg?auto=format&fit=crop&w=1200&q=90')">
+
+<div class="region-content">
+
+<h3>Ankara</h3>
+
+<p>Modern yaşam ve merkezi konumlar</p>
+
+</div>
+
+</div>
+
+
+<!-- İZMİR -->
+
+<div class="region"
+style="background-image:url('https://images.unsplash.com/photo-sY63rmj9weE?auto=format&fit=crop&w=1200&q=90')">
+
+<div class="region-content">
+
+<h3>İzmir</h3>
+
+<p>Deniz, güneş ve huzurlu yaşam</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- NEDEN NOVA EMLAK -->
+
+<section class="why">
+
+<div class="section-title">
+<h2>✨ Neden Nova Emlak?</h2>
+</div>
+
+<div class="why-grid">
+
+<div class="why-card">
+<div class="why-icon">🏠</div>
+<h3>Geniş Portföy</h3>
+<p>Farklı bütçe ve ihtiyaçlara uygun gayrimenkulleri kolayca keşfedin.</p>
+</div>
+
+<div class="why-card">
+<div class="why-icon">🔍</div>
+<h3>Kolay Arama</h3>
+<p>Gelişmiş filtrelerle aradığınız evi hızlı ve kolay şekilde bulun.</p>
+</div>
+
+<div class="why-card">
+<div class="why-icon">❤️</div>
+<h3>Favorilerinizi Kaydedin</h3>
+<p>Beğendiğiniz ilanları favorilerinize ekleyerek daha sonra inceleyin.</p>
+</div>
+
+<div class="why-card">
+<div class="why-icon">📞</div>
+<h3>Kolay İletişim</h3>
+<p>Beğendiğiniz gayrimenkuller hakkında hızlıca iletişime geçin.</p>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- FAVORİLER -->
 
 <section class="favorites-section" id="favoriler">
 
@@ -567,30 +894,51 @@ Filtrelerinizi seçin ve size uygun ilanları bulun.
 
 </section>
 
+
+<!-- CTA -->
+
+<section class="cta">
+
+<h2>Aradığınız Evi Birlikte Bulalım</h2>
+
+<p>
+Hayalinizdeki eve ulaşmak için ilanlarımızı inceleyin.
+Beğendiğiniz bir ilan olduğunda bizimle kolayca iletişime geçin.
+</p>
+
+<a
+class="cta-button"
+href="https://wa.me/905555555555"
+target="_blank"
+>
+💬 WhatsApp'tan İletişime Geç
+</a>
+
+</section>
+
 </div>
+
 
 <a
 class="whatsapp-float"
 href="https://wa.me/905555555555"
 target="_blank"
-
 >
+💬
+</a>
 
-💬 </a>
 
 <footer id="iletisim">
 
 <h2>🏠 Nova Emlak</h2>
 
 <p>📞 0555 555 55 55</p>
-
 <p>📍 İstanbul</p>
-
 <p>Gayrimenkulde doğru adres.</p>
-
 <p>© 2026 Nova Emlak</p>
 
 </footer>
+
 
 <script>
 
@@ -631,6 +979,24 @@ return String(value ?? "")
 }
 
 
+function updateFavoriteCount(){
+
+const count =
+favorites.length;
+
+document.getElementById(
+"favoriteCount"
+).textContent =
+count + " favori";
+
+document.getElementById(
+"totalFavorites"
+).textContent =
+count;
+
+}
+
+
 function toggleFavorite(id){
 
 id = Number(id);
@@ -655,6 +1021,8 @@ getCurrentFilteredListings()
 );
 
 displayFavorites();
+
+updateFavoriteCount();
 
 }
 
@@ -697,6 +1065,8 @@ allListings.length;
 displayListings(allListings);
 
 displayFavorites();
+
+updateFavoriteCount();
 
 }catch(error){
 
@@ -754,46 +1124,32 @@ Number(ilan.price || 0) <= maxPrice
 }
 
 
-function displayListings(ilanlar){
+function getListingImage(ilan){
 
-const container =
-document.getElementById("listings");
+if(
+ilan.image &&
+typeof ilan.image === "string"
+){
 
-container.innerHTML = "";
+return ilan.image;
 
-document.getElementById(
-"result"
-).textContent =
-ilanlar.length + " ilan bulundu.";
+}
 
+if(
+Array.isArray(ilan.images) &&
+ilan.images.length > 0
+){
 
-if(ilanlar.length === 0){
+return ilan.images[0];
 
-container.innerHTML = `
+}
 
-<div class="empty">
-
-<h2>😔 İlan bulunamadı</h2>
-
-<p>
-Arama kriterlerini değiştirip tekrar deneyin.
-</p>
-
-<button onclick="resetSearch()">
-Filtreleri Temizle
-</button>
-
-</div>
-
-`;
-
-return;
+return "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80";
 
 }
 
 
-ilanlar.forEach(
-function(ilan){
+function createCard(ilan){
 
 const card =
 document.createElement("div");
@@ -811,15 +1167,18 @@ ilan.district
 .filter(Boolean)
 .join(" • ");
 
+const image =
+getListingImage(ilan);
 
 card.innerHTML = `
 
 <div class="card-image">
 
 <img
-src="${escapeHTML(ilan.image || "")}"
+src="${escapeHTML(image)}"
 alt="${escapeHTML(ilan.title || "Nova Emlak ilanı")}"
 loading="lazy"
+onerror="this.src='https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80'"
 >
 
 <span class="badge">
@@ -884,7 +1243,55 @@ href="ilan.html?id=${encodeURIComponent(ilan.id)}"
 
 `;
 
-container.appendChild(card);
+return card;
+
+}
+
+
+function displayListings(ilanlar){
+
+const container =
+document.getElementById("listings");
+
+container.innerHTML = "";
+
+document.getElementById(
+"result"
+).textContent =
+ilanlar.length + " ilan bulundu.";
+
+
+if(ilanlar.length === 0){
+
+container.innerHTML = `
+
+<div class="empty">
+
+<h2>😔 İlan bulunamadı</h2>
+
+<p>
+Arama kriterlerini değiştirip tekrar deneyin.
+</p>
+
+<button onclick="resetSearch()">
+Filtreleri Temizle
+</button>
+
+</div>
+
+`;
+
+return;
+
+}
+
+
+ilanlar.forEach(
+function(ilan){
+
+container.appendChild(
+createCard(ilan)
+);
 
 }
 );
@@ -899,11 +1306,6 @@ document.getElementById(
 "favoriteListings"
 );
 
-const count =
-document.getElementById(
-"favoriteCount"
-);
-
 const favoriteListings =
 allListings.filter(
 ilan =>
@@ -911,10 +1313,6 @@ favorites.includes(
 Number(ilan.id)
 )
 );
-
-count.textContent =
-favoriteListings.length +
-" favori";
 
 container.innerHTML = "";
 
@@ -945,84 +1343,13 @@ return;
 
 }
 
+
 favoriteListings.forEach(
 function(ilan){
 
-const card =
-document.createElement("div");
-
-card.className = "card";
-
-const location =
-[
-ilan.city,
-ilan.district
-]
-.filter(Boolean)
-.join(" • ");
-
-
-card.innerHTML = `
-
-<div class="card-image">
-
-<img
-src="${escapeHTML(ilan.image || "")}"
-alt="${escapeHTML(ilan.title || "Nova Emlak ilanı")}"
-loading="lazy"
->
-
-<span class="badge">
-${escapeHTML(ilan.type || "")}
-</span>
-
-<button
-class="favorite active"
-onclick="toggleFavorite(${Number(ilan.id)})"
->
-❤️
-</button>
-
-</div>
-
-<div class="card-content">
-
-<h3>
-${escapeHTML(ilan.title || "İlan")}
-</h3>
-
-<div class="location">
-📍 ${escapeHTML(location || "-")}
-</div>
-
-<div class="details">
-
-<span class="detail-item">
-🛏️ ${escapeHTML(ilan.rooms || "-")}
-</span>
-
-<span class="detail-item">
-📐 ${escapeHTML(String(ilan.area || "-"))} m²
-</span>
-
-</div>
-
-<div class="price">
-${Number(ilan.price || 0).toLocaleString("tr-TR")} TL
-</div>
-
-<a
-class="detail-button"
-href="ilan.html?id=${encodeURIComponent(ilan.id)}"
->
-İlanı İncele →
-</a>
-
-</div>
-
-`;
-
-container.appendChild(card);
+container.appendChild(
+createCard(ilan)
+);
 
 }
 );
