@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
@@ -7,11 +6,14 @@
 
 <title>Nova Emlak | İlan Detayı</title>
 
-<meta name="description" id="metaDescription" content="Nova Emlak ilan detayları.">
-<meta name="robots" content="index, follow">
-
 <style>
-*{box-sizing:border-box}
+*{
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
 
 body{
     margin:0;
@@ -20,13 +22,15 @@ body{
     color:#172033;
 }
 
+/* HEADER */
+
 header{
     position:sticky;
     top:0;
     z-index:1000;
     background:#0f172a;
     color:white;
-    padding:17px 6%;
+    padding:18px 6%;
     display:flex;
     align-items:center;
     justify-content:space-between;
@@ -56,38 +60,49 @@ nav a:hover{
     color:#60a5fa;
 }
 
-.container{
-    max-width:1150px;
-    margin:40px auto;
+/* PAGE */
+
+.page{
+    max-width:1200px;
+    margin:35px auto 80px;
     padding:0 20px;
 }
 
+/* BACK */
+
 .back{
-    display:inline-block;
-    margin-bottom:20px;
-    color:#2563eb;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
     text-decoration:none;
+    color:#2563eb;
     font-weight:bold;
+    margin-bottom:22px;
 }
 
-.card{
+/* MAIN CARD */
+
+.detail-card{
     background:white;
-    border-radius:24px;
+    border-radius:22px;
     overflow:hidden;
     border:1px solid #e5e7eb;
-    box-shadow:0 15px 45px rgba(15,23,42,.09);
+    box-shadow:0 12px 40px rgba(15,23,42,.08);
 }
 
-/* FOTOĞRAFLAR */
+/* GALLERY */
 
 .gallery{
-    background:#0f172a;
+    display:grid;
+    grid-template-columns:2fr 1fr;
+    gap:5px;
+    height:520px;
+    background:#e5e7eb;
 }
 
 .main-photo{
-    width:100%;
-    height:520px;
-    background:#e2e8f0;
+    position:relative;
+    overflow:hidden;
 }
 
 .main-photo img{
@@ -97,139 +112,116 @@ nav a:hover{
     display:block;
 }
 
-.thumbs{
-    display:flex;
-    gap:10px;
-    padding:12px;
-    overflow-x:auto;
-    background:#0f172a;
+.gallery-side{
+    display:grid;
+    grid-template-rows:1fr 1fr;
+    gap:5px;
 }
 
-.thumb{
-    width:95px;
-    height:70px;
-    flex:0 0 auto;
-    border-radius:8px;
+.gallery-side div{
     overflow:hidden;
-    border:2px solid transparent;
-    cursor:pointer;
+    position:relative;
 }
 
-.thumb.active{
-    border-color:#60a5fa;
-}
-
-.thumb img{
+.gallery-side img{
     width:100%;
     height:100%;
     object-fit:cover;
+    display:block;
 }
 
-/* İÇERİK */
+.no-image{
+    height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#e2e8f0;
+    color:#64748b;
+    font-size:18px;
+    font-weight:bold;
+}
+
+/* BADGE */
+
+.type-badge{
+    position:absolute;
+    top:20px;
+    left:20px;
+    background:#2563eb;
+    color:white;
+    padding:9px 15px;
+    border-radius:9px;
+    font-size:13px;
+    font-weight:bold;
+    z-index:5;
+}
+
+/* CONTENT */
 
 .content{
     padding:35px;
 }
 
-.badge{
-    display:inline-block;
-    background:#2563eb;
-    color:white;
-    padding:8px 13px;
-    border-radius:8px;
-    font-size:13px;
-    font-weight:bold;
-    margin-bottom:15px;
+.top-info{
+    display:flex;
+    justify-content:space-between;
+    gap:30px;
+    align-items:flex-start;
 }
 
-h1{
+.title-area{
+    flex:1;
+}
+
+.title-area h1{
     margin:0 0 12px;
-    font-size:36px;
+    font-size:34px;
+    line-height:1.2;
 }
 
 .location{
     color:#64748b;
     font-size:16px;
-    margin-bottom:20px;
 }
 
 .price{
     color:#2563eb;
-    font-size:30px;
+    font-size:32px;
     font-weight:900;
-    margin-bottom:25px;
+    white-space:nowrap;
 }
 
-.details{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:12px;
-    margin-bottom:25px;
-}
-
-.detail{
-    background:#f8fafc;
-    border:1px solid #e5e7eb;
-    padding:16px;
-    border-radius:12px;
-}
-
-.detail strong{
-    display:block;
-    color:#64748b;
-    font-size:13px;
-    margin-bottom:6px;
-}
-
-.detail span{
-    font-weight:bold;
-}
-
-.extra{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:10px;
-    margin-top:20px;
-}
-
-.extra-item{
-    background:#f8fafc;
-    padding:14px;
-    border-radius:10px;
-    color:#475569;
-}
-
-.description{
-    border-top:1px solid #e5e7eb;
-    margin-top:30px;
-    padding-top:25px;
-}
-
-.description h2{
-    margin-top:0;
-}
-
-.description p{
-    color:#475569;
-    line-height:1.8;
-    white-space:pre-line;
-}
-
-/* BUTONLAR */
+/* ACTIONS */
 
 .actions{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:15px;
-    margin-top:30px;
+    display:flex;
+    gap:12px;
+    margin:28px 0;
+    flex-wrap:wrap;
 }
 
 .action{
-    padding:16px;
-    border-radius:12px;
-    text-align:center;
-    text-decoration:none;
+    border:0;
+    border-radius:10px;
+    padding:13px 20px;
+    font-size:14px;
     font-weight:bold;
+    cursor:pointer;
+    text-decoration:none;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:7px;
+}
+
+.favorite{
+    background:#f1f5f9;
+    color:#172033;
+}
+
+.favorite.active{
+    background:#fee2e2;
+    color:#dc2626;
 }
 
 .whatsapp{
@@ -237,84 +229,130 @@ h1{
     color:white;
 }
 
-.phone{
+.back-button{
     background:#0f172a;
     color:white;
 }
 
-.favorite{
-    width:100%;
-    margin-top:15px;
-    padding:15px;
-    background:white;
-    border:1px solid #e5e7eb;
-    border-radius:12px;
-    cursor:pointer;
-    font-size:15px;
-    font-weight:bold;
-}
+/* FEATURES */
 
-.favorite.active{
-    color:#ef4444;
-}
-
-/* PAYLAŞ */
-
-.share{
+.features{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
     margin-top:25px;
-    padding:20px;
+}
+
+.feature{
     background:#f8fafc;
-    border-radius:15px;
+    border:1px solid #e2e8f0;
+    border-radius:13px;
+    padding:18px;
 }
 
-.share h3{
-    margin-top:0;
+.feature-icon{
+    font-size:22px;
+    margin-bottom:8px;
 }
 
-.share-buttons{
+.feature-label{
+    color:#64748b;
+    font-size:12px;
+    margin-bottom:4px;
+}
+
+.feature-value{
+    font-weight:800;
+    font-size:15px;
+}
+
+/* SECTIONS */
+
+.section{
+    margin-top:35px;
+    padding-top:30px;
+    border-top:1px solid #e5e7eb;
+}
+
+.section h2{
+    margin:0 0 18px;
+    font-size:23px;
+}
+
+.description{
+    color:#475569;
+    line-height:1.8;
+    white-space:pre-line;
+}
+
+/* INFO GRID */
+
+.info-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+}
+
+.info-item{
     display:flex;
-    gap:10px;
-    flex-wrap:wrap;
+    justify-content:space-between;
+    gap:15px;
+    padding:15px;
+    background:#f8fafc;
+    border-radius:10px;
 }
 
-.share-button{
-    border:0;
-    padding:11px 15px;
-    border-radius:9px;
-    cursor:pointer;
+.info-item span:first-child{
+    color:#64748b;
+}
+
+.info-item span:last-child{
     font-weight:bold;
+    text-align:right;
 }
 
-.copy{
-    background:#e2e8f0;
+/* LOADING */
+
+.loading{
+    background:white;
+    border-radius:20px;
+    padding:80px 20px;
+    text-align:center;
+    box-shadow:0 10px 35px rgba(15,23,42,.07);
 }
 
-.whatsapp-share{
-    background:#16a34a;
-    color:white;
+.loading h2{
+    margin-bottom:8px;
 }
 
-/* HATA */
+.loading p{
+    color:#64748b;
+}
 
-.loading,
+/* ERROR */
+
 .error{
     background:white;
     border-radius:20px;
-    padding:70px 20px;
+    padding:60px 20px;
     text-align:center;
 }
 
 .error h2{
-    margin-top:0;
+    margin-bottom:10px;
+}
+
+.error p{
+    color:#64748b;
 }
 
 .error a{
     display:inline-block;
     margin-top:15px;
-    padding:13px 20px;
     background:#2563eb;
     color:white;
-    border-radius:10px;
+    padding:12px 20px;
+    border-radius:9px;
     text-decoration:none;
     font-weight:bold;
 }
@@ -322,25 +360,68 @@ h1{
 /* FOOTER */
 
 footer{
-    margin-top:80px;
     background:#0f172a;
     color:white;
-    text-align:center;
     padding:50px 20px;
+    text-align:center;
 }
 
 footer p{
     color:#cbd5e1;
 }
 
-/* MOBİL */
+/* WHATSAPP FLOAT */
 
-@media(max-width:800px){
+.whatsapp-float{
+    position:fixed;
+    right:22px;
+    bottom:22px;
+    width:57px;
+    height:57px;
+    border-radius:50%;
+    background:#16a34a;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-decoration:none;
+    font-size:27px;
+    z-index:900;
+    box-shadow:0 7px 25px rgba(22,163,74,.35);
+}
+
+/* MOBILE */
+
+@media(max-width:850px){
+
+    .gallery{
+        grid-template-columns:1fr;
+        height:420px;
+    }
+
+    .gallery-side{
+        display:none;
+    }
+
+    .features{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .top-info{
+        flex-direction:column;
+    }
+
+    .price{
+        font-size:28px;
+    }
+}
+
+@media(max-width:600px){
 
     header{
         flex-direction:column;
-        gap:15px;
-        padding:16px;
+        gap:14px;
+        padding:15px;
     }
 
     nav{
@@ -349,40 +430,40 @@ footer p{
         justify-content:center;
     }
 
-    .container{
-        margin:25px auto;
+    .page{
+        margin-top:20px;
+        padding:0 12px;
     }
 
-    .main-photo{
-        height:320px;
+    .gallery{
+        height:300px;
     }
 
     .content{
-        padding:23px;
+        padding:22px;
     }
 
-    h1{
-        font-size:28px;
+    .title-area h1{
+        font-size:27px;
     }
 
     .price{
         font-size:25px;
     }
 
-    .details{
+    .features{
         grid-template-columns:1fr 1fr;
     }
 
-    .extra{
+    .info-grid{
         grid-template-columns:1fr;
     }
 
-    .actions{
-        grid-template-columns:1fr;
+    .action{
+        width:100%;
     }
 }
 </style>
-
 </head>
 
 <body>
@@ -402,606 +483,696 @@ footer p{
 
 </header>
 
-<div class="container">
 
-<a href="index.html" class="back">
-← İlanlara Dön
+<main class="page">
+
+<a href="index.html#ilanlar" class="back">
+← İlanlara Geri Dön
 </a>
 
 <div id="app">
+
 <div class="loading">
-🏠 İlan bilgileri yükleniyor...
-</div>
-</div>
-
+<h2>🏠 İlan yükleniyor...</h2>
+<p>Lütfen bekleyin.</p>
 </div>
 
-<footer>
+</div>
+
+</main>
+
+
+<a
+class="whatsapp-float"
+href="https://wa.me/905555555555"
+target="_blank"
+>
+💬
+</a>
+
+
+<footer id="iletisim">
 
 <h2>🏠 Nova Emlak</h2>
 
 <p>📞 0555 555 55 55</p>
+
 <p>📍 İstanbul</p>
+
 <p>Gayrimenkulde doğru adres.</p>
+
 <p>© 2026 Nova Emlak</p>
 
 </footer>
+
 
 <script>
 
 let ilan = null;
 
-let favorites = JSON.parse(
-    localStorage.getItem("novaFavorites") || "[]"
+let favorites =
+JSON.parse(
+localStorage.getItem("novaFavorites") || "[]"
 );
 
-/* HTML GÜVENLİĞİ */
+
+/* =========================
+URL ID
+========================= */
+
+const params =
+new URLSearchParams(
+window.location.search
+);
+
+const id =
+Number(params.get("id"));
+
+
+/* =========================
+HTML GÜVENLİĞİ
+========================= */
 
 function escapeHTML(value){
 
-    return String(value ?? "")
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;");
+return String(value ?? "")
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
+
 }
 
-/* URL ID */
 
-const params = new URLSearchParams(
-    window.location.search
+/* =========================
+FAVORİ
+========================= */
+
+function isFavorite(id){
+
+return favorites.includes(
+Number(id)
 );
 
-const id = params.get("id");
-
-/* FAVORİ */
-
-function saveFavorites(){
-
-    localStorage.setItem(
-        "novaFavorites",
-        JSON.stringify(favorites)
-    );
 }
 
-function isFavorite(){
-
-    if(!ilan) return false;
-
-    return favorites.includes(
-        Number(ilan.id)
-    );
-}
 
 function toggleFavorite(){
 
-    if(!ilan) return;
+if(!ilan) return;
 
-    const ilanId = Number(ilan.id);
+const id =
+Number(ilan.id);
 
-    if(favorites.includes(ilanId)){
+if(
+favorites.includes(id)
+){
 
-        favorites = favorites.filter(
-            x => x !== ilanId
-        );
+favorites =
+favorites.filter(
+x => x !== id
+);
 
-    }else{
+}else{
 
-        favorites.push(ilanId);
+favorites.push(id);
 
-    }
-
-    saveFavorites();
-    updateFavoriteButton();
 }
+
+localStorage.setItem(
+"novaFavorites",
+JSON.stringify(favorites)
+);
+
+updateFavoriteButton();
+
+}
+
 
 function updateFavoriteButton(){
 
-    const button =
-        document.getElementById("favoriteButton");
+const button =
+document.getElementById(
+"favoriteButton"
+);
 
-    if(!button) return;
+if(!button) return;
 
-    if(isFavorite()){
+if(
+isFavorite(ilan.id)
+){
 
-        button.textContent =
-            "❤️ Favorilerden Çıkar";
+button.classList.add("active");
 
-        button.classList.add("active");
+button.innerHTML =
+"❤️ Favorilerden Çıkar";
 
-    }else{
+}else{
 
-        button.textContent =
-            "♡ Favorilere Ekle";
+button.classList.remove("active");
 
-        button.classList.remove("active");
-    }
+button.innerHTML =
+"♡ Favorilere Ekle";
+
 }
 
-/* FOTOĞRAFLAR */
-
-function getImages(){
-
-    if(
-        ilan &&
-        Array.isArray(ilan.images) &&
-        ilan.images.length
-    ){
-
-        return ilan.images.filter(Boolean).slice(0,4);
-    }
-
-    if(
-        ilan &&
-        ilan.image
-    ){
-
-        return [ilan.image];
-    }
-
-    return [
-        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=85"
-    ];
 }
 
-/* ANA FOTOĞRAFI DEĞİŞTİR */
 
-function changePhoto(index){
+/* =========================
+FOTOĞRAFLAR
+========================= */
 
-    const images = getImages();
+function getImages(ilan){
 
-    if(!images[index]) return;
+let images = [];
 
-    const main =
-        document.getElementById("mainPhoto");
+if(
+Array.isArray(ilan.images)
+){
 
-    main.src = images[index];
+images =
+ilan.images
+.filter(Boolean)
+.slice(0,4);
 
-    document
-        .querySelectorAll(".thumb")
-        .forEach((thumb,i)=>{
-
-            thumb.classList.toggle(
-                "active",
-                i === index
-            );
-
-        });
 }
 
-/* İLANI GÖSTER */
+if(
+images.length === 0 &&
+ilan.image
+){
+
+images = [
+ilan.image
+];
+
+}
+
+return images;
+
+}
+
+
+/* =========================
+DEĞER
+========================= */
+
+function value(value){
+
+return (
+value !== undefined &&
+value !== null &&
+String(value).trim() !== ""
+)
+?
+escapeHTML(value)
+:
+"Belirtilmemiş";
+
+}
+
+
+/* =========================
+İLAN GÖSTER
+========================= */
 
 function displayListing(){
 
-    const app =
-        document.getElementById("app");
+const app =
+document.getElementById("app");
 
-    const images = getImages();
+const images =
+getImages(ilan);
 
-    const location = [
-        ilan.city,
-        ilan.district,
-        ilan.neighborhood
-    ]
-    .filter(Boolean)
-    .join(" • ");
+const location =
+[
+ilan.city,
+ilan.district,
+ilan.neighborhood
+]
+.filter(Boolean)
+.join(" • ");
 
-    const price =
-        Number(ilan.price || 0)
-        .toLocaleString("tr-TR");
+const price =
+Number(ilan.price || 0)
+.toLocaleString("tr-TR");
 
-    let gallery = "";
 
-    images.forEach((image,index)=>{
+let galleryHTML = "";
 
-        gallery += `
+if(images.length === 0){
 
-        <div
-            class="thumb ${index === 0 ? "active" : ""}"
-            onclick="changePhoto(${index})"
-        >
-            <img
-                src="${escapeHTML(image)}"
-                alt="Fotoğraf ${index + 1}"
-                onerror="this.style.display='none'"
-            >
-        </div>
+galleryHTML = `
 
-        `;
+<div class="no-image">
+📷 Fotoğraf bulunamadı
+</div>
 
-    });
+`;
 
-    app.innerHTML = `
+}else{
 
-    <div class="card">
+const mainImage =
+escapeHTML(images[0]);
 
-        <div class="gallery">
+galleryHTML = `
 
-            <div class="main-photo">
+<div class="main-photo">
 
-                <img
-                    id="mainPhoto"
-                    src="${escapeHTML(images[0])}"
-                    alt="${escapeHTML(
-                        ilan.title || "Nova Emlak ilanı"
-                    )}"
-                    onerror="
-                        this.onerror=null;
-                        this.src='https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=85';
-                    "
-                >
+<span class="type-badge">
+${value(ilan.type)}
+</span>
 
-            </div>
+<img
+src="${mainImage}"
+alt="${value(ilan.title)}"
+>
 
-            ${
-                images.length > 1
-                ?
-                `<div class="thumbs">${gallery}</div>`
-                :
-                ""
-            }
+</div>
 
-        </div>
+<div class="gallery-side">
 
-        <div class="content">
-
-            <span class="badge">
-                ${escapeHTML(ilan.type || "İlan")}
-            </span>
-
-            <h1>
-                ${escapeHTML(
-                    ilan.title || "Gayrimenkul İlanı"
-                )}
-            </h1>
-
-            <div class="location">
-                📍 ${escapeHTML(location || "-")}
-            </div>
-
-            <div class="price">
-                ${price} TL
-            </div>
-
-            <div class="details">
-
-                <div class="detail">
-                    <strong>Oda</strong>
-                    <span>
-                        🛏️ ${escapeHTML(
-                            ilan.rooms || "-"
-                        )}
-                    </span>
-                </div>
-
-                <div class="detail">
-                    <strong>Alan</strong>
-                    <span>
-                        📐 ${escapeHTML(
-                            ilan.area || "-"
-                        )} m²
-                    </span>
-                </div>
-
-                <div class="detail">
-                    <strong>Bina Yaşı</strong>
-                    <span>
-                        🏢 ${escapeHTML(
-                            ilan.buildingAge || 0
-                        )} yaş
-                    </span>
-                </div>
-
-                <div class="detail">
-                    <strong>Kat</strong>
-                    <span>
-                        🏬 ${escapeHTML(
-                            ilan.floor || "-"
-                        )}
-                    </span>
-                </div>
-
-            </div>
-
-            <div class="extra">
-
-                <div class="extra-item">
-                    🔥 Isıtma:
-                    ${escapeHTML(
-                        ilan.heating || "-"
-                    )}
-                </div>
-
-                <div class="extra-item">
-                    🚿 Banyo:
-                    ${escapeHTML(
-                        ilan.bathrooms || "-"
-                    )}
-                </div>
-
-                <div class="extra-item">
-                    🌿 Balkon:
-                    ${escapeHTML(
-                        ilan.balcony || "-"
-                    )}
-                </div>
-
-                <div class="extra-item">
-                    🏦 Krediye Uygun:
-                    ${escapeHTML(
-                        ilan.credit || "-"
-                    )}
-                </div>
-
-                <div class="extra-item">
-                    📜 Tapu:
-                    ${escapeHTML(
-                        ilan.deed || "-"
-                    )}
-                </div>
-
-                <div class="extra-item">
-                    🏢 Toplam Kat:
-                    ${escapeHTML(
-                        ilan.totalFloors || "-"
-                    )}
-                </div>
-
-            </div>
-
-            ${
-                ilan.description
-                ?
-                `
-                <div class="description">
-
-                    <h2>
-                        📝 İlan Açıklaması
-                    </h2>
-
-                    <p>
-                        ${escapeHTML(
-                            ilan.description
-                        )}
-                    </p>
-
-                </div>
-                `
-                :
-                ""
-            }
-
-            <div class="actions">
-
-                <a
-                    href="https://wa.me/905555555555?text=${encodeURIComponent(
-                        "Merhaba, şu ilan hakkında bilgi almak istiyorum: " +
-                        (ilan.title || "") +
-                        " - " +
-                        window.location.href
-                    )}"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="action whatsapp"
-                >
-                    💬 WhatsApp'tan Bilgi Al
-                </a>
-
-                <a
-                    href="tel:05555555555"
-                    class="action phone"
-                >
-                    📞 Telefonla Ara
-                </a>
-
-            </div>
-
-            <button
-                id="favoriteButton"
-                class="favorite"
-                onclick="toggleFavorite()"
-            >
-                ♡ Favorilere Ekle
-            </button>
-
-            <div class="share">
-
-                <h3>
-                    📤 İlanı Paylaş
-                </h3>
-
-                <div class="share-buttons">
-
-                    <button
-                        class="share-button whatsapp-share"
-                        onclick="shareWhatsApp()"
-                    >
-                        💬 WhatsApp
-                    </button>
-
-                    <button
-                        class="share-button copy"
-                        onclick="copyLink()"
-                    >
-                        🔗 Linki Kopyala
-                    </button>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    `;
-
-    updateFavoriteButton();
-
-    document.title =
-        `${ilan.title || "İlan"} | Nova Emlak`;
+${
+images[1]
+?
+`
+<div>
+<img
+src="${escapeHTML(images[1])}"
+alt="İlan fotoğrafı"
+>
+</div>
+`
+:
+`
+<div class="no-image">
+📷
+</div>
+`
 }
 
-/* WHATSAPP */
-
-function shareWhatsApp(){
-
-    if(!ilan) return;
-
-    const text =
-        `${ilan.title || "Nova Emlak ilanı"}
-
-${window.location.href}`;
-
-    window.open(
-        "https://wa.me/?text=" +
-        encodeURIComponent(text),
-        "_blank"
-    );
+${
+images[2]
+?
+`
+<div>
+<img
+src="${escapeHTML(images[2])}"
+alt="İlan fotoğrafı"
+>
+</div>
+`
+:
+`
+<div class="no-image">
+🏠
+</div>
+`
 }
 
-/* LINK KOPYALA */
+</div>
 
-async function copyLink(){
+`;
 
-    try{
-
-        await navigator.clipboard.writeText(
-            window.location.href
-        );
-
-        alert("✅ İlan bağlantısı kopyalandı.");
-
-    }catch(error){
-
-        alert(
-            "❌ Bağlantı kopyalanamadı."
-        );
-    }
 }
 
-/* İLANI GETİR */
+
+app.innerHTML = `
+
+<div class="detail-card">
+
+<div class="gallery">
+
+${galleryHTML}
+
+</div>
+
+
+<div class="content">
+
+<div class="top-info">
+
+<div class="title-area">
+
+<h1>
+${value(ilan.title || "İlan Detayı")}
+</h1>
+
+<div class="location">
+📍 ${value(location || "-")}
+</div>
+
+</div>
+
+<div class="price">
+${price} TL
+</div>
+
+</div>
+
+
+<div class="actions">
+
+<button
+id="favoriteButton"
+class="action favorite"
+onclick="toggleFavorite()"
+>
+♡ Favorilere Ekle
+</button>
+
+<a
+class="action whatsapp"
+href="https://wa.me/905555555555?text=${encodeURIComponent(
+"Merhaba, " +
+(ilan.title || "ilan") +
+" hakkında bilgi almak istiyorum."
+)}"
+target="_blank"
+>
+💬 WhatsApp'tan Bilgi Al
+</a>
+
+<a
+class="action back-button"
+href="index.html#ilanlar"
+>
+← İlanlara Dön
+</a>
+
+</div>
+
+
+<div class="features">
+
+<div class="feature">
+
+<div class="feature-icon">🛏️</div>
+
+<div class="feature-label">
+Oda Sayısı
+</div>
+
+<div class="feature-value">
+${value(ilan.rooms)}
+</div>
+
+</div>
+
+
+<div class="feature">
+
+<div class="feature-icon">📐</div>
+
+<div class="feature-label">
+Alan
+</div>
+
+<div class="feature-value">
+${value(ilan.area)} m²
+</div>
+
+</div>
+
+
+<div class="feature">
+
+<div class="feature-icon">🏢</div>
+
+<div class="feature-label">
+Bina Yaşı
+</div>
+
+<div class="feature-value">
+${
+ilan.buildingAge
+?
+value(ilan.buildingAge) + " yaş"
+:
+"Belirtilmemiş"
+}
+</div>
+
+</div>
+
+
+<div class="feature">
+
+<div class="feature-icon">🏙️</div>
+
+<div class="feature-label">
+Kat
+</div>
+
+<div class="feature-value">
+${value(ilan.floor)}
+</div>
+
+</div>
+
+</div>
+
+
+<div class="section">
+
+<h2>
+🏠 İlan Özellikleri
+</h2>
+
+<div class="info-grid">
+
+<div class="info-item">
+<span>İlan Türü</span>
+<span>${value(ilan.type)}</span>
+</div>
+
+<div class="info-item">
+<span>Şehir</span>
+<span>${value(ilan.city)}</span>
+</div>
+
+<div class="info-item">
+<span>İlçe</span>
+<span>${value(ilan.district)}</span>
+</div>
+
+<div class="info-item">
+<span>Mahalle</span>
+<span>${value(ilan.neighborhood)}</span>
+</div>
+
+<div class="info-item">
+<span>Oda Sayısı</span>
+<span>${value(ilan.rooms)}</span>
+</div>
+
+<div class="info-item">
+<span>Alan</span>
+<span>${value(ilan.area)} m²</span>
+</div>
+
+<div class="info-item">
+<span>Bina Yaşı</span>
+<span>${value(ilan.buildingAge)}</span>
+</div>
+
+<div class="info-item">
+<span>Bulunduğu Kat</span>
+<span>${value(ilan.floor)}</span>
+</div>
+
+<div class="info-item">
+<span>Toplam Kat</span>
+<span>${value(ilan.totalFloors)}</span>
+</div>
+
+<div class="info-item">
+<span>Isıtma</span>
+<span>${value(ilan.heating)}</span>
+</div>
+
+<div class="info-item">
+<span>Banyo</span>
+<span>${value(ilan.bathrooms)}</span>
+</div>
+
+<div class="info-item">
+<span>Balkon</span>
+<span>${value(ilan.balcony)}</span>
+</div>
+
+<div class="info-item">
+<span>Krediye Uygunluk</span>
+<span>${value(ilan.credit)}</span>
+</div>
+
+<div class="info-item">
+<span>Tapu Durumu</span>
+<span>${value(ilan.deed)}</span>
+</div>
+
+</div>
+
+</div>
+
+
+<div class="section">
+
+<h2>
+📝 İlan Açıklaması
+</h2>
+
+<div class="description">
+
+${value(
+ilan.description ||
+"Bu ilan için henüz açıklama eklenmemiş."
+)}
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+`;
+
+updateFavoriteButton();
+
+}
+
+
+/* =========================
+İLANI GETİR
+========================= */
 
 async function loadListing(){
 
-    const app =
-        document.getElementById("app");
+const app =
+document.getElementById("app");
 
-    if(!id){
+if(!id){
 
-        app.innerHTML = `
+app.innerHTML = `
 
-        <div class="error">
+<div class="error">
 
-            <h2>
-                ❌ İlan bulunamadı
-            </h2>
+<h2>❌ İlan bulunamadı</h2>
 
-            <p>
-                İlan numarası belirtilmemiş.
-            </p>
+<p>Geçerli bir ilan numarası bulunamadı.</p>
 
-            <a href="index.html">
-                Ana Sayfaya Dön
-            </a>
+<a href="index.html#ilanlar">
+← Ana Sayfaya Dön
+</a>
 
-        </div>
+</div>
 
-        `;
+`;
 
-        return;
-    }
+return;
 
-    try{
-
-        const response =
-            await fetch(
-                "/api/ilanlar",
-                {
-                    cache:"no-store"
-                }
-            );
-
-        if(!response.ok){
-
-            throw new Error(
-                "API bağlantısı başarısız."
-            );
-        }
-
-        const data =
-            await response.json();
-
-        if(!Array.isArray(data)){
-
-            throw new Error(
-                "Geçersiz ilan verisi."
-            );
-        }
-
-        ilan =
-            data.find(
-                item =>
-                    String(item.id) ===
-                    String(id)
-            );
-
-        if(!ilan){
-
-            app.innerHTML = `
-
-            <div class="error">
-
-                <h2>
-                    😔 İlan bulunamadı
-                </h2>
-
-                <p>
-                    Bu ilan mevcut değil veya kaldırılmış olabilir.
-                </p>
-
-                <a href="index.html">
-                    İlanlara Dön
-                </a>
-
-            </div>
-
-            `;
-
-            return;
-        }
-
-        displayListing();
-
-    }catch(error){
-
-        console.error(
-            "İlan yükleme hatası:",
-            error
-        );
-
-        app.innerHTML = `
-
-        <div class="error">
-
-            <h2>
-                ⚠️ İlan yüklenemedi
-            </h2>
-
-            <p>
-                Sunucuya bağlanırken bir hata oluştu.
-            </p>
-
-            <a href="index.html">
-                Ana Sayfaya Dön
-            </a>
-
-        </div>
-
-        `;
-    }
 }
+
+
+try{
+
+const response =
+await fetch(
+"/api/ilanlar",
+{
+cache:"no-store"
+}
+);
+
+if(!response.ok){
+
+throw new Error(
+"API bağlantısı başarısız."
+);
+
+}
+
+const data =
+await response.json();
+
+if(!Array.isArray(data)){
+
+throw new Error(
+"Geçersiz ilan verisi."
+);
+
+}
+
+
+ilan =
+data.find(
+item =>
+Number(item.id) === id
+);
+
+
+if(!ilan){
+
+app.innerHTML = `
+
+<div class="error">
+
+<h2>🏠 İlan bulunamadı</h2>
+
+<p>
+Bu ilan silinmiş veya mevcut değil.
+</p>
+
+<a href="index.html#ilanlar">
+← İlanlara Dön
+</a>
+
+</div>
+
+`;
+
+return;
+
+}
+
+
+displayListing();
+
+
+}catch(error){
+
+console.error(
+"İlan detay hatası:",
+error
+);
+
+app.innerHTML = `
+
+<div class="error">
+
+<h2>⚠️ Bir sorun oluştu</h2>
+
+<p>
+İlan bilgileri yüklenemedi.
+Lütfen tekrar deneyin.
+</p>
+
+<a href="index.html#ilanlar">
+← İlanlara Dön
+</a>
+
+</div>
+
+`;
+
+}
+
+}
+
 
 loadListing();
 
