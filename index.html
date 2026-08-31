@@ -4,666 +4,572 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Nova Emlak | Hayalinizdeki Evi Bulun</title>
-
-<meta name="description" content="Nova Emlak ile satılık ve kiralık gayrimenkul ilanlarını keşfedin. İstanbul, Ankara ve İzmir'deki fırsatları inceleyin.">
 
 <style>
 *{box-sizing:border-box}
+
 html{scroll-behavior:smooth}
 
 body{
-margin:0;
-font-family:Arial,Helvetica,sans-serif;
-background:#f5f7fb;
-color:#172033;
+    margin:0;
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f5f7fb;
+    color:#172033;
 }
 
 header{
-position:sticky;
-top:0;
-z-index:1000;
-background:#0f172a;
-color:white;
-padding:18px 6%;
-display:flex;
-align-items:center;
-justify-content:space-between;
-box-shadow:0 5px 25px rgba(0,0,0,.15);
+    position:sticky;
+    top:0;
+    z-index:1000;
+    background:#0f172a;
+    color:white;
+    padding:18px 6%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    box-shadow:0 5px 25px rgba(0,0,0,.15);
 }
 
 .logo{
-color:white;
-text-decoration:none;
-font-size:25px;
-font-weight:900;
+    color:white;
+    text-decoration:none;
+    font-size:25px;
+    font-weight:900;
 }
 
 nav{
-display:flex;
-gap:25px;
+    display:flex;
+    gap:25px;
 }
 
 nav a{
-color:#e5e7eb;
-text-decoration:none;
-font-size:14px;
-font-weight:bold;
+    color:#e5e7eb;
+    text-decoration:none;
+    font-size:14px;
+    font-weight:bold;
 }
 
 nav a:hover{color:#60a5fa}
 
+/* HERO */
+
 .hero{
-min-height:570px;
-display:flex;
-align-items:center;
-justify-content:center;
-text-align:center;
-color:white;
-padding:80px 20px;
-background:
-linear-gradient(rgba(15,23,42,.76),rgba(15,23,42,.58)),
-url("https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1800&q=85");
-background-size:cover;
-background-position:center;
+    min-height:540px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    color:white;
+    padding:80px 20px;
+    background:
+        linear-gradient(rgba(15,23,42,.72),rgba(15,23,42,.58)),
+        url("https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1800&q=85");
+    background-size:cover;
+    background-position:center;
 }
 
 .hero-content{
-max-width:900px;
+    max-width:850px;
 }
 
 .hero-badge{
-display:inline-block;
-padding:10px 18px;
-border-radius:50px;
-background:rgba(255,255,255,.15);
-border:1px solid rgba(255,255,255,.3);
-font-size:13px;
-font-weight:bold;
-margin-bottom:20px;
+    display:inline-block;
+    padding:9px 17px;
+    border-radius:50px;
+    background:rgba(255,255,255,.15);
+    border:1px solid rgba(255,255,255,.3);
+    font-size:13px;
+    font-weight:bold;
+    margin-bottom:20px;
 }
 
 .hero h1{
-font-size:58px;
-margin:0 0 20px;
+    font-size:56px;
+    margin:0 0 18px;
 }
 
 .hero p{
-max-width:680px;
-margin:0 auto;
-font-size:18px;
-line-height:1.7;
-color:#e5e7eb;
+    max-width:680px;
+    margin:auto;
+    font-size:18px;
+    line-height:1.7;
+    color:#e5e7eb;
 }
 
-.hero-buttons{
-display:flex;
-justify-content:center;
-gap:12px;
-margin-top:30px;
-flex-wrap:wrap;
-}
-
-.hero-button{
-padding:15px 24px;
-border-radius:10px;
-text-decoration:none;
-font-weight:bold;
-}
-
-.primary{
-background:#2563eb;
-color:white;
-}
-
-.secondary{
-background:white;
-color:#172033;
-}
+/* SEARCH */
 
 .search-box{
-max-width:1120px;
-margin:-65px auto 65px;
-position:relative;
-z-index:10;
-padding:30px;
-background:white;
-border-radius:20px;
-box-shadow:0 15px 45px rgba(15,23,42,.15);
+    max-width:1120px;
+    margin:-60px auto 70px;
+    position:relative;
+    z-index:10;
+    padding:30px;
+    background:white;
+    border-radius:20px;
+    box-shadow:0 15px 45px rgba(15,23,42,.15);
 }
 
 .search-title h2{
-margin:0 0 6px;
+    margin:0 0 5px;
 }
 
 .search-title p{
-margin:0 0 20px;
-color:#64748b;
+    margin:0 0 20px;
+    color:#64748b;
 }
 
 .filters{
-display:grid;
-grid-template-columns:repeat(5,1fr);
-gap:12px;
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:12px;
 }
 
 .filters select,
 .filters input{
-width:100%;
-padding:14px;
-border:1px solid #dbe1ea;
-border-radius:10px;
-background:white;
-outline:none;
+    width:100%;
+    padding:14px;
+    border:1px solid #dbe1ea;
+    border-radius:10px;
+    background:white;
+    outline:none;
+    font-size:14px;
+}
+
+.filters select:focus,
+.filters input:focus{
+    border-color:#2563eb;
 }
 
 .search-button{
-width:100%;
-margin-top:15px;
-padding:15px;
-border:0;
-border-radius:10px;
-background:#2563eb;
-color:white;
-font-size:16px;
-font-weight:bold;
-cursor:pointer;
+    width:100%;
+    margin-top:15px;
+    padding:15px;
+    border:0;
+    border-radius:10px;
+    background:#2563eb;
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
 }
 
-.search-button:hover{background:#1d4ed8}
+.search-button:hover{
+    background:#1d4ed8;
+}
+
+/* GENERAL */
 
 .container{
-max-width:1200px;
-margin:auto;
-padding:0 20px;
+    max-width:1200px;
+    margin:auto;
+    padding:0 20px;
 }
 
-.section-head{
-display:flex;
-align-items:end;
-justify-content:space-between;
-gap:20px;
-margin-bottom:25px;
+.section{
+    margin-bottom:75px;
 }
 
-.section-head h2{
-margin:0;
-font-size:30px;
+.section-heading{
+    margin-bottom:25px;
 }
 
-.section-head p{
-margin:7px 0 0;
-color:#64748b;
+.section-heading h2{
+    margin:0 0 7px;
+    font-size:30px;
 }
 
-.listings{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:24px;
+.section-heading p{
+    margin:0;
+    color:#64748b;
 }
 
-.card{
-position:relative;
-background:white;
-border-radius:18px;
-overflow:hidden;
-border:1px solid #e5e7eb;
-box-shadow:0 7px 25px rgba(15,23,42,.07);
-transition:.25s;
-}
-
-.card:hover{
-transform:translateY(-5px);
-box-shadow:0 18px 40px rgba(15,23,42,.13);
-}
-
-.card-image{
-position:relative;
-height:230px;
-background:#e2e8f0;
-}
-
-.card-image img{
-width:100%;
-height:100%;
-object-fit:cover;
-display:block;
-}
-
-.badge{
-position:absolute;
-top:13px;
-left:13px;
-background:#2563eb;
-color:white;
-padding:7px 11px;
-border-radius:7px;
-font-size:12px;
-font-weight:bold;
-}
-
-.favorite{
-position:absolute;
-top:13px;
-right:13px;
-width:43px;
-height:43px;
-border:0;
-border-radius:50%;
-background:white;
-font-size:22px;
-cursor:pointer;
-box-shadow:0 4px 15px rgba(0,0,0,.2);
-}
-
-.favorite.active{color:#ef4444}
-
-.card-content{padding:20px}
-
-.card h3{
-margin:3px 0 10px;
-font-size:20px;
-}
-
-.location{
-color:#64748b;
-font-size:14px;
-margin-bottom:13px;
-}
-
-.details{
-display:flex;
-flex-wrap:wrap;
-gap:8px;
-margin-bottom:17px;
-}
-
-.detail-item{
-background:#f1f5f9;
-padding:7px 9px;
-border-radius:7px;
-font-size:13px;
-color:#64748b;
-}
-
-.price{
-color:#2563eb;
-font-size:22px;
-font-weight:900;
-margin-bottom:16px;
-}
-
-.detail-button{
-display:block;
-text-align:center;
-background:#0f172a;
-color:white;
-padding:13px;
-border-radius:9px;
-text-decoration:none;
-font-weight:bold;
-}
-
-.empty{
-grid-column:1/-1;
-background:white;
-padding:50px 20px;
-text-align:center;
-border-radius:18px;
-border:1px solid #e5e7eb;
-}
-
-.empty button{
-padding:12px 20px;
-border:0;
-border-radius:9px;
-background:#2563eb;
-color:white;
-cursor:pointer;
-font-weight:bold;
-}
-
-/* POPÜLER BÖLGELER */
-
-.regions{
-margin:90px 0;
-}
-
-.region-grid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:22px;
-}
-
-.region{
-min-height:210px;
-border-radius:18px;
-overflow:hidden;
-position:relative;
-color:white;
-display:flex;
-align-items:end;
-padding:25px;
-background-size:cover;
-background-position:center;
-box-shadow:0 10px 30px rgba(15,23,42,.14);
-transition:.25s;
-}
-
-.region:hover{
-transform:translateY(-5px);
-}
-
-.region:after{
-content:"";
-position:absolute;
-inset:0;
-background:linear-gradient(transparent,rgba(15,23,42,.85));
-}
-
-.region-content{
-position:relative;
-z-index:2;
-}
-
-.region h3{
-margin:0 0 5px;
-font-size:25px;
-}
-
-.region p{
-margin:0;
-color:#e5e7eb;
-}
-
-/* NEDEN NOVA */
-
-.why{
-margin:90px 0;
-}
-
-.why-grid{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:18px;
-}
-
-.why-card{
-background:white;
-padding:28px 22px;
-border:1px solid #e5e7eb;
-border-radius:16px;
-text-align:center;
-}
-
-.why-icon{
-font-size:35px;
-margin-bottom:12px;
-}
-
-.why-card h3{
-margin:5px 0 10px;
-}
-
-.why-card p{
-margin:0;
-color:#64748b;
-line-height:1.6;
-font-size:14px;
-}
-
-/* İSTATİSTİK */
+/* STATS */
 
 .stats{
-margin:80px 0;
+    max-width:1200px;
+    margin:0 auto 75px;
+    padding:0 20px;
 }
 
 .stats-grid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:18px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
 }
 
 .stat{
-background:white;
-border:1px solid #e5e7eb;
-border-radius:15px;
-padding:27px;
-text-align:center;
+    background:white;
+    border:1px solid #e5e7eb;
+    border-radius:16px;
+    padding:25px;
+    text-align:center;
+    box-shadow:0 5px 20px rgba(15,23,42,.05);
 }
 
 .stat-number{
-color:#2563eb;
-font-size:30px;
-font-weight:900;
+    color:#2563eb;
+    font-size:29px;
+    font-weight:900;
 }
 
 .stat-text{
-color:#64748b;
-margin-top:7px;
-font-size:14px;
+    color:#64748b;
+    margin-top:6px;
+    font-size:14px;
 }
 
-/* FAVORİ */
+/* CITIES */
 
-.favorites-section{
-margin:90px 0 70px;
-}
-
-.favorite-count{
-color:#64748b;
-}
-
-/* CTA */
-
-.cta{
-margin:90px 0;
-padding:55px 30px;
-border-radius:22px;
-text-align:center;
-color:white;
-background:
-linear-gradient(135deg,#0f172a,#1e3a8a);
-}
-
-.cta h2{
-font-size:34px;
-margin:0 0 12px;
-}
-
-.cta p{
-color:#dbeafe;
-max-width:650px;
-margin:0 auto 25px;
-line-height:1.7;
-}
-
-.cta a{
-display:inline-block;
-background:white;
-color:#172033;
-padding:14px 23px;
-border-radius:10px;
-text-decoration:none;
-font-weight:bold;
-}
-
-/* İLETİŞİM */
-
-.contact{
-margin:90px 0;
-}
-
-.contact-grid{
-display:grid;
-grid-template-columns:1.3fr 1fr;
-gap:25px;
-}
-
-.contact-card{
-background:white;
-border:1px solid #e5e7eb;
-border-radius:18px;
-padding:30px;
-}
-
-.contact-card h2{
-margin-top:0;
-}
-
-.contact-item{
-padding:16px 0;
-border-bottom:1px solid #edf0f4;
-}
-
-.contact-item:last-child{
-border-bottom:0;
-}
-
-.contact-item strong{
-display:block;
-margin-bottom:5px;
-}
-
-.contact-item span{
-color:#64748b;
-}
-
-.city-list{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:12px;
-margin-top:20px;
+.city-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
 }
 
 .city-card{
-background:#f8fafc;
-border:1px solid #e5e7eb;
-border-radius:12px;
-padding:18px;
-text-align:center;
-font-weight:bold;
+    position:relative;
+    height:220px;
+    border-radius:18px;
+    overflow:hidden;
+    cursor:pointer;
+    box-shadow:0 8px 25px rgba(15,23,42,.12);
 }
 
-.city-card span{
-display:block;
-font-size:28px;
-margin-bottom:7px;
+.city-card img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:.3s;
+}
+
+.city-card:hover img{
+    transform:scale(1.06);
+}
+
+.city-overlay{
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:flex-end;
+    padding:24px;
+    background:linear-gradient(transparent,rgba(15,23,42,.8));
+    color:white;
+}
+
+.city-overlay h3{
+    margin:0;
+    font-size:25px;
+}
+
+.city-overlay span{
+    display:block;
+    margin-top:5px;
+    color:#e5e7eb;
+    font-size:14px;
+}
+
+/* LISTINGS */
+
+.listings{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:24px;
+}
+
+.card{
+    position:relative;
+    background:white;
+    border-radius:18px;
+    overflow:hidden;
+    border:1px solid #e5e7eb;
+    box-shadow:0 7px 25px rgba(15,23,42,.07);
+    transition:.25s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 18px 40px rgba(15,23,42,.13);
+}
+
+.card-image{
+    position:relative;
+    height:230px;
+}
+
+.card-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+}
+
+.badge{
+    position:absolute;
+    top:13px;
+    left:13px;
+    background:#2563eb;
+    color:white;
+    padding:7px 11px;
+    border-radius:7px;
+    font-size:12px;
+    font-weight:bold;
+}
+
+.favorite{
+    position:absolute;
+    top:13px;
+    right:13px;
+    width:43px;
+    height:43px;
+    border:0;
+    border-radius:50%;
+    background:white;
+    font-size:22px;
+    cursor:pointer;
+    box-shadow:0 4px 15px rgba(0,0,0,.2);
+}
+
+.favorite.active{
+    color:#ef4444;
+}
+
+.card-content{
+    padding:20px;
+}
+
+.card h3{
+    margin:3px 0 10px;
+    font-size:20px;
+}
+
+.location{
+    color:#64748b;
+    font-size:14px;
+    margin-bottom:13px;
+}
+
+.details{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-bottom:17px;
+}
+
+.detail-item{
+    background:#f1f5f9;
+    padding:7px 9px;
+    border-radius:7px;
+    font-size:13px;
+    color:#64748b;
+}
+
+.price{
+    color:#2563eb;
+    font-size:22px;
+    font-weight:900;
+    margin-bottom:16px;
+}
+
+.detail-button{
+    display:block;
+    text-align:center;
+    background:#0f172a;
+    color:white;
+    padding:13px;
+    border-radius:9px;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.detail-button:hover{
+    background:#1e293b;
+}
+
+/* EMPTY */
+
+.empty{
+    grid-column:1/-1;
+    background:white;
+    padding:50px 20px;
+    text-align:center;
+    border-radius:18px;
+    border:1px solid #e5e7eb;
+}
+
+.empty h2{
+    color:#172033;
+}
+
+.empty button{
+    padding:12px 20px;
+    border:0;
+    border-radius:9px;
+    background:#2563eb;
+    color:white;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+/* FAVORITES */
+
+.favorites-section{
+    margin-top:80px;
+}
+
+.favorite-count{
+    color:#64748b;
+    font-size:14px;
+}
+
+/* CONTACT */
+
+.contact-section{
+    margin-top:90px;
+}
+
+.contact-box{
+    background:#0f172a;
+    color:white;
+    border-radius:22px;
+    padding:40px;
+    display:grid;
+    grid-template-columns:1.2fr 1fr;
+    gap:35px;
+}
+
+.contact-box h2{
+    margin-top:0;
+    font-size:30px;
+}
+
+.contact-box p{
+    color:#cbd5e1;
+    line-height:1.7;
+}
+
+.contact-cards{
+    display:grid;
+    gap:12px;
+}
+
+.contact-card{
+    background:rgba(255,255,255,.07);
+    border:1px solid rgba(255,255,255,.1);
+    padding:18px;
+    border-radius:13px;
+}
+
+.contact-card strong{
+    display:block;
+    margin-bottom:5px;
+}
+
+.contact-card span{
+    color:#cbd5e1;
+    font-size:14px;
 }
 
 /* WHATSAPP */
 
 .whatsapp-float{
-position:fixed;
-right:22px;
-bottom:22px;
-width:57px;
-height:57px;
-border-radius:50%;
-background:#16a34a;
-color:white;
-display:flex;
-align-items:center;
-justify-content:center;
-text-decoration:none;
-font-size:27px;
-z-index:900;
-box-shadow:0 7px 25px rgba(22,163,74,.35);
+    position:fixed;
+    right:22px;
+    bottom:22px;
+    width:57px;
+    height:57px;
+    border-radius:50%;
+    background:#16a34a;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-decoration:none;
+    font-size:27px;
+    z-index:900;
+    box-shadow:0 7px 25px rgba(22,163,74,.35);
 }
 
 /* FOOTER */
 
 footer{
-margin-top:80px;
-background:#0f172a;
-color:white;
-padding:55px 20px;
-text-align:center;
+    margin-top:80px;
+    background:#020617;
+    color:white;
+    padding:45px 20px;
+    text-align:center;
 }
 
 footer p{
-color:#cbd5e1;
+    color:#94a3b8;
 }
 
-/* MOBILE */
+/* RESPONSIVE */
 
 @media(max-width:950px){
 
-.filters{
-grid-template-columns:repeat(2,1fr);
-}
+    .filters{
+        grid-template-columns:repeat(2,1fr);
+    }
 
-.listings{
-grid-template-columns:repeat(2,1fr);
-}
+    .listings{
+        grid-template-columns:repeat(2,1fr);
+    }
 
-.why-grid{
-grid-template-columns:repeat(2,1fr);
-}
+    .city-grid{
+        grid-template-columns:1fr;
+    }
 
-.contact-grid{
-grid-template-columns:1fr;
-}
-
+    .contact-box{
+        grid-template-columns:1fr;
+    }
 }
 
 @media(max-width:650px){
 
-header{
-flex-direction:column;
-gap:14px;
-padding:15px;
-}
+    header{
+        flex-direction:column;
+        gap:14px;
+        padding:15px;
+    }
 
-nav{
-gap:14px;
-flex-wrap:wrap;
-justify-content:center;
-}
+    nav{
+        gap:14px;
+        flex-wrap:wrap;
+        justify-content:center;
+    }
 
-.hero{
-min-height:500px;
-}
+    .hero{
+        min-height:450px;
+    }
 
-.hero h1{
-font-size:38px;
-}
+    .hero h1{
+        font-size:38px;
+    }
 
-.hero p{
-font-size:16px;
-}
+    .hero p{
+        font-size:16px;
+    }
 
-.search-box{
-margin:20px;
-}
+    .search-box{
+        margin:20px;
+    }
 
-.filters{
-grid-template-columns:1fr;
-}
+    .filters{
+        grid-template-columns:1fr;
+    }
 
-.listings,
-.region-grid{
-grid-template-columns:1fr;
-}
+    .listings{
+        grid-template-columns:1fr;
+    }
 
-.stats-grid,
-.why-grid{
-grid-template-columns:1fr;
-}
+    .stats-grid{
+        grid-template-columns:1fr;
+    }
 
-.city-list{
-grid-template-columns:1fr;
-}
-
-.section-head{
-display:block;
-}
-
-.cta h2{
-font-size:27px;
-}
-
+    .contact-box{
+        padding:25px;
+    }
 }
 </style>
 
@@ -673,12 +579,14 @@ font-size:27px;
 
 <header>
 
-<a href="index.html" class="logo">🏠 NOVA EMLAK</a>
+<a href="index.html" class="logo">
+🏠 NOVA EMLAK
+</a>
 
 <nav>
 <a href="index.html">Ana Sayfa</a>
+<a href="#sehirler">Şehirler</a>
 <a href="#ilanlar">İlanlar</a>
-<a href="#bolgeler">Bölgeler</a>
 <a href="#favoriler">❤️ Favoriler</a>
 <a href="#iletisim">İletişim</a>
 </nav>
@@ -697,20 +605,8 @@ font-size:27px;
 
 <p>
 Satılık ve kiralık gayrimenkulleri keşfedin.
-Size uygun evi kolayca bulun, ilanları karşılaştırın ve detayları inceleyin.
+Size uygun evi kolayca bulun ve ilan detaylarını inceleyin.
 </p>
-
-<div class="hero-buttons">
-
-<a href="#ilanlar" class="hero-button primary">
-🏡 İlanları İncele
-</a>
-
-<a href="#iletisim" class="hero-button secondary">
-📞 Bizimle İletişime Geç
-</a>
-
-</div>
 
 </div>
 
@@ -720,9 +616,11 @@ Size uygun evi kolayca bulun, ilanları karşılaştırın ve detayları inceley
 
 <div class="search-title">
 
-<h2>🔎 Hayalinizdeki Evi Arayın</h2>
+<h2>🔎 Gayrimenkul Ara</h2>
 
-<p>Filtrelerinizi seçin ve size uygun ilanları kolayca bulun.</p>
+<p>
+Filtrelerinizi seçin ve size uygun ilanları bulun.
+</p>
 
 </div>
 
@@ -762,116 +660,7 @@ Size uygun evi kolayca bulun, ilanları karşılaştırın ve detayları inceley
 
 </div>
 
-<div class="container" id="ilanlar">
-
-<div class="section-head">
-
-<div>
-<h2>🏡 Güncel İlanlar</h2>
-<p id="result">İlanlar yükleniyor...</p>
-</div>
-
-</div>
-
-<div class="listings" id="listings"></div>
-
-</div>
-
-<section class="regions container" id="bolgeler">
-
-<div class="section-head">
-
-<div>
-<h2>📍 Popüler Bölgeler</h2>
-<p>Türkiye'nin öne çıkan şehirlerinde gayrimenkul fırsatlarını keşfedin.</p>
-</div>
-
-</div>
-
-<div class="region-grid">
-
-<div
-class="region"
-style="background-image:url('https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=1000&q=85')"
->
-
-<div class="region-content">
-<h3>İstanbul</h3>
-<p>Boğazın iki yakasında yaşam</p>
-</div>
-
-</div>
-
-<div
-class="region"
-style="background-image:url('https://images.unsplash.com/photo-1605332011967-1b5f1e4a8f0b?auto=format&fit=crop&w=1000&q=85')"
->
-
-<div class="region-content">
-<h3>Ankara</h3>
-<p>Başkentte yeni yaşam fırsatları</p>
-</div>
-
-</div>
-
-<div
-class="region"
-style="background-image:url('https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=1000&q=85')"
->
-
-<div class="region-content">
-<h3>İzmir</h3>
-<p>Ege'nin huzurlu yaşamı</p>
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<section class="why container">
-
-<div class="section-head">
-
-<div>
-<h2>✨ Neden Nova Emlak?</h2>
-<p>Gayrimenkul arayışınızı daha kolay hale getiriyoruz.</p>
-</div>
-
-</div>
-
-<div class="why-grid">
-
-<div class="why-card">
-<div class="why-icon">🔎</div>
-<h3>Kolay Arama</h3>
-<p>İhtiyacınıza uygun ilanları filtrelerle hızlıca bulun.</p>
-</div>
-
-<div class="why-card">
-<div class="why-icon">🏡</div>
-<h3>Geniş İlan Seçeneği</h3>
-<p>Satılık ve kiralık gayrimenkulleri tek yerde inceleyin.</p>
-</div>
-
-<div class="why-card">
-<div class="why-icon">❤️</div>
-<h3>Favorilerinizi Kaydedin</h3>
-<p>Beğendiğiniz ilanları favorilerinize ekleyerek tekrar bulun.</p>
-</div>
-
-<div class="why-card">
-<div class="why-icon">📞</div>
-<h3>Kolay İletişim</h3>
-<p>İlanlar hakkında hızlıca bilgi almak için bizimle iletişime geçin.</p>
-</div>
-
-</div>
-
-</section>
-
-<section class="stats container">
+<div class="stats">
 
 <div class="stats-grid">
 
@@ -892,16 +681,94 @@ style="background-image:url('https://images.unsplash.com/photo-1548013146-724797
 
 </div>
 
+</div>
+
+<div class="container">
+
+<!-- ŞEHİRLER -->
+
+<section class="section" id="sehirler">
+
+<div class="section-heading">
+
+<h2>📍 Popüler Şehirler</h2>
+
+<p>Türkiye'nin popüler şehirlerindeki gayrimenkulleri keşfedin.</p>
+
+</div>
+
+<div class="city-grid">
+
+<div class="city-card" onclick="selectCity('İstanbul')">
+
+<img src="https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=1000&q=80">
+
+<div class="city-overlay">
+<div>
+<h3>İstanbul</h3>
+<span>Gayrimenkulleri keşfet →</span>
+</div>
+</div>
+
+</div>
+
+<div class="city-card" onclick="selectCity('Ankara')">
+
+<img src="https://images.unsplash.com/photo-1596484552834-6a58f850e0a1?auto=format&fit=crop&w=1000&q=80">
+
+<div class="city-overlay">
+<div>
+<h3>Ankara</h3>
+<span>Gayrimenkulleri keşfet →</span>
+</div>
+</div>
+
+</div>
+
+<div class="city-card" onclick="selectCity('İzmir')">
+
+<img src="https://images.unsplash.com/photo-1601581875309-fafbf2d3ed3a?auto=format&fit=crop&w=1000&q=80">
+
+<div class="city-overlay">
+<div>
+<h3>İzmir</h3>
+<span>Gayrimenkulleri keşfet →</span>
+</div>
+</div>
+
+</div>
+
+</div>
+
 </section>
 
-<section class="favorites-section container" id="favoriler">
+<!-- İLANLAR -->
 
-<div class="section-head">
+<section class="section" id="ilanlar">
 
-<div>
-<h2>❤️ Favorilerim</h2>
-<p id="favoriteCount">0 favori</p>
+<div class="section-heading">
+
+<h2>🏡 Güncel İlanlar</h2>
+
+<p id="result">İlanlar yükleniyor...</p>
+
 </div>
+
+<div class="listings" id="listings"></div>
+
+</section>
+
+<!-- FAVORİLER -->
+
+<section class="section favorites-section" id="favoriler">
+
+<div class="section-heading">
+
+<h2>❤️ Favorilerim</h2>
+
+<p class="favorite-count" id="favoriteCount">
+0 favori
+</p>
 
 </div>
 
@@ -909,83 +776,44 @@ style="background-image:url('https://images.unsplash.com/photo-1548013146-724797
 
 </section>
 
-<section class="cta container">
+<!-- İLETİŞİM -->
 
-<h2>🏠 Aradığınız Evi Birlikte Bulalım</h2>
+<section class="contact-section" id="iletisim">
 
-<p>
-Doğru evi bulmak için ilanlarımızı inceleyin.
-Aradığınız gayrimenkulü bulamadıysanız bizimle iletişime geçin.
-</p>
-
-<a href="#iletisim">📞 İletişime Geç</a>
-
-</section>
-
-<section class="contact container" id="iletisim">
-
-<div class="section-head">
+<div class="contact-box">
 
 <div>
-<h2>📞 İletişim</h2>
-<p>Nova Emlak ekibiyle iletişime geçin.</p>
-</div>
+
+<h2>📞 Nova Emlak ile İletişime Geçin</h2>
+
+<p>
+Gayrimenkul ilanları hakkında bilgi almak,
+evinizi satmak veya kiralamak için bizimle iletişime geçebilirsiniz.
+</p>
+
+<p>
+🏠 Güvenilir gayrimenkul hizmeti<br>
+📍 İstanbul ve çevresi<br>
+⏰ 7/24 online ilan inceleme
+</p>
 
 </div>
 
-<div class="contact-grid">
+<div class="contact-cards">
 
 <div class="contact-card">
-
-<h2>🏢 Nova Emlak</h2>
-
-<div class="contact-item">
 <strong>📞 Telefon</strong>
 <span>0555 555 55 55</span>
 </div>
 
-<div class="contact-item">
+<div class="contact-card">
 <strong>💬 WhatsApp</strong>
-<span>Hızlı bilgi almak için WhatsApp üzerinden ulaşabilirsiniz.</span>
-</div>
-
-<div class="contact-item">
-<strong>📍 Ofis</strong>
-<span>İstanbul, Türkiye</span>
-</div>
-
-<div class="contact-item">
-<strong>🕐 Çalışma Saatleri</strong>
-<span>Pazartesi - Cumartesi: 09:00 - 19:00</span>
-</div>
-
+<span>Hızlı iletişim için WhatsApp'tan ulaşabilirsiniz.</span>
 </div>
 
 <div class="contact-card">
-
-<h2>📍 Hizmet Bölgelerimiz</h2>
-
-<p style="color:#64748b;line-height:1.7">
-İstanbul, Ankara ve İzmir başta olmak üzere farklı bölgelerdeki gayrimenkul fırsatlarını takip edin.
-</p>
-
-<div class="city-list">
-
-<div class="city-card">
-<span>🌉</span>
-İstanbul
-</div>
-
-<div class="city-card">
-<span>🏛️</span>
-Ankara
-</div>
-
-<div class="city-card">
-<span>🌊</span>
-İzmir
-</div>
-
+<strong>📍 Ofis</strong>
+<span>İstanbul, Türkiye</span>
 </div>
 
 </div>
@@ -993,12 +821,13 @@ Ankara
 </div>
 
 </section>
+
+</div>
 
 <a
 class="whatsapp-float"
 href="https://wa.me/905555555555"
 target="_blank"
-rel="noopener noreferrer"
 
 >
 
@@ -1010,7 +839,7 @@ rel="noopener noreferrer"
 
 <p>📞 0555 555 55 55</p>
 
-<p>📍 İstanbul • Ankara • İzmir</p>
+<p>📍 İstanbul</p>
 
 <p>Gayrimenkulde doğru adres.</p>
 
@@ -1020,11 +849,11 @@ rel="noopener noreferrer"
 
 <script>
 
-let allListings=[];
+let allListings = [];
 
-let favorites=
+let favorites =
 JSON.parse(
-localStorage.getItem("novaFavorites")||"[]"
+localStorage.getItem("novaFavorites") || "[]"
 );
 
 function saveFavorites(){
@@ -1044,7 +873,7 @@ return favorites.includes(Number(id));
 
 function escapeHTML(value){
 
-return String(value??"")
+return String(value ?? "")
 .replace(/&/g,"&amp;")
 .replace(/</g,"&lt;")
 .replace(/>/g,"&gt;")
@@ -1055,12 +884,13 @@ return String(value??"")
 
 function toggleFavorite(id){
 
-id=Number(id);
+id = Number(id);
 
 if(favorites.includes(id)){
 
-favorites=favorites.filter(
-favoriteId=>favoriteId!==id
+favorites =
+favorites.filter(
+favoriteId => favoriteId !== id
 );
 
 }else{
@@ -1083,13 +913,10 @@ async function loadListings(){
 
 try{
 
-const response=
-await fetch(
-"/api/ilanlar",
-{
+const response =
+await fetch("/api/ilanlar",{
 cache:"no-store"
-}
-);
+});
 
 if(!response.ok){
 
@@ -1099,7 +926,7 @@ throw new Error(
 
 }
 
-const data=
+const data =
 await response.json();
 
 if(!Array.isArray(data)){
@@ -1110,11 +937,11 @@ throw new Error(
 
 }
 
-allListings=data;
+allListings = data;
 
 document.getElementById(
 "totalListings"
-).textContent=
+).textContent =
 allListings.length;
 
 displayListings(allListings);
@@ -1130,7 +957,7 @@ error
 
 document.getElementById(
 "result"
-).textContent=
+).textContent =
 "İlanlar yüklenemedi. Lütfen sayfayı yenileyin.";
 
 }
@@ -1139,34 +966,34 @@ document.getElementById(
 
 function getCurrentFilteredListings(){
 
-const type=
+const type =
 document.getElementById("type").value;
 
-const city=
+const city =
 document.getElementById("city").value;
 
-const rooms=
+const rooms =
 document.getElementById("rooms").value;
 
-const minPrice=
+const minPrice =
 Number(
 document.getElementById("minPrice").value
-)||0;
+) || 0;
 
-const maxPrice=
+const maxPrice =
 Number(
 document.getElementById("maxPrice").value
-)||Infinity;
+) || Infinity;
 
 return allListings.filter(
 function(ilan){
 
-return(
-(!type||ilan.type===type)&&
-(!city||ilan.city===city)&&
-(!rooms||ilan.rooms===rooms)&&
-Number(ilan.price||0)>=minPrice&&
-Number(ilan.price||0)<=maxPrice
+return (
+(!type || ilan.type === type) &&
+(!city || ilan.city === city) &&
+(!rooms || ilan.rooms === rooms) &&
+Number(ilan.price || 0) >= minPrice &&
+Number(ilan.price || 0) <= maxPrice
 );
 
 }
@@ -1176,19 +1003,19 @@ Number(ilan.price||0)<=maxPrice
 
 function displayListings(ilanlar){
 
-const container=
+const container =
 document.getElementById("listings");
 
-container.innerHTML="";
+container.innerHTML = "";
 
 document.getElementById(
 "result"
-).textContent=
-ilanlar.length+" ilan bulundu.";
+).textContent =
+ilanlar.length + " ilan bulundu.";
 
-if(ilanlar.length===0){
+if(ilanlar.length === 0){
 
-container.innerHTML=`
+container.innerHTML = `
 
 <div class="empty">
 
@@ -1213,15 +1040,15 @@ return;
 ilanlar.forEach(
 function(ilan){
 
-const card=
+const card =
 document.createElement("div");
 
-card.className="card";
+card.className = "card";
 
-const favorite=
+const favorite =
 isFavorite(ilan.id);
 
-const location=
+const location =
 [
 ilan.city,
 ilan.district
@@ -1229,37 +1056,25 @@ ilan.district
 .filter(Boolean)
 .join(" • ");
 
-const image=
-ilan.image||
-(
-Array.isArray(ilan.images)&&
-ilan.images.length
-?
-ilan.images[0]
-:
-"https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1000&q=85"
-);
-
-card.innerHTML=`
+card.innerHTML = `
 
 <div class="card-image">
 
 <img
-src="${escapeHTML(image)}"
-alt="${escapeHTML(ilan.title||"Nova Emlak ilanı")}"
+src="${escapeHTML(ilan.image || "")}"
+alt="${escapeHTML(ilan.title || "Nova Emlak ilanı")}"
 loading="lazy"
-onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1000&q=85';"
 >
 
 <span class="badge">
-${escapeHTML(ilan.type||"İlan")}
+${escapeHTML(ilan.type || "")}
 </span>
 
 <button
-class="favorite ${favorite?"active":""}"
+class="favorite ${favorite ? "active" : ""}"
 onclick="toggleFavorite(${Number(ilan.id)})"
 >
-${favorite?"❤️":"♡"}
+${favorite ? "❤️" : "♡"}
 </button>
 
 </div>
@@ -1267,21 +1082,21 @@ ${favorite?"❤️":"♡"}
 <div class="card-content">
 
 <h3>
-${escapeHTML(ilan.title||"İlan")}
+${escapeHTML(ilan.title || "İlan")}
 </h3>
 
 <div class="location">
-📍 ${escapeHTML(location||"-")}
+📍 ${escapeHTML(location || "-")}
 </div>
 
 <div class="details">
 
 <span class="detail-item">
-🛏️ ${escapeHTML(ilan.rooms||"-")}
+🛏️ ${escapeHTML(ilan.rooms || "-")}
 </span>
 
 <span class="detail-item">
-📐 ${escapeHTML(String(ilan.area||"-"))} m²
+📐 ${escapeHTML(String(ilan.area || "-"))} m²
 </span>
 
 ${
@@ -1292,13 +1107,14 @@ ilan.buildingAge
 🏢 ${escapeHTML(String(ilan.buildingAge))} yaş
 </span>
 `
-:""
+:
+""
 }
 
 </div>
 
 <div class="price">
-${Number(ilan.price||0).toLocaleString("tr-TR")} TL
+${Number(ilan.price || 0).toLocaleString("tr-TR")} TL
 </div>
 
 <a
@@ -1321,40 +1137,41 @@ container.appendChild(card);
 
 function displayFavorites(){
 
-const container=
+const container =
 document.getElementById(
 "favoriteListings"
 );
 
-const count=
+const count =
 document.getElementById(
 "favoriteCount"
 );
 
-const favoriteListings=
+const favoriteListings =
 allListings.filter(
-ilan=>
+ilan =>
 favorites.includes(
 Number(ilan.id)
 )
 );
 
-count.textContent=
-favoriteListings.length+
+count.textContent =
+favoriteListings.length +
 " favori";
 
-container.innerHTML="";
+container.innerHTML = "";
 
-if(favoriteListings.length===0){
+if(favoriteListings.length === 0){
 
-container.innerHTML=`
+container.innerHTML = `
 
 <div class="empty">
 
 <h2>❤️ Henüz favori ilanınız yok</h2>
 
 <p>
-Beğendiğiniz ilanların üzerindeki ❤️ butonuna basarak favorilerinize ekleyebilirsiniz.
+Beğendiğiniz ilanların üzerindeki ❤️
+butonuna basarak favorilerinize ekleyebilirsiniz.
 </p>
 
 <button
@@ -1374,12 +1191,12 @@ return;
 favoriteListings.forEach(
 function(ilan){
 
-const card=
+const card =
 document.createElement("div");
 
-card.className="card";
+card.className = "card";
 
-const location=
+const location =
 [
 ilan.city,
 ilan.district
@@ -1387,29 +1204,18 @@ ilan.district
 .filter(Boolean)
 .join(" • ");
 
-const image=
-ilan.image||
-(
-Array.isArray(ilan.images)&&
-ilan.images.length
-?
-ilan.images[0]
-:
-"https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1000&q=85"
-);
-
-card.innerHTML=`
+card.innerHTML = `
 
 <div class="card-image">
 
 <img
-src="${escapeHTML(image)}"
-alt="${escapeHTML(ilan.title||"Nova Emlak ilanı")}"
+src="${escapeHTML(ilan.image || "")}"
+alt="${escapeHTML(ilan.title || "Nova Emlak ilanı")}"
 loading="lazy"
 >
 
 <span class="badge">
-${escapeHTML(ilan.type||"İlan")}
+${escapeHTML(ilan.type || "")}
 </span>
 
 <button
@@ -1424,27 +1230,27 @@ onclick="toggleFavorite(${Number(ilan.id)})"
 <div class="card-content">
 
 <h3>
-${escapeHTML(ilan.title||"İlan")}
+${escapeHTML(ilan.title || "İlan")}
 </h3>
 
 <div class="location">
-📍 ${escapeHTML(location||"-")}
+📍 ${escapeHTML(location || "-")}
 </div>
 
 <div class="details">
 
 <span class="detail-item">
-🛏️ ${escapeHTML(ilan.rooms||"-")}
+🛏️ ${escapeHTML(ilan.rooms || "-")}
 </span>
 
 <span class="detail-item">
-📐 ${escapeHTML(String(ilan.area||"-"))} m²
+📐 ${escapeHTML(String(ilan.area || "-"))} m²
 </span>
 
 </div>
 
 <div class="price">
-${Number(ilan.price||0).toLocaleString("tr-TR")} TL
+${Number(ilan.price || 0).toLocaleString("tr-TR")} TL
 </div>
 
 <a
@@ -1481,13 +1287,21 @@ behavior:"smooth"
 
 function resetSearch(){
 
-document.getElementById("type").value="";
-document.getElementById("city").value="";
-document.getElementById("rooms").value="";
-document.getElementById("minPrice").value="";
-document.getElementById("maxPrice").value="";
+document.getElementById("type").value = "";
+document.getElementById("city").value = "";
+document.getElementById("rooms").value = "";
+document.getElementById("minPrice").value = "";
+document.getElementById("maxPrice").value = "";
 
 displayListings(allListings);
+
+}
+
+function selectCity(city){
+
+document.getElementById("city").value = city;
+
+searchListings();
 
 }
 
