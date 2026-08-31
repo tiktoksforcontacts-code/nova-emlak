@@ -4,22 +4,14 @@
 <head>
 
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
-
-<title>Nova Emlak | Satılık ve Kiralık Gayrimenkuller</title>
+<title>Nova Emlak | İlan Detayı</title>
 
 <meta
     name="description"
-    content="Nova Emlak ile satılık ve kiralık gayrimenkulleri keşfedin. İstanbul ve Türkiye genelinde ev, daire ve villa ilanlarını kolayca inceleyin."
->
-
-<meta
-    name="keywords"
-    content="Nova Emlak, emlak, gayrimenkul, satılık ev, kiralık ev, satılık daire, kiralık daire, İstanbul emlak, villa"
+    id="metaDescription"
+    content="Nova Emlak gayrimenkul ilan detaylarını inceleyin."
 >
 
 <meta name="robots" content="index, follow">
@@ -27,6 +19,7 @@
 
 <link
     rel="canonical"
+    id="canonical"
     href="https://nova-emlak.onrender.com/"
 >
 
@@ -36,37 +29,29 @@
 
 <meta
     property="og:title"
-    content="Nova Emlak | Satılık ve Kiralık Gayrimenkuller"
+    id="ogTitle"
+    content="Nova Emlak | İlan Detayı"
 >
 
 <meta
     property="og:description"
-    content="Hayalinizdeki evi Nova Emlak ile bulun. Satılık ve kiralık gayrimenkul ilanlarını keşfedin."
+    id="ogDescription"
+    content="Nova Emlak gayrimenkul ilan detaylarını inceleyin."
 >
 
 <meta
     property="og:url"
+    id="ogUrl"
     content="https://nova-emlak.onrender.com/"
 >
 
-<meta
-    property="og:site_name"
-    content="Nova Emlak"
->
-
-<meta
-    property="og:locale"
-    content="tr_TR"
->
+<meta property="og:site_name" content="Nova Emlak">
+<meta property="og:locale" content="tr_TR">
 
 <meta
     property="og:image"
+    id="ogImage"
     content="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=85"
->
-
-<meta
-    property="og:image:alt"
-    content="Nova Emlak gayrimenkul"
 >
 
 <!-- TWITTER / X -->
@@ -78,22 +63,20 @@
 
 <meta
     name="twitter:title"
-    content="Nova Emlak | Satılık ve Kiralık Gayrimenkuller"
+    id="twitterTitle"
+    content="Nova Emlak | İlan Detayı"
 >
 
 <meta
     name="twitter:description"
-    content="Nova Emlak ile satılık ve kiralık gayrimenkul ilanlarını keşfedin."
+    id="twitterDescription"
+    content="Nova Emlak gayrimenkul ilan detaylarını inceleyin."
 >
 
 <meta
     name="twitter:image"
+    id="twitterImage"
     content="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=85"
->
-
-<meta
-    name="twitter:image:alt"
-    content="Nova Emlak gayrimenkul"
 >
 
 
@@ -114,12 +97,13 @@ body{
     color:#172033;
 }
 
+/* HEADER */
+
 header{
     position:sticky;
     top:0;
     z-index:1000;
     background:rgba(15,23,42,.97);
-    backdrop-filter:blur(12px);
     color:white;
     padding:17px 6%;
     display:flex;
@@ -137,7 +121,7 @@ header{
 
 nav{
     display:flex;
-    gap:28px;
+    gap:25px;
     align-items:center;
 }
 
@@ -146,699 +130,284 @@ nav a{
     text-decoration:none;
     font-size:14px;
     font-weight:bold;
-    transition:.2s;
 }
 
 nav a:hover{
     color:#60a5fa;
 }
 
-.hero{
-    min-height:600px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    color:white;
-    padding:90px 20px 150px;
+/* CONTAINER */
 
-    background:
-    linear-gradient(
-        120deg,
-        rgba(15,23,42,.94),
-        rgba(15,23,42,.43)
-    ),
-    url("https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2000&q=90");
-
-    background-size:cover;
-    background-position:center;
+.container{
+    max-width:1150px;
+    margin:45px auto;
+    padding:0 20px;
 }
 
-.hero-content{
-    max-width:900px;
-}
+/* BACK */
 
-.hero-badge{
+.back{
     display:inline-block;
-    padding:10px 18px;
-    border-radius:50px;
-    background:rgba(255,255,255,.12);
-    border:1px solid rgba(255,255,255,.25);
-    backdrop-filter:blur(8px);
-    font-size:13px;
-    font-weight:bold;
-    margin-bottom:22px;
-}
-
-.hero h1{
-    font-size:64px;
-    line-height:1.05;
-    letter-spacing:-2px;
-    margin:0 0 22px;
-}
-
-.hero h1 span{
-    color:#60a5fa;
-}
-
-.hero p{
-    max-width:720px;
-    margin:auto;
-    font-size:19px;
-    line-height:1.7;
-    color:#e2e8f0;
-}
-
-.hero-buttons{
-    display:flex;
-    justify-content:center;
-    gap:12px;
-    margin-top:30px;
-    flex-wrap:wrap;
-}
-
-.hero-button{
-    padding:15px 23px;
-    border-radius:11px;
+    margin-bottom:20px;
+    color:#2563eb;
     text-decoration:none;
     font-weight:bold;
 }
 
-.hero-button.primary{
-    background:#2563eb;
-    color:white;
-}
+/* CARD */
 
-.hero-button.secondary{
-    background:rgba(255,255,255,.12);
-    color:white;
-    border:1px solid rgba(255,255,255,.3);
-}
-
-.search-box{
-    max-width:1150px;
-    margin:-85px auto 70px;
-    position:relative;
-    z-index:20;
-    padding:30px;
+.detail-card{
     background:white;
-    border-radius:24px;
-    box-shadow:0 20px 55px rgba(15,23,42,.18);
-}
-
-.search-title h2{
-    margin:0 0 6px;
-    font-size:25px;
-}
-
-.search-title p{
-    margin:0 0 20px;
-    color:#64748b;
-}
-
-.filters{
-    display:grid;
-    grid-template-columns:repeat(5,1fr);
-    gap:12px;
-}
-
-.filters select,
-.filters input{
-    width:100%;
-    padding:15px;
-    border:1px solid #dbe1ea;
-    border-radius:12px;
-    background:white;
-    outline:none;
-    font-size:14px;
-}
-
-.filters select:focus,
-.filters input:focus{
-    border-color:#2563eb;
-}
-
-.search-button{
-    width:100%;
-    margin-top:15px;
-    padding:16px;
-    border:0;
-    border-radius:12px;
-    background:#2563eb;
-    color:white;
-    font-size:16px;
-    font-weight:bold;
-    cursor:pointer;
-}
-
-.search-button:hover{
-    background:#1d4ed8;
-}
-
-.stats{
-    max-width:1200px;
-    margin:0 auto 80px;
-    padding:0 20px;
-}
-
-.stats-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:20px;
-}
-
-.stat{
-    background:white;
-    border:1px solid #e5e7eb;
-    border-radius:18px;
-    padding:28px;
-    text-align:center;
-    box-shadow:0 8px 25px rgba(15,23,42,.05);
-}
-
-.stat-number{
-    color:#2563eb;
-    font-size:31px;
-    font-weight:900;
-}
-
-.stat-text{
-    color:#64748b;
-    margin-top:7px;
-}
-
-.container{
-    max-width:1200px;
-    margin:auto;
-    padding:0 20px;
-}
-
-.section-title{
-    margin-bottom:25px;
-}
-
-.section-title h2{
-    font-size:32px;
-    margin:0;
-}
-
-.result{
-    color:#64748b;
-    margin-bottom:25px;
-}
-
-.listings{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:25px;
-}
-
-.card{
-    position:relative;
-    background:white;
-    border-radius:20px;
+    border-radius:25px;
     overflow:hidden;
     border:1px solid #e5e7eb;
-    box-shadow:0 8px 28px rgba(15,23,42,.07);
-    transition:.25s;
+    box-shadow:0 15px 45px rgba(15,23,42,.09);
 }
 
-.card:hover{
-    transform:translateY(-6px);
-    box-shadow:0 20px 45px rgba(15,23,42,.14);
-}
+/* MAIN IMAGE */
 
-.card-image{
-    position:relative;
-    height:240px;
-    overflow:hidden;
+.main-image{
+    width:100%;
+    height:520px;
     background:#e2e8f0;
 }
 
-.card-image img{
+.main-image img{
     width:100%;
     height:100%;
     object-fit:cover;
     display:block;
-    transition:.4s;
 }
 
-.card:hover .card-image img{
-    transform:scale(1.04);
+/* CONTENT */
+
+.content{
+    padding:35px;
 }
 
 .badge{
-    position:absolute;
-    top:15px;
-    left:15px;
+    display:inline-block;
     background:#2563eb;
     color:white;
-    padding:8px 12px;
+    padding:8px 13px;
     border-radius:8px;
-    font-size:12px;
+    font-size:13px;
+    font-weight:bold;
+    margin-bottom:15px;
+}
+
+h1{
+    font-size:36px;
+    margin:0 0 12px;
+}
+
+.location{
+    color:#64748b;
+    font-size:16px;
+    margin-bottom:20px;
+}
+
+.price{
+    color:#2563eb;
+    font-size:30px;
+    font-weight:900;
+    margin-bottom:25px;
+}
+
+/* DETAILS */
+
+.details{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+    margin-bottom:30px;
+}
+
+.detail{
+    background:#f8fafc;
+    border:1px solid #e5e7eb;
+    padding:16px;
+    border-radius:12px;
+}
+
+.detail strong{
+    display:block;
+    font-size:13px;
+    color:#64748b;
+    margin-bottom:6px;
+}
+
+.detail span{
     font-weight:bold;
 }
 
-.favorite{
-    position:absolute;
-    top:13px;
-    right:13px;
-    width:44px;
-    height:44px;
+/* EXTRA */
+
+.extra{
+    margin-top:30px;
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+}
+
+.extra-item{
+    background:#f8fafc;
+    padding:13px;
+    border-radius:10px;
+    color:#475569;
+}
+
+/* DESCRIPTION */
+
+.description{
+    border-top:1px solid #e5e7eb;
+    padding-top:25px;
+    margin-top:25px;
+}
+
+.description h2{
+    margin-top:0;
+}
+
+.description p{
+    color:#475569;
+    line-height:1.8;
+    white-space:pre-line;
+}
+
+/* ACTIONS */
+
+.actions{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+    margin-top:30px;
+}
+
+.action{
     border:0;
-    border-radius:50%;
-    background:white;
-    font-size:22px;
+    border-radius:12px;
+    padding:16px;
+    text-align:center;
+    text-decoration:none;
+    font-weight:bold;
     cursor:pointer;
-    box-shadow:0 5px 18px rgba(0,0,0,.18);
+    font-size:15px;
+}
+
+.whatsapp{
+    background:#16a34a;
+    color:white;
+}
+
+.phone{
+    background:#0f172a;
+    color:white;
+}
+
+/* FAVORITE */
+
+.favorite{
+    margin-top:15px;
+    width:100%;
+    padding:15px;
+    border:1px solid #e5e7eb;
+    background:white;
+    border-radius:12px;
+    cursor:pointer;
+    font-weight:bold;
+    font-size:15px;
 }
 
 .favorite.active{
     color:#ef4444;
 }
 
-.card-content{
-    padding:21px;
+/* SHARE */
+
+.share{
+    margin-top:25px;
+    padding:20px;
+    background:#f8fafc;
+    border-radius:15px;
 }
 
-.card h3{
-    margin:3px 0 10px;
+.share h3{
+    margin-top:0;
+}
+
+.share-buttons{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.share-button{
+    border:0;
+    padding:11px 15px;
+    border-radius:9px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.copy{
+    background:#e2e8f0;
+}
+
+.whatsapp-share{
+    background:#16a34a;
+    color:white;
+}
+
+/* LOADING */
+
+.loading{
+    text-align:center;
+    padding:80px 20px;
     font-size:20px;
 }
 
-.location{
-    color:#64748b;
-    font-size:14px;
-    margin-bottom:14px;
-}
+/* ERROR */
 
-.details{
-    display:flex;
-    flex-wrap:wrap;
-    gap:8px;
-    margin-bottom:14px;
-}
-
-.detail-item{
-    background:#f1f5f9;
-    padding:8px 10px;
-    border-radius:8px;
-    font-size:13px;
-    color:#475569;
-}
-
-.extra-details{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:7px;
-    margin-bottom:15px;
-}
-
-.extra-item{
-    font-size:12px;
-    color:#64748b;
-    background:#f8fafc;
-    padding:8px;
-    border-radius:7px;
-}
-
-.description-preview{
-    color:#64748b;
-    font-size:13px;
-    line-height:1.5;
-    margin-bottom:15px;
-}
-
-.price{
-    color:#2563eb;
-    font-size:22px;
-    font-weight:900;
-    margin-bottom:16px;
-}
-
-.detail-button{
-    display:block;
+.error{
     text-align:center;
-    background:#0f172a;
-    color:white;
-    padding:13px;
-    border-radius:10px;
-    text-decoration:none;
-    font-weight:bold;
-}
-
-.detail-button:hover{
-    background:#2563eb;
-}
-
-.popular{
-    margin:95px 0;
-}
-
-.region-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:22px;
-}
-
-.region{
-    height:280px;
-    border-radius:22px;
-    overflow:hidden;
-    position:relative;
-    background-size:cover;
-    background-position:center;
-    display:flex;
-    align-items:flex-end;
-    cursor:pointer;
-    box-shadow:0 10px 30px rgba(15,23,42,.12);
-    transition:.3s;
-}
-
-.region:hover{
-    transform:translateY(-6px);
-}
-
-.region:after{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:linear-gradient(
-        transparent 20%,
-        rgba(15,23,42,.9)
-    );
-}
-
-.region-content{
-    position:relative;
-    z-index:2;
-    color:white;
-    padding:25px;
-}
-
-.region-content h3{
-    margin:0 0 6px;
-    font-size:27px;
-}
-
-.region-content p{
-    margin:0;
-    color:#e2e8f0;
-}
-
-.why{
-    margin:95px 0;
-}
-
-.why-grid{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:18px;
-}
-
-.why-card{
+    padding:80px 20px;
     background:white;
-    border:1px solid #e5e7eb;
-    border-radius:18px;
-    padding:25px;
-    transition:.25s;
-}
-
-.why-card:hover{
-    transform:translateY(-4px);
-    box-shadow:0 15px 35px rgba(15,23,42,.09);
-}
-
-.why-icon{
-    font-size:32px;
-    margin-bottom:15px;
-}
-
-.why-card h3{
-    margin:0 0 8px;
-}
-
-.why-card p{
-    margin:0;
-    color:#64748b;
-    line-height:1.6;
-    font-size:14px;
-}
-
-.favorites-section{
-    margin:90px 0 70px;
-}
-
-.favorite-count{
-    display:block;
-    margin-top:7px;
-    color:#64748b;
-}
-
-.contact-section{
-    margin:100px 0;
-}
-
-.contact-grid{
-    display:grid;
-    grid-template-columns:1fr 1.5fr;
-    gap:25px;
-}
-
-.contact-intro{
-    background:#0f172a;
-    color:white;
-    border-radius:22px;
-    padding:35px;
-}
-
-.contact-intro h2{
-    margin-top:0;
-    font-size:30px;
-}
-
-.contact-intro p{
-    color:#cbd5e1;
-    line-height:1.7;
-}
-
-.contact-cards{
-    display:grid;
-    gap:12px;
-    margin-top:25px;
-}
-
-.contact-card{
-    display:flex;
-    align-items:center;
-    gap:15px;
-    background:rgba(255,255,255,.07);
-    padding:15px;
-    border-radius:12px;
-}
-
-.contact-icon{
-    font-size:25px;
-}
-
-.contact-info strong{
-    display:block;
-    margin-bottom:4px;
-}
-
-.contact-info span{
-    color:#cbd5e1;
-    font-size:14px;
-}
-
-.contact-actions{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:15px;
-    margin-top:25px;
-}
-
-.contact-action{
-    text-align:center;
-    padding:14px;
-    border-radius:10px;
-    text-decoration:none;
-    font-weight:bold;
-}
-
-.whatsapp-button{
-    background:#16a34a;
-    color:white;
-}
-
-.phone-button{
-    background:white;
-    color:#0f172a;
-}
-
-.contact-right{
-    background:white;
-    border:1px solid #e5e7eb;
-    border-radius:22px;
-    padding:35px;
-}
-
-.contact-right h3{
-    margin-top:0;
-    font-size:25px;
-}
-
-.hours{
-    display:grid;
-    gap:10px;
-    margin-top:25px;
-}
-
-.hour-row{
-    display:flex;
-    justify-content:space-between;
-    padding:13px;
-    background:#f8fafc;
-    border-radius:9px;
-}
-
-.hour-row span:first-child{
-    font-weight:bold;
-}
-
-.map-box{
-    margin-top:20px;
-    min-height:160px;
-    border-radius:15px;
-    background:
-    linear-gradient(
-        135deg,
-        #dbeafe,
-        #eff6ff
-    );
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    color:#1e40af;
-    font-weight:bold;
-}
-
-.cta{
-    margin:95px 0 0;
-    padding:70px 25px;
-    border-radius:25px;
-    text-align:center;
-    color:white;
-
-    background:
-    linear-gradient(
-        120deg,
-        rgba(15,23,42,.96),
-        rgba(37,99,235,.85)
-    ),
-    url("https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1800&q=85");
-
-    background-size:cover;
-    background-position:center;
-}
-
-.cta h2{
-    font-size:36px;
-    margin:0 0 12px;
-}
-
-.cta p{
-    color:#dbeafe;
-    margin:0 auto 25px;
-    max-width:600px;
-    line-height:1.6;
-}
-
-.cta-button{
-    display:inline-block;
-    background:white;
-    color:#172033;
-    padding:14px 25px;
-    border-radius:10px;
-    text-decoration:none;
-    font-weight:bold;
-}
-
-.empty{
-    grid-column:1/-1;
-    background:white;
-    padding:55px 20px;
-    text-align:center;
     border-radius:20px;
-    border:1px solid #e5e7eb;
 }
 
-.empty button{
-    padding:13px 22px;
-    border:0;
-    border-radius:10px;
+.error h2{
+    margin-top:0;
+}
+
+.error a{
+    display:inline-block;
+    margin-top:15px;
+    padding:13px 20px;
     background:#2563eb;
     color:white;
-    cursor:pointer;
+    border-radius:10px;
+    text-decoration:none;
     font-weight:bold;
 }
 
-.whatsapp-float{
-    position:fixed;
-    right:22px;
-    bottom:22px;
-    width:59px;
-    height:59px;
-    border-radius:50%;
-    background:#16a34a;
-    color:white;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-decoration:none;
-    font-size:28px;
-    z-index:900;
-    box-shadow:0 8px 28px rgba(22,163,74,.35);
-}
+/* FOOTER */
 
 footer{
-    margin-top:90px;
+    margin-top:80px;
     background:#0f172a;
     color:white;
-    padding:55px 20px;
     text-align:center;
-}
-
-footer h2{
-    margin-top:0;
+    padding:50px 20px;
 }
 
 footer p{
     color:#cbd5e1;
 }
 
-@media(max-width:1000px){
+/* MOBILE */
 
-    .filters{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .listings{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .why-grid{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .contact-grid{
-        grid-template-columns:1fr;
-    }
-
-}
-
-@media(max-width:700px){
+@media(max-width:800px){
 
     header{
         flex-direction:column;
@@ -852,59 +421,42 @@ footer p{
         justify-content:center;
     }
 
-    .hero{
-        min-height:500px;
-        padding:70px 20px 110px;
+    .container{
+        margin:25px auto;
     }
 
-    .hero h1{
-        font-size:42px;
+    .main-image{
+        height:320px;
     }
 
-    .hero p{
-        font-size:16px;
+    .content{
+        padding:23px;
     }
 
-    .search-box{
-        margin:20px;
-        padding:22px;
+    h1{
+        font-size:28px;
     }
 
-    .filters{
+    .price{
+        font-size:25px;
+    }
+
+    .details{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .extra{
         grid-template-columns:1fr;
     }
 
-    .listings{
+    .actions{
         grid-template-columns:1fr;
-    }
-
-    .stats-grid{
-        grid-template-columns:1fr;
-    }
-
-    .region-grid{
-        grid-template-columns:1fr;
-    }
-
-    .why-grid{
-        grid-template-columns:1fr;
-    }
-
-    .contact-actions{
-        grid-template-columns:1fr;
-    }
-
-    .section-title h2{
-        font-size:27px;
-    }
-
-    .cta h2{
-        font-size:29px;
     }
 
 }
 
 </style>
+
 </head>
 
 <body>
@@ -916,563 +468,44 @@ footer p{
 </a>
 
 <nav>
-<a href="index.html">Ana Sayfa</a>
-<a href="#ilanlar">İlanlar</a>
-<a href="#favoriler">❤️ Favoriler</a>
-<a href="#iletisim">İletişim</a>
+
+<a href="index.html">
+Ana Sayfa
+</a>
+
+<a href="index.html#ilanlar">
+İlanlar
+</a>
+
+<a href="index.html#favoriler">
+❤️ Favoriler
+</a>
+
+<a href="index.html#iletisim">
+İletişim
+</a>
+
 </nav>
 
 </header>
 
-<section class="hero">
-
-<div class="hero-content">
-
-<div class="hero-badge">
-🏡 Güvenilir Gayrimenkul Platformu
-</div>
-
-<h1>
-Hayalinizdeki <span>Evi</span> Bulun
-</h1>
-
-<p>
-Satılık ve kiralık gayrimenkulleri keşfedin.
-İhtiyaçlarınıza ve bütçenize uygun ilanları kolayca bulun.
-</p>
-
-<div class="hero-buttons">
-
-<a href="#ilanlar" class="hero-button primary">
-🏠 İlanları İncele
-</a>
-
-<a href="#iletisim" class="hero-button secondary">
-📞 Bizimle İletişime Geç
-</a>
-
-</div>
-
-</div>
-
-</section>
-
-<div class="search-box">
-
-<div class="search-title">
-
-<h2>🔎 Hayalinizdeki Evi Arayın</h2>
-
-<p>
-Filtrelerinizi seçin ve size uygun ilanları saniyeler içinde bulun.
-</p>
-
-</div>
-
-<div class="filters">
-
-<select id="type">
-<option value="">Satılık + Kiralık</option>
-<option value="Satılık">Satılık</option>
-<option value="Kiralık">Kiralık</option>
-</select>
-
-<select id="city">
-<option value="">Tüm şehirler</option>
-<option value="İstanbul">İstanbul</option>
-<option value="Ankara">Ankara</option>
-<option value="İzmir">İzmir</option>
-</select>
-
-<select id="rooms">
-<option value="">Tüm oda sayıları</option>
-<option value="1+1">1+1</option>
-<option value="2+1">2+1</option>
-<option value="3+1">3+1</option>
-<option value="4+1">4+1</option>
-<option value="5+1">5+1</option>
-</select>
-
-<input
-id="minPrice"
-type="number"
-placeholder="Min. fiyat TL"
->
-
-<input
-id="maxPrice"
-type="number"
-placeholder="Max. fiyat TL"
->
-
-</div>
-
-<button
-class="search-button"
-onclick="searchListings()"
->
-🔎 İlanları Ara
-</button>
-
-</div>
-
-<div class="stats">
-
-<div class="stats-grid">
-
-<div class="stat">
-
-<div
-class="stat-number"
-id="totalListings"
->
-0
-</div>
-
-<div class="stat-text">
-Aktif İlan
-</div>
-
-</div>
-
-<div class="stat">
-
-<div
-class="stat-number"
-id="totalFavorites"
->
-0
-</div>
-
-<div class="stat-text">
-Favori İlanınız
-</div>
-
-</div>
-
-<div class="stat">
-
-<div class="stat-number">
-24/7
-</div>
-
-<div class="stat-text">
-Online İlan İnceleme
-</div>
-
-</div>
-
-</div>
-
-</div>
 
 <div class="container">
 
-<section id="ilanlar">
-
-<div class="section-title">
-
-<h2>
-🏡 Güncel İlanlar
-</h2>
-
-</div>
-
-<div
-class="result"
-id="result"
->
-İlanlar yükleniyor...
-</div>
-
-<div
-class="listings"
-id="listings"
->
-</div>
-
-</section>
-
-<section class="popular">
-
-<div class="section-title">
-
-<h2>
-📍 Popüler Bölgeler
-</h2>
-
-<p style="color:#64748b;">
-Türkiye'nin popüler şehirlerinde yeni yaşam fırsatlarını keşfedin.
-</p>
-
-</div>
-
-<div class="region-grid">
-
-<div
-class="region"
-style="
-background-image:
-linear-gradient(
-180deg,
-rgba(15,23,42,.05),
-rgba(15,23,42,.75)
-),
-url('https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=1400&q=90');
-"
-onclick="
-document.getElementById('city').value='İstanbul';
-searchListings();
-"
->
-
-<div class="region-content">
-
-<h3>🇹🇷 İstanbul</h3>
-
-<p>
-Boğaz manzarası ve şehir hayatı
-</p>
-
-</div>
-
-</div>
-
-<div
-class="region"
-style="
-background-image:
-linear-gradient(
-180deg,
-rgba(15,23,42,.05),
-rgba(15,23,42,.75)
-),
-url('https://images.unsplash.com/photo-1599940824399-b87987ceb72a?auto=format&fit=crop&w=1400&q=90');
-"
-onclick="
-document.getElementById('city').value='Ankara';
-searchListings();
-"
->
-
-<div class="region-content">
-
-<h3>🇹🇷 Ankara</h3>
-
-<p>
-Başkentte modern ve merkezi yaşam
-</p>
-
-</div>
-
-</div>
-
-<div
-class="region"
-style="
-background-image:
-linear-gradient(
-180deg,
-rgba(15,23,42,.05),
-rgba(15,23,42,.75)
-),
-url('https://images.unsplash.com/photo-1544986581-efac024faf62?auto=format&fit=crop&w=1400&q=90');
-"
-onclick="
-document.getElementById('city').value='İzmir';
-searchListings();
-"
->
-
-<div class="region-content">
-
-<h3>🇹🇷 İzmir</h3>
-
-<p>
-Deniz, güneş ve huzurlu yaşam
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<section class="why">
-
-<div class="section-title">
-
-<h2>
-✨ Neden Nova Emlak?
-</h2>
-
-</div>
-
-<div class="why-grid">
-
-<div class="why-card">
-
-<div class="why-icon">🏠</div>
-
-<h3>Geniş Portföy</h3>
-
-<p>
-Farklı bütçe ve ihtiyaçlara uygun gayrimenkulleri kolayca keşfedin.
-</p>
-
-</div>
-
-<div class="why-card">
-
-<div class="why-icon">🔍</div>
-
-<h3>Kolay Arama</h3>
-
-<p>
-Gelişmiş filtrelerle aradığınız evi hızlı ve kolay şekilde bulun.
-</p>
-
-</div>
-
-<div class="why-card">
-
-<div class="why-icon">❤️</div>
-
-<h3>Favorilerinizi Kaydedin</h3>
-
-<p>
-Beğendiğiniz ilanları favorilerinize ekleyerek daha sonra inceleyin.
-</p>
-
-</div>
-
-<div class="why-card">
-
-<div class="why-icon">🤝</div>
-
-<h3>Güvenilir Hizmet</h3>
-
-<p>
-Gayrimenkul arama sürecinizde size kolay ve hızlı bir deneyim sunuyoruz.
-</p>
-
-</div>
-
-</div>
-
-</section>
-
-<section
-class="favorites-section"
-id="favoriler"
->
-
-<div class="section-title">
-
-<h2>
-❤️ Favorilerim
-</h2>
-
-<span
-class="favorite-count"
-id="favoriteCount"
->
-0 favori
-</span>
-
-</div>
-
-<div
-class="listings"
-id="favoriteListings"
->
-</div>
-
-</section>
-
-<section
-class="contact-section"
-id="iletisim"
->
-
-<div class="section-title">
-
-<h2>
-📞 İletişim
-</h2>
-
-<p style="color:#64748b;">
-Sorularınız, ilan talepleriniz ve gayrimenkul danışmanlığı için bizimle iletişime geçebilirsiniz.
-</p>
-
-</div>
-
-<div class="contact-grid">
-
-<div class="contact-intro">
-
-<h2>
-Nova Emlak
-</h2>
-
-<p>
-Hayalinizdeki gayrimenkule ulaşmanız için
-size yardımcı olmaktan memnuniyet duyarız.
-</p>
-
-<div class="contact-cards">
-
-<div class="contact-card">
-
-<div class="contact-icon">
-📞
-</div>
-
-<div class="contact-info">
-
-<strong>Telefon</strong>
-
-<span>
-0555 555 55 55
-</span>
-
-</div>
-
-</div>
-
-<div class="contact-card">
-
-<div class="contact-icon">
-💬
-</div>
-
-<div class="contact-info">
-
-<strong>WhatsApp</strong>
-
-<span>
-Hızlı iletişim ve bilgi
-</span>
-
-</div>
-
-</div>
-
-<div class="contact-card">
-
-<div class="contact-icon">
-📍
-</div>
-
-<div class="contact-info">
-
-<strong>Ofis</strong>
-
-<span>
-İstanbul
-</span>
-
-</div>
-
-</div>
-
-</div>
-
-<div class="contact-actions">
-
-<a
-href="https://wa.me/905555555555"
-target="_blank"
-class="contact-action whatsapp-button"
->
-💬 WhatsApp
+<a href="index.html" class="back">
+← İlanlara Dön
 </a>
 
-<a
-href="tel:05555555555"
-class="contact-action phone-button"
->
-📞 Ara
-</a>
+<div id="app">
 
-</div>
-
-</div>
-
-<div class="contact-right">
-
-<h3>
-🕐 Çalışma Saatleri
-</h3>
-
-<p style="color:#64748b;">
-Size yardımcı olmak için buradayız.
-</p>
-
-<div class="hours">
-
-<div class="hour-row">
-<span>Pazartesi - Cuma</span>
-<span>09:00 - 19:00</span>
-</div>
-
-<div class="hour-row">
-<span>Cumartesi</span>
-<span>10:00 - 18:00</span>
-</div>
-
-<div class="hour-row">
-<span>Pazar</span>
-<span>Kapalı</span>
-</div>
-
-</div>
-
-<div class="map-box">
-
-📍 NOVA EMLAK<br>
-İstanbul
-
+<div class="loading">
+🏠 İlan bilgileri yükleniyor...
 </div>
 
 </div>
 
 </div>
 
-</section>
-
-<section class="cta">
-
-<h2>
-Aradığınız Evi Birlikte Bulalım
-</h2>
-
-<p>
-Satılık veya kiralık gayrimenkul arıyorsanız
-ilanlarımızı inceleyin ve beğendiğiniz ilan hakkında bizimle iletişime geçin.
-</p>
-
-<a
-class="cta-button"
-href="https://wa.me/905555555555"
-target="_blank"
->
-💬 WhatsApp'tan İletişime Geç
-</a>
-
-</section>
-
-</div>
-
-<a
-class="whatsapp-float"
-href="https://wa.me/905555555555"
-target="_blank"
->
-💬
-</a>
 
 <footer>
 
@@ -1498,76 +531,18 @@ Gayrimenkulde doğru adres.
 
 </footer>
 
+
 <script>
 
-let allListings = [];
+let ilan = null;
 
 let favorites =
 JSON.parse(
 localStorage.getItem("novaFavorites") || "[]"
 );
 
-function saveFavorites(){
 
-localStorage.setItem(
-"novaFavorites",
-JSON.stringify(favorites)
-);
-
-}
-
-function isFavorite(id){
-
-return favorites.includes(
-Number(id)
-);
-
-}
-
-function updateFavoriteCount(){
-
-const count = favorites.length;
-
-document.getElementById(
-"favoriteCount"
-).textContent =
-count + " favori";
-
-document.getElementById(
-"totalFavorites"
-).textContent =
-count;
-
-}
-
-function toggleFavorite(id){
-
-id = Number(id);
-
-if(favorites.includes(id)){
-
-favorites =
-favorites.filter(
-x => x !== id
-);
-
-}else{
-
-favorites.push(id);
-
-}
-
-saveFavorites();
-
-displayListings(
-getCurrentFilteredListings()
-);
-
-displayFavorites();
-
-updateFavoriteCount();
-
-}
+/* HTML GÜVENLİĞİ */
 
 function escapeHTML(value){
 
@@ -1580,7 +555,621 @@ return String(value ?? "")
 
 }
 
-async function loadListings(){
+
+/* URL'DEN ID AL */
+
+const params =
+new URLSearchParams(
+window.location.search
+);
+
+const id =
+params.get("id");
+
+
+/* FAVORİ KONTROLÜ */
+
+function isFavorite(){
+
+if(!ilan){
+return false;
+}
+
+return favorites.includes(
+Number(ilan.id)
+);
+
+}
+
+
+/* FAVORİ KAYDET */
+
+function saveFavorites(){
+
+localStorage.setItem(
+"novaFavorites",
+JSON.stringify(favorites)
+);
+
+}
+
+
+/* FAVORİ DEĞİŞTİR */
+
+function toggleFavorite(){
+
+if(!ilan){
+return;
+}
+
+const ilanId =
+Number(ilan.id);
+
+if(favorites.includes(ilanId)){
+
+favorites =
+favorites.filter(
+x => x !== ilanId
+);
+
+}else{
+
+favorites.push(ilanId);
+
+}
+
+saveFavorites();
+
+updateFavoriteButton();
+
+}
+
+
+/* FAVORİ BUTONU */
+
+function updateFavoriteButton(){
+
+const button =
+document.getElementById(
+"favoriteButton"
+);
+
+if(!button){
+return;
+}
+
+if(isFavorite()){
+
+button.textContent =
+"❤️ Favorilerden Çıkar";
+
+button.classList.add(
+"active"
+);
+
+}else{
+
+button.textContent =
+"♡ Favorilere Ekle";
+
+button.classList.remove(
+"active"
+);
+
+}
+
+}
+
+
+/* RESİM */
+
+function getListingImage(){
+
+if(
+ilan &&
+ilan.image &&
+typeof ilan.image === "string"
+){
+
+return ilan.image;
+
+}
+
+if(
+ilan &&
+Array.isArray(ilan.images) &&
+ilan.images.length > 0
+){
+
+return ilan.images[0];
+
+}
+
+return "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=85";
+
+}
+
+
+/* SEO */
+
+function updateSEO(){
+
+if(!ilan){
+return;
+}
+
+const title =
+ilan.title ||
+"Gayrimenkul İlanı";
+
+
+const location =
+[
+ilan.city,
+ilan.district,
+ilan.neighborhood
+]
+.filter(Boolean)
+.join(" • ");
+
+
+let description =
+ilan.description
+?
+String(ilan.description)
+:
+`${title} - Nova Emlak gayrimenkul ilanı. ${location}`;
+
+
+description =
+description.substring(0,155);
+
+
+document.title =
+`${title} | Nova Emlak`;
+
+
+document
+.getElementById("metaDescription")
+.setAttribute(
+"content",
+description
+);
+
+
+document
+.getElementById("ogTitle")
+.setAttribute(
+"content",
+`${title} | Nova Emlak`
+);
+
+
+document
+.getElementById("ogDescription")
+.setAttribute(
+"content",
+description
+);
+
+
+document
+.getElementById("twitterTitle")
+.setAttribute(
+"content",
+`${title} | Nova Emlak`
+);
+
+
+document
+.getElementById("twitterDescription")
+.setAttribute(
+"content",
+description
+);
+
+
+const currentUrl =
+window.location.href;
+
+
+document
+.getElementById("canonical")
+.setAttribute(
+"href",
+currentUrl
+);
+
+
+document
+.getElementById("ogUrl")
+.setAttribute(
+"content",
+currentUrl
+);
+
+
+document
+.getElementById("ogImage")
+.setAttribute(
+"content",
+getListingImage()
+);
+
+
+document
+.getElementById("twitterImage")
+.setAttribute(
+"content",
+getListingImage()
+);
+
+}
+
+
+/* İLANI GÖSTER */
+
+function displayListing(){
+
+const app =
+document.getElementById("app");
+
+const image =
+getListingImage();
+
+
+const location =
+[
+ilan.city,
+ilan.district,
+ilan.neighborhood
+]
+.filter(Boolean)
+.join(" • ");
+
+
+const price =
+Number(
+ilan.price || 0
+).toLocaleString(
+"tr-TR"
+);
+
+
+app.innerHTML = `
+
+<div class="detail-card">
+
+<div class="main-image">
+
+<img
+src="${escapeHTML(image)}"
+alt="${escapeHTML(
+ilan.title || "Nova Emlak ilanı"
+)}"
+onerror="
+this.onerror=null;
+this.src='https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=85';
+"
+>
+
+</div>
+
+
+<div class="content">
+
+<span class="badge">
+${escapeHTML(
+ilan.type || "İlan"
+)}
+</span>
+
+
+<h1>
+${escapeHTML(
+ilan.title || "Gayrimenkul İlanı"
+)}
+</h1>
+
+
+<div class="location">
+📍 ${escapeHTML(
+location || "-"
+)}
+</div>
+
+
+<div class="price">
+${price} TL
+</div>
+
+
+<div class="details">
+
+
+<div class="detail">
+
+<strong>
+Oda
+</strong>
+
+<span>
+🛏️ ${escapeHTML(
+ilan.rooms || "-"
+)}
+</span>
+
+</div>
+
+
+<div class="detail">
+
+<strong>
+Alan
+</strong>
+
+<span>
+📐 ${escapeHTML(
+String(ilan.area || "-")
+)} m²
+</span>
+
+</div>
+
+
+<div class="detail">
+
+<strong>
+Bina Yaşı
+</strong>
+
+<span>
+🏢 ${escapeHTML(
+String(ilan.buildingAge || 0)
+)} yaş
+</span>
+
+</div>
+
+
+<div class="detail">
+
+<strong>
+Kat
+</strong>
+
+<span>
+🏬 ${escapeHTML(
+ilan.floor || "-"
+)}
+</span>
+
+</div>
+
+
+</div>
+
+
+<div class="extra">
+
+<div class="extra-item">
+🔥 Isıtma: ${escapeHTML(
+ilan.heating || "-"
+)}
+</div>
+
+<div class="extra-item">
+🚿 Banyo: ${escapeHTML(
+ilan.bathrooms || "-"
+)}
+</div>
+
+<div class="extra-item">
+🌿 Balkon: ${escapeHTML(
+ilan.balcony || "-"
+)}
+</div>
+
+<div class="extra-item">
+🏦 Krediye Uygun: ${escapeHTML(
+ilan.credit || "-"
+)}
+</div>
+
+</div>
+
+
+${
+ilan.description
+?
+`
+
+<div class="description">
+
+<h2>
+📝 İlan Açıklaması
+</h2>
+
+<p>
+${escapeHTML(
+ilan.description
+)}
+</p>
+
+</div>
+
+`
+:
+""
+}
+
+
+<div class="actions">
+
+<a
+href="https://wa.me/905555555555?text=${encodeURIComponent(
+"Merhaba, şu ilan hakkında bilgi almak istiyorum: " +
+(ilan.title || "") +
+" - " +
+window.location.href
+)}"
+target="_blank"
+rel="noopener noreferrer"
+class="action whatsapp"
+>
+💬 WhatsApp'tan Bilgi Al
+</a>
+
+
+<a
+href="tel:05555555555"
+class="action phone"
+>
+📞 Telefonla Ara
+</a>
+
+</div>
+
+
+<button
+id="favoriteButton"
+class="favorite"
+onclick="toggleFavorite()"
+>
+♡ Favorilere Ekle
+</button>
+
+
+<div class="share">
+
+<h3>
+📤 İlanı Paylaş
+</h3>
+
+<div class="share-buttons">
+
+<button
+class="share-button whatsapp-share"
+onclick="shareWhatsApp()"
+>
+💬 WhatsApp
+</button>
+
+
+<button
+class="share-button copy"
+onclick="copyLink()"
+>
+🔗 Linki Kopyala
+</button>
+
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+`;
+
+updateFavoriteButton();
+
+updateSEO();
+
+}
+
+
+/* WHATSAPP PAYLAŞ */
+
+function shareWhatsApp(){
+
+if(!ilan){
+return;
+}
+
+const text =
+`${ilan.title || "Nova Emlak ilanı"}
+
+${window.location.href}`;
+
+
+const url =
+"https://wa.me/?text=" +
+encodeURIComponent(text);
+
+
+window.open(
+url,
+"_blank",
+"noopener,noreferrer"
+);
+
+}
+
+
+/* LINK KOPYALA */
+
+async function copyLink(){
+
+try{
+
+await navigator.clipboard.writeText(
+window.location.href
+);
+
+alert(
+"✅ İlan bağlantısı kopyalandı."
+);
+
+}catch(error){
+
+console.error(error);
+
+alert(
+"❌ Bağlantı kopyalanamadı."
+);
+
+}
+
+}
+
+
+/* İLANI GETİR */
+
+async function loadListing(){
+
+const app =
+document.getElementById("app");
+
+
+if(!id){
+
+app.innerHTML = `
+
+<div class="error">
+
+<h2>
+❌ İlan bulunamadı
+</h2>
+
+<p>
+İlan numarası belirtilmemiş.
+</p>
+
+<a href="index.html">
+Ana Sayfaya Dön
+</a>
+
+</div>
+
+`;
+
+return;
+
+}
+
 
 try{
 
@@ -1592,6 +1181,7 @@ cache:"no-store"
 }
 );
 
+
 if(!response.ok){
 
 throw new Error(
@@ -1600,8 +1190,10 @@ throw new Error(
 
 }
 
+
 const data =
 await response.json();
+
 
 if(!Array.isArray(data)){
 
@@ -1611,385 +1203,76 @@ throw new Error(
 
 }
 
-allListings = data;
 
-document.getElementById(
-"totalListings"
-).textContent =
-allListings.length;
-
-displayListings(
-allListings
+ilan =
+data.find(
+item =>
+String(item.id) === String(id)
 );
 
-displayFavorites();
 
-updateFavoriteCount();
+if(!ilan){
 
-}catch(error){
+app.innerHTML = `
 
-console.error(error);
+<div class="error">
 
-document.getElementById(
-"result"
-).textContent =
-"İlanlar yüklenemedi. Lütfen sayfayı yenileyin.";
+<h2>
+😔 İlan bulunamadı
+</h2>
 
-}
+<p>
+Bu ilan mevcut değil veya kaldırılmış olabilir.
+</p>
 
-}
-
-function getCurrentFilteredListings(){
-
-const type =
-document.getElementById("type").value;
-
-const city =
-document.getElementById("city").value;
-
-const rooms =
-document.getElementById("rooms").value;
-
-const minPrice =
-Number(
-document.getElementById("minPrice").value
-) || 0;
-
-const maxPrice =
-Number(
-document.getElementById("maxPrice").value
-) || Infinity;
-
-return allListings.filter(
-function(ilan){
-
-return (
-
-(!type ||
-ilan.type === type)
-
-&&
-
-(!city ||
-ilan.city === city)
-
-&&
-
-(!rooms ||
-ilan.rooms === rooms)
-
-&&
-
-Number(ilan.price || 0)
->= minPrice
-
-&&
-
-Number(ilan.price || 0)
-<= maxPrice
-
-);
-
-}
-);
-
-}
-
-function getListingImage(ilan){
-
-if(
-ilan.image &&
-typeof ilan.image === "string"
-){
-
-return ilan.image;
-
-}
-
-if(
-Array.isArray(ilan.images) &&
-ilan.images.length
-){
-
-return ilan.images[0];
-
-}
-
-return "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80";
-
-}
-
-function createCard(ilan){
-
-const card =
-document.createElement("div");
-
-card.className="card";
-
-const favorite =
-isFavorite(ilan.id);
-
-const location =
-[
-ilan.city,
-ilan.district,
-ilan.neighborhood
-]
-.filter(Boolean)
-.join(" • ");
-
-const image =
-getListingImage(ilan);
-
-card.innerHTML = `
-
-<div class="card-image">
-
-<img
-src="${escapeHTML(image)}"
-alt="${escapeHTML(
-ilan.title || "Nova Emlak ilanı"
-)}"
-loading="lazy"
-onerror="
-this.onerror=null;
-this.src='https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80';
-"
->
-
-<span class="badge">
-${escapeHTML(ilan.type || "")}
-</span>
-
-<button
-class="favorite ${favorite ? "active" : ""}"
-onclick="toggleFavorite(${Number(ilan.id)})"
->
-${favorite ? "❤️" : "♡"}
-</button>
-
-</div>
-
-<div class="card-content">
-
-<h3>
-${escapeHTML(ilan.title || "İlan")}
-</h3>
-
-<div class="location">
-📍 ${escapeHTML(location || "-")}
-</div>
-
-<div class="details">
-
-<span class="detail-item">
-🛏️ ${escapeHTML(ilan.rooms || "-")}
-</span>
-
-<span class="detail-item">
-📐 ${escapeHTML(String(ilan.area || "-"))} m²
-</span>
-
-</div>
-
-<div class="extra-details">
-
-<div class="extra-item">
-🏢 Bina: ${escapeHTML(String(ilan.buildingAge || 0))} yaş
-</div>
-
-<div class="extra-item">
-🏬 Kat: ${escapeHTML(ilan.floor || "-")}
-</div>
-
-<div class="extra-item">
-🔥 ${escapeHTML(ilan.heating || "-")}
-</div>
-
-<div class="extra-item">
-🚿 Banyo: ${escapeHTML(ilan.bathrooms || "-")}
-</div>
-
-<div class="extra-item">
-🌿 Balkon: ${escapeHTML(ilan.balcony || "-")}
-</div>
-
-<div class="extra-item">
-🏦 Kredi: ${escapeHTML(ilan.credit || "-")}
-</div>
-
-</div>
-
-${
-ilan.description
-?
-`
-<div class="description-preview">
-${escapeHTML(
-String(ilan.description).length > 110
-?
-String(ilan.description).substring(0,110) + "..."
-:
-ilan.description
-)}
-</div>
-`
-:
-""
-}
-
-<div class="price">
-
-${Number(
-ilan.price || 0
-).toLocaleString("tr-TR")} TL
-
-</div>
-
-<a
-class="detail-button"
-href="ilan.html?id=${encodeURIComponent(ilan.id)}"
->
-İlanı İncele →
+<a href="index.html">
+İlanlara Dön
 </a>
 
 </div>
 
 `;
 
-return card;
-
-}
-
-function displayListings(ilanlar){
-
-const container =
-document.getElementById("listings");
-
-container.innerHTML="";
-
-document.getElementById(
-"result"
-).textContent =
-ilanlar.length + " ilan bulundu.";
-
-if(!ilanlar.length){
-
-container.innerHTML=`
-
-<div class="empty">
-
-<h2>😔 İlan bulunamadı</h2>
-
-<p>
-Arama kriterlerini değiştirip tekrar deneyin.
-</p>
-
-<button onclick="resetSearch()">
-Filtreleri Temizle
-</button>
-
-</div>
-
-`;
-
 return;
 
 }
 
-ilanlar.forEach(
-ilan =>
-container.appendChild(
-createCard(ilan)
-)
-);
 
-}
+displayListing();
 
-function displayFavorites(){
 
-const container =
-document.getElementById(
-"favoriteListings"
-);
+}catch(error){
 
-const favoriteListings =
-allListings.filter(
-ilan =>
-favorites.includes(
-Number(ilan.id)
-)
-);
+console.error(error);
 
-container.innerHTML="";
+app.innerHTML = `
 
-if(!favoriteListings.length){
-
-container.innerHTML=`
-
-<div class="empty">
+<div class="error">
 
 <h2>
-❤️ Henüz favori ilanınız yok
+⚠️ İlan yüklenemedi
 </h2>
 
 <p>
-Beğendiğiniz ilanların üzerindeki ❤️ butonuna basarak favorilerinize ekleyebilirsiniz.
+Sunucuya bağlanırken bir hata oluştu.
 </p>
 
-<button
-onclick="
-document.getElementById('ilanlar')
-.scrollIntoView({behavior:'smooth'})
-"
->
-İlanlara Göz At
-</button>
+<a href="index.html">
+Ana Sayfaya Dön
+</a>
 
 </div>
 
 `;
 
-return;
+}
 
 }
 
-favoriteListings.forEach(
-ilan =>
-container.appendChild(
-createCard(ilan)
-)
-);
 
-}
+/* BAŞLAT */
 
-function searchListings(){
-
-displayListings(
-getCurrentFilteredListings()
-);
-
-document.getElementById(
-"ilanlar"
-).scrollIntoView({
-behavior:"smooth"
-});
-
-}
-
-function resetSearch(){
-
-document.getElementById("type").value="";
-document.getElementById("city").value="";
-document.getElementById("rooms").value="";
-document.getElementById("minPrice").value="";
-document.getElementById("maxPrice").value="";
-
-displayListings(allListings);
-
-}
-
-loadListings();
+loadListing();
 
 </script>
 
