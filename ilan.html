@@ -1,13 +1,14 @@
-```html
 <!DOCTYPE html>
+
 <html lang="tr">
 <head>
 
 <meta charset="UTF-8">
 
 <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+
 >
 
 <title>Nova Emlak | İlan Detayı</title>
@@ -231,6 +232,39 @@ h1{
     white-space:pre-line;
 }
 
+/* HARİTA */
+
+.map-section{
+    margin-top:35px;
+}
+
+.map-section h2{
+    font-size:22px;
+    margin-bottom:15px;
+}
+
+.map-container{
+    width:100%;
+    height:350px;
+    border-radius:16px;
+    overflow:hidden;
+    border:1px solid #e5e7eb;
+    background:#e2e8f0;
+}
+
+.map-container iframe{
+    width:100%;
+    height:100%;
+    border:0;
+}
+
+.map-note{
+    margin-top:10px;
+    color:#64748b;
+    font-size:13px;
+    line-height:1.5;
+}
+
 /* İLETİŞİM */
 
 .contact{
@@ -329,6 +363,10 @@ h1{
         grid-template-columns:repeat(2,1fr);
     }
 
+    .map-container{
+        height:280px;
+    }
+
 }
 
 @media(max-width:450px){
@@ -339,6 +377,10 @@ h1{
 
     .details-grid{
         grid-template-columns:1fr;
+    }
+
+    .map-container{
+        height:250px;
     }
 
 }
@@ -352,21 +394,22 @@ h1{
 <header>
 
 <a
-    href="index.html"
-    class="logo"
+href="index.html"
+class="logo"
+
 >
-🏠 NOVA EMLAK
-</a>
+
+🏠 NOVA EMLAK </a>
 
 <a
-    href="index.html"
-    class="back"
+href="index.html"
+class="back"
+
 >
-← İlanlara Dön
-</a>
+
+← İlanlara Dön </a>
 
 </header>
-
 
 <div class="container">
 
@@ -376,16 +419,16 @@ h1{
     style="display:none"
 >
 
-
 <!-- GALERİ -->
 
 <div class="gallery">
 
 <img
-    id="mainImage"
-    class="main-image"
-    src=""
-    alt="İlan fotoğrafı"
+id="mainImage"
+class="main-image"
+src=""
+alt="İlan fotoğrafı"
+
 >
 
 <div
@@ -394,7 +437,6 @@ h1{
 ></div>
 
 </div>
-
 
 <!-- İLAN BİLGİLERİ -->
 
@@ -422,7 +464,6 @@ h1{
 
 </div>
 
-
 <div
     id="price"
     class="price"
@@ -431,15 +472,14 @@ h1{
 
 </div>
 
-
 <button
-    id="favoriteButton"
-    class="favorite"
-    onclick="toggleFavorite()"
->
-♡ Favorilere Ekle
-</button>
+id="favoriteButton"
+class="favorite"
+onclick="toggleFavorite()"
 
+>
+
+♡ Favorilere Ekle </button>
 
 <!-- DETAYLAR -->
 
@@ -448,7 +488,6 @@ h1{
 </h2>
 
 <div class="details-grid">
-
 
 <div class="detail">
 
@@ -465,7 +504,6 @@ Oda Sayısı
 
 </div>
 
-
 <div class="detail">
 
 <div class="detail-label">
@@ -480,7 +518,6 @@ Metrekare
 </div>
 
 </div>
-
 
 <div class="detail">
 
@@ -497,7 +534,6 @@ Bina Yaşı
 
 </div>
 
-
 <div class="detail">
 
 <div class="detail-label">
@@ -512,7 +548,6 @@ Bulunduğu Kat
 </div>
 
 </div>
-
 
 <div class="detail">
 
@@ -529,7 +564,6 @@ Toplam Kat
 
 </div>
 
-
 <div class="detail">
 
 <div class="detail-label">
@@ -544,7 +578,6 @@ Isıtma
 </div>
 
 </div>
-
 
 <div class="detail">
 
@@ -561,7 +594,6 @@ Banyo
 
 </div>
 
-
 <div class="detail">
 
 <div class="detail-label">
@@ -577,7 +609,6 @@ Balkon
 
 </div>
 
-
 <div class="detail">
 
 <div class="detail-label">
@@ -592,7 +623,6 @@ Krediye Uygun
 </div>
 
 </div>
-
 
 <div class="detail">
 
@@ -611,7 +641,6 @@ Tapu Durumu
 
 </div>
 
-
 <!-- AÇIKLAMA -->
 
 <div class="description">
@@ -626,6 +655,31 @@ Açıklama yükleniyor...
 
 </div>
 
+<!-- HARİTA -->
+
+<div class="map-section">
+
+<h2>
+📍 Konum
+</h2>
+
+<div class="map-container">
+
+<iframe
+    id="mapFrame"
+    loading="lazy"
+    allowfullscreen
+    referrerpolicy="no-referrer-when-downgrade"
+>
+</iframe>
+
+</div>
+
+<div class="map-note">
+📍 İlanın şehir, ilçe ve mahalle bilgisine göre yaklaşık konumu gösterilmektedir.
+</div>
+
+</div>
 
 <!-- İLETİŞİM -->
 
@@ -641,19 +695,19 @@ için bizimle iletişime geçebilirsiniz.
 </p>
 
 <a
-    class="whatsapp"
-    href="https://wa.me/905555555555"
-    target="_blank"
+class="whatsapp"
+href="https://wa.me/905555555555"
+target="_blank"
+
 >
-💬 WhatsApp'tan İletişime Geç
-</a>
+
+💬 WhatsApp'tan İletişime Geç </a>
 
 </div>
 
 </div>
 
 </div>
-
 
 <!-- HATA -->
 
@@ -672,17 +726,17 @@ Bu ilan mevcut değil veya kaldırılmış olabilir.
 </p>
 
 <a
-    href="index.html"
-    class="back"
-    style="display:inline-block;margin-top:15px"
+href="index.html"
+class="back"
+style="display:inline-block;margin-top:15px"
+
 >
-Ana Sayfaya Dön
-</a>
+
+Ana Sayfaya Dön </a>
 
 </div>
 
 </div>
-
 
 <script>
 
@@ -931,6 +985,35 @@ function displayListing(ilan){
         "📍 " + (location || "-");
 
 
+    /* HARİTA */
+
+    const mapLocation =
+        [
+            ilan.neighborhood,
+            ilan.district,
+            ilan.city,
+            "Türkiye"
+        ]
+        .filter(Boolean)
+        .join(", ");
+
+
+    const mapFrame =
+        document.getElementById(
+            "mapFrame"
+        );
+
+
+    if(mapFrame && mapLocation){
+
+        mapFrame.src =
+            "https://www.google.com/maps?q=" +
+            encodeURIComponent(mapLocation) +
+            "&output=embed";
+
+    }
+
+
     document.getElementById(
         "price"
     ).textContent =
@@ -1047,9 +1130,11 @@ async function loadListing(){
             "property"
         ).style.display="none";
 
+
         document.getElementById(
             "error"
         ).style.display="block";
+
 
         return;
 
@@ -1105,9 +1190,11 @@ async function loadListing(){
                 "property"
             ).style.display="none";
 
+
             document.getElementById(
                 "error"
             ).style.display="block";
+
 
             return;
 
