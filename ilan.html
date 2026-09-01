@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
@@ -72,13 +73,6 @@ button{
     color:#3b82f6;
 }
 
-.home-btn{
-    background:#2563eb;
-    padding:11px 17px;
-    border-radius:10px;
-    color:white !important;
-}
-
 .mobile-menu{
     display:none;
     font-size:26px;
@@ -142,8 +136,6 @@ button{
     border-radius:10px;
     font-weight:700;
 }
-
-/* GALLERY */
 
 .gallery{
     display:grid;
@@ -260,8 +252,6 @@ button{
     object-fit:cover;
 }
 
-/* QUICK ACTIONS */
-
 .quick-actions{
     display:flex;
     gap:10px;
@@ -285,8 +275,6 @@ button{
     color:#2563eb;
     transform:translateY(-1px);
 }
-
-/* MAIN CONTENT */
 
 .detail-grid{
     display:grid;
@@ -452,8 +440,6 @@ button{
     text-align:right;
 }
 
-/* SIDEBAR */
-
 .sidebar{
     display:flex;
     flex-direction:column;
@@ -555,8 +541,6 @@ button{
     font-size:13px;
 }
 
-/* SIMILAR */
-
 .similar-section{
     margin:55px 0;
 }
@@ -635,8 +619,6 @@ button{
     font-weight:900;
 }
 
-/* LIGHTBOX */
-
 .lightbox{
     position:fixed;
     inset:0;
@@ -695,8 +677,6 @@ button{
     right:25px;
 }
 
-/* FOOTER */
-
 footer{
     background:#0d1726;
     color:#aebbd0;
@@ -727,8 +707,6 @@ footer{
     line-height:1.6;
 }
 
-/* TOAST */
-
 .toast{
     position:fixed;
     left:50%;
@@ -751,8 +729,6 @@ footer{
     opacity:1;
     transform:translateX(-50%) translateY(0);
 }
-
-/* MOBILE */
 
 @media(max-width:900px){
 
@@ -907,458 +883,441 @@ footer{
     }
 }
 </style>
+
 </head>
 
 <body>
 
 <header class="header">
 
-    <a href="index.html" class="logo">
-        NOVA <span>EMLAK</span>
-    </a>
+```
+<a href="index.html" class="logo">
+    NOVA <span>EMLAK</span>
+</a>
 
-    <nav class="nav">
-        <a href="index.html">Ana Sayfa</a>
-        <a href="index.html#ilanlar">İlanlar</a>
-        <a href="index.html#favoriler">Favoriler</a>
-        <a href="index.html#hakkimizda">Hakkımızda</a>
-        <a href="index.html#iletisim">İletişim</a>
-        <a href="admin.html" class="home-btn">Yönetim</a>
-    </nav>
+<nav class="nav">
+    <a href="index.html">Ana Sayfa</a>
+    <a href="index.html#ilanlar">İlanlar</a>
+    <a href="index.html#favoriler">Favoriler</a>
+    <a href="index.html#hakkimizda">Hakkımızda</a>
+    <a href="index.html#iletisim">İletişim</a>
+</nav>
 
-    <div class="mobile-menu" onclick="window.location.href='index.html'">
-        ☰
-    </div>
+<div class="mobile-menu" onclick="window.location.href='index.html'">
+    ☰
+</div>
+```
 
 </header>
 
-
 <main class="container">
 
-    <div class="breadcrumb">
-        <a href="index.html">Ana Sayfa</a>
-        <span> / </span>
-        <span>İlan Detayı</span>
+```
+<div class="breadcrumb">
+    <a href="index.html">Ana Sayfa</a>
+    <span> / </span>
+    <span>İlan Detayı</span>
+</div>
+
+<div id="loading" class="loading">
+    İlan bilgileri yükleniyor...
+</div>
+
+<div id="errorBox" class="error-box" style="display:none;">
+    <div class="error-icon">🏠</div>
+    <h2>İlan bulunamadı</h2>
+    <p>Aradığınız ilan silinmiş veya mevcut olmayabilir.</p>
+    <a href="index.html" class="back-btn">İlanlara Dön</a>
+</div>
+
+<div id="detailContent" style="display:none;">
+
+    <section class="gallery">
+
+        <div class="main-photo">
+
+            <div id="typeBadge" class="photo-badge">
+                Satılık
+            </div>
+
+            <img id="mainImage"
+                 src=""
+                 alt="İlan fotoğrafı"
+                 onclick="openLightbox()">
+
+            <button class="gallery-arrow prev"
+                    onclick="previousImage()"
+                    aria-label="Önceki fotoğraf">
+                ‹
+            </button>
+
+            <button class="gallery-arrow next"
+                    onclick="nextImage()"
+                    aria-label="Sonraki fotoğraf">
+                ›
+            </button>
+
+            <div id="photoCount" class="photo-count">
+                1 / 1
+            </div>
+
+        </div>
+
+        <div id="thumbnails" class="thumbnails"></div>
+
+    </section>
+
+
+    <div class="quick-actions">
+
+        <button class="quick-action"
+                onclick="shareListing()">
+            ↗️ İlanı Paylaş
+        </button>
+
+        <button class="quick-action"
+                onclick="openMap()">
+            📍 Haritada Gör
+        </button>
+
+        <button class="quick-action"
+                onclick="toggleFavorite()">
+            ❤️ Favoriye Ekle
+        </button>
+
     </div>
 
-    <div id="loading" class="loading">
-        İlan bilgileri yükleniyor...
-    </div>
 
-    <div id="errorBox" class="error-box" style="display:none;">
-        <div class="error-icon">🏠</div>
-        <h2>İlan bulunamadı</h2>
-        <p>Aradığınız ilan silinmiş veya mevcut olmayabilir.</p>
-        <a href="index.html" class="back-btn">İlanlara Dön</a>
-    </div>
+    <div class="detail-grid">
 
-    <div id="detailContent" style="display:none;">
+        <section class="card detail-card">
 
-        <!-- GALERİ -->
+            <div class="top-info">
 
-        <section class="gallery">
+                <div>
 
-            <div class="main-photo">
+                    <div id="typeBadgeText" class="type-badge">
+                        SATILIK
+                    </div>
 
-                <div id="typeBadge" class="photo-badge">
-                    Satılık
+                    <h1 id="listingTitle" class="title">
+                        İlan Başlığı
+                    </h1>
+
+                    <div id="listingLocation" class="location">
+                        📍 İstanbul
+                    </div>
+
                 </div>
 
-                <img id="mainImage"
-                     src=""
-                     alt="İlan fotoğrafı"
-                     onclick="openLightbox()">
+                <div>
 
-                <button class="gallery-arrow prev"
-                        onclick="previousImage()"
-                        aria-label="Önceki fotoğraf">
-                    ‹
-                </button>
+                    <div id="listingPrice" class="price">
+                        0 TL
+                    </div>
 
-                <button class="gallery-arrow next"
-                        onclick="nextImage()"
-                        aria-label="Sonraki fotoğraf">
-                    ›
-                </button>
+                    <button id="favoriteButton"
+                            class="favorite-btn"
+                            onclick="toggleFavorite()"
+                            title="Favorilere ekle">
+                        ♡
+                    </button>
 
-                <div id="photoCount" class="photo-count">
-                    1 / 1
                 </div>
 
             </div>
 
-            <div id="thumbnails" class="thumbnails"></div>
 
-        </section>
-
-
-        <!-- HIZLI İŞLEMLER -->
-
-        <div class="quick-actions">
-
-            <button class="quick-action"
-                    onclick="shareListing()">
-                ↗️ İlanı Paylaş
-            </button>
-
-            <button class="quick-action"
-                    onclick="openMap()">
-                📍 Haritada Gör
-            </button>
-
-            <button class="quick-action"
-                    onclick="toggleFavorite()">
-                ❤️ Favoriye Ekle
-            </button>
-
-        </div>
+            <div class="divider"></div>
 
 
-        <!-- DETAY -->
+            <div class="features">
 
-        <div class="detail-grid">
-
-            <section class="card detail-card">
-
-                <div class="top-info">
-
-                    <div>
-
-                        <div id="typeBadgeText" class="type-badge">
-                            SATILIK
-                        </div>
-
-                        <h1 id="listingTitle" class="title">
-                            İlan Başlığı
-                        </h1>
-
-                        <div id="listingLocation" class="location">
-                            📍 İstanbul
-                        </div>
-
-                    </div>
-
-                    <div>
-
-                        <div id="listingPrice" class="price">
-                            0 TL
-                        </div>
-
-                        <button id="favoriteButton"
-                                class="favorite-btn"
-                                onclick="toggleFavorite()"
-                                title="Favorilere ekle">
-                            ♡
-                        </button>
-
-                    </div>
-
+                <div class="feature">
+                    <div class="feature-icon">🛏️</div>
+                    <strong id="roomsValue">-</strong>
+                    <span>Oda</span>
                 </div>
 
-
-                <div class="divider"></div>
-
-
-                <!-- ÖZELLİKLER -->
-
-                <div class="features">
-
-                    <div class="feature">
-                        <div class="feature-icon">🛏️</div>
-                        <strong id="roomsValue">-</strong>
-                        <span>Oda</span>
-                    </div>
-
-                    <div class="feature">
-                        <div class="feature-icon">📐</div>
-                        <strong id="areaValue">-</strong>
-                        <span>m²</span>
-                    </div>
-
-                    <div class="feature">
-                        <div class="feature-icon">🏢</div>
-                        <strong id="buildingAgeValue">-</strong>
-                        <span>Bina Yaşı</span>
-                    </div>
-
-                    <div class="feature">
-                        <div class="feature-icon">🏙️</div>
-                        <strong id="floorValue">-</strong>
-                        <span>Kat</span>
-                    </div>
-
+                <div class="feature">
+                    <div class="feature-icon">📐</div>
+                    <strong id="areaValue">-</strong>
+                    <span>m²</span>
                 </div>
 
-
-                <div class="divider"></div>
-
-
-                <!-- AÇIKLAMA -->
-
-                <h2 class="section-title">
-                    İlan Açıklaması
-                </h2>
-
-                <div id="description"
-                     class="description">
+                <div class="feature">
+                    <div class="feature-icon">🏢</div>
+                    <strong id="buildingAgeValue">-</strong>
+                    <span>Bina Yaşı</span>
                 </div>
 
-
-                <div class="divider"></div>
-
-
-                <!-- DETAYLI ÖZELLİKLER -->
-
-                <h2 class="section-title">
-                    Gayrimenkul Özellikleri
-                </h2>
-
-                <div class="property-details">
-
-                    <div class="detail-row">
-                        <span class="detail-label">İlan Türü</span>
-                        <span id="detailType" class="detail-value">-</span>
-                    </div>
-
-                    <div class="detail-row">
-                        <span class="detail-label">Şehir</span>
-                        <span id="detailCity" class="detail-value">-</span>
-                    </div>
-
-                    <div class="detail-row">
-                        <span class="detail-label">İlçe</span>
-                        <span id="detailDistrict" class="detail-value">-</span>
-                    </div>
-
-                    <div class="detail-row">
-                        <span class="detail-label">Mahalle</span>
-                        <span id="detailNeighborhood" class="detail-value">-</span>
-                    </div>
-
-                    <div class="detail-row">
-                        <span class="detail-label">Oda Sayısı</span>
-                        <span id="detailRooms" class="detail-value">-</span>
-                    </div>
-
-                    <div class="detail-row">
-                        <span class="detail-label">Net / Brüt Alan</span>
-                        <span id="detailArea" class="detail-value">-</span>
-                    </div>
-
-                    <div class="detail-row">
-                        <span class="detail-label">Bina Yaşı</span>
-                        <span id="detailBuildingAge" class="detail-value">-</span>
-                    </div>
-
-                    <div class="detail-row">
-                        <span class="detail-label">Bulunduğu Kat</span>
-                        <span id="detailFloor" class="detail-value">-</span>
-                    </div>
-
-                    <div class="detail-row">
-                        <span class="detail-label">Toplam Kat</span>
-                        <span id="detailTotalFloors" class="detail-value">-</span>
-                    </div>
-
-                    <div class="detail-row">
-                        <span class="detail-label">Isıtma</span>
-                        <span id="detailHeating" class="detail-value">-</span>
-                    </div>
-
-                    <div class="detail-row">
-                        <span class="detail-label">Banyo</span>
-                        <span id="detailBathrooms" class="detail-value">-</span>
-                    </div>
-
-                    <div class="detail-row">
-                        <span class="detail-label">Balkon</span>
-                        <span id="detailBalcony" class="detail-value">-</span>
-                    </div>
-
-                    <div class="detail-row">
-                        <span class="detail-label">Krediye Uygun</span>
-                        <span id="detailCredit" class="detail-value">-</span>
-                    </div>
-
-                    <div class="detail-row">
-                        <span class="detail-label">Tapu Durumu</span>
-                        <span id="detailDeed" class="detail-value">-</span>
-                    </div>
-
+                <div class="feature">
+                    <div class="feature-icon">🏙️</div>
+                    <strong id="floorValue">-</strong>
+                    <span>Kat</span>
                 </div>
 
-            </section>
+            </div>
 
 
-            <!-- SAĞ TARAF -->
-
-            <aside class="sidebar">
-
-                <div class="card contact-card">
-
-                    <div class="contact-title">
-                        İlan Hakkında Bilgi Alın
-                    </div>
-
-                    <div class="contact-subtitle">
-                        Bu ilan hakkında daha fazla bilgi almak
-                        veya randevu oluşturmak için bizimle
-                        iletişime geçebilirsiniz.
-                    </div>
-
-                    <button class="contact-btn phone-btn"
-                            onclick="callAgent()">
-                        📞 Telefonla Ara
-                    </button>
-
-                    <button class="contact-btn whatsapp-btn"
-                            onclick="whatsappAgent()">
-                        💬 WhatsApp'tan Yaz
-                    </button>
-
-                    <button class="contact-btn map-btn"
-                            onclick="openMap()">
-                        📍 Haritada Gör
-                    </button>
-
-                    <button class="contact-btn share-btn"
-                            onclick="shareListing()">
-                        ↗️ İlanı Paylaş
-                    </button>
-
-                </div>
+            <div class="divider"></div>
 
 
-                <div class="card info-card">
-
-                    <div class="info-item">
-
-                        <div class="info-icon">
-                            🏢
-                        </div>
-
-                        <div class="info-text">
-                            <strong>Nova Emlak</strong>
-                            <span>Profesyonel Gayrimenkul Danışmanlığı</span>
-                        </div>
-
-                    </div>
-
-
-                    <div class="info-item">
-
-                        <div class="info-icon">
-                            📞
-                        </div>
-
-                        <div class="info-text">
-                            <strong>Telefon</strong>
-                            <span>0555 555 55 55</span>
-                        </div>
-
-                    </div>
-
-
-                    <div class="info-item">
-
-                        <div class="info-icon">
-                            📍
-                        </div>
-
-                        <div class="info-text">
-                            <strong>Konum</strong>
-                            <span id="officeLocation">
-                                İstanbul
-                            </span>
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </aside>
-
-        </div>
-
-
-        <!-- BENZER İLANLAR -->
-
-        <section class="similar-section">
-
-            <h2 class="similar-title">
-                Benzer İlanlar
+            <h2 class="section-title">
+                İlan Açıklaması
             </h2>
 
-            <div id="similarListings"
-                 class="similar-grid">
+            <div id="description"
+                 class="description">
+            </div>
+
+
+            <div class="divider"></div>
+
+
+            <h2 class="section-title">
+                Gayrimenkul Özellikleri
+            </h2>
+
+            <div class="property-details">
+
+                <div class="detail-row">
+                    <span class="detail-label">İlan Türü</span>
+                    <span id="detailType" class="detail-value">-</span>
+                </div>
+
+                <div class="detail-row">
+                    <span class="detail-label">Şehir</span>
+                    <span id="detailCity" class="detail-value">-</span>
+                </div>
+
+                <div class="detail-row">
+                    <span class="detail-label">İlçe</span>
+                    <span id="detailDistrict" class="detail-value">-</span>
+                </div>
+
+                <div class="detail-row">
+                    <span class="detail-label">Mahalle</span>
+                    <span id="detailNeighborhood" class="detail-value">-</span>
+                </div>
+
+                <div class="detail-row">
+                    <span class="detail-label">Oda Sayısı</span>
+                    <span id="detailRooms" class="detail-value">-</span>
+                </div>
+
+                <div class="detail-row">
+                    <span class="detail-label">Net / Brüt Alan</span>
+                    <span id="detailArea" class="detail-value">-</span>
+                </div>
+
+                <div class="detail-row">
+                    <span class="detail-label">Bina Yaşı</span>
+                    <span id="detailBuildingAge" class="detail-value">-</span>
+                </div>
+
+                <div class="detail-row">
+                    <span class="detail-label">Bulunduğu Kat</span>
+                    <span id="detailFloor" class="detail-value">-</span>
+                </div>
+
+                <div class="detail-row">
+                    <span class="detail-label">Toplam Kat</span>
+                    <span id="detailTotalFloors" class="detail-value">-</span>
+                </div>
+
+                <div class="detail-row">
+                    <span class="detail-label">Isıtma</span>
+                    <span id="detailHeating" class="detail-value">-</span>
+                </div>
+
+                <div class="detail-row">
+                    <span class="detail-label">Banyo</span>
+                    <span id="detailBathrooms" class="detail-value">-</span>
+                </div>
+
+                <div class="detail-row">
+                    <span class="detail-label">Balkon</span>
+                    <span id="detailBalcony" class="detail-value">-</span>
+                </div>
+
+                <div class="detail-row">
+                    <span class="detail-label">Krediye Uygun</span>
+                    <span id="detailCredit" class="detail-value">-</span>
+                </div>
+
+                <div class="detail-row">
+                    <span class="detail-label">Tapu Durumu</span>
+                    <span id="detailDeed" class="detail-value">-</span>
+                </div>
+
             </div>
 
         </section>
 
+
+        <aside class="sidebar">
+
+            <div class="card contact-card">
+
+                <div class="contact-title">
+                    İlan Hakkında Bilgi Alın
+                </div>
+
+                <div class="contact-subtitle">
+                    Bu ilan hakkında daha fazla bilgi almak
+                    veya randevu oluşturmak için bizimle
+                    iletişime geçebilirsiniz.
+                </div>
+
+                <button class="contact-btn phone-btn"
+                        onclick="callAgent()">
+                    📞 Telefonla Ara
+                </button>
+
+                <button class="contact-btn whatsapp-btn"
+                        onclick="whatsappAgent()">
+                    💬 WhatsApp'tan Yaz
+                </button>
+
+                <button class="contact-btn map-btn"
+                        onclick="openMap()">
+                    📍 Haritada Gör
+                </button>
+
+                <button class="contact-btn share-btn"
+                        onclick="shareListing()">
+                    ↗️ İlanı Paylaş
+                </button>
+
+            </div>
+
+
+            <div class="card info-card">
+
+                <div class="info-item">
+
+                    <div class="info-icon">
+                        🏢
+                    </div>
+
+                    <div class="info-text">
+                        <strong>Nova Emlak</strong>
+                        <span>Profesyonel Gayrimenkul Danışmanlığı</span>
+                    </div>
+
+                </div>
+
+
+                <div class="info-item">
+
+                    <div class="info-icon">
+                        📞
+                    </div>
+
+                    <div class="info-text">
+                        <strong>Telefon</strong>
+                        <span>0555 555 55 55</span>
+                    </div>
+
+                </div>
+
+
+                <div class="info-item">
+
+                    <div class="info-icon">
+                        📍
+                    </div>
+
+                    <div class="info-text">
+                        <strong>Konum</strong>
+                        <span id="officeLocation">
+                            İstanbul
+                        </span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </aside>
+
     </div>
+
+
+    <section class="similar-section">
+
+        <h2 class="similar-title">
+            Benzer İlanlar
+        </h2>
+
+        <div id="similarListings"
+             class="similar-grid">
+        </div>
+
+    </section>
+
+</div>
+```
 
 </main>
 
-
-<!-- LIGHTBOX -->
-
 <div id="lightbox" class="lightbox">
 
-    <button class="lightbox-close"
-            onclick="closeLightbox()"
-            aria-label="Kapat">
-        ×
-    </button>
+```
+<button class="lightbox-close"
+        onclick="closeLightbox()"
+        aria-label="Kapat">
+    ×
+</button>
 
-    <button class="lightbox-arrow lightbox-prev"
-            onclick="previousImage()"
-            aria-label="Önceki fotoğraf">
-        ‹
-    </button>
+<button class="lightbox-arrow lightbox-prev"
+        onclick="previousImage()"
+        aria-label="Önceki fotoğraf">
+    ‹
+</button>
 
-    <img id="lightboxImage"
-         src=""
-         alt="Büyük ilan fotoğrafı">
+<img id="lightboxImage"
+     src=""
+     alt="Büyük ilan fotoğrafı">
 
-    <button class="lightbox-arrow lightbox-next"
-            onclick="nextImage()"
-            aria-label="Sonraki fotoğraf">
-        ›
-    </button>
+<button class="lightbox-arrow lightbox-next"
+        onclick="nextImage()"
+        aria-label="Sonraki fotoğraf">
+    ›
+</button>
+```
 
 </div>
 
-
-<!-- TOAST -->
-
 <div id="toast" class="toast"></div>
-
 
 <footer>
 
-    <div class="footer-inner">
+```
+<div class="footer-inner">
 
-        <div>
+    <div>
 
-            <div class="footer-logo">
-                NOVA <span>EMLAK</span>
-            </div>
-
-            <div class="footer-text">
-                Profesyonel gayrimenkul danışmanlığı ve
-                güvenilir ilan hizmetleri.
-            </div>
-
+        <div class="footer-logo">
+            NOVA <span>EMLAK</span>
         </div>
 
         <div class="footer-text">
-            © 2026 Nova Emlak. Tüm hakları saklıdır.
+            Profesyonel gayrimenkul danışmanlığı ve
+            güvenilir ilan hizmetleri.
         </div>
 
     </div>
 
-</footer>
+    <div class="footer-text">
+        © 2026 Nova Emlak. Tüm hakları saklıdır.
+    </div>
 
+</div>
+```
+
+</footer>
 
 <script>
 
@@ -1370,14 +1329,8 @@ let currentImageIndex = 0;
 const DEFAULT_IMAGE =
     "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=85";
 
-
-/* URL'DEN İLAN ID AL */
-
 const params = new URLSearchParams(window.location.search);
 const listingId = params.get("id");
-
-
-/* HTML GÜVENLİĞİ */
 
 function escapeHTML(value){
 
@@ -1393,9 +1346,6 @@ function escapeHTML(value){
         .replace(/'/g,"&#039;");
 
 }
-
-
-/* GÖRSEL AL */
 
 function getImages(listing){
 
@@ -1417,9 +1367,6 @@ function getImages(listing){
 
 }
 
-
-/* FİYAT */
-
 function formatPrice(price){
 
     const number = Number(price);
@@ -1431,9 +1378,6 @@ function formatPrice(price){
     return new Intl.NumberFormat("tr-TR").format(number) + " TL";
 
 }
-
-
-/* FAVORİLER */
 
 function getFavorites(){
 
@@ -1452,7 +1396,6 @@ function getFavorites(){
 
 }
 
-
 function saveFavorites(favorites){
 
     localStorage.setItem(
@@ -1461,7 +1404,6 @@ function saveFavorites(favorites){
     );
 
 }
-
 
 function isFavorite(id){
 
@@ -1472,7 +1414,6 @@ function isFavorite(id){
     );
 
 }
-
 
 function updateFavoriteButton(){
 
@@ -1498,7 +1439,6 @@ function updateFavoriteButton(){
     }
 
 }
-
 
 function toggleFavorite(){
 
@@ -1534,9 +1474,6 @@ function toggleFavorite(){
 
 }
 
-
-/* TOAST */
-
 let toastTimer;
 
 function showToast(message){
@@ -1562,9 +1499,6 @@ function showToast(message){
         },2200);
 
 }
-
-
-/* ANA İLANI GETİR */
 
 async function loadListing(){
 
@@ -1632,9 +1566,6 @@ async function loadListing(){
 
 }
 
-
-/* İLANI EKRANA BAS */
-
 function renderListing(){
 
     const listing = currentListing;
@@ -1646,9 +1577,6 @@ function renderListing(){
         "Nova Emlak | " +
         (listing.title || "İlan Detayı");
 
-
-    /* GALERİ */
-
     document.getElementById("mainImage").src =
         currentImages[0];
 
@@ -1658,20 +1586,14 @@ function renderListing(){
     document.getElementById("photoCount").textContent =
         "1 / " + currentImages.length;
 
-
     document.getElementById("typeBadge").textContent =
         listing.type || "İlan";
-
-
-    /* BAŞLIK */
 
     document.getElementById("typeBadgeText").textContent =
         (listing.type || "İlan").toUpperCase();
 
-
     document.getElementById("listingTitle").textContent =
         listing.title || "İlan";
-
 
     let location = [];
 
@@ -1695,30 +1617,21 @@ function renderListing(){
                 : "Konum bilgisi yok"
         );
 
-
     document.getElementById("officeLocation").textContent =
         location.length
             ? location.join(", ")
             : "Türkiye";
 
-
-    /* FİYAT */
-
     document.getElementById("listingPrice").textContent =
         formatPrice(listing.price);
 
-
-    /* ÖZELLİKLER */
-
     document.getElementById("roomsValue").textContent =
         listing.rooms || "-";
-
 
     document.getElementById("areaValue").textContent =
         listing.area
             ? Number(listing.area).toLocaleString("tr-TR")
             : "-";
-
 
     document.getElementById("buildingAgeValue").textContent =
         listing.buildingAge !== undefined &&
@@ -1727,19 +1640,12 @@ function renderListing(){
             ? listing.buildingAge
             : "-";
 
-
     document.getElementById("floorValue").textContent =
         listing.floor || "-";
-
-
-    /* AÇIKLAMA */
 
     document.getElementById("description").textContent =
         listing.description ||
         "Bu ilan için henüz açıklama eklenmemiş.";
-
-
-    /* DETAYLAR */
 
     setText("detailType", listing.type || "-");
     setText("detailCity", listing.city || "-");
@@ -1785,13 +1691,11 @@ function renderListing(){
     setText("detailCredit", listing.credit || "-");
     setText("detailDeed", listing.deed || "-");
 
-
     renderThumbnails();
 
     updateFavoriteButton();
 
 }
-
 
 function setText(id,value){
 
@@ -1803,9 +1707,6 @@ function setText(id,value){
     }
 
 }
-
-
-/* THUMBNAILS */
 
 function renderThumbnails(){
 
@@ -1855,9 +1756,6 @@ function renderThumbnails(){
 
 }
 
-
-/* GÖRSEL DEĞİŞTİR */
-
 function showImage(index){
 
     if(!currentImages.length){
@@ -1877,28 +1775,23 @@ function showImage(index){
     const image =
         currentImages[currentImageIndex];
 
-
     const mainImage =
         document.getElementById("mainImage");
 
     const lightboxImage =
         document.getElementById("lightboxImage");
 
-
     mainImage.src = image;
     lightboxImage.src = image;
-
 
     document.getElementById("photoCount").textContent =
         (currentImageIndex + 1) +
         " / " +
         currentImages.length;
 
-
     renderThumbnails();
 
 }
-
 
 function nextImage(){
 
@@ -1906,15 +1799,11 @@ function nextImage(){
 
 }
 
-
 function previousImage(){
 
     showImage(currentImageIndex - 1);
 
 }
-
-
-/* LIGHTBOX */
 
 function openLightbox(){
 
@@ -1929,7 +1818,6 @@ function openLightbox(){
 
 }
 
-
 function closeLightbox(){
 
     document.getElementById("lightbox")
@@ -1938,9 +1826,6 @@ function closeLightbox(){
     document.body.style.overflow = "";
 
 }
-
-
-/* PAYLAŞ */
 
 async function shareListing(){
 
@@ -1954,7 +1839,6 @@ async function shareListing(){
 
     const url =
         window.location.href;
-
 
     if(navigator.share){
 
@@ -1980,7 +1864,6 @@ async function shareListing(){
 
     }
 
-
     try{
 
         await navigator.clipboard.writeText(url);
@@ -2000,9 +1883,6 @@ async function shareListing(){
 
 }
 
-
-/* KLAVYE */
-
 document.addEventListener("keydown",function(event){
 
     if(event.key === "Escape"){
@@ -2019,9 +1899,6 @@ document.addEventListener("keydown",function(event){
 
 });
 
-
-/* LIGHTBOX DIŞINA TIKLAMA */
-
 document.getElementById("lightbox")
     .addEventListener("click",function(event){
 
@@ -2031,18 +1908,12 @@ document.getElementById("lightbox")
 
     });
 
-
-/* TELEFON */
-
 function callAgent(){
 
     window.location.href =
         "tel:+905555555555";
 
 }
-
-
-/* WHATSAPP */
 
 function whatsappAgent(){
 
@@ -2066,9 +1937,6 @@ function whatsappAgent(){
     window.open(url,"_blank");
 
 }
-
-
-/* HARİTA */
 
 function openMap(){
 
@@ -2103,9 +1971,6 @@ function openMap(){
 
 }
 
-
-/* BENZER İLANLAR */
-
 function renderSimilarListings(){
 
     const container =
@@ -2115,7 +1980,6 @@ function renderSimilarListings(){
 
     const currentId =
         String(currentListing.id);
-
 
     let similar =
         allListings.filter(listing => {
@@ -2144,7 +2008,6 @@ function renderSimilarListings(){
 
         });
 
-
     if(similar.length < 3){
 
         const extra =
@@ -2165,10 +2028,8 @@ function renderSimilarListings(){
 
     }
 
-
     similar =
         similar.slice(0,3);
-
 
     if(similar.length === 0){
 
@@ -2179,12 +2040,10 @@ function renderSimilarListings(){
 
     }
 
-
     similar.forEach(listing => {
 
         const images =
             getImages(listing);
-
 
         const card =
             document.createElement("a");
@@ -2196,7 +2055,6 @@ function renderSimilarListings(){
             "ilan.html?id=" +
             encodeURIComponent(listing.id);
 
-
         const location =
             [
                 listing.district,
@@ -2204,7 +2062,6 @@ function renderSimilarListings(){
             ]
             .filter(Boolean)
             .join(", ");
-
 
         card.innerHTML = `
 
@@ -2256,7 +2113,6 @@ function renderSimilarListings(){
 
         `;
 
-
         const image =
             card.querySelector("img");
 
@@ -2266,15 +2122,11 @@ function renderSimilarListings(){
 
         };
 
-
         container.appendChild(card);
 
     });
 
 }
-
-
-/* RESİMLER HATA VERİRSE */
 
 document.addEventListener("error",function(event){
 
@@ -2294,9 +2146,6 @@ document.addEventListener("error",function(event){
     }
 
 },true);
-
-
-/* BAŞLAT */
 
 loadListing();
 
