@@ -1,5 +1,5 @@
-```html
 <!DOCTYPE html>
+
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
@@ -94,6 +94,7 @@ nav a:hover{
 .main-photo{
     position:relative;
     overflow:hidden;
+    background:#e2e8f0;
 }
 
 .main-photo img{
@@ -105,13 +106,14 @@ nav a:hover{
 
 .gallery-side{
     display:grid;
-    grid-template-rows:1fr 1fr;
+    grid-template-rows:repeat(3,1fr);
     gap:5px;
 }
 
 .gallery-side div{
     overflow:hidden;
     position:relative;
+    background:#e2e8f0;
 }
 
 .gallery-side img{
@@ -123,6 +125,7 @@ nav a:hover{
 
 .no-image{
     height:100%;
+    min-height:100px;
     display:flex;
     align-items:center;
     justify-content:center;
@@ -433,6 +436,7 @@ footer p{
     }
 }
 </style>
+
 </head>
 
 <body>
@@ -473,10 +477,10 @@ footer p{
 class="whatsapp-float"
 href="https://wa.me/905555555555"
 target="_blank"
-rel="noopener noreferrer"
+
 >
-💬
-</a>
+
+💬 </a>
 
 <footer id="iletisim">
 
@@ -493,678 +497,667 @@ rel="noopener noreferrer"
 
 let ilan = null;
 
-let favorites = [];
-
-try{
-
-    const saved =
-        JSON.parse(
-            localStorage.getItem("novaFavorites") || "[]"
-        );
-
-    if(Array.isArray(saved)){
-
-        favorites =
-            saved.map(Number);
-
-    }
-
-}catch(error){
-
-    favorites = [];
-
-}
+let favorites =
+JSON.parse(
+localStorage.getItem("novaFavorites") || "[]"
+);
 
 const params =
-    new URLSearchParams(
-        window.location.search
-    );
+new URLSearchParams(
+window.location.search
+);
 
 const id =
-    Number(params.get("id"));
+Number(params.get("id"));
 
 function escapeHTML(value){
 
-    return String(value ?? "")
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;");
+return String(value ?? "")
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
 
 }
 
 function isFavorite(id){
 
-    return favorites.includes(
-        Number(id)
-    );
+return favorites.includes(
+Number(id)
+);
 
 }
 
 function toggleFavorite(){
 
-    if(!ilan) return;
+if(!ilan) return;
 
-    const ilanId =
-        Number(ilan.id);
+const ilanId =
+Number(ilan.id);
 
-    if(
-        favorites.includes(ilanId)
-    ){
+if(
+favorites.includes(ilanId)
+){
 
-        favorites =
-            favorites.filter(
-                x => x !== ilanId
-            );
+favorites =
+favorites.filter(
+x => x !== ilanId
+);
 
-    }else{
+}else{
 
-        favorites.push(ilanId);
+favorites.push(ilanId);
 
-    }
+}
 
-    localStorage.setItem(
-        "novaFavorites",
-        JSON.stringify(favorites)
-    );
+localStorage.setItem(
+"novaFavorites",
+JSON.stringify(favorites)
+);
 
-    updateFavoriteButton();
+updateFavoriteButton();
 
 }
 
 function updateFavoriteButton(){
 
-    const button =
-        document.getElementById(
-            "favoriteButton"
-        );
+const button =
+document.getElementById(
+"favoriteButton"
+);
 
-    if(!button || !ilan) return;
+if(!button || !ilan) return;
 
-    if(
-        isFavorite(ilan.id)
-    ){
+if(
+isFavorite(ilan.id)
+){
 
-        button.classList.add("active");
+button.classList.add("active");
 
-        button.innerHTML =
-            "❤️ Favorilerden Çıkar";
+button.innerHTML =
+"❤️ Favorilerden Çıkar";
 
-    }else{
+}else{
 
-        button.classList.remove("active");
+button.classList.remove("active");
 
-        button.innerHTML =
-            "♡ Favorilere Ekle";
-
-    }
+button.innerHTML =
+"♡ Favorilere Ekle";
 
 }
 
+}
+
+/* FOTOĞRAF SİSTEMİ */
+
 function getImages(ilan){
 
-    let images = [];
+let images = [];
 
-    if(
-        Array.isArray(ilan.images)
-    ){
+/* Önce images alanını kullan */
 
-        images =
-            ilan.images
-                .filter(
-                    image =>
-                        typeof image === "string" &&
-                        image.trim() !== ""
-                )
-                .slice(0,4);
+if(
+Array.isArray(ilan.images)
+){
 
-    }
+images =
+ilan.images
+.filter(
+image =>
+typeof image === "string" &&
+image.trim() !== ""
+)
+.slice(0,4);
 
-    if(
-        images.length === 0 &&
-        typeof ilan.image === "string" &&
-        ilan.image.trim() !== ""
-    ){
+}
 
-        images = [
-            ilan.image
-        ];
+/* images boşsa image alanını kullan */
 
-    }
+if(
+images.length === 0 &&
+typeof ilan.image === "string" &&
+ilan.image.trim() !== ""
+){
 
-    return images;
+images = [
+ilan.image.trim()
+];
+
+}
+
+return images;
+
+}
+
+/* HATALI FOTOĞRAFTA YEDEK */
+
+function imageError(element){
+
+element.style.display = "none";
+
+const parent =
+element.parentElement;
+
+if(parent){
+
+parent.innerHTML =
+`
+<div class="no-image">
+📷 Fotoğraf yüklenemedi
+</div>
+`;
+
+}
 
 }
 
 function value(value){
 
-    if(
-        value === undefined ||
-        value === null ||
-        String(value).trim() === ""
-    ){
-
-        return "Belirtilmemiş";
-
-    }
-
-    return escapeHTML(value);
+return (
+value !== undefined &&
+value !== null &&
+String(value).trim() !== ""
+)
+?
+escapeHTML(value)
+:
+"Belirtilmemiş";
 
 }
 
-function fallbackImage(img){
-
-    img.onerror = null;
-
-    img.src =
-        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80";
-
-}
+/* İLANI GÖSTER */
 
 function displayListing(){
 
-    const app =
-        document.getElementById("app");
-
-    const images =
-        getImages(ilan);
-
-    const location =
-        [
-            ilan.city,
-            ilan.district,
-            ilan.neighborhood
-        ]
-        .filter(Boolean)
-        .join(" • ");
-
-    const price =
-        Number(ilan.price || 0)
-            .toLocaleString("tr-TR");
-
-    let galleryHTML = "";
-
-    if(images.length === 0){
-
-        galleryHTML = `
-
-            <div class="no-image">
-                📷 Fotoğraf bulunamadı
-            </div>
-
-        `;
-
-    }else{
-
-        galleryHTML = `
-
-            <div class="main-photo">
-
-                <span class="type-badge">
-                    ${value(ilan.type)}
-                </span>
-
-                <img
-                    src="${escapeHTML(images[0])}"
-                    alt="${value(ilan.title)}"
-                    onerror="fallbackImage(this)"
-                >
-
-            </div>
-
-            <div class="gallery-side">
-
-                ${
-                    images[1]
-                    ?
-                    `
-                    <div>
-                        <img
-                            src="${escapeHTML(images[1])}"
-                            alt="İlan fotoğrafı"
-                            onerror="fallbackImage(this)"
-                        >
-                    </div>
-                    `
-                    :
-                    `
-                    <div class="no-image">
-                        📷
-                    </div>
-                    `
-                }
-
-                ${
-                    images[2]
-                    ?
-                    `
-                    <div>
-                        <img
-                            src="${escapeHTML(images[2])}"
-                            alt="İlan fotoğrafı"
-                            onerror="fallbackImage(this)"
-                        >
-                    </div>
-                    `
-                    :
-                    `
-                    <div class="no-image">
-                        🏠
-                    </div>
-                    `
-                }
-
-            </div>
-
-        `;
-
-    }
-
-    app.innerHTML = `
-
-        <div class="detail-card">
-
-            <div class="gallery">
-                ${galleryHTML}
-            </div>
-
-            <div class="content">
-
-                <div class="top-info">
-
-                    <div class="title-area">
-
-                        <h1>
-                            ${value(
-                                ilan.title ||
-                                "İlan Detayı"
-                            )}
-                        </h1>
-
-                        <div class="location">
-                            📍 ${value(
-                                location || "-"
-                            )}
-                        </div>
-
-                    </div>
-
-                    <div class="price">
-                        ${price} TL
-                    </div>
-
-                </div>
-
-                <div class="actions">
-
-                    <button
-                        id="favoriteButton"
-                        class="action favorite"
-                        onclick="toggleFavorite()"
-                    >
-                        ♡ Favorilere Ekle
-                    </button>
-
-                    <a
-                        class="action whatsapp"
-                        href="https://wa.me/905555555555?text=${encodeURIComponent(
-                            "Merhaba, " +
-                            (
-                                ilan.title ||
-                                "ilan"
-                            ) +
-                            " hakkında bilgi almak istiyorum."
-                        )}"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        💬 WhatsApp'tan Bilgi Al
-                    </a>
-
-                    <a
-                        class="action back-button"
-                        href="index.html#ilanlar"
-                    >
-                        ← İlanlara Dön
-                    </a>
-
-                </div>
-
-                <div class="features">
-
-                    <div class="feature">
-
-                        <div class="feature-icon">
-                            🛏️
-                        </div>
-
-                        <div class="feature-label">
-                            Oda Sayısı
-                        </div>
-
-                        <div class="feature-value">
-                            ${value(ilan.rooms)}
-                        </div>
-
-                    </div>
-
-                    <div class="feature">
-
-                        <div class="feature-icon">
-                            📐
-                        </div>
-
-                        <div class="feature-label">
-                            Alan
-                        </div>
-
-                        <div class="feature-value">
-                            ${value(ilan.area)} m²
-                        </div>
-
-                    </div>
-
-                    <div class="feature">
-
-                        <div class="feature-icon">
-                            🏢
-                        </div>
-
-                        <div class="feature-label">
-                            Bina Yaşı
-                        </div>
-
-                        <div class="feature-value">
-
-                            ${
-                                ilan.buildingAge
-                                ?
-                                value(
-                                    ilan.buildingAge
-                                ) + " yaş"
-                                :
-                                "Belirtilmemiş"
-                            }
-
-                        </div>
-
-                    </div>
-
-                    <div class="feature">
-
-                        <div class="feature-icon">
-                            🏙️
-                        </div>
-
-                        <div class="feature-label">
-                            Kat
-                        </div>
-
-                        <div class="feature-value">
-                            ${value(ilan.floor)}
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div class="section">
-
-                    <h2>
-                        🏠 İlan Özellikleri
-                    </h2>
-
-                    <div class="info-grid">
-
-                        <div class="info-item">
-                            <span>İlan Türü</span>
-                            <span>${value(ilan.type)}</span>
-                        </div>
-
-                        <div class="info-item">
-                            <span>Şehir</span>
-                            <span>${value(ilan.city)}</span>
-                        </div>
-
-                        <div class="info-item">
-                            <span>İlçe</span>
-                            <span>${value(ilan.district)}</span>
-                        </div>
-
-                        <div class="info-item">
-                            <span>Mahalle</span>
-                            <span>${value(ilan.neighborhood)}</span>
-                        </div>
-
-                        <div class="info-item">
-                            <span>Oda Sayısı</span>
-                            <span>${value(ilan.rooms)}</span>
-                        </div>
-
-                        <div class="info-item">
-                            <span>Alan</span>
-                            <span>${value(ilan.area)} m²</span>
-                        </div>
-
-                        <div class="info-item">
-                            <span>Bina Yaşı</span>
-                            <span>${value(ilan.buildingAge)}</span>
-                        </div>
-
-                        <div class="info-item">
-                            <span>Bulunduğu Kat</span>
-                            <span>${value(ilan.floor)}</span>
-                        </div>
-
-                        <div class="info-item">
-                            <span>Toplam Kat</span>
-                            <span>${value(ilan.totalFloors)}</span>
-                        </div>
-
-                        <div class="info-item">
-                            <span>Isıtma</span>
-                            <span>${value(ilan.heating)}</span>
-                        </div>
-
-                        <div class="info-item">
-                            <span>Banyo</span>
-                            <span>${value(ilan.bathrooms)}</span>
-                        </div>
-
-                        <div class="info-item">
-                            <span>Balkon</span>
-                            <span>${value(ilan.balcony)}</span>
-                        </div>
-
-                        <div class="info-item">
-                            <span>Krediye Uygunluk</span>
-                            <span>${value(ilan.credit)}</span>
-                        </div>
-
-                        <div class="info-item">
-                            <span>Tapu Durumu</span>
-                            <span>${value(ilan.deed)}</span>
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div class="section">
-
-                    <h2>
-                        📝 İlan Açıklaması
-                    </h2>
-
-                    <div class="description">
-
-                        ${value(
-                            ilan.description ||
-                            "Bu ilan için henüz açıklama eklenmemiş."
-                        )}
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    `;
-
-    updateFavoriteButton();
+const app =
+document.getElementById("app");
+
+const images =
+getImages(ilan);
+
+const location =
+[
+ilan.city,
+ilan.district,
+ilan.neighborhood
+]
+.filter(Boolean)
+.join(" • ");
+
+const price =
+Number(ilan.price || 0)
+.toLocaleString("tr-TR");
+
+let galleryHTML = "";
+
+if(images.length === 0){
+
+galleryHTML = `
+
+<div class="main-photo">
+
+<span class="type-badge">
+${value(ilan.type)}
+</span>
+
+<div class="no-image">
+📷 Fotoğraf bulunamadı
+</div>
+
+</div>
+
+`;
+
+}else{
+
+galleryHTML = `
+
+<div class="main-photo">
+
+<span class="type-badge">
+${value(ilan.type)}
+</span>
+
+<img
+src="${escapeHTML(images[0])}"
+alt="${value(ilan.title)}"
+onerror="imageError(this)"
+>
+
+</div>
+
+<div class="gallery-side">
+
+${
+images[1]
+?
+`
+<div>
+<img
+src="${escapeHTML(images[1])}"
+alt="İlan fotoğrafı"
+onerror="imageError(this)"
+>
+</div>
+`
+:
+`
+<div class="no-image">
+📷
+</div>
+`
+}
+
+${
+images[2]
+?
+`
+<div>
+<img
+src="${escapeHTML(images[2])}"
+alt="İlan fotoğrafı"
+onerror="imageError(this)"
+>
+</div>
+`
+:
+`
+<div class="no-image">
+🏠
+</div>
+`
+}
+
+${
+images[3]
+?
+`
+<div>
+<img
+src="${escapeHTML(images[3])}"
+alt="İlan fotoğrafı"
+onerror="imageError(this)"
+>
+</div>
+`
+:
+`
+<div class="no-image">
+🏠
+</div>
+`
+}
+
+</div>
+
+`;
 
 }
+
+app.innerHTML = `
+
+<div class="detail-card">
+
+<div class="gallery">
+
+${galleryHTML}
+
+</div>
+
+<div class="content">
+
+<div class="top-info">
+
+<div class="title-area">
+
+<h1>
+${value(ilan.title || "İlan Detayı")}
+</h1>
+
+<div class="location">
+📍 ${value(location || "-")}
+</div>
+
+</div>
+
+<div class="price">
+${price} TL
+</div>
+
+</div>
+
+<div class="actions">
+
+<button
+id="favoriteButton"
+class="action favorite"
+onclick="toggleFavorite()"
+>
+♡ Favorilere Ekle
+</button>
+
+<a
+class="action whatsapp"
+href="https://wa.me/905555555555?text=${encodeURIComponent(
+"Merhaba, " +
+(ilan.title || "ilan") +
+" hakkında bilgi almak istiyorum."
+)}"
+target="_blank"
+>
+💬 WhatsApp'tan Bilgi Al
+</a>
+
+<a
+class="action back-button"
+href="index.html#ilanlar"
+>
+← İlanlara Dön
+</a>
+
+</div>
+
+<div class="features">
+
+<div class="feature">
+
+<div class="feature-icon">🛏️</div>
+
+<div class="feature-label">
+Oda Sayısı
+</div>
+
+<div class="feature-value">
+${value(ilan.rooms)}
+</div>
+
+</div>
+
+<div class="feature">
+
+<div class="feature-icon">📐</div>
+
+<div class="feature-label">
+Alan
+</div>
+
+<div class="feature-value">
+${value(ilan.area)} m²
+</div>
+
+</div>
+
+<div class="feature">
+
+<div class="feature-icon">🏢</div>
+
+<div class="feature-label">
+Bina Yaşı
+</div>
+
+<div class="feature-value">
+${
+ilan.buildingAge
+?
+value(ilan.buildingAge) + " yaş"
+:
+"Belirtilmemiş"
+}
+</div>
+
+</div>
+
+<div class="feature">
+
+<div class="feature-icon">🏙️</div>
+
+<div class="feature-label">
+Kat
+</div>
+
+<div class="feature-value">
+${value(ilan.floor)}
+</div>
+
+</div>
+
+</div>
+
+<div class="section">
+
+<h2>
+🏠 İlan Özellikleri
+</h2>
+
+<div class="info-grid">
+
+<div class="info-item">
+<span>İlan Türü</span>
+<span>${value(ilan.type)}</span>
+</div>
+
+<div class="info-item">
+<span>Şehir</span>
+<span>${value(ilan.city)}</span>
+</div>
+
+<div class="info-item">
+<span>İlçe</span>
+<span>${value(ilan.district)}</span>
+</div>
+
+<div class="info-item">
+<span>Mahalle</span>
+<span>${value(ilan.neighborhood)}</span>
+</div>
+
+<div class="info-item">
+<span>Oda Sayısı</span>
+<span>${value(ilan.rooms)}</span>
+</div>
+
+<div class="info-item">
+<span>Alan</span>
+<span>${value(ilan.area)} m²</span>
+</div>
+
+<div class="info-item">
+<span>Bina Yaşı</span>
+<span>${value(ilan.buildingAge)}</span>
+</div>
+
+<div class="info-item">
+<span>Bulunduğu Kat</span>
+<span>${value(ilan.floor)}</span>
+</div>
+
+<div class="info-item">
+<span>Toplam Kat</span>
+<span>${value(ilan.totalFloors)}</span>
+</div>
+
+<div class="info-item">
+<span>Isıtma</span>
+<span>${value(ilan.heating)}</span>
+</div>
+
+<div class="info-item">
+<span>Banyo</span>
+<span>${value(ilan.bathrooms)}</span>
+</div>
+
+<div class="info-item">
+<span>Balkon</span>
+<span>${value(ilan.balcony)}</span>
+</div>
+
+<div class="info-item">
+<span>Krediye Uygunluk</span>
+<span>${value(ilan.credit)}</span>
+</div>
+
+<div class="info-item">
+<span>Tapu Durumu</span>
+<span>${value(ilan.deed)}</span>
+</div>
+
+</div>
+
+</div>
+
+<div class="section">
+
+<h2>
+📝 İlan Açıklaması
+</h2>
+
+<div class="description">
+
+${value(
+ilan.description ||
+"Bu ilan için henüz açıklama eklenmemiş."
+)}
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+`;
+
+updateFavoriteButton();
+
+}
+
+/* İLANI GETİR */
 
 async function loadListing(){
 
-    const app =
-        document.getElementById("app");
+const app =
+document.getElementById("app");
 
-    if(!id){
+if(!id){
 
-        app.innerHTML = `
+app.innerHTML = `
 
-            <div class="error">
+<div class="error">
 
-                <h2>
-                    ❌ İlan bulunamadı
-                </h2>
+<h2>❌ İlan bulunamadı</h2>
 
-                <p>
-                    Geçerli bir ilan numarası bulunamadı.
-                </p>
+<p>
+Geçerli bir ilan numarası bulunamadı.
+</p>
 
-                <a href="index.html#ilanlar">
-                    ← Ana Sayfaya Dön
-                </a>
+<a href="index.html#ilanlar">
+← Ana Sayfaya Dön
+</a>
 
-            </div>
+</div>
 
-        `;
+`;
 
-        return;
-
-    }
-
-    try{
-
-        const response =
-            await fetch(
-                "/api/ilanlar?t=" +
-                Date.now(),
-                {
-                    method:"GET",
-                    cache:"no-store",
-                    headers:{
-                        "Accept":"application/json"
-                    }
-                }
-            );
-
-        if(!response.ok){
-
-            throw new Error(
-                "API bağlantısı başarısız: " +
-                response.status
-            );
-
-        }
-
-        const data =
-            await response.json();
-
-        if(!Array.isArray(data)){
-
-            throw new Error(
-                "Geçersiz ilan verisi."
-            );
-
-        }
-
-        ilan =
-            data.find(
-                item =>
-                    Number(item.id) === id
-            );
-
-        if(!ilan){
-
-            app.innerHTML = `
-
-                <div class="error">
-
-                    <h2>
-                        🏠 İlan bulunamadı
-                    </h2>
-
-                    <p>
-                        Bu ilan silinmiş veya mevcut değil.
-                    </p>
-
-                    <a href="index.html#ilanlar">
-                        ← İlanlara Dön
-                    </a>
-
-                </div>
-
-            `;
-
-            return;
-
-        }
-
-        displayListing();
-
-        console.log(
-            "Nova Emlak ilan detayı yüklendi:",
-            ilan
-        );
-
-    }catch(error){
-
-        console.error(
-            "İlan detay hatası:",
-            error
-        );
-
-        app.innerHTML = `
-
-            <div class="error">
-
-                <h2>
-                    ⚠️ Bir sorun oluştu
-                </h2>
-
-                <p>
-                    İlan bilgileri yüklenemedi.
-                </p>
-
-                <a href="index.html#ilanlar">
-                    ← İlanlara Dön
-                </a>
-
-            </div>
-
-        `;
-
-    }
+return;
 
 }
 
-document.addEventListener(
-    "DOMContentLoaded",
-    function(){
+try{
 
-        loadListing();
-
-    }
+const response =
+await fetch(
+"/api/ilanlar",
+{
+cache:"no-store"
+}
 );
+
+if(!response.ok){
+
+throw new Error(
+"API bağlantısı başarısız."
+);
+
+}
+
+const data =
+await response.json();
+
+if(!Array.isArray(data)){
+
+throw new Error(
+"Geçersiz ilan verisi."
+);
+
+}
+
+ilan =
+data.find(
+item =>
+Number(item.id) === id
+);
+
+if(!ilan){
+
+app.innerHTML = `
+
+<div class="error">
+
+<h2>🏠 İlan bulunamadı</h2>
+
+<p>
+Bu ilan silinmiş veya mevcut değil.
+</p>
+
+<a href="index.html#ilanlar">
+← İlanlara Dön
+</a>
+
+</div>
+
+`;
+
+return;
+
+}
+
+displayListing();
+
+}catch(error){
+
+console.error(
+"İlan detay hatası:",
+error
+);
+
+app.innerHTML = `
+
+<div class="error">
+
+<h2>⚠️ Bir sorun oluştu</h2>
+
+<p>
+İlan bilgileri yüklenemedi.
+Lütfen tekrar deneyin.
+</p>
+
+<a href="index.html#ilanlar">
+← İlanlara Dön
+</a>
+
+</div>
+
+`;
+
+}
+
+}
+
+loadListing();
 
 </script>
 
 </body>
 </html>
-```
