@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="tr">
 
@@ -1075,6 +1076,12 @@ CONTACT
     border:1px solid rgba(255,255,255,.1);
     padding:18px;
     border-radius:12px;
+    transition:.2s;
+}
+
+.contact-card:hover{
+    background:rgba(255,255,255,.11);
+    transform:translateY(-2px);
 }
 
 .contact-card strong{
@@ -1087,16 +1094,27 @@ CONTACT
     font-size:14px;
 }
 
+.contact-link{
+    display:block;
+    color:#cbd5e1;
+    text-decoration:none;
+    font-size:14px;
+}
+
+.contact-link:hover{
+    color:white;
+}
+
 /* =========================
-WHATSAPP
+WHATSAPP SABİT
 ========================= */
 
 .whatsapp-float{
     position:fixed;
     right:22px;
     bottom:22px;
-    width:58px;
-    height:58px;
+    width:64px;
+    height:64px;
     border-radius:50%;
     background:#16a34a;
     color:white;
@@ -1104,9 +1122,66 @@ WHATSAPP
     align-items:center;
     justify-content:center;
     text-decoration:none;
-    font-size:27px;
-    z-index:900;
-    box-shadow:0 7px 25px rgba(22,163,74,.35);
+    font-size:30px;
+    z-index:9999;
+    box-shadow:
+        0 8px 28px rgba(22,163,74,.40);
+    transition:.25s;
+}
+
+.whatsapp-float:hover{
+    transform:scale(1.08);
+    background:#15803d;
+}
+
+.whatsapp-float:before{
+    content:"";
+    position:absolute;
+    inset:-5px;
+    border-radius:50%;
+    border:2px solid rgba(22,163,74,.25);
+    animation:whatsappPulse 2s infinite;
+}
+
+.whatsapp-tooltip{
+    position:absolute;
+    right:76px;
+    white-space:nowrap;
+    background:#0f172a;
+    color:white;
+    padding:9px 13px;
+    border-radius:8px;
+    font-size:12px;
+    font-weight:700;
+    opacity:0;
+    pointer-events:none;
+    transform:translateX(5px);
+    transition:.2s;
+    box-shadow:0 6px 20px rgba(15,23,42,.2);
+}
+
+.whatsapp-float:hover .whatsapp-tooltip{
+    opacity:1;
+    transform:translateX(0);
+}
+
+@keyframes whatsappPulse{
+
+    0%{
+        transform:scale(1);
+        opacity:.7;
+    }
+
+    70%{
+        transform:scale(1.18);
+        opacity:0;
+    }
+
+    100%{
+        transform:scale(1.18);
+        opacity:0;
+    }
+
 }
 
 /* =========================
@@ -1273,6 +1348,18 @@ RESPONSIVE
 
     .sort-select{
         width:100%;
+    }
+
+    .whatsapp-float{
+        width:58px;
+        height:58px;
+        right:16px;
+        bottom:16px;
+        font-size:27px;
+    }
+
+    .whatsapp-tooltip{
+        display:none;
     }
 
 }
@@ -2348,9 +2435,12 @@ CONTACT
     📞 Telefon
 </strong>
 
-<span>
+<a
+    class="contact-link"
+    href="tel:+905555555555"
+>
     0555 555 55 55
-</span>
+</a>
 
 </div>
 
@@ -2361,9 +2451,14 @@ CONTACT
     💬 WhatsApp
 </strong>
 
-<span>
-    Hızlı iletişim için WhatsApp'tan ulaşabilirsiniz.
-</span>
+<a
+    class="contact-link"
+    href="https://wa.me/905555555555"
+    target="_blank"
+    rel="noopener noreferrer"
+>
+    WhatsApp'tan hızlıca iletişime geçin →
+</a>
 
 </div>
 
@@ -2391,7 +2486,7 @@ CONTACT
 
 
 <!-- =========================
-WHATSAPP
+SABİT WHATSAPP
 ========================= -->
 
 <a
@@ -2399,9 +2494,15 @@ WHATSAPP
     href="https://wa.me/905555555555"
     target="_blank"
     rel="noopener noreferrer"
-    aria-label="WhatsApp"
+    aria-label="WhatsApp ile iletişime geç"
 >
-    💬
+
+<span class="whatsapp-tooltip">
+    WhatsApp'tan iletişime geç
+</span>
+
+💬
+
 </a>
 
 
@@ -2548,6 +2649,7 @@ function toggleFavorite(id){
     displayFavorites();
 
     displayFeatured();
+
 
 }
 
@@ -3913,3 +4015,4 @@ document.addEventListener(
 </body>
 
 </html>
+```
