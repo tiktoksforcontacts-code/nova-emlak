@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -6,11 +7,13 @@
 <title>Nova Emlak - Admin</title>
 
 <style>
-*{box-sizing:border-box}
+*{
+    box-sizing:border-box;
+}
 
 body{
     margin:0;
-    font-family:Arial,sans-serif;
+    font-family:Arial,Helvetica,sans-serif;
     background:#f4f6f8;
     color:#1f2937;
 }
@@ -21,10 +24,22 @@ header{
     padding:22px 7%;
 }
 
-header h1{margin:0}
+.header-inner{
+    max-width:1100px;
+    margin:auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+}
+
+header h1{
+    margin:0;
+    font-size:24px;
+}
 
 .container{
-    max-width:1000px;
+    max-width:1100px;
     margin:35px auto;
     padding:0 20px;
 }
@@ -32,9 +47,9 @@ header h1{margin:0}
 .panel{
     background:white;
     padding:28px;
-    border-radius:15px;
+    border-radius:16px;
     margin-bottom:25px;
-    box-shadow:0 5px 25px rgba(0,0,0,.08);
+    box-shadow:0 5px 25px rgba(0,0,0,.07);
 }
 
 label{
@@ -44,12 +59,22 @@ label{
     font-weight:bold;
 }
 
-input,select,textarea{
+input,
+select,
+textarea{
     width:100%;
     padding:13px;
-    border:1px solid #ddd;
+    border:1px solid #dbe1e8;
     border-radius:8px;
     font-size:15px;
+    outline:none;
+    background:white;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+    border-color:#2563eb;
 }
 
 textarea{
@@ -65,7 +90,56 @@ button{
     font-weight:bold;
 }
 
-button:hover{opacity:.9}
+button:hover{
+    opacity:.9;
+}
+
+.logout{
+    background:#dc2626;
+    color:white;
+}
+
+.back{
+    color:#2563eb;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+    margin-bottom:25px;
+}
+
+.stat{
+    background:white;
+    border-radius:15px;
+    padding:22px;
+    box-shadow:0 5px 25px rgba(0,0,0,.06);
+}
+
+.stat-icon{
+    font-size:28px;
+    margin-bottom:8px;
+}
+
+.stat-number{
+    font-size:28px;
+    font-weight:900;
+    color:#2563eb;
+}
+
+.stat-label{
+    color:#6b7280;
+    margin-top:5px;
+}
 
 .add-button{
     width:100%;
@@ -79,7 +153,6 @@ button:hover{opacity:.9}
 .edit-button{
     background:#2563eb;
     color:white;
-    margin-right:8px;
 }
 
 .delete-button{
@@ -87,78 +160,15 @@ button:hover{opacity:.9}
     color:white;
 }
 
+.view-button{
+    background:#16a34a;
+    color:white;
+}
+
 .cancel-button{
     background:#6b7280;
     color:white;
     margin-left:8px;
-}
-
-.logout{
-    float:right;
-    background:#dc2626;
-    color:white;
-}
-
-.back{
-    color:#2563eb;
-    text-decoration:none;
-}
-
-.preview{
-    display:none;
-    width:100%;
-    max-width:450px;
-    height:250px;
-    object-fit:cover;
-    margin-top:15px;
-    border-radius:10px;
-}
-
-.photo-grid{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:10px;
-    margin-top:15px;
-}
-
-.photo-grid img{
-    width:100%;
-    height:130px;
-    object-fit:cover;
-    border-radius:10px;
-    border:1px solid #ddd;
-}
-
-.listing{
-    border:1px solid #ddd;
-    border-radius:12px;
-    padding:18px;
-    margin-bottom:15px;
-}
-
-.listing img{
-    width:180px;
-    height:110px;
-    object-fit:cover;
-    border-radius:8px;
-    margin-bottom:12px;
-}
-
-.listing h3{
-    margin:0 0 8px;
-}
-
-.info{
-    color:#6b7280;
-    margin-bottom:8px;
-    line-height:1.7;
-}
-
-.price{
-    color:#2563eb;
-    font-size:20px;
-    font-weight:bold;
-    margin-bottom:15px;
 }
 
 .message{
@@ -176,6 +186,88 @@ button:hover{opacity:.9}
 .error{
     background:#fee2e2;
     color:#991b1b;
+}
+
+.photo-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:10px;
+    margin-top:15px;
+}
+
+.photo-grid img{
+    width:100%;
+    height:130px;
+    object-fit:cover;
+    border-radius:10px;
+    border:1px solid #ddd;
+}
+
+.toolbar{
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr;
+    gap:12px;
+    margin:20px 0;
+}
+
+.toolbar input,
+.toolbar select{
+    margin:0;
+}
+
+.listing{
+    border:1px solid #e2e8f0;
+    border-radius:14px;
+    padding:18px;
+    margin-bottom:15px;
+    background:#fff;
+}
+
+.listing-top{
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
+}
+
+.listing-main{
+    flex:1;
+}
+
+.listing img{
+    width:180px;
+    height:120px;
+    object-fit:cover;
+    border-radius:10px;
+}
+
+.listing h3{
+    margin:0 0 8px;
+    font-size:20px;
+}
+
+.info{
+    color:#6b7280;
+    margin-bottom:8px;
+    line-height:1.7;
+}
+
+.price{
+    color:#2563eb;
+    font-size:21px;
+    font-weight:bold;
+    margin:12px 0;
+}
+
+.actions{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+}
+
+.empty{
+    color:#777;
+    padding:20px 0;
+    text-align:center;
 }
 
 .modal{
@@ -218,40 +310,49 @@ button:hover{opacity:.9}
     text-align:center;
 }
 
-.empty{
-    color:#777;
-    padding:15px 0;
+.loading{
+    text-align:center;
+    color:#64748b;
+    padding:30px;
 }
 
-.grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:15px;
-}
+@media(max-width:800px){
 
-.section{
-    margin-top:25px;
-    padding-top:20px;
-    border-top:1px solid #eee;
-}
+    .stats{
+        grid-template-columns:1fr 1fr;
+    }
 
-@media(max-width:600px){
+    .toolbar{
+        grid-template-columns:1fr;
+    }
 
-    .panel{
-        padding:20px;
+    .listing-top{
+        flex-direction:column;
     }
 
     .listing img{
         width:100%;
-        height:200px;
+        height:220px;
     }
+}
 
-    .edit-button,
-    .delete-button{
-        margin-top:8px;
-    }
+@media(max-width:600px){
 
     header{
+        padding:20px;
+    }
+
+    .header-inner{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .container{
+        padding:0 12px;
+        margin-top:20px;
+    }
+
+    .panel{
         padding:20px;
     }
 
@@ -259,8 +360,24 @@ button:hover{opacity:.9}
         grid-template-columns:1fr;
     }
 
+    .stats{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .stat{
+        padding:16px;
+    }
+
+    .stat-number{
+        font-size:23px;
+    }
+
     .photo-grid{
         grid-template-columns:1fr 1fr;
+    }
+
+    .actions button{
+        flex:1;
     }
 }
 </style>
@@ -305,19 +422,54 @@ button:hover{opacity:.9}
 
 <header>
 
-    <button
-        class="logout"
-        onclick="logout()"
-    >
-        Çıkış
-    </button>
+    <div class="header-inner">
 
-    <h1>🏠 NOVA EMLAK — ADMIN</h1>
+        <h1>🏠 NOVA EMLAK — ADMIN</h1>
+
+        <button
+            class="logout"
+            onclick="logout()"
+        >
+            Çıkış Yap
+        </button>
+
+    </div>
 
 </header>
 
 
 <div class="container">
+
+
+<!-- İSTATİSTİKLER -->
+
+<div class="stats">
+
+    <div class="stat">
+        <div class="stat-icon">🏠</div>
+        <div id="totalCount" class="stat-number">0</div>
+        <div class="stat-label">Toplam İlan</div>
+    </div>
+
+    <div class="stat">
+        <div class="stat-icon">🏷️</div>
+        <div id="saleCount" class="stat-number">0</div>
+        <div class="stat-label">Satılık</div>
+    </div>
+
+    <div class="stat">
+        <div class="stat-icon">🔑</div>
+        <div id="rentCount" class="stat-number">0</div>
+        <div class="stat-label">Kiralık</div>
+    </div>
+
+    <div class="stat">
+        <div class="stat-icon">💰</div>
+        <div id="averagePrice" class="stat-number">0</div>
+        <div class="stat-label">Ortalama Fiyat</div>
+    </div>
+
+</div>
 
 
 <!-- YENİ İLAN -->
@@ -341,15 +493,18 @@ button:hover{opacity:.9}
 <div class="grid">
 
 <div>
+
 <label>İlan Türü</label>
 
 <select id="type">
     <option value="Satılık">Satılık</option>
     <option value="Kiralık">Kiralık</option>
 </select>
+
 </div>
 
 <div>
+
 <label>Şehir</label>
 
 <select id="city">
@@ -357,6 +512,7 @@ button:hover{opacity:.9}
     <option value="Ankara">Ankara</option>
     <option value="İzmir">İzmir</option>
 </select>
+
 </div>
 
 </div>
@@ -365,6 +521,7 @@ button:hover{opacity:.9}
 <div class="grid">
 
 <div>
+
 <label>İlçe</label>
 
 <input
@@ -383,7 +540,7 @@ button:hover{opacity:.9}
 <input
     id="neighborhood"
     type="text"
-    placeholder="Örn: Fenerbahçe Mahallesi"
+    placeholder="Örn: Fenerbahçe"
 >
 
 </div>
@@ -530,10 +687,8 @@ button:hover{opacity:.9}
 <label>Balkon</label>
 
 <select id="balcony">
-
 <option value="Var">Var</option>
 <option value="Yok">Yok</option>
-
 </select>
 
 </div>
@@ -543,10 +698,8 @@ button:hover{opacity:.9}
 <label>Krediye Uygun</label>
 
 <select id="credit">
-
 <option value="Evet">Evet</option>
 <option value="Hayır">Hayır</option>
-
 </select>
 
 </div>
@@ -620,6 +773,45 @@ button:hover{opacity:.9}
     İlanlar yükleniyor...
 </p>
 
+
+<!-- ARAMA / FİLTRE -->
+
+<div class="toolbar">
+
+<input
+    id="searchInput"
+    type="text"
+    placeholder="🔎 İlan ara..."
+    oninput="filterListings()"
+>
+
+<select
+    id="typeFilter"
+    onchange="filterListings()"
+>
+
+<option value="">Tüm İlanlar</option>
+<option value="Satılık">Satılık</option>
+<option value="Kiralık">Kiralık</option>
+
+</select>
+
+
+<select
+    id="sortFilter"
+    onchange="filterListings()"
+>
+
+<option value="new">En Yeni</option>
+<option value="old">En Eski</option>
+<option value="priceHigh">Fiyat: Yüksek → Düşük</option>
+<option value="priceLow">Fiyat: Düşük → Yüksek</option>
+
+</select>
+
+</div>
+
+
 <div id="listings"></div>
 
 </div>
@@ -636,7 +828,7 @@ button:hover{opacity:.9}
 </div>
 
 
-<!-- DÜZENLEME -->
+<!-- DÜZENLEME MODALI -->
 
 <div id="editModal" class="modal">
 
@@ -658,10 +850,8 @@ button:hover{opacity:.9}
 <label>İlan Türü</label>
 
 <select id="editType">
-
 <option value="Satılık">Satılık</option>
 <option value="Kiralık">Kiralık</option>
-
 </select>
 
 </div>
@@ -671,11 +861,9 @@ button:hover{opacity:.9}
 <label>Şehir</label>
 
 <select id="editCity">
-
 <option value="İstanbul">İstanbul</option>
 <option value="Ankara">Ankara</option>
 <option value="İzmir">İzmir</option>
-
 </select>
 
 </div>
@@ -708,14 +896,12 @@ button:hover{opacity:.9}
 
 <label>Fiyat</label>
 <input id="editPrice" type="number">
-
 </div>
 
 <div>
 
 <label>Oda Sayısı</label>
 <input id="editRooms" type="text">
-
 </div>
 
 </div>
@@ -727,14 +913,12 @@ button:hover{opacity:.9}
 
 <label>Metrekare</label>
 <input id="editArea" type="number">
-
 </div>
 
 <div>
 
 <label>Bina Yaşı</label>
 <input id="editBuildingAge" type="number">
-
 </div>
 
 </div>
@@ -746,14 +930,12 @@ button:hover{opacity:.9}
 
 <label>Bulunduğu Kat</label>
 <input id="editFloor" type="text">
-
 </div>
 
 <div>
 
 <label>Toplam Kat</label>
 <input id="editTotalFloors" type="number">
-
 </div>
 
 </div>
@@ -804,10 +986,8 @@ button:hover{opacity:.9}
 <label>Balkon</label>
 
 <select id="editBalcony">
-
 <option value="Var">Var</option>
 <option value="Yok">Yok</option>
-
 </select>
 
 </div>
@@ -817,10 +997,8 @@ button:hover{opacity:.9}
 <label>Krediye Uygun</label>
 
 <select id="editCredit">
-
 <option value="Evet">Evet</option>
 <option value="Hayır">Hayır</option>
-
 </select>
 
 </div>
@@ -841,7 +1019,7 @@ button:hover{opacity:.9}
 </select>
 
 
-<label>📷 Fotoğraflar — En fazla 4 adet</label>
+<label>📷 Yeni Fotoğraflar — En fazla 4 adet</label>
 
 <input
     id="editImageFile"
@@ -885,9 +1063,11 @@ button:hover{opacity:.9}
 let adminToken =
     sessionStorage.getItem("novaAdminToken") || "";
 
+let allListings = [];
+
 
 /* =========================
-   GİRİŞ
+GİRİŞ
 ========================= */
 
 async function login(){
@@ -951,7 +1131,7 @@ document.getElementById("password")
 
 
 /* =========================
-   ADMIN
+ADMIN
 ========================= */
 
 function showAdmin(){
@@ -975,7 +1155,7 @@ if(adminToken){
 
 
 /* =========================
-   ÇIKIŞ
+ÇIKIŞ
 ========================= */
 
 async function logout(){
@@ -1008,7 +1188,7 @@ async function logout(){
 
 
 /* =========================
-   FOTOĞRAF ÖNİZLEME
+FOTOĞRAF ÖNİZLEME
 ========================= */
 
 document.getElementById("imageFile")
@@ -1022,7 +1202,7 @@ document.getElementById("imageFile")
 
     preview.innerHTML="";
 
-    if(files.length > 4){
+    if(files.length>4){
 
         alert("En fazla 4 fotoğraf seçebilirsin.");
 
@@ -1056,7 +1236,7 @@ document.getElementById("imageFile")
 
 
 /* =========================
-   FOTOĞRAFLARI BASE64 OKU
+BASE64
 ========================= */
 
 function readFiles(files){
@@ -1086,7 +1266,7 @@ function readFiles(files){
 
 
 /* =========================
-   YENİ İLAN
+YENİ İLAN
 ========================= */
 
 document.getElementById("listingForm")
@@ -1125,76 +1305,52 @@ document.getElementById("listingForm")
         const ilan={
 
             title:
-                document.getElementById("title")
-                .value.trim(),
+                document.getElementById("title").value.trim(),
 
             type:
-                document.getElementById("type")
-                .value,
+                document.getElementById("type").value,
 
             city:
-                document.getElementById("city")
-                .value,
+                document.getElementById("city").value,
 
             district:
-                document.getElementById("district")
-                .value.trim(),
+                document.getElementById("district").value.trim(),
 
             neighborhood:
-                document.getElementById("neighborhood")
-                .value.trim(),
+                document.getElementById("neighborhood").value.trim(),
 
             price:
-                Number(
-                    document.getElementById("price")
-                    .value
-                ),
+                Number(document.getElementById("price").value),
 
             rooms:
-                document.getElementById("rooms")
-                .value.trim(),
+                document.getElementById("rooms").value.trim(),
 
             area:
-                Number(
-                    document.getElementById("area")
-                    .value
-                ),
+                Number(document.getElementById("area").value),
 
             buildingAge:
-                Number(
-                    document.getElementById("buildingAge")
-                    .value
-                ) || 0,
+                Number(document.getElementById("buildingAge").value) || 0,
 
             floor:
-                document.getElementById("floor")
-                .value.trim(),
+                document.getElementById("floor").value.trim(),
 
             totalFloors:
-                Number(
-                    document.getElementById("totalFloors")
-                    .value
-                ) || 0,
+                Number(document.getElementById("totalFloors").value) || 0,
 
             heating:
-                document.getElementById("heating")
-                .value,
+                document.getElementById("heating").value,
 
             bathrooms:
-                document.getElementById("bathrooms")
-                .value,
+                document.getElementById("bathrooms").value,
 
             balcony:
-                document.getElementById("balcony")
-                .value,
+                document.getElementById("balcony").value,
 
             credit:
-                document.getElementById("credit")
-                .value,
+                document.getElementById("credit").value,
 
             deed:
-                document.getElementById("deed")
-                .value,
+                document.getElementById("deed").value,
 
             image:
                 images[0],
@@ -1203,8 +1359,7 @@ document.getElementById("listingForm")
                 images,
 
             description:
-                document.getElementById("description")
-                .value.trim()
+                document.getElementById("description").value.trim()
 
         };
 
@@ -1215,13 +1370,9 @@ document.getElementById("listingForm")
                 method:"POST",
 
                 headers:{
-
-                    "Content-Type":
-                        "application/json",
-
+                    "Content-Type":"application/json",
                     "Authorization":
                         "Bearer " + adminToken
-
                 },
 
                 body:
@@ -1268,8 +1419,7 @@ document.getElementById("listingForm")
 
             showMessage(
                 "❌ " +
-                (data.error ||
-                "İlan kaydedilemedi."),
+                (data.error || "İlan kaydedilemedi."),
                 false
             );
 
@@ -1290,7 +1440,7 @@ document.getElementById("listingForm")
 
 
 /* =========================
-   MESAJ
+MESAJ
 ========================= */
 
 function showMessage(text,success){
@@ -1317,7 +1467,7 @@ function showMessage(text,success){
 
 
 /* =========================
-   İLANLARI GETİR
+İLANLARI GETİR
 ========================= */
 
 async function loadListings(){
@@ -1325,165 +1475,30 @@ async function loadListings(){
     try{
 
         const response =
-            await fetch("/api/ilanlar");
+            await fetch("/api/ilanlar",{
+                cache:"no-store"
+            });
+
+        if(!response.ok){
+
+            throw new Error("İlanlar alınamadı.");
+
+        }
 
         const ilanlar =
             await response.json();
 
-        document.getElementById("count")
-        .textContent =
-            "Toplam " + ilanlar.length + " ilan";
+        if(!Array.isArray(ilanlar)){
 
-
-        const container =
-            document.getElementById("listings");
-
-        container.innerHTML="";
-
-
-        if(!Array.isArray(ilanlar) ||
-           ilanlar.length===0){
-
-            container.innerHTML =
-                '<p class="empty">Henüz ilan yok.</p>';
-
-            return;
+            throw new Error("Geçersiz ilan verisi.");
 
         }
 
+        allListings=ilanlar;
 
-        ilanlar.forEach(function(ilan){
+        updateStats();
 
-            const item =
-                document.createElement("div");
-
-            item.className="listing";
-
-
-            const images =
-                Array.isArray(ilan.images)
-                ? ilan.images
-                : (ilan.image ? [ilan.image] : []);
-
-
-            if(images.length){
-
-                const photoGrid =
-                    document.createElement("div");
-
-                photoGrid.className="photo-grid";
-
-
-                images.slice(0,4).forEach(function(src){
-
-                    const image =
-                        document.createElement("img");
-
-                    image.src=src;
-
-                    image.alt=ilan.title || "İlan";
-
-                    photoGrid.appendChild(image);
-
-                });
-
-                item.appendChild(photoGrid);
-
-            }
-
-
-            const title =
-                document.createElement("h3");
-
-            title.textContent =
-                ilan.title || "";
-
-            item.appendChild(title);
-
-
-            const info =
-                document.createElement("div");
-
-            info.className="info";
-
-            info.textContent =
-                (ilan.type || "") +
-                " • " +
-                (ilan.city || "") +
-                " / " +
-                (ilan.district || "") +
-                " • " +
-                (ilan.rooms || "") +
-                " • " +
-                (ilan.area || 0) +
-                " m²";
-
-            item.appendChild(info);
-
-
-            const extra =
-                document.createElement("div");
-
-            extra.className="info";
-
-            extra.textContent =
-                "🏢 " +
-                (ilan.buildingAge || 0) +
-                " yaş • Kat: " +
-                (ilan.floor || "-") +
-                " • 🔥 " +
-                (ilan.heating || "-");
-
-            item.appendChild(extra);
-
-
-            const price =
-                document.createElement("div");
-
-            price.className="price";
-
-            price.textContent =
-                Number(ilan.price || 0)
-                .toLocaleString("tr-TR") +
-                " TL";
-
-            item.appendChild(price);
-
-
-            const editButton =
-                document.createElement("button");
-
-            editButton.className="edit-button";
-
-            editButton.textContent="✏️ Düzenle";
-
-            editButton.onclick =
-                function(){
-                    openEdit(ilan.id);
-                };
-
-            item.appendChild(editButton);
-
-
-            const deleteButton =
-                document.createElement("button");
-
-            deleteButton.className="delete-button";
-
-            deleteButton.textContent="🗑️ Sil";
-
-            deleteButton.onclick =
-                function(){
-                    deleteListing(ilan.id);
-                };
-
-            item.appendChild(deleteButton);
-
-
-            container.appendChild(item);
-
-        });
-
+        filterListings();
 
     }catch(error){
 
@@ -1499,21 +1514,353 @@ async function loadListings(){
 
 
 /* =========================
-   DÜZENLE
+İSTATİSTİKLER
+========================= */
+
+function updateStats(){
+
+    const total =
+        allListings.length;
+
+    const sale =
+        allListings.filter(
+            x=>x.type==="Satılık"
+        ).length;
+
+    const rent =
+        allListings.filter(
+            x=>x.type==="Kiralık"
+        ).length;
+
+    const prices =
+        allListings
+        .map(x=>Number(x.price)||0)
+        .filter(x=>x>0);
+
+    const average =
+        prices.length
+        ?
+        Math.round(
+            prices.reduce(
+                (a,b)=>a+b,
+                0
+            ) / prices.length
+        )
+        :
+        0;
+
+    document.getElementById("totalCount")
+    .textContent=total;
+
+    document.getElementById("saleCount")
+    .textContent=sale;
+
+    document.getElementById("rentCount")
+    .textContent=rent;
+
+    document.getElementById("averagePrice")
+    .textContent=
+        average.toLocaleString("tr-TR") + " TL";
+
+}
+
+
+/* =========================
+ARAMA / FİLTRE
+========================= */
+
+function filterListings(){
+
+    const search =
+        document.getElementById("searchInput")
+        .value
+        .toLowerCase()
+        .trim();
+
+    const type =
+        document.getElementById("typeFilter")
+        .value;
+
+    const sort =
+        document.getElementById("sortFilter")
+        .value;
+
+
+    let filtered =
+        allListings.filter(function(ilan){
+
+            const text =
+                (
+                    (ilan.title || "") +
+                    " " +
+                    (ilan.city || "") +
+                    " " +
+                    (ilan.district || "") +
+                    " " +
+                    (ilan.neighborhood || "") +
+                    " " +
+                    (ilan.rooms || "")
+                )
+                .toLowerCase();
+
+            const searchMatch =
+                !search ||
+                text.includes(search);
+
+            const typeMatch =
+                !type ||
+                ilan.type===type;
+
+            return searchMatch && typeMatch;
+
+        });
+
+
+    filtered.sort(function(a,b){
+
+        if(sort==="new"){
+            return Number(b.id)-Number(a.id);
+        }
+
+        if(sort==="old"){
+            return Number(a.id)-Number(b.id);
+        }
+
+        if(sort==="priceHigh"){
+            return Number(b.price||0)-Number(a.price||0);
+        }
+
+        if(sort==="priceLow"){
+            return Number(a.price||0)-Number(b.price||0);
+        }
+
+        return 0;
+
+    });
+
+
+    renderListings(filtered);
+
+}
+
+
+/* =========================
+İLANLARI GÖSTER
+========================= */
+
+function renderListings(ilanlar){
+
+    const container =
+        document.getElementById("listings");
+
+    container.innerHTML="";
+
+
+    document.getElementById("count")
+    .textContent =
+        ilanlar.length +
+        " ilan gösteriliyor";
+
+
+    if(ilanlar.length===0){
+
+        container.innerHTML =
+            '<p class="empty">🔎 İlan bulunamadı.</p>';
+
+        return;
+
+    }
+
+
+    ilanlar.forEach(function(ilan){
+
+        const item =
+            document.createElement("div");
+
+        item.className="listing";
+
+
+        const top =
+            document.createElement("div");
+
+        top.className="listing-top";
+
+
+        const main =
+            document.createElement("div");
+
+        main.className="listing-main";
+
+
+        const images =
+            Array.isArray(ilan.images)
+            ? ilan.images
+            : (ilan.image ? [ilan.image] : []);
+
+
+        if(images.length){
+
+            const image =
+                document.createElement("img");
+
+            image.src=images[0];
+
+            image.alt=ilan.title || "İlan";
+
+            image.onerror=function(){
+                this.style.display="none";
+            };
+
+            top.appendChild(image);
+
+        }
+
+
+        const content =
+            document.createElement("div");
+
+        content.className="listing-main";
+
+
+        const title =
+            document.createElement("h3");
+
+        title.textContent =
+            ilan.title || "İsimsiz ilan";
+
+        content.appendChild(title);
+
+
+        const info =
+            document.createElement("div");
+
+        info.className="info";
+
+        info.textContent =
+            (ilan.type || "") +
+            " • " +
+            (ilan.city || "") +
+            " / " +
+            (ilan.district || "") +
+            " • " +
+            (ilan.rooms || "") +
+            " • " +
+            (ilan.area || 0) +
+            " m²";
+
+        content.appendChild(info);
+
+
+        const extra =
+            document.createElement("div");
+
+        extra.className="info";
+
+        extra.textContent =
+            "🏢 " +
+            (ilan.buildingAge || 0) +
+            " yaş • Kat: " +
+            (ilan.floor || "-") +
+            " • 🔥 " +
+            (ilan.heating || "-");
+
+        content.appendChild(extra);
+
+
+        const price =
+            document.createElement("div");
+
+        price.className="price";
+
+        price.textContent =
+            Number(ilan.price || 0)
+            .toLocaleString("tr-TR") +
+            " TL";
+
+        content.appendChild(price);
+
+
+        const actions =
+            document.createElement("div");
+
+        actions.className="actions";
+
+
+        const viewButton =
+            document.createElement("button");
+
+        viewButton.className="view-button";
+
+        viewButton.textContent="👁️ Görüntüle";
+
+        viewButton.onclick=function(){
+
+            window.open(
+                "ilan.html?id=" +
+                encodeURIComponent(ilan.id),
+                "_blank"
+            );
+
+        };
+
+        actions.appendChild(viewButton);
+
+
+        const editButton =
+            document.createElement("button");
+
+        editButton.className="edit-button";
+
+        editButton.textContent="✏️ Düzenle";
+
+        editButton.onclick=function(){
+
+            openEdit(ilan.id);
+
+        };
+
+        actions.appendChild(editButton);
+
+
+        const deleteButton =
+            document.createElement("button");
+
+        deleteButton.className="delete-button";
+
+        deleteButton.textContent="🗑️ Sil";
+
+        deleteButton.onclick=function(){
+
+            deleteListing(ilan.id);
+
+        };
+
+        actions.appendChild(deleteButton);
+
+
+        content.appendChild(actions);
+
+        top.appendChild(content);
+
+        item.appendChild(top);
+
+        container.appendChild(item);
+
+    });
+
+}
+
+
+/* =========================
+DÜZENLE
 ========================= */
 
 async function openEdit(id){
 
     try{
 
-        const response =
-            await fetch("/api/ilanlar");
-
-        const ilanlar =
-            await response.json();
-
         const ilan =
-            ilanlar.find(
+            allListings.find(
                 x=>String(x.id)===String(id)
             );
 
@@ -1603,6 +1950,10 @@ async function openEdit(id){
 
             img.src=src;
 
+            img.onerror=function(){
+                this.style.display="none";
+            };
+
             preview.appendChild(img);
 
         });
@@ -1630,7 +1981,7 @@ async function openEdit(id){
 
 
 /* =========================
-   DÜZENLEME FOTOĞRAFLARI
+DÜZENLEME FOTOĞRAFLARI
 ========================= */
 
 document.getElementById("editImageFile")
@@ -1649,7 +2000,9 @@ document.getElementById("editImageFile")
 
     if(files.length>4){
 
-        alert("En fazla 4 fotoğraf seçebilirsin.");
+        alert(
+            "En fazla 4 fotoğraf seçebilirsin."
+        );
 
         this.value="";
 
@@ -1682,7 +2035,7 @@ document.getElementById("editImageFile")
 
 
 /* =========================
-   DÜZENLEMEYİ KAYDET
+DÜZENLEMEYİ KAYDET
 ========================= */
 
 async function saveEdit(){
@@ -1690,28 +2043,22 @@ async function saveEdit(){
     const id =
         document.getElementById("editId").value;
 
+    const mevcut =
+        allListings.find(
+            x=>String(x.id)===String(id)
+        );
+
+
+    if(!mevcut){
+
+        alert("İlan bulunamadı.");
+
+        return;
+
+    }
+
+
     try{
-
-        const response =
-            await fetch("/api/ilanlar");
-
-        const ilanlar =
-            await response.json();
-
-        const mevcut =
-            ilanlar.find(
-                x=>String(x.id)===String(id)
-            );
-
-
-        if(!mevcut){
-
-            alert("İlan bulunamadı.");
-
-            return;
-
-        }
-
 
         const files =
             Array.from(
@@ -1766,7 +2113,7 @@ async function saveEdit(){
 
 
 /* =========================
-   GÜNCELLE
+GÜNCELLE
 ========================= */
 
 async function sendUpdate(id,images){
@@ -1774,76 +2121,52 @@ async function sendUpdate(id,images){
     const updated={
 
         title:
-            document.getElementById("editTitle")
-            .value.trim(),
+            document.getElementById("editTitle").value.trim(),
 
         type:
-            document.getElementById("editType")
-            .value,
+            document.getElementById("editType").value,
 
         city:
-            document.getElementById("editCity")
-            .value,
+            document.getElementById("editCity").value,
 
         district:
-            document.getElementById("editDistrict")
-            .value.trim(),
+            document.getElementById("editDistrict").value.trim(),
 
         neighborhood:
-            document.getElementById("editNeighborhood")
-            .value.trim(),
+            document.getElementById("editNeighborhood").value.trim(),
 
         price:
-            Number(
-                document.getElementById("editPrice")
-                .value
-            ),
+            Number(document.getElementById("editPrice").value),
 
         rooms:
-            document.getElementById("editRooms")
-            .value.trim(),
+            document.getElementById("editRooms").value.trim(),
 
         area:
-            Number(
-                document.getElementById("editArea")
-                .value
-            ),
+            Number(document.getElementById("editArea").value),
 
         buildingAge:
-            Number(
-                document.getElementById("editBuildingAge")
-                .value
-            ) || 0,
+            Number(document.getElementById("editBuildingAge").value)||0,
 
         floor:
-            document.getElementById("editFloor")
-            .value.trim(),
+            document.getElementById("editFloor").value.trim(),
 
         totalFloors:
-            Number(
-                document.getElementById("editTotalFloors")
-                .value
-            ) || 0,
+            Number(document.getElementById("editTotalFloors").value)||0,
 
         heating:
-            document.getElementById("editHeating")
-            .value,
+            document.getElementById("editHeating").value,
 
         bathrooms:
-            document.getElementById("editBathrooms")
-            .value,
+            document.getElementById("editBathrooms").value,
 
         balcony:
-            document.getElementById("editBalcony")
-            .value,
+            document.getElementById("editBalcony").value,
 
         credit:
-            document.getElementById("editCredit")
-            .value,
+            document.getElementById("editCredit").value,
 
         deed:
-            document.getElementById("editDeed")
-            .value,
+            document.getElementById("editDeed").value,
 
         image:
             images[0] || "",
@@ -1852,8 +2175,7 @@ async function sendUpdate(id,images){
             images,
 
         description:
-            document.getElementById("editDescription")
-            .value.trim()
+            document.getElementById("editDescription").value.trim()
 
     };
 
@@ -1930,7 +2252,7 @@ async function sendUpdate(id,images){
 
 
 /* =========================
-   MODAL KAPAT
+MODAL KAPAT
 ========================= */
 
 function closeModal(){
@@ -1955,13 +2277,23 @@ document.getElementById("editModal")
 
 
 /* =========================
-   İLAN SİL
+İLAN SİL
 ========================= */
 
 async function deleteListing(id){
 
+    const ilan =
+        allListings.find(
+            x=>String(x.id)===String(id)
+        );
+
+    const title =
+        ilan?.title || "Bu ilan";
+
+
     if(!confirm(
-        "Bu ilanı silmek istediğine emin misin?"
+        '"' + title +
+        '" ilanını silmek istediğine emin misin?'
     )){
 
         return;
@@ -2033,3 +2365,4 @@ async function deleteListing(id){
 
 </body>
 </html>
+```
