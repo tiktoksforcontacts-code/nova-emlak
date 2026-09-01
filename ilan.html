@@ -147,7 +147,7 @@ button{
 
 .gallery{
     display:grid;
-    grid-template-columns:1fr 210px;
+    grid-template-columns:minmax(0,1fr) 210px;
     gap:12px;
     margin-bottom:28px;
 }
@@ -211,10 +211,12 @@ button{
     font-size:23px;
     cursor:pointer;
     z-index:3;
+    transition:.2s;
 }
 
 .gallery-arrow:hover{
     background:#2563eb;
+    transform:translateY(-50%) scale(1.05);
 }
 
 .prev{
@@ -241,6 +243,11 @@ button{
     cursor:pointer;
     border:3px solid transparent;
     background:#e5e7eb;
+    transition:.2s;
+}
+
+.thumbnail:hover{
+    transform:translateY(-2px);
 }
 
 .thumbnail.active{
@@ -251,6 +258,32 @@ button{
     width:100%;
     height:100%;
     object-fit:cover;
+}
+
+/* QUICK ACTIONS */
+
+.quick-actions{
+    display:flex;
+    gap:10px;
+    margin-top:-10px;
+    margin-bottom:25px;
+}
+
+.quick-action{
+    border:1px solid #e2e8f0;
+    background:white;
+    padding:11px 15px;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:700;
+    color:#334155;
+    transition:.2s;
+}
+
+.quick-action:hover{
+    border-color:#2563eb;
+    color:#2563eb;
+    transform:translateY(-1px);
 }
 
 /* MAIN CONTENT */
@@ -307,6 +340,7 @@ button{
     font-weight:900;
     color:#111827;
     white-space:nowrap;
+    text-align:right;
 }
 
 .favorite-btn{
@@ -318,6 +352,8 @@ button{
     font-size:22px;
     cursor:pointer;
     transition:.2s;
+    display:block;
+    margin:12px 0 0 auto;
 }
 
 .favorite-btn:hover{
@@ -454,6 +490,11 @@ button{
     align-items:center;
     justify-content:center;
     gap:8px;
+    transition:.2s;
+}
+
+.contact-btn:hover{
+    transform:translateY(-1px);
 }
 
 .phone-btn{
@@ -469,6 +510,12 @@ button{
 .map-btn{
     background:#f1f5f9;
     color:#1e293b;
+}
+
+.share-btn{
+    background:#fff;
+    color:#2563eb;
+    border:1px solid #dbeafe;
 }
 
 .info-card{
@@ -546,6 +593,18 @@ button{
     width:100%;
     height:100%;
     object-fit:cover;
+}
+
+.similar-type{
+    position:absolute;
+    top:12px;
+    left:12px;
+    background:#2563eb;
+    color:white;
+    padding:7px 10px;
+    border-radius:7px;
+    font-size:11px;
+    font-weight:800;
 }
 
 .similar-body{
@@ -668,6 +727,31 @@ footer{
     line-height:1.6;
 }
 
+/* TOAST */
+
+.toast{
+    position:fixed;
+    left:50%;
+    bottom:25px;
+    transform:translateX(-50%) translateY(20px);
+    background:#0d1726;
+    color:white;
+    padding:13px 18px;
+    border-radius:10px;
+    font-size:14px;
+    font-weight:700;
+    opacity:0;
+    pointer-events:none;
+    transition:.25s;
+    z-index:9000;
+    box-shadow:0 10px 30px rgba(0,0,0,.2);
+}
+
+.toast.show{
+    opacity:1;
+    transform:translateX(-50%) translateY(0);
+}
+
 /* MOBILE */
 
 @media(max-width:900px){
@@ -736,6 +820,17 @@ footer{
         gap:8px;
     }
 
+    .quick-actions{
+        overflow-x:auto;
+        padding-bottom:3px;
+    }
+
+    .quick-action{
+        white-space:nowrap;
+        flex-shrink:0;
+        font-size:12px;
+    }
+
     .detail-card{
         padding:20px;
         border-radius:15px;
@@ -753,6 +848,7 @@ footer{
     .price{
         font-size:25px;
         margin-top:14px;
+        text-align:left;
     }
 
     .favorite-btn{
@@ -825,6 +921,7 @@ footer{
         <a href="index.html">Ana Sayfa</a>
         <a href="index.html#ilanlar">İlanlar</a>
         <a href="index.html#favoriler">Favoriler</a>
+        <a href="index.html#hakkimizda">Hakkımızda</a>
         <a href="index.html#iletisim">İletişim</a>
         <a href="admin.html" class="home-btn">Yönetim</a>
     </nav>
@@ -873,12 +970,14 @@ footer{
                      onclick="openLightbox()">
 
                 <button class="gallery-arrow prev"
-                        onclick="previousImage()">
+                        onclick="previousImage()"
+                        aria-label="Önceki fotoğraf">
                     ‹
                 </button>
 
                 <button class="gallery-arrow next"
-                        onclick="nextImage()">
+                        onclick="nextImage()"
+                        aria-label="Sonraki fotoğraf">
                     ›
                 </button>
 
@@ -891,6 +990,28 @@ footer{
             <div id="thumbnails" class="thumbnails"></div>
 
         </section>
+
+
+        <!-- HIZLI İŞLEMLER -->
+
+        <div class="quick-actions">
+
+            <button class="quick-action"
+                    onclick="shareListing()">
+                ↗️ İlanı Paylaş
+            </button>
+
+            <button class="quick-action"
+                    onclick="openMap()">
+                📍 Haritada Gör
+            </button>
+
+            <button class="quick-action"
+                    onclick="toggleFavorite()">
+                ❤️ Favoriye Ekle
+            </button>
+
+        </div>
 
 
         <!-- DETAY -->
@@ -1100,6 +1221,11 @@ footer{
                         📍 Haritada Gör
                     </button>
 
+                    <button class="contact-btn share-btn"
+                            onclick="shareListing()">
+                        ↗️ İlanı Paylaş
+                    </button>
+
                 </div>
 
 
@@ -1179,12 +1305,14 @@ footer{
 <div id="lightbox" class="lightbox">
 
     <button class="lightbox-close"
-            onclick="closeLightbox()">
+            onclick="closeLightbox()"
+            aria-label="Kapat">
         ×
     </button>
 
     <button class="lightbox-arrow lightbox-prev"
-            onclick="previousImage()">
+            onclick="previousImage()"
+            aria-label="Önceki fotoğraf">
         ‹
     </button>
 
@@ -1193,11 +1321,17 @@ footer{
          alt="Büyük ilan fotoğrafı">
 
     <button class="lightbox-arrow lightbox-next"
-            onclick="nextImage()">
+            onclick="nextImage()"
+            aria-label="Sonraki fotoğraf">
         ›
     </button>
 
 </div>
+
+
+<!-- TOAST -->
+
+<div id="toast" class="toast"></div>
 
 
 <footer>
@@ -1257,6 +1391,7 @@ function escapeHTML(value){
         .replace(/>/g,"&gt;")
         .replace(/"/g,"&quot;")
         .replace(/'/g,"&#039;");
+
 }
 
 
@@ -1279,6 +1414,7 @@ function getImages(listing){
     }
 
     return images;
+
 }
 
 
@@ -1293,6 +1429,7 @@ function formatPrice(price){
     }
 
     return new Intl.NumberFormat("tr-TR").format(number) + " TL";
+
 }
 
 
@@ -1312,6 +1449,7 @@ function getFavorites(){
         return [];
 
     }
+
 }
 
 
@@ -1341,7 +1479,7 @@ function updateFavoriteButton(){
     const button =
         document.getElementById("favoriteButton");
 
-    if(!button){
+    if(!button || !currentListing){
         return;
     }
 
@@ -1380,15 +1518,48 @@ function toggleFavorite(){
 
         favorites.splice(index,1);
 
+        showToast("İlan favorilerden çıkarıldı.");
+
     }else{
 
         favorites.push(currentListing.id);
+
+        showToast("İlan favorilere eklendi.");
 
     }
 
     saveFavorites(favorites);
 
     updateFavoriteButton();
+
+}
+
+
+/* TOAST */
+
+let toastTimer;
+
+function showToast(message){
+
+    const toast =
+        document.getElementById("toast");
+
+    if(!toast){
+        return;
+    }
+
+    toast.textContent = message;
+
+    toast.classList.add("show");
+
+    clearTimeout(toastTimer);
+
+    toastTimer =
+        setTimeout(function(){
+
+            toast.classList.remove("show");
+
+        },2200);
 
 }
 
@@ -1518,9 +1689,11 @@ function renderListing(){
 
     document.getElementById("listingLocation").textContent =
         "📍 " +
-        (location.length
-            ? location.join(", ")
-            : "Konum bilgisi yok");
+        (
+            location.length
+                ? location.join(", ")
+                : "Konum bilgisi yok"
+        );
 
 
     document.getElementById("officeLocation").textContent =
@@ -1622,7 +1795,8 @@ function renderListing(){
 
 function setText(id,value){
 
-    const element = document.getElementById(id);
+    const element =
+        document.getElementById(id);
 
     if(element){
         element.textContent = value;
@@ -1647,9 +1821,11 @@ function renderThumbnails(){
 
         div.className =
             "thumbnail" +
-            (index === currentImageIndex
-                ? " active"
-                : "");
+            (
+                index === currentImageIndex
+                    ? " active"
+                    : ""
+            );
 
         const img =
             document.createElement("img");
@@ -1701,19 +1877,23 @@ function showImage(index){
     const image =
         currentImages[currentImageIndex];
 
+
     const mainImage =
         document.getElementById("mainImage");
 
     const lightboxImage =
         document.getElementById("lightboxImage");
 
+
     mainImage.src = image;
     lightboxImage.src = image;
+
 
     document.getElementById("photoCount").textContent =
         (currentImageIndex + 1) +
         " / " +
         currentImages.length;
+
 
     renderThumbnails();
 
@@ -1738,6 +1918,10 @@ function previousImage(){
 
 function openLightbox(){
 
+    if(!currentImages.length){
+        return;
+    }
+
     document.getElementById("lightbox")
         .classList.add("show");
 
@@ -1752,6 +1936,67 @@ function closeLightbox(){
         .classList.remove("show");
 
     document.body.style.overflow = "";
+
+}
+
+
+/* PAYLAŞ */
+
+async function shareListing(){
+
+    if(!currentListing){
+        return;
+    }
+
+    const title =
+        currentListing.title ||
+        "Nova Emlak İlanı";
+
+    const url =
+        window.location.href;
+
+
+    if(navigator.share){
+
+        try{
+
+            await navigator.share({
+                title:title,
+                text:
+                    title +
+                    " - Nova Emlak",
+                url:url
+            });
+
+            return;
+
+        }catch(error){
+
+            if(error.name === "AbortError"){
+                return;
+            }
+
+        }
+
+    }
+
+
+    try{
+
+        await navigator.clipboard.writeText(url);
+
+        showToast(
+            "İlan bağlantısı kopyalandı."
+        );
+
+    }catch(error){
+
+        prompt(
+            "İlan bağlantısını kopyalayın:",
+            url
+        );
+
+    }
 
 }
 
@@ -1775,6 +2020,18 @@ document.addEventListener("keydown",function(event){
 });
 
 
+/* LIGHTBOX DIŞINA TIKLAMA */
+
+document.getElementById("lightbox")
+    .addEventListener("click",function(event){
+
+        if(event.target === this){
+            closeLightbox();
+        }
+
+    });
+
+
 /* TELEFON */
 
 function callAgent(){
@@ -1794,7 +2051,8 @@ function whatsappAgent(){
     }
 
     const title =
-        currentListing.title || "ilan";
+        currentListing.title ||
+        "ilan";
 
     const message =
         "Merhaba, Nova Emlak'taki \"" +
@@ -1858,6 +2116,7 @@ function renderSimilarListings(){
     const currentId =
         String(currentListing.id);
 
+
     let similar =
         allListings.filter(listing => {
 
@@ -1886,21 +2145,23 @@ function renderSimilarListings(){
         });
 
 
-    /* Önce aynı ilandaki benzerleri,
-       sonra diğer ilanları doldur */
-
     if(similar.length < 3){
 
         const extra =
             allListings.filter(listing =>
+
                 String(listing.id) !== currentId &&
+
                 !similar.some(
                     item =>
-                    String(item.id) === String(listing.id)
+                    String(item.id) ===
+                    String(listing.id)
                 )
+
             );
 
-        similar = similar.concat(extra);
+        similar =
+            similar.concat(extra);
 
     }
 
@@ -1924,6 +2185,7 @@ function renderSimilarListings(){
         const images =
             getImages(listing);
 
+
         const card =
             document.createElement("a");
 
@@ -1935,6 +2197,15 @@ function renderSimilarListings(){
             encodeURIComponent(listing.id);
 
 
+        const location =
+            [
+                listing.district,
+                listing.city
+            ]
+            .filter(Boolean)
+            .join(", ");
+
+
         card.innerHTML = `
 
             <div class="similar-image">
@@ -1942,8 +2213,11 @@ function renderSimilarListings(){
                 <img
                     src="${escapeHTML(images[0])}"
                     alt="${escapeHTML(listing.title || "İlan")}"
-                    onerror="this.src='${DEFAULT_IMAGE}'"
                 >
+
+                <div class="similar-type">
+                    ${escapeHTML(listing.type || "İlan")}
+                </div>
 
             </div>
 
@@ -1957,14 +2231,7 @@ function renderSimilarListings(){
 
                 <div class="similar-location">
                     📍
-                    ${escapeHTML(
-                        [
-                            listing.district,
-                            listing.city
-                        ]
-                        .filter(Boolean)
-                        .join(", ")
-                    )}
+                    ${escapeHTML(location || "Konum bilgisi yok")}
                 </div>
 
                 <div class="similar-meta">
@@ -1988,6 +2255,17 @@ function renderSimilarListings(){
             </div>
 
         `;
+
+
+        const image =
+            card.querySelector("img");
+
+        image.onerror = function(){
+
+            this.src = DEFAULT_IMAGE;
+
+        };
+
 
         container.appendChild(card);
 
