@@ -6,11 +6,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Nova Emlak | Türkiye'nin Yeni Nesil Gayrimenkul Platformu</title>
+<title>Nova Emlak | Güvenilir Gayrimenkul</title>
 
 <meta
     name="description"
-    content="Nova Emlak ile satılık ve kiralık gayrimenkulleri keşfedin. Türkiye genelinde ev, villa, daire ve yatırım fırsatlarını bulun."
+    content="Nova Emlak ile satılık ve kiralık gayrimenkulleri keşfedin. Modern, güvenilir ve kolay gayrimenkul deneyimi."
 >
 
 <style>
@@ -40,14 +40,16 @@ a{
     -webkit-tap-highlight-color:transparent;
 }
 
-/* HEADER */
+/* =========================
+HEADER
+========================= */
 
 header{
     position:sticky;
     top:0;
     z-index:1000;
     min-height:74px;
-    background:rgba(8,15,31,.96);
+    background:rgba(8,15,31,.97);
     backdrop-filter:blur(16px);
     color:white;
     padding:0 5%;
@@ -73,7 +75,7 @@ header{
 nav{
     display:flex;
     align-items:center;
-    gap:25px;
+    gap:24px;
 }
 
 nav a{
@@ -100,7 +102,9 @@ nav a:hover{
     background:#1d4ed8;
 }
 
-/* HERO */
+/* =========================
+HERO
+========================= */
 
 .hero{
     min-height:650px;
@@ -228,7 +232,9 @@ nav a:hover{
     background:rgba(255,255,255,.18);
 }
 
-/* SEARCH */
+/* =========================
+SEARCH
+========================= */
 
 .search-box{
     max-width:1160px;
@@ -352,7 +358,9 @@ nav a:hover{
     font-weight:700;
 }
 
-/* QUICK */
+/* =========================
+QUICK SEARCH
+========================= */
 
 .quick-search{
     display:flex;
@@ -380,7 +388,9 @@ nav a:hover{
     transform:translateY(-2px);
 }
 
-/* CONTAINER */
+/* =========================
+CONTAINER
+========================= */
 
 .container{
     max-width:1200px;
@@ -415,7 +425,9 @@ nav a:hover{
     gap:20px;
 }
 
-/* STATS */
+/* =========================
+STATS
+========================= */
 
 .stats{
     max-width:1200px;
@@ -460,7 +472,103 @@ nav a:hover{
     font-size:13px;
 }
 
-/* CITIES */
+/* =========================
+ABOUT
+========================= */
+
+.about-section{
+    margin-bottom:95px;
+}
+
+.about-box{
+    display:grid;
+    grid-template-columns:1.1fr .9fr;
+    gap:35px;
+    background:white;
+    border:1px solid #e5e7eb;
+    border-radius:27px;
+    padding:45px;
+    box-shadow:0 12px 35px rgba(15,23,42,.06);
+}
+
+.about-content h2{
+    margin:0 0 15px;
+    font-size:34px;
+}
+
+.about-content p{
+    color:#64748b;
+    line-height:1.8;
+    margin:0 0 15px;
+}
+
+.about-list{
+    display:grid;
+    gap:12px;
+    margin-top:25px;
+}
+
+.about-item{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:13px 15px;
+    background:#f8fafc;
+    border-radius:11px;
+    font-weight:700;
+    color:#334155;
+}
+
+.about-item-icon{
+    width:34px;
+    height:34px;
+    border-radius:9px;
+    background:#eff6ff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.about-visual{
+    min-height:360px;
+    border-radius:20px;
+    overflow:hidden;
+    position:relative;
+    background:
+        linear-gradient(
+            rgba(15,23,42,.15),
+            rgba(15,23,42,.65)
+        ),
+        url(
+            "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=85"
+        );
+    background-size:cover;
+    background-position:center;
+}
+
+.about-visual-content{
+    position:absolute;
+    left:25px;
+    right:25px;
+    bottom:25px;
+    color:white;
+}
+
+.about-visual-content h3{
+    margin:0 0 7px;
+    font-size:25px;
+}
+
+.about-visual-content p{
+    margin:0;
+    color:#e2e8f0;
+    line-height:1.5;
+    font-size:14px;
+}
+
+/* =========================
+CITIES
+========================= */
 
 .city-grid{
     display:grid;
@@ -515,7 +623,9 @@ nav a:hover{
     font-size:13px;
 }
 
-/* PROJECTS */
+/* =========================
+PROJECTS
+========================= */
 
 .projects-section{
     margin-bottom:95px;
@@ -581,7 +691,9 @@ nav a:hover{
     font-size:13px;
 }
 
-/* FEATURED */
+/* =========================
+FEATURED
+========================= */
 
 .featured-section{
     background:linear-gradient(135deg,#eff6ff,#f8fafc);
@@ -602,7 +714,9 @@ nav a:hover{
     margin-bottom:10px;
 }
 
-/* TOOLBAR */
+/* =========================
+TOOLBAR
+========================= */
 
 .listing-toolbar{
     display:flex;
@@ -631,7 +745,9 @@ nav a:hover{
     cursor:pointer;
 }
 
-/* LISTINGS */
+/* =========================
+LISTINGS
+========================= */
 
 .listings{
     display:grid;
@@ -777,7 +893,9 @@ nav a:hover{
     background:#1e293b;
 }
 
-/* WHY */
+/* =========================
+WHY
+========================= */
 
 .why-grid{
     display:grid;
@@ -817,7 +935,9 @@ nav a:hover{
     font-size:14px;
 }
 
-/* EMPTY */
+/* =========================
+EMPTY
+========================= */
 
 .empty{
     grid-column:1/-1;
@@ -853,14 +973,18 @@ nav a:hover{
     font-weight:bold;
 }
 
-/* FAVORITES */
+/* =========================
+FAVORITES
+========================= */
 
 .favorite-count{
     color:#64748b;
     font-size:14px;
 }
 
-/* CTA */
+/* =========================
+CTA
+========================= */
 
 .cta-section{
     margin-bottom:95px;
@@ -889,6 +1013,13 @@ nav a:hover{
     line-height:1.7;
 }
 
+.cta-buttons{
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    flex-wrap:wrap;
+}
+
 .cta-button{
     display:inline-flex;
     align-items:center;
@@ -901,7 +1032,14 @@ nav a:hover{
     font-weight:900;
 }
 
-/* CONTACT */
+.cta-button.dark{
+    background:#0f172a;
+    color:white;
+}
+
+/* =========================
+CONTACT
+========================= */
 
 .contact-section{
     margin-bottom:0;
@@ -949,7 +1087,9 @@ nav a:hover{
     font-size:14px;
 }
 
-/* WHATSAPP */
+/* =========================
+WHATSAPP
+========================= */
 
 .whatsapp-float{
     position:fixed;
@@ -969,7 +1109,9 @@ nav a:hover{
     box-shadow:0 7px 25px rgba(22,163,74,.35);
 }
 
-/* FOOTER */
+/* =========================
+FOOTER
+========================= */
 
 footer{
     margin-top:95px;
@@ -991,7 +1133,9 @@ footer p{
     font-size:14px;
 }
 
-/* RESPONSIVE */
+/* =========================
+RESPONSIVE
+========================= */
 
 @media(max-width:1100px){
 
@@ -1006,6 +1150,7 @@ footer p{
     .stats-grid{
         grid-template-columns:repeat(2,1fr);
     }
+
 }
 
 @media(max-width:850px){
@@ -1014,9 +1159,11 @@ footer p{
         grid-template-columns:1fr 1fr;
     }
 
-    .contact-box{
+    .contact-box,
+    .about-box{
         grid-template-columns:1fr;
     }
+
 }
 
 @media(max-width:750px){
@@ -1028,7 +1175,7 @@ footer p{
     }
 
     nav{
-        gap:10px;
+        gap:9px;
         flex-wrap:wrap;
         justify-content:center;
     }
@@ -1099,7 +1246,8 @@ footer p{
         border-radius:21px;
     }
 
-    .contact-box{
+    .contact-box,
+    .about-box{
         padding:29px;
         border-radius:21px;
     }
@@ -1126,6 +1274,7 @@ footer p{
     .sort-select{
         width:100%;
     }
+
 }
 
 @media(max-width:450px){
@@ -1150,13 +1299,15 @@ footer p{
         height:230px;
     }
 
-    .contact-box h2{
+    .contact-box h2,
+    .about-content h2{
         font-size:25px;
     }
 
     .section-heading h2{
         font-size:27px;
     }
+
 }
 
 </style>
@@ -1165,8 +1316,9 @@ footer p{
 
 <body>
 
-
-<!-- HEADER -->
+<!-- =========================
+HEADER
+========================= -->
 
 <header>
 
@@ -1178,6 +1330,10 @@ footer p{
 
 <a href="index.html">
     Ana Sayfa
+</a>
+
+<a href="#hakkimizda">
+    Hakkımızda
 </a>
 
 <a href="#sehirler">
@@ -1205,14 +1361,16 @@ footer p{
 </header>
 
 
-<!-- HERO -->
+<!-- =========================
+HERO
+========================= -->
 
 <section class="hero">
 
 <div class="hero-content">
 
 <div class="hero-badge">
-    🏡 Türkiye'nin Yeni Nesil Gayrimenkul Platformu
+    🏡 Güvenilir Gayrimenkul Deneyimi
 </div>
 
 <h1>
@@ -1222,9 +1380,9 @@ footer p{
 </h1>
 
 <p>
-    Satılık ve kiralık gayrimenkulleri tek platformda keşfedin.
+    Satılık ve kiralık gayrimenkulleri kolayca keşfedin.
     Konum, fiyat, oda sayısı ve metrekareye göre arayın;
-    size uygun ilanı kolayca bulun.
+    size uygun ilanı hızlıca bulun.
 </p>
 
 <div class="hero-buttons">
@@ -1233,8 +1391,8 @@ footer p{
     🏠 İlanları Keşfet
 </a>
 
-<a href="#sehirler" class="hero-button secondary">
-    📍 Şehirleri İncele
+<a href="#hakkimizda" class="hero-button secondary">
+    ✨ Nova Emlak'ı Tanıyın
 </a>
 
 </div>
@@ -1244,7 +1402,9 @@ footer p{
 </section>
 
 
-<!-- GELİŞMİŞ ARAMA -->
+<!-- =========================
+SEARCH
+========================= -->
 
 <div class="search-box">
 
@@ -1273,7 +1433,6 @@ footer p{
 
 
 <div class="filters">
-
 
 <div class="filter-group">
 
@@ -1415,7 +1574,6 @@ footer p{
 
 </div>
 
-
 </div>
 
 
@@ -1435,7 +1593,9 @@ footer p{
 </div>
 
 
-<!-- HIZLI ARAMA -->
+<!-- =========================
+QUICK SEARCH
+========================= -->
 
 <div class="quick-search">
 
@@ -1474,7 +1634,9 @@ footer p{
 </div>
 
 
-<!-- STATS -->
+<!-- =========================
+STATS
+========================= -->
 
 <div class="stats">
 
@@ -1561,9 +1723,114 @@ footer p{
 <div class="container">
 
 
-<!-- ŞEHİRLER -->
+<!-- =========================
+HAKKIMIZDA
+========================= -->
 
-<section class="section" id="sehirler">
+<section
+    class="about-section"
+    id="hakkimizda"
+>
+
+<div class="about-box">
+
+<div class="about-content">
+
+<h2>
+    🏢 Nova Emlak
+</h2>
+
+<p>
+    Nova Emlak, gayrimenkul arama ve keşif deneyimini
+    daha kolay, hızlı ve modern hale getirmek için
+    tasarlanmış yeni nesil bir emlak platformudur.
+</p>
+
+<p>
+    Satılık ve kiralık gayrimenkulleri tek bir yerde
+    inceleyebilir, gelişmiş filtreleme seçenekleriyle
+    aradığınız özelliklere uygun ilanları kolayca
+    bulabilirsiniz.
+</p>
+
+<div class="about-list">
+
+<div class="about-item">
+
+<span class="about-item-icon">
+    ✓
+</span>
+
+Güncel gayrimenkul ilanları
+
+</div>
+
+<div class="about-item">
+
+<span class="about-item-icon">
+    🔎
+</span>
+
+Gelişmiş arama ve filtreleme
+
+</div>
+
+<div class="about-item">
+
+<span class="about-item-icon">
+    📱
+</span>
+
+Mobil uyumlu modern deneyim
+
+</div>
+
+<div class="about-item">
+
+<span class="about-item-icon">
+    💬
+</span>
+
+Kolay iletişim ve hızlı ulaşım
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="about-visual">
+
+<div class="about-visual-content">
+
+<h3>
+    Doğru Gayrimenkul,
+    Doğru Seçim.
+</h3>
+
+<p>
+    İhtiyacınıza uygun gayrimenkulü keşfetmeniz
+    için modern ve sade bir deneyim sunuyoruz.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+ŞEHİRLER
+========================= -->
+
+<section
+    class="section"
+    id="sehirler"
+>
 
 <div class="section-heading">
 
@@ -1670,18 +1937,20 @@ footer p{
 </section>
 
 
-<!-- PROJELER -->
+<!-- =========================
+PROJELER
+========================= -->
 
 <section class="projects-section">
 
 <div class="section-heading">
 
 <h2>
-    🏆 Öne Çıkan Projeler
+    🏆 Öne Çıkan Kategoriler
 </h2>
 
 <p>
-    Yaşam ve yatırım için seçilmiş özel gayrimenkul kategorileri.
+    Farklı yaşam tarzlarına uygun gayrimenkul seçeneklerini keşfedin.
 </p>
 
 </div>
@@ -1690,7 +1959,10 @@ footer p{
 <div class="project-grid">
 
 
-<div class="project-card">
+<div
+    class="project-card"
+    onclick="quickRooms('4+1')"
+>
 
 <img
     src="https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=1200&q=85"
@@ -1707,7 +1979,7 @@ footer p{
 </h3>
 
 <p>
-    Premium yaşam alanlarını keşfedin.
+    Geniş ve premium yaşam alanlarını keşfedin.
 </p>
 
 </div>
@@ -1717,7 +1989,10 @@ footer p{
 </div>
 
 
-<div class="project-card">
+<div
+    class="project-card"
+    onclick="quickType('Satılık')"
+>
 
 <img
     src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=85"
@@ -1730,11 +2005,11 @@ footer p{
 <div>
 
 <h3>
-    Deniz Manzaralı
+    Seçkin Daireler
 </h3>
 
 <p>
-    Özel konumlarda seçkin daireler.
+    Özel konumlarda satılık gayrimenkuller.
 </p>
 
 </div>
@@ -1744,7 +2019,10 @@ footer p{
 </div>
 
 
-<div class="project-card">
+<div
+    class="project-card"
+    onclick="quickRooms('3+1')"
+>
 
 <img
     src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=85"
@@ -1761,7 +2039,7 @@ footer p{
 </h3>
 
 <p>
-    Şehrin merkezinde modern yaşam.
+    Şehrin merkezinde modern yaşam seçenekleri.
 </p>
 
 </div>
@@ -1776,7 +2054,9 @@ footer p{
 </section>
 
 
-<!-- ÖNE ÇIKAN -->
+<!-- =========================
+FEATURED
+========================= -->
 
 <section class="featured-section">
 
@@ -1804,7 +2084,9 @@ footer p{
 </section>
 
 
-<!-- TÜM İLANLAR -->
+<!-- =========================
+ALL LISTINGS
+========================= -->
 
 <section
     class="section"
@@ -1872,7 +2154,9 @@ footer p{
 </section>
 
 
-<!-- NEDEN NOVA -->
+<!-- =========================
+WHY
+========================= -->
 
 <section class="section">
 
@@ -1951,7 +2235,9 @@ footer p{
 </section>
 
 
-<!-- FAVORİLER -->
+<!-- =========================
+FAVORITES
+========================= -->
 
 <section
     class="section"
@@ -1982,7 +2268,9 @@ footer p{
 </section>
 
 
-<!-- CTA -->
+<!-- =========================
+CTA
+========================= -->
 
 <section class="cta-section">
 
@@ -1997,6 +2285,8 @@ footer p{
     gayrimenkulleri şimdi keşfedin.
 </p>
 
+<div class="cta-buttons">
+
 <a
     href="#ilanlar"
     class="cta-button"
@@ -2004,12 +2294,23 @@ footer p{
     🏠 İlanları İncele
 </a>
 
+<a
+    href="#iletisim"
+    class="cta-button dark"
+>
+    📞 Bize Ulaşın
+</a>
+
+</div>
+
 </div>
 
 </section>
 
 
-<!-- CONTACT -->
+<!-- =========================
+CONTACT
+========================= -->
 
 <section
     class="contact-section"
@@ -2089,7 +2390,9 @@ footer p{
 </div>
 
 
-<!-- WHATSAPP -->
+<!-- =========================
+WHATSAPP
+========================= -->
 
 <a
     class="whatsapp-float"
@@ -2102,7 +2405,9 @@ footer p{
 </a>
 
 
-<!-- FOOTER -->
+<!-- =========================
+FOOTER
+========================= -->
 
 <footer>
 
@@ -2119,7 +2424,7 @@ footer p{
 </p>
 
 <p>
-    Gayrimenkulde doğru adres.
+    Güvenilir gayrimenkul deneyimi.
 </p>
 
 <p>
@@ -2132,8 +2437,8 @@ footer p{
 <script>
 
 /* =====================================================
-   NOVA EMLAK
-   GELİŞMİŞ ARAMA SİSTEMİ
+NOVA EMLAK
+GELİŞMİŞ ANA SAYFA SİSTEMİ
 ===================================================== */
 
 let allListings = [];
@@ -2141,7 +2446,9 @@ let allListings = [];
 let favorites = [];
 
 
-/* FAVORİLER */
+/* =========================
+FAVORİLERİ YÜKLE
+========================= */
 
 try{
 
@@ -2164,6 +2471,10 @@ try{
 }
 
 
+/* =========================
+FAVORİLERİ KAYDET
+========================= */
+
 function saveFavorites(){
 
     localStorage.setItem(
@@ -2174,6 +2485,10 @@ function saveFavorites(){
 }
 
 
+/* =========================
+FAVORİ KONTROL
+========================= */
+
 function isFavorite(id){
 
     return favorites.includes(
@@ -2183,18 +2498,28 @@ function isFavorite(id){
 }
 
 
+/* =========================
+FAVORİ İSTATİSTİĞİ
+========================= */
+
 function updateFavoriteStats(){
 
     const element =
         document.getElementById("totalFavorites");
 
     if(element){
+
         element.textContent =
             favorites.length;
+
     }
 
 }
 
+
+/* =========================
+FAVORİ DEĞİŞTİR
+========================= */
 
 function toggleFavorite(id){
 
@@ -2227,7 +2552,9 @@ function toggleFavorite(id){
 }
 
 
-/* HTML GÜVENLİĞİ */
+/* =========================
+HTML GÜVENLİĞİ
+========================= */
 
 function escapeHTML(value){
 
@@ -2241,7 +2568,9 @@ function escapeHTML(value){
 }
 
 
-/* FOTOĞRAF */
+/* =========================
+FOTOĞRAF
+========================= */
 
 function getImage(ilan){
 
@@ -2266,7 +2595,9 @@ function getImage(ilan){
 }
 
 
-/* İLANLARI YÜKLE */
+/* =========================
+İLANLARI YÜKLE
+========================= */
 
 async function loadListings(){
 
@@ -2323,9 +2654,11 @@ async function loadListings(){
 
                     area:Number(ilan.area) || 0,
 
-                    buildingAge:Number(ilan.buildingAge) || 0,
+                    buildingAge:
+                        Number(ilan.buildingAge) || 0,
 
-                    totalFloors:Number(ilan.totalFloors) || 0,
+                    totalFloors:
+                        Number(ilan.totalFloors) || 0,
 
                     images:
                         Array.isArray(ilan.images)
@@ -2408,9 +2741,9 @@ async function loadListings(){
 }
 
 
-/* =====================================================
-   ŞEHİR SEÇENEKLERİNİ OTOMATİK OLUŞTUR
-===================================================== */
+/* =========================
+ŞEHİRLER
+========================= */
 
 function createCityOptions(){
 
@@ -2454,9 +2787,9 @@ function createCityOptions(){
 }
 
 
-/* =====================================================
-   İLÇELERİ OLUŞTUR
-===================================================== */
+/* =========================
+İLÇELER
+========================= */
 
 function updateDistricts(){
 
@@ -2522,9 +2855,9 @@ function updateDistricts(){
 }
 
 
-/* =====================================================
-   MAHALLELERİ OLUŞTUR
-===================================================== */
+/* =========================
+MAHALLELER
+========================= */
 
 function updateNeighborhoods(){
 
@@ -2596,9 +2929,9 @@ function updateNeighborhoods(){
 }
 
 
-/* =====================================================
-   FİLTRELEME
-===================================================== */
+/* =========================
+FİLTRELEME
+========================= */
 
 function getCurrentFilteredListings(){
 
@@ -2714,9 +3047,9 @@ function getCurrentFilteredListings(){
 }
 
 
-/* =====================================================
-   AKTİF FİLTRELER
-===================================================== */
+/* =========================
+AKTİF FİLTRELER
+========================= */
 
 function updateActiveFilters(){
 
@@ -2727,7 +3060,6 @@ function updateActiveFilters(){
 
     box.innerHTML =
         "";
-
 
     const filters = [];
 
@@ -2844,9 +3176,9 @@ function updateActiveFilters(){
 }
 
 
-/* =====================================================
-   SIRALAMA
-===================================================== */
+/* =========================
+SIRALAMA
+========================= */
 
 function sortListings(list){
 
@@ -2906,24 +3238,21 @@ function sortListings(list){
 }
 
 
-/* =====================================================
-   SIRALA VE GÖSTER
-===================================================== */
+/* =========================
+SIRALA + GÖSTER
+========================= */
 
 function sortAndDisplay(){
 
     updateActiveFilters();
 
-
     const filtered =
         getCurrentFilteredListings();
-
 
     const sorted =
         sortListings(
             filtered
         );
-
 
     displayListings(
         sorted
@@ -2932,9 +3261,9 @@ function sortAndDisplay(){
 }
 
 
-/* =====================================================
-   İLAN KARTI
-===================================================== */
+/* =========================
+İLAN KARTI
+========================= */
 
 function createListingCard(
     ilan,
@@ -3175,9 +3504,9 @@ function createListingCard(
 }
 
 
-/* =====================================================
-   İLANLARI GÖSTER
-===================================================== */
+/* =========================
+İLANLARI GÖSTER
+========================= */
 
 function displayListings(ilanlar){
 
@@ -3252,9 +3581,9 @@ function displayListings(ilanlar){
 }
 
 
-/* =====================================================
-   ÖNE ÇIKANLAR
-===================================================== */
+/* =========================
+ÖNE ÇIKAN
+========================= */
 
 function displayFeatured(){
 
@@ -3322,9 +3651,9 @@ function displayFeatured(){
 }
 
 
-/* =====================================================
-   FAVORİLER
-===================================================== */
+/* =========================
+FAVORİLER
+========================= */
 
 function displayFavorites(){
 
@@ -3412,9 +3741,9 @@ function displayFavorites(){
 }
 
 
-/* =====================================================
-   ARAMA
-===================================================== */
+/* =========================
+ARAMA
+========================= */
 
 function searchListings(){
 
@@ -3431,9 +3760,9 @@ function searchListings(){
 }
 
 
-/* =====================================================
-   TEMİZLE
-===================================================== */
+/* =========================
+TEMİZLE
+========================= */
 
 function resetSearch(){
 
@@ -3472,9 +3801,9 @@ function resetSearch(){
 }
 
 
-/* =====================================================
-   ŞEHİR SEÇ
-===================================================== */
+/* =========================
+ŞEHİR SEÇ
+========================= */
 
 function selectCity(city){
 
@@ -3490,9 +3819,9 @@ function selectCity(city){
 }
 
 
-/* =====================================================
-   HIZLI ŞEHİR
-===================================================== */
+/* =========================
+HIZLI ŞEHİR
+========================= */
 
 function quickCity(city){
 
@@ -3501,9 +3830,9 @@ function quickCity(city){
 }
 
 
-/* =====================================================
-   HIZLI TİP
-===================================================== */
+/* =========================
+HIZLI TİP
+========================= */
 
 function quickType(type){
 
@@ -3517,9 +3846,9 @@ function quickType(type){
 }
 
 
-/* =====================================================
-   HIZLI ODA
-===================================================== */
+/* =========================
+HIZLI ODA
+========================= */
 
 function quickRooms(rooms){
 
@@ -3533,9 +3862,9 @@ function quickRooms(rooms){
 }
 
 
-/* =====================================================
-   ENTER
-===================================================== */
+/* =========================
+ENTER
+========================= */
 
 document.addEventListener(
     "keydown",
@@ -3564,7 +3893,9 @@ document.addEventListener(
 );
 
 
-/* BAŞLAT */
+/* =========================
+BAŞLAT
+========================= */
 
 document.addEventListener(
     "DOMContentLoaded",
