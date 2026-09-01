@@ -1,5 +1,5 @@
+```html
 <!DOCTYPE html>
-
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
@@ -8,13 +8,9 @@
 <title>Nova Emlak | İlan Detayı</title>
 
 <style>
-*{
-    box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
-html{
-    scroll-behavior:smooth;
-}
+html{scroll-behavior:smooth}
 
 body{
     margin:0;
@@ -55,9 +51,7 @@ nav a{
     font-weight:bold;
 }
 
-nav a:hover{
-    color:#60a5fa;
-}
+nav a:hover{color:#60a5fa}
 
 .page{
     max-width:1200px;
@@ -83,56 +77,28 @@ nav a:hover{
     box-shadow:0 12px 40px rgba(15,23,42,.08);
 }
 
+/* GALERİ */
+
 .gallery{
-    display:grid;
-    grid-template-columns:2fr 1fr;
-    gap:5px;
-    height:520px;
     background:#e5e7eb;
+    padding:5px;
 }
 
-.main-photo{
+.gallery-main{
     position:relative;
+    width:100%;
+    height:520px;
     overflow:hidden;
+    border-radius:16px;
     background:#e2e8f0;
 }
 
-.main-photo img{
+.gallery-main img{
     width:100%;
     height:100%;
     object-fit:cover;
     display:block;
-}
-
-.gallery-side{
-    display:grid;
-    grid-template-rows:repeat(3,1fr);
-    gap:5px;
-}
-
-.gallery-side div{
-    overflow:hidden;
-    position:relative;
-    background:#e2e8f0;
-}
-
-.gallery-side img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    display:block;
-}
-
-.no-image{
-    height:100%;
-    min-height:100px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:#e2e8f0;
-    color:#64748b;
-    font-size:18px;
-    font-weight:bold;
+    cursor:pointer;
 }
 
 .type-badge{
@@ -147,6 +113,61 @@ nav a:hover{
     font-weight:bold;
     z-index:5;
 }
+
+.gallery-counter{
+    position:absolute;
+    right:20px;
+    bottom:20px;
+    background:rgba(15,23,42,.75);
+    color:white;
+    padding:8px 13px;
+    border-radius:8px;
+    font-size:13px;
+    font-weight:bold;
+}
+
+.gallery-thumbs{
+    display:flex;
+    gap:8px;
+    margin-top:8px;
+    overflow-x:auto;
+    padding-bottom:3px;
+}
+
+.gallery-thumb{
+    flex:0 0 105px;
+    height:75px;
+    border:3px solid transparent;
+    border-radius:9px;
+    overflow:hidden;
+    cursor:pointer;
+    background:#e2e8f0;
+    padding:0;
+}
+
+.gallery-thumb.active{
+    border-color:#2563eb;
+}
+
+.gallery-thumb img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+}
+
+.gallery-empty{
+    height:520px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#e2e8f0;
+    color:#64748b;
+    font-size:18px;
+    font-weight:bold;
+}
+
+/* İÇERİK */
 
 .content{
     padding:35px;
@@ -301,10 +322,6 @@ nav a:hover{
     box-shadow:0 10px 35px rgba(15,23,42,.07);
 }
 
-.loading h2{
-    margin-bottom:8px;
-}
-
 .loading p{
     color:#64748b;
 }
@@ -314,10 +331,6 @@ nav a:hover{
     border-radius:20px;
     padding:60px 20px;
     text-align:center;
-}
-
-.error h2{
-    margin-bottom:10px;
 }
 
 .error p{
@@ -364,15 +377,53 @@ footer p{
     box-shadow:0 7px 25px rgba(22,163,74,.35);
 }
 
+/* TAM EKRAN FOTO */
+
+.photo-modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.92);
+    z-index:3000;
+    align-items:center;
+    justify-content:center;
+    padding:30px;
+}
+
+.photo-modal.show{
+    display:flex;
+}
+
+.photo-modal img{
+    max-width:95%;
+    max-height:90%;
+    object-fit:contain;
+}
+
+.close-modal{
+    position:absolute;
+    top:20px;
+    right:25px;
+    width:45px;
+    height:45px;
+    border:0;
+    border-radius:50%;
+    background:white;
+    color:#111827;
+    font-size:25px;
+    cursor:pointer;
+}
+
+/* MOBİL */
+
 @media(max-width:850px){
 
-    .gallery{
-        grid-template-columns:1fr;
+    .gallery-main{
         height:420px;
     }
 
-    .gallery-side{
-        display:none;
+    .gallery-empty{
+        height:420px;
     }
 
     .features{
@@ -407,8 +458,17 @@ footer p{
         padding:0 12px;
     }
 
-    .gallery{
+    .gallery-main{
         height:300px;
+    }
+
+    .gallery-empty{
+        height:300px;
+    }
+
+    .gallery-thumb{
+        flex-basis:85px;
+        height:65px;
     }
 
     .content{
@@ -436,7 +496,6 @@ footer p{
     }
 }
 </style>
-
 </head>
 
 <body>
@@ -477,10 +536,9 @@ footer p{
 class="whatsapp-float"
 href="https://wa.me/905555555555"
 target="_blank"
-
 >
-
-💬 </a>
+💬
+</a>
 
 <footer id="iletisim">
 
@@ -493,9 +551,34 @@ target="_blank"
 
 </footer>
 
+<!-- FOTOĞRAF MODALI -->
+
+<div
+id="photoModal"
+class="photo-modal"
+onclick="closeModal()"
+>
+
+<button
+class="close-modal"
+onclick="closeModal()"
+>
+×
+</button>
+
+<img
+id="modalImage"
+src=""
+alt="Büyük ilan fotoğrafı"
+>
+
+</div>
+
 <script>
 
 let ilan = null;
+
+let currentImage = 0;
 
 let favorites =
 JSON.parse(
@@ -510,6 +593,9 @@ window.location.search
 const id =
 Number(params.get("id"));
 
+
+/* HTML GÜVENLİĞİ */
+
 function escapeHTML(value){
 
 return String(value ?? "")
@@ -520,6 +606,26 @@ return String(value ?? "")
 .replace(/'/g,"&#039;");
 
 }
+
+
+/* DEĞER */
+
+function value(value){
+
+return (
+value !== undefined &&
+value !== null &&
+String(value).trim() !== ""
+)
+?
+escapeHTML(value)
+:
+"Belirtilmemiş";
+
+}
+
+
+/* FAVORİ */
 
 function isFavorite(id){
 
@@ -536,9 +642,7 @@ if(!ilan) return;
 const ilanId =
 Number(ilan.id);
 
-if(
-favorites.includes(ilanId)
-){
+if(favorites.includes(ilanId)){
 
 favorites =
 favorites.filter(
@@ -569,9 +673,7 @@ document.getElementById(
 
 if(!button || !ilan) return;
 
-if(
-isFavorite(ilan.id)
-){
+if(isFavorite(ilan.id)){
 
 button.classList.add("active");
 
@@ -589,17 +691,18 @@ button.innerHTML =
 
 }
 
-/* FOTOĞRAF SİSTEMİ */
+
+/* FOTOĞRAFLARI AL */
 
 function getImages(ilan){
 
 let images = [];
 
-/* Önce images alanını kullan */
+/*
+Önce images dizisini kullan.
+*/
 
-if(
-Array.isArray(ilan.images)
-){
+if(Array.isArray(ilan.images)){
 
 images =
 ilan.images
@@ -607,12 +710,13 @@ ilan.images
 image =>
 typeof image === "string" &&
 image.trim() !== ""
-)
-.slice(0,4);
+);
 
 }
 
-/* images boşsa image alanını kullan */
+/*
+Eğer images boşsa image alanını kullan.
+*/
 
 if(
 images.length === 0 &&
@@ -626,25 +730,33 @@ ilan.image.trim()
 
 }
 
+/*
+Tekrarlanan fotoğrafları kaldır.
+*/
+
+images =
+[...new Set(images)];
+
 return images;
 
 }
 
-/* HATALI FOTOĞRAFTA YEDEK */
 
-function imageError(element){
+/* FOTOĞRAF HATALIYSA */
 
-element.style.display = "none";
+function imageError(img){
+
+img.style.display = "none";
 
 const parent =
-element.parentElement;
+img.parentElement;
 
 if(parent){
 
-parent.innerHTML =
-`
-<div class="no-image">
-📷 Fotoğraf yüklenemedi
+parent.innerHTML = `
+<div class="no-photo-box">
+📷<br>
+Fotoğraf yüklenemedi
 </div>
 `;
 
@@ -652,19 +764,189 @@ parent.innerHTML =
 
 }
 
-function value(value){
 
-return (
-value !== undefined &&
-value !== null &&
-String(value).trim() !== ""
-)
-?
-escapeHTML(value)
-:
-"Belirtilmemiş";
+/* ANA FOTOĞRAF */
+
+function showImage(index){
+
+if(!ilan) return;
+
+const images =
+getImages(ilan);
+
+if(!images.length) return;
+
+if(index < 0){
+index = images.length - 1;
+}
+
+if(index >= images.length){
+index = 0;
+}
+
+currentImage = index;
+
+const mainImage =
+document.getElementById("mainImage");
+
+if(mainImage){
+
+mainImage.src =
+images[index];
+
+mainImage.onerror =
+function(){
+
+this.onerror = null;
+
+this.src =
+"https://placehold.co/1200x700/e2e8f0/64748b?text=Fotoğraf+Yüklenemedi";
+
+};
 
 }
+
+const counter =
+document.getElementById(
+"galleryCounter"
+);
+
+if(counter){
+
+counter.textContent =
+(index + 1) +
+" / " +
+images.length;
+
+}
+
+document
+.querySelectorAll(".gallery-thumb")
+.forEach(
+function(thumb,i){
+
+thumb.classList.toggle(
+"active",
+i === index
+);
+
+}
+);
+
+}
+
+
+/* BÜYÜK FOTOĞRAF */
+
+function openModal(){
+
+const images =
+getImages(ilan);
+
+if(!images.length) return;
+
+const modal =
+document.getElementById(
+"photoModal"
+);
+
+const image =
+document.getElementById(
+"modalImage"
+);
+
+image.src =
+images[currentImage];
+
+modal.classList.add("show");
+
+}
+
+function closeModal(){
+
+document
+.getElementById("photoModal")
+.classList.remove("show");
+
+}
+
+
+/* GALERİ */
+
+function createGallery(){
+
+const images =
+getImages(ilan);
+
+if(images.length === 0){
+
+return `
+<div class="gallery-empty">
+📷 Fotoğraf bulunamadı
+</div>
+`;
+
+}
+
+let thumbs = "";
+
+images.forEach(
+function(image,index){
+
+thumbs += `
+
+<button
+class="gallery-thumb ${index === 0 ? "active" : ""}"
+onclick="showImage(${index})"
+>
+
+<img
+src="${escapeHTML(image)}"
+alt="İlan fotoğrafı ${index + 1}"
+loading="lazy"
+onerror="this.style.display='none'"
+>
+
+</button>
+
+`;
+
+});
+
+return `
+
+<div class="gallery-main">
+
+<span class="type-badge">
+${value(ilan.type)}
+</span>
+
+<img
+id="mainImage"
+src="${escapeHTML(images[0])}"
+alt="${value(ilan.title)}"
+onclick="openModal()"
+>
+
+<div
+id="galleryCounter"
+class="gallery-counter"
+>
+1 / ${images.length}
+</div>
+
+</div>
+
+<div class="gallery-thumbs">
+
+${thumbs}
+
+</div>
+
+`;
+
+}
+
 
 /* İLANI GÖSTER */
 
@@ -672,9 +954,6 @@ function displayListing(){
 
 const app =
 document.getElementById("app");
-
-const images =
-getImages(ilan);
 
 const location =
 [
@@ -689,119 +968,13 @@ const price =
 Number(ilan.price || 0)
 .toLocaleString("tr-TR");
 
-let galleryHTML = "";
-
-if(images.length === 0){
-
-galleryHTML = `
-
-<div class="main-photo">
-
-<span class="type-badge">
-${value(ilan.type)}
-</span>
-
-<div class="no-image">
-📷 Fotoğraf bulunamadı
-</div>
-
-</div>
-
-`;
-
-}else{
-
-galleryHTML = `
-
-<div class="main-photo">
-
-<span class="type-badge">
-${value(ilan.type)}
-</span>
-
-<img
-src="${escapeHTML(images[0])}"
-alt="${value(ilan.title)}"
-onerror="imageError(this)"
->
-
-</div>
-
-<div class="gallery-side">
-
-${
-images[1]
-?
-`
-<div>
-<img
-src="${escapeHTML(images[1])}"
-alt="İlan fotoğrafı"
-onerror="imageError(this)"
->
-</div>
-`
-:
-`
-<div class="no-image">
-📷
-</div>
-`
-}
-
-${
-images[2]
-?
-`
-<div>
-<img
-src="${escapeHTML(images[2])}"
-alt="İlan fotoğrafı"
-onerror="imageError(this)"
->
-</div>
-`
-:
-`
-<div class="no-image">
-🏠
-</div>
-`
-}
-
-${
-images[3]
-?
-`
-<div>
-<img
-src="${escapeHTML(images[3])}"
-alt="İlan fotoğrafı"
-onerror="imageError(this)"
->
-</div>
-`
-:
-`
-<div class="no-image">
-🏠
-</div>
-`
-}
-
-</div>
-
-`;
-
-}
-
 app.innerHTML = `
 
 <div class="detail-card">
 
 <div class="gallery">
 
-${galleryHTML}
+${createGallery()}
 
 </div>
 
@@ -812,7 +985,9 @@ ${galleryHTML}
 <div class="title-area">
 
 <h1>
-${value(ilan.title || "İlan Detayı")}
+${value(
+ilan.title || "İlan Detayı"
+)}
 </h1>
 
 <div class="location">
@@ -826,6 +1001,7 @@ ${price} TL
 </div>
 
 </div>
+
 
 <div class="actions">
 
@@ -858,77 +1034,54 @@ href="index.html#ilanlar"
 
 </div>
 
+
 <div class="features">
 
 <div class="feature">
-
 <div class="feature-icon">🛏️</div>
-
-<div class="feature-label">
-Oda Sayısı
-</div>
-
+<div class="feature-label">Oda Sayısı</div>
 <div class="feature-value">
 ${value(ilan.rooms)}
 </div>
-
 </div>
 
 <div class="feature">
-
 <div class="feature-icon">📐</div>
-
-<div class="feature-label">
-Alan
-</div>
-
+<div class="feature-label">Alan</div>
 <div class="feature-value">
 ${value(ilan.area)} m²
 </div>
-
 </div>
 
 <div class="feature">
-
 <div class="feature-icon">🏢</div>
-
-<div class="feature-label">
-Bina Yaşı
-</div>
-
+<div class="feature-label">Bina Yaşı</div>
 <div class="feature-value">
 ${
-ilan.buildingAge
+ilan.buildingAge !== undefined &&
+ilan.buildingAge !== null
 ?
 value(ilan.buildingAge) + " yaş"
 :
 "Belirtilmemiş"
 }
 </div>
-
 </div>
 
 <div class="feature">
-
 <div class="feature-icon">🏙️</div>
-
-<div class="feature-label">
-Kat
-</div>
-
+<div class="feature-label">Kat</div>
 <div class="feature-value">
 ${value(ilan.floor)}
 </div>
-
 </div>
 
 </div>
+
 
 <div class="section">
 
-<h2>
-🏠 İlan Özellikleri
-</h2>
+<h2>🏠 İlan Özellikleri</h2>
 
 <div class="info-grid">
 
@@ -1006,11 +1159,10 @@ ${value(ilan.floor)}
 
 </div>
 
+
 <div class="section">
 
-<h2>
-📝 İlan Açıklaması
-</h2>
+<h2>📝 İlan Açıklaması</h2>
 
 <div class="description">
 
@@ -1032,6 +1184,7 @@ ilan.description ||
 updateFavoriteButton();
 
 }
+
 
 /* İLANI GETİR */
 
@@ -1155,9 +1308,49 @@ Lütfen tekrar deneyin.
 
 }
 
+
+/* KLAVYE */
+
+document.addEventListener(
+"keydown",
+function(event){
+
+if(event.key === "Escape"){
+closeModal();
+}
+
+if(event.key === "ArrowRight"){
+
+if(ilan){
+
+showImage(
+currentImage + 1
+);
+
+}
+
+}
+
+if(event.key === "ArrowLeft"){
+
+if(ilan){
+
+showImage(
+currentImage - 1
+);
+
+}
+
+}
+
+}
+);
+
+
 loadListing();
 
 </script>
 
 </body>
 </html>
+```
