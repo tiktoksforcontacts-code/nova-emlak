@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="tr">
 
@@ -6,18 +7,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Nova Emlak | Hayalinizdeki Gayrimenkulü Bulun</title>
+<title>Nova Emlak | Türkiye'nin Yeni Nesil Gayrimenkul Platformu</title>
 
 <meta
     name="description"
-    content="Nova Emlak ile satılık ve kiralık gayrimenkulleri keşfedin."
+    content="Nova Emlak ile satılık ve kiralık gayrimenkulleri keşfedin. Türkiye genelinde ev, villa, daire ve yatırım fırsatlarını bulun."
 >
 
 <style>
 
-/* =========================
+/* =====================================================
    RESET
-========================= */
+===================================================== */
 
 *{
     box-sizing:border-box;
@@ -43,10 +44,14 @@ select{
     font-family:inherit;
 }
 
+a{
+    -webkit-tap-highlight-color:transparent;
+}
 
-/* =========================
+
+/* =====================================================
    HEADER
-========================= */
+===================================================== */
 
 header{
 
@@ -54,12 +59,12 @@ header{
     top:0;
     z-index:1000;
 
-    height:74px;
+    min-height:74px;
 
     background:
-        rgba(15,23,42,.96);
+        rgba(8,15,31,.96);
 
-    backdrop-filter:blur(12px);
+    backdrop-filter:blur(16px);
 
     color:white;
 
@@ -73,8 +78,8 @@ header{
     justify-content:space-between;
 
     box-shadow:
-        0 5px 25px
-        rgba(15,23,42,.16);
+        0 6px 30px
+        rgba(15,23,42,.18);
 }
 
 .logo{
@@ -87,7 +92,9 @@ header{
 
     font-weight:900;
 
-    letter-spacing:-.5px;
+    letter-spacing:-.7px;
+
+    white-space:nowrap;
 }
 
 .logo span{
@@ -100,7 +107,7 @@ nav{
 
     align-items:center;
 
-    gap:26px;
+    gap:25px;
 }
 
 nav a{
@@ -127,23 +134,31 @@ nav a:hover{
     color:white !important;
 
     padding:
-        11px 16px;
+        11px 17px;
 
     border-radius:9px;
+
+    box-shadow:
+        0 5px 18px
+        rgba(37,99,235,.25);
 }
 
 .nav-button:hover{
+
     background:#1d4ed8;
+
+    transform:
+        translateY(-1px);
 }
 
 
-/* =========================
+/* =====================================================
    HERO
-========================= */
+===================================================== */
 
 .hero{
 
-    min-height:600px;
+    min-height:650px;
 
     display:flex;
 
@@ -156,17 +171,21 @@ nav a:hover{
     color:white;
 
     padding:
-        80px 20px 130px;
+        90px 20px 145px;
+
+    position:relative;
+
+    overflow:hidden;
 
     background:
 
         linear-gradient(
-            rgba(15,23,42,.80),
-            rgba(15,23,42,.60)
+            rgba(5,12,28,.82),
+            rgba(15,23,42,.63)
         ),
 
         url(
-            "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1800&q=85"
+            "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2000&q=90"
         );
 
     background-size:cover;
@@ -174,9 +193,57 @@ nav a:hover{
     background-position:center;
 }
 
+.hero:before{
+
+    content:"";
+
+    position:absolute;
+
+    width:500px;
+
+    height:500px;
+
+    border-radius:50%;
+
+    background:
+        rgba(37,99,235,.15);
+
+    filter:blur(20px);
+
+    right:-180px;
+
+    top:-180px;
+}
+
+.hero:after{
+
+    content:"";
+
+    position:absolute;
+
+    width:400px;
+
+    height:400px;
+
+    border-radius:50%;
+
+    background:
+        rgba(96,165,250,.10);
+
+    filter:blur(25px);
+
+    left:-180px;
+
+    bottom:-180px;
+}
+
 .hero-content{
 
     max-width:950px;
+
+    position:relative;
+
+    z-index:2;
 }
 
 .hero-badge{
@@ -193,7 +260,7 @@ nav a:hover{
     border-radius:50px;
 
     background:
-        rgba(255,255,255,.12);
+        rgba(255,255,255,.10);
 
     border:
         1px solid
@@ -203,26 +270,26 @@ nav a:hover{
 
     font-weight:bold;
 
-    margin-bottom:22px;
+    margin-bottom:24px;
 
-    backdrop-filter:blur(8px);
+    backdrop-filter:blur(10px);
 }
 
 .hero h1{
 
     font-size:
         clamp(
-            40px,
+            42px,
             6vw,
-            68px
+            72px
         );
 
     margin:
-        0 0 20px;
+        0 0 22px;
 
-    line-height:1.05;
+    line-height:1.03;
 
-    letter-spacing:-2px;
+    letter-spacing:-2.5px;
 }
 
 .hero h1 span{
@@ -231,14 +298,14 @@ nav a:hover{
 
 .hero p{
 
-    max-width:720px;
+    max-width:750px;
 
     margin:
-        0 auto 30px;
+        0 auto 32px;
 
     font-size:18px;
 
-    line-height:1.7;
+    line-height:1.75;
 
     color:#e2e8f0;
 }
@@ -263,15 +330,15 @@ nav a:hover{
     justify-content:center;
 
     padding:
-        14px 22px;
+        15px 24px;
 
-    border-radius:10px;
+    border-radius:11px;
 
     text-decoration:none;
 
     font-weight:800;
 
-    transition:.2s;
+    transition:.25s;
 }
 
 .hero-button.primary{
@@ -279,6 +346,10 @@ nav a:hover{
     background:#2563eb;
 
     color:white;
+
+    box-shadow:
+        0 10px 30px
+        rgba(37,99,235,.30);
 }
 
 .hero-button.primary:hover{
@@ -286,52 +357,57 @@ nav a:hover{
     background:#1d4ed8;
 
     transform:
-        translateY(-2px);
+        translateY(-3px);
 }
 
 .hero-button.secondary{
 
     background:
-        rgba(255,255,255,.12);
+        rgba(255,255,255,.10);
 
     color:white;
 
     border:
         1px solid
-        rgba(255,255,255,.25);
+        rgba(255,255,255,.28);
+
+    backdrop-filter:blur(8px);
 }
 
 .hero-button.secondary:hover{
 
     background:
-        rgba(255,255,255,.20);
+        rgba(255,255,255,.18);
+
+    transform:
+        translateY(-2px);
 }
 
 
-/* =========================
+/* =====================================================
    SEARCH BOX
-========================= */
+===================================================== */
 
 .search-box{
 
     max-width:1160px;
 
     margin:
-        -75px auto 75px;
+        -82px auto 70px;
 
     position:relative;
 
     z-index:20;
 
-    padding:30px;
+    padding:32px;
 
     background:white;
 
-    border-radius:22px;
+    border-radius:23px;
 
     box-shadow:
-        0 20px 55px
-        rgba(15,23,42,.15);
+        0 25px 65px
+        rgba(15,23,42,.17);
 
     border:
         1px solid #e5e7eb;
@@ -352,9 +428,12 @@ nav a:hover{
 
 .search-title h2{
 
-    margin:0 0 6px;
+    margin:
+        0 0 6px;
 
-    font-size:25px;
+    font-size:26px;
+
+    letter-spacing:-.4px;
 }
 
 .search-title p{
@@ -382,6 +461,8 @@ nav a:hover{
     cursor:pointer;
 
     font-weight:bold;
+
+    transition:.2s;
 }
 
 .clear-button:hover{
@@ -416,6 +497,8 @@ nav a:hover{
     font-weight:800;
 
     text-transform:uppercase;
+
+    letter-spacing:.3px;
 }
 
 .filters select,
@@ -423,7 +506,8 @@ nav a:hover{
 
     width:100%;
 
-    padding:13px 12px;
+    padding:
+        13px 12px;
 
     border:
         1px solid #dbe1ea;
@@ -437,6 +521,8 @@ nav a:hover{
     font-size:14px;
 
     color:#172033;
+
+    transition:.2s;
 }
 
 .filters select:focus,
@@ -453,7 +539,7 @@ nav a:hover{
 
     width:100%;
 
-    margin-top:16px;
+    margin-top:17px;
 
     padding:15px;
 
@@ -483,9 +569,9 @@ nav a:hover{
 }
 
 
-/* =========================
+/* =====================================================
    QUICK SEARCH
-========================= */
+===================================================== */
 
 .quick-search{
 
@@ -497,9 +583,8 @@ nav a:hover{
 
     flex-wrap:wrap;
 
-    margin-top:-45px;
-
-    margin-bottom:65px;
+    margin:
+        -38px 20px 72px;
 }
 
 .quick-search button{
@@ -523,7 +608,7 @@ nav a:hover{
     transition:.2s;
 
     box-shadow:
-        0 4px 15px
+        0 5px 18px
         rgba(15,23,42,.05);
 }
 
@@ -535,12 +620,16 @@ nav a:hover{
 
     transform:
         translateY(-2px);
+
+    box-shadow:
+        0 8px 22px
+        rgba(37,99,235,.10);
 }
 
 
-/* =========================
+/* =====================================================
    CONTAINER
-========================= */
+===================================================== */
 
 .container{
 
@@ -554,7 +643,7 @@ nav a:hover{
 
 .section{
 
-    margin-bottom:90px;
+    margin-bottom:95px;
 }
 
 .section-heading{
@@ -576,11 +665,11 @@ nav a:hover{
 .section-heading h2{
 
     margin:
-        0 0 7px;
+        0 0 8px;
 
-    font-size:31px;
+    font-size:32px;
 
-    letter-spacing:-.6px;
+    letter-spacing:-.8px;
 }
 
 .section-heading p{
@@ -593,16 +682,16 @@ nav a:hover{
 }
 
 
-/* =========================
+/* =====================================================
    STATS
-========================= */
+===================================================== */
 
 .stats{
 
     max-width:1200px;
 
     margin:
-        0 auto 85px;
+        0 auto 90px;
 
     padding:
         0 20px;
@@ -615,7 +704,7 @@ nav a:hover{
     grid-template-columns:
         repeat(4,1fr);
 
-    gap:16px;
+    gap:17px;
 }
 
 .stat{
@@ -625,37 +714,42 @@ nav a:hover{
     border:
         1px solid #e5e7eb;
 
-    border-radius:17px;
+    border-radius:18px;
 
-    padding:25px 18px;
+    padding:
+        27px 18px;
 
     text-align:center;
 
     box-shadow:
-        0 7px 25px
+        0 8px 28px
         rgba(15,23,42,.05);
 
-    transition:.2s;
+    transition:.25s;
 }
 
 .stat:hover{
 
     transform:
-        translateY(-3px);
+        translateY(-5px);
+
+    box-shadow:
+        0 18px 38px
+        rgba(15,23,42,.09);
 }
 
 .stat-icon{
 
-    font-size:25px;
+    font-size:26px;
 
-    margin-bottom:8px;
+    margin-bottom:9px;
 }
 
 .stat-number{
 
     color:#2563eb;
 
-    font-size:27px;
+    font-size:29px;
 
     font-weight:900;
 }
@@ -670,9 +764,9 @@ nav a:hover{
 }
 
 
-/* =========================
+/* =====================================================
    CITIES
-========================= */
+===================================================== */
 
 .city-grid{
 
@@ -688,25 +782,29 @@ nav a:hover{
 
     position:relative;
 
-    height:240px;
+    height:250px;
 
-    border-radius:20px;
+    border-radius:21px;
 
     overflow:hidden;
 
     cursor:pointer;
 
     box-shadow:
-        0 8px 25px
-        rgba(15,23,42,.12);
+        0 9px 28px
+        rgba(15,23,42,.13);
 
-    transition:.25s;
+    transition:.3s;
 }
 
 .city-card:hover{
 
     transform:
-        translateY(-5px);
+        translateY(-6px);
+
+    box-shadow:
+        0 18px 40px
+        rgba(15,23,42,.18);
 }
 
 .city-card img{
@@ -717,7 +815,7 @@ nav a:hover{
 
     object-fit:cover;
 
-    transition:.4s;
+    transition:.5s;
 }
 
 .city-card:hover img{
@@ -736,12 +834,12 @@ nav a:hover{
 
     align-items:flex-end;
 
-    padding:25px;
+    padding:27px;
 
     background:
         linear-gradient(
-            transparent 25%,
-            rgba(15,23,42,.92)
+            transparent 20%,
+            rgba(15,23,42,.94)
         );
 
     color:white;
@@ -751,14 +849,16 @@ nav a:hover{
 
     margin:0;
 
-    font-size:27px;
+    font-size:28px;
+
+    letter-spacing:-.4px;
 }
 
 .city-overlay span{
 
     display:block;
 
-    margin-top:5px;
+    margin-top:6px;
 
     color:#cbd5e1;
 
@@ -766,9 +866,156 @@ nav a:hover{
 }
 
 
-/* =========================
-   FEATURED
-========================= */
+/* =====================================================
+   FEATURED PROJECTS
+===================================================== */
+
+.projects-section{
+
+    margin-bottom:95px;
+
+    padding:
+        45px;
+
+    border-radius:29px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #0f172a,
+            #172554
+        );
+
+    color:white;
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+.projects-section:after{
+
+    content:"";
+
+    position:absolute;
+
+    width:400px;
+
+    height:400px;
+
+    border-radius:50%;
+
+    right:-160px;
+
+    top:-180px;
+
+    background:
+        rgba(37,99,235,.18);
+
+    filter:blur(10px);
+}
+
+.projects-section .section-heading{
+
+    position:relative;
+
+    z-index:2;
+}
+
+.projects-section .section-heading h2{
+    color:white;
+}
+
+.projects-section .section-heading p{
+    color:#cbd5e1;
+}
+
+.project-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:20px;
+
+    position:relative;
+
+    z-index:2;
+}
+
+.project-card{
+
+    height:300px;
+
+    position:relative;
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    cursor:pointer;
+
+    background:#1e293b;
+}
+
+.project-card img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    transition:.5s;
+}
+
+.project-card:hover img{
+
+    transform:
+        scale(1.07);
+}
+
+.project-overlay{
+
+    position:absolute;
+
+    inset:0;
+
+    display:flex;
+
+    align-items:flex-end;
+
+    padding:24px;
+
+    background:
+        linear-gradient(
+            transparent 20%,
+            rgba(2,6,23,.95)
+        );
+}
+
+.project-overlay h3{
+
+    margin:
+        0 0 6px;
+
+    font-size:22px;
+}
+
+.project-overlay p{
+
+    margin:0;
+
+    color:#cbd5e1;
+
+    font-size:13px;
+}
+
+
+/* =====================================================
+   FEATURED LISTINGS
+===================================================== */
 
 .featured-section{
 
@@ -782,9 +1029,12 @@ nav a:hover{
     padding:
         40px;
 
-    border-radius:28px;
+    border-radius:29px;
 
-    margin-bottom:90px;
+    margin-bottom:95px;
+
+    border:
+        1px solid #dbeafe;
 }
 
 .featured-badge{
@@ -808,9 +1058,9 @@ nav a:hover{
 }
 
 
-/* =========================
-   LISTINGS
-========================= */
+/* =====================================================
+   LISTING TOOLBAR
+===================================================== */
 
 .listing-toolbar{
 
@@ -833,6 +1083,10 @@ nav a:hover{
         1px solid #e5e7eb;
 
     border-radius:12px;
+
+    box-shadow:
+        0 4px 15px
+        rgba(15,23,42,.03);
 }
 
 .result-text{
@@ -860,6 +1114,11 @@ nav a:hover{
 
     cursor:pointer;
 }
+
+
+/* =====================================================
+   LISTINGS
+===================================================== */
 
 .listings{
 
@@ -988,6 +1247,8 @@ nav a:hover{
         rgba(0,0,0,.2);
 
     transition:.2s;
+
+    z-index:5;
 }
 
 .favorite:hover{
@@ -1117,12 +1378,389 @@ nav a:hover{
 .detail-button:hover{
 
     background:#1e293b;
+
+    transform:
+        translateY(-1px);
 }
 
 
-/* =========================
+/* =====================================================
+   WHY NOVA
+===================================================== */
+
+.why-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:20px;
+}
+
+.why-card{
+
+    background:white;
+
+    padding:29px;
+
+    border-radius:19px;
+
+    border:
+        1px solid #e5e7eb;
+
+    box-shadow:
+        0 7px 22px
+        rgba(15,23,42,.05);
+
+    transition:.25s;
+}
+
+.why-card:hover{
+
+    transform:
+        translateY(-4px);
+
+    box-shadow:
+        0 15px 32px
+        rgba(15,23,42,.09);
+}
+
+.why-icon{
+
+    width:50px;
+
+    height:50px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:13px;
+
+    background:#eff6ff;
+
+    font-size:23px;
+
+    margin-bottom:17px;
+}
+
+.why-card h3{
+
+    margin:
+        0 0 9px;
+
+    font-size:18px;
+}
+
+.why-card p{
+
+    margin:0;
+
+    color:#64748b;
+
+    line-height:1.65;
+
+    font-size:14px;
+}
+
+
+/* =====================================================
+   FAVORITES
+===================================================== */
+
+.favorites-section{
+
+    margin-top:20px;
+}
+
+.favorite-count{
+
+    color:#64748b;
+
+    font-size:14px;
+}
+
+
+/* =====================================================
+   CTA
+===================================================== */
+
+.cta-section{
+
+    margin-bottom:95px;
+}
+
+.cta-box{
+
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #1e3a8a
+        );
+
+    color:white;
+
+    border-radius:27px;
+
+    padding:
+        50px 45px;
+
+    text-align:center;
+
+    position:relative;
+
+    overflow:hidden;
+
+    box-shadow:
+        0 18px 50px
+        rgba(37,99,235,.20);
+}
+
+.cta-box:before{
+
+    content:"";
+
+    position:absolute;
+
+    width:300px;
+
+    height:300px;
+
+    border-radius:50%;
+
+    background:
+        rgba(255,255,255,.08);
+
+    left:-130px;
+
+    bottom:-170px;
+}
+
+.cta-box:after{
+
+    content:"";
+
+    position:absolute;
+
+    width:250px;
+
+    height:250px;
+
+    border-radius:50%;
+
+    background:
+        rgba(255,255,255,.07);
+
+    right:-100px;
+
+    top:-130px;
+}
+
+.cta-box h2{
+
+    margin:
+        0 0 12px;
+
+    font-size:34px;
+
+    position:relative;
+
+    z-index:2;
+}
+
+.cta-box p{
+
+    color:#dbeafe;
+
+    max-width:650px;
+
+    margin:
+        0 auto 25px;
+
+    line-height:1.7;
+
+    position:relative;
+
+    z-index:2;
+}
+
+.cta-button{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:white;
+
+    color:#1d4ed8;
+
+    text-decoration:none;
+
+    padding:
+        14px 23px;
+
+    border-radius:10px;
+
+    font-weight:900;
+
+    position:relative;
+
+    z-index:2;
+
+    transition:.2s;
+}
+
+.cta-button:hover{
+
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 10px 25px
+        rgba(0,0,0,.16);
+}
+
+
+/* =====================================================
+   CONTACT
+===================================================== */
+
+.contact-section{
+
+    margin-top:0;
+
+    margin-bottom:0;
+}
+
+.contact-box{
+
+    background:
+        linear-gradient(
+            135deg,
+            #0f172a,
+            #172554
+        );
+
+    color:white;
+
+    border-radius:27px;
+
+    padding:
+        48px;
+
+    display:grid;
+
+    grid-template-columns:
+        1.2fr 1fr;
+
+    gap:40px;
+
+    overflow:hidden;
+
+    position:relative;
+}
+
+.contact-box:after{
+
+    content:"";
+
+    position:absolute;
+
+    width:330px;
+
+    height:330px;
+
+    border-radius:50%;
+
+    background:
+        rgba(37,99,235,.16);
+
+    right:-120px;
+
+    top:-120px;
+}
+
+.contact-box h2{
+
+    margin:
+        0 0 13px;
+
+    font-size:31px;
+
+    position:relative;
+
+    z-index:1;
+}
+
+.contact-box p{
+
+    color:#cbd5e1;
+
+    line-height:1.75;
+
+    position:relative;
+
+    z-index:1;
+}
+
+.contact-cards{
+
+    display:grid;
+
+    gap:12px;
+
+    position:relative;
+
+    z-index:2;
+}
+
+.contact-card{
+
+    background:
+        rgba(255,255,255,.07);
+
+    border:
+        1px solid
+        rgba(255,255,255,.1);
+
+    padding:
+        18px;
+
+    border-radius:12px;
+
+    transition:.2s;
+}
+
+.contact-card:hover{
+
+    background:
+        rgba(255,255,255,.10);
+}
+
+.contact-card strong{
+
+    display:block;
+
+    margin-bottom:5px;
+}
+
+.contact-card span{
+
+    color:#cbd5e1;
+
+    font-size:14px;
+}
+
+
+/* =====================================================
    EMPTY
-========================= */
+===================================================== */
 
 .empty{
 
@@ -1185,216 +1823,9 @@ nav a:hover{
 }
 
 
-/* =========================
-   WHY NOVA
-========================= */
-
-.why-grid{
-
-    display:grid;
-
-    grid-template-columns:
-        repeat(3,1fr);
-
-    gap:20px;
-}
-
-.why-card{
-
-    background:white;
-
-    padding:28px;
-
-    border-radius:18px;
-
-    border:
-        1px solid #e5e7eb;
-
-    box-shadow:
-        0 7px 22px
-        rgba(15,23,42,.05);
-}
-
-.why-icon{
-
-    width:48px;
-
-    height:48px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    border-radius:12px;
-
-    background:#eff6ff;
-
-    font-size:23px;
-
-    margin-bottom:17px;
-}
-
-.why-card h3{
-
-    margin:
-        0 0 9px;
-
-    font-size:18px;
-}
-
-.why-card p{
-
-    margin:0;
-
-    color:#64748b;
-
-    line-height:1.65;
-
-    font-size:14px;
-}
-
-
-/* =========================
-   FAVORITES
-========================= */
-
-.favorites-section{
-
-    margin-top:20px;
-}
-
-.favorite-count{
-
-    color:#64748b;
-
-    font-size:14px;
-}
-
-
-/* =========================
-   CONTACT
-========================= */
-
-.contact-section{
-
-    margin-top:90px;
-}
-
-.contact-box{
-
-    background:
-        linear-gradient(
-            135deg,
-            #0f172a,
-            #172554
-        );
-
-    color:white;
-
-    border-radius:25px;
-
-    padding:45px;
-
-    display:grid;
-
-    grid-template-columns:
-        1.2fr 1fr;
-
-    gap:40px;
-
-    overflow:hidden;
-
-    position:relative;
-}
-
-.contact-box:after{
-
-    content:"";
-
-    position:absolute;
-
-    width:300px;
-
-    height:300px;
-
-    border-radius:50%;
-
-    background:
-        rgba(37,99,235,.16);
-
-    right:-100px;
-
-    top:-100px;
-}
-
-.contact-box h2{
-
-    margin:
-        0 0 12px;
-
-    font-size:30px;
-
-    position:relative;
-
-    z-index:1;
-}
-
-.contact-box p{
-
-    color:#cbd5e1;
-
-    line-height:1.7;
-
-    position:relative;
-
-    z-index:1;
-}
-
-.contact-cards{
-
-    display:grid;
-
-    gap:12px;
-
-    position:relative;
-
-    z-index:2;
-}
-
-.contact-card{
-
-    background:
-        rgba(255,255,255,.07);
-
-    border:
-        1px solid
-        rgba(255,255,255,.1);
-
-    padding:18px;
-
-    border-radius:12px;
-}
-
-.contact-card strong{
-
-    display:block;
-
-    margin-bottom:5px;
-}
-
-.contact-card span{
-
-    color:#cbd5e1;
-
-    font-size:14px;
-}
-
-
-/* =========================
+/* =====================================================
    WHATSAPP
-========================= */
+===================================================== */
 
 .whatsapp-float{
 
@@ -1440,31 +1871,31 @@ nav a:hover{
 }
 
 
-/* =========================
+/* =====================================================
    FOOTER
-========================= */
+===================================================== */
 
 footer{
 
-    margin-top:90px;
+    margin-top:95px;
 
     background:#020617;
 
     color:white;
 
     padding:
-        50px 20px;
+        55px 20px;
 
     text-align:center;
 }
 
 .footer-logo{
 
-    font-size:23px;
+    font-size:24px;
 
     font-weight:900;
 
-    margin-bottom:12px;
+    margin-bottom:14px;
 }
 
 footer p{
@@ -1478,11 +1909,11 @@ footer p{
 }
 
 
-/* =========================
-   MOBILE
-========================= */
+/* =====================================================
+   RESPONSIVE
+===================================================== */
 
-@media(max-width:1050px){
+@media(max-width:1100px){
 
     .filters{
 
@@ -1504,11 +1935,29 @@ footer p{
 
 }
 
+
+@media(max-width:850px){
+
+    .project-grid{
+
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+    .contact-box{
+
+        grid-template-columns:
+            1fr;
+    }
+
+}
+
+
 @media(max-width:750px){
 
     header{
 
-        height:auto;
+        min-height:auto;
 
         padding:
             15px 18px;
@@ -1520,7 +1969,7 @@ footer p{
 
     nav{
 
-        gap:12px;
+        gap:10px;
 
         flex-wrap:wrap;
 
@@ -1540,17 +1989,17 @@ footer p{
 
     .hero{
 
-        min-height:500px;
+        min-height:540px;
 
         padding:
-            65px 20px 100px;
+            70px 20px 110px;
     }
 
     .hero h1{
 
-        font-size:40px;
+        font-size:41px;
 
-        letter-spacing:-1px;
+        letter-spacing:-1.5px;
     }
 
     .hero p{
@@ -1565,7 +2014,7 @@ footer p{
 
         padding:22px;
 
-        border-radius:17px;
+        border-radius:18px;
     }
 
     .search-top{
@@ -1577,7 +2026,8 @@ footer p{
 
     .filters{
 
-        grid-template-columns:1fr;
+        grid-template-columns:
+            1fr;
     }
 
     .quick-search{
@@ -1588,22 +2038,32 @@ footer p{
 
     .city-grid{
 
-        grid-template-columns:1fr;
+        grid-template-columns:
+            1fr;
+    }
+
+    .project-grid{
+
+        grid-template-columns:
+            1fr;
     }
 
     .listings{
 
-        grid-template-columns:1fr;
+        grid-template-columns:
+            1fr;
     }
 
     .stats-grid{
 
-        grid-template-columns:1fr;
+        grid-template-columns:
+            1fr 1fr;
     }
 
     .why-grid{
 
-        grid-template-columns:1fr;
+        grid-template-columns:
+            1fr;
     }
 
     .featured-section{
@@ -1613,13 +2073,31 @@ footer p{
         border-radius:20px;
     }
 
+    .projects-section{
+
+        padding:24px;
+
+        border-radius:21px;
+    }
+
     .contact-box{
 
-        grid-template-columns:1fr;
+        padding:29px;
 
-        padding:28px;
+        border-radius:21px;
+    }
 
-        border-radius:20px;
+    .cta-box{
+
+        padding:
+            38px 22px;
+
+        border-radius:21px;
+    }
+
+    .cta-box h2{
+
+        font-size:27px;
     }
 
     .section-heading-row{
@@ -1644,10 +2122,6 @@ footer p{
 }
 
 
-/* =========================
-   SMALL MOBILE
-========================= */
-
 @media(max-width:450px){
 
     .logo{
@@ -1657,17 +2131,23 @@ footer p{
 
     nav{
 
-        gap:9px;
+        gap:8px;
     }
 
     .hero h1{
 
-        font-size:34px;
+        font-size:35px;
     }
 
     .hero-button{
 
         width:100%;
+    }
+
+    .stats-grid{
+
+        grid-template-columns:
+            1fr;
     }
 
     .card-image{
@@ -1680,6 +2160,11 @@ footer p{
         font-size:25px;
     }
 
+    .section-heading h2{
+
+        font-size:27px;
+    }
+
 }
 
 </style>
@@ -1690,9 +2175,9 @@ footer p{
 <body>
 
 
-<!-- =========================
+<!-- =====================================================
      HEADER
-========================= -->
+===================================================== -->
 
 <header>
 
@@ -1737,28 +2222,32 @@ footer p{
 </header>
 
 
-<!-- =========================
+<!-- =====================================================
      HERO
-========================= -->
+===================================================== -->
 
 <section class="hero">
 
 <div class="hero-content">
 
 <div class="hero-badge">
-    🏡 Güvenilir Gayrimenkul Platformu
+    🏡 Türkiye'nin Yeni Nesil Gayrimenkul Platformu
 </div>
 
 <h1>
+
     Hayalinizdeki
     <span>Gayrimenkulü</span>
     Bulun
+
 </h1>
 
 <p>
-    Satılık ve kiralık gayrimenkulleri keşfedin.
-    Konum, fiyat ve oda sayısına göre arayın;
+
+    Satılık ve kiralık gayrimenkulleri tek platformda keşfedin.
+    Konum, fiyat, oda sayısı ve metrekareye göre arayın;
     size uygun ilanı kolayca bulun.
+
 </p>
 
 <div class="hero-buttons">
@@ -1784,9 +2273,9 @@ footer p{
 </section>
 
 
-<!-- =========================
+<!-- =====================================================
      SEARCH
-========================= -->
+===================================================== -->
 
 <div class="search-box">
 
@@ -1966,9 +2455,9 @@ footer p{
 </div>
 
 
-<!-- =========================
+<!-- =====================================================
      QUICK SEARCH
-========================= -->
+===================================================== -->
 
 <div class="quick-search">
 
@@ -2007,9 +2496,9 @@ footer p{
 </div>
 
 
-<!-- =========================
+<!-- =====================================================
      STATS
-========================= -->
+===================================================== -->
 
 <div class="stats">
 
@@ -2062,9 +2551,7 @@ footer p{
     📍
 </div>
 
-<div
-    class="stat-number"
->
+<div class="stat-number">
     3+
 </div>
 
@@ -2081,9 +2568,7 @@ footer p{
     🕐
 </div>
 
-<div
-    class="stat-number"
->
+<div class="stat-number">
     24/7
 </div>
 
@@ -2102,9 +2587,9 @@ footer p{
 <div class="container">
 
 
-<!-- =========================
-     CITIES
-========================= -->
+<!-- =====================================================
+     POPÜLER ŞEHİRLER
+===================================================== -->
 
 <section
     class="section"
@@ -2134,7 +2619,7 @@ footer p{
 >
 
 <img
-    src="https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=1000&q=80"
+    src="https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=1200&q=85"
     alt="İstanbul"
     loading="lazy"
     onerror="this.style.display='none'"
@@ -2165,7 +2650,7 @@ footer p{
 >
 
 <img
-    src="https://images.unsplash.com/photo-1596484552834-6a58f850e0a1?auto=format&fit=crop&w=1000&q=80"
+    src="https://images.unsplash.com/photo-1596484552834-6a58f850e0a1?auto=format&fit=crop&w=1200&q=85"
     alt="Ankara"
     loading="lazy"
     onerror="this.style.display='none'"
@@ -2196,7 +2681,7 @@ footer p{
 >
 
 <img
-    src="https://images.unsplash.com/photo-1601581875309-fafbf2d3ed3a?auto=format&fit=crop&w=1000&q=80"
+    src="https://images.unsplash.com/photo-1601581875309-fafbf2d3ed3a?auto=format&fit=crop&w=1200&q=85"
     alt="İzmir"
     loading="lazy"
     onerror="this.style.display='none'"
@@ -2226,13 +2711,119 @@ footer p{
 </section>
 
 
-<!-- =========================
-     FEATURED
-========================= -->
+<!-- =====================================================
+     ÖNE ÇIKAN PROJELER
+===================================================== -->
 
-<section
-    class="featured-section"
+<section class="projects-section">
+
+<div class="section-heading">
+
+<h2>
+    🏆 Öne Çıkan Projeler
+</h2>
+
+<p>
+    Yaşam ve yatırım için seçilmiş özel gayrimenkul kategorileri.
+</p>
+
+</div>
+
+
+<div class="project-grid">
+
+
+<div class="project-card">
+
+<img
+    src="https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=1200&q=85"
+    alt="Lüks Villalar"
+    loading="lazy"
 >
+
+<div class="project-overlay">
+
+<div>
+
+<h3>
+    Lüks Villalar
+</h3>
+
+<p>
+    Premium yaşam alanlarını keşfedin.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="project-card">
+
+<img
+    src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=85"
+    alt="Deniz Manzaralı Daireler"
+    loading="lazy"
+>
+
+<div class="project-overlay">
+
+<div>
+
+<h3>
+    Deniz Manzaralı
+</h3>
+
+<p>
+    Özel konumlarda seçkin daireler.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="project-card">
+
+<img
+    src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=85"
+    alt="Modern Rezidanslar"
+    loading="lazy"
+>
+
+<div class="project-overlay">
+
+<div>
+
+<h3>
+    Modern Rezidanslar
+</h3>
+
+<p>
+    Şehrin merkezinde modern yaşam.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     FEATURED
+===================================================== -->
+
+<section class="featured-section">
 
 <div class="section-heading">
 
@@ -2259,9 +2850,9 @@ footer p{
 </section>
 
 
-<!-- =========================
+<!-- =====================================================
      ALL LISTINGS
-========================= -->
+===================================================== -->
 
 <section
     class="section"
@@ -2329,13 +2920,11 @@ footer p{
 </section>
 
 
-<!-- =========================
+<!-- =====================================================
      WHY NOVA
-========================= -->
+===================================================== -->
 
-<section
-    class="section"
->
+<section class="section">
 
 <div class="section-heading">
 
@@ -2415,9 +3004,9 @@ footer p{
 </section>
 
 
-<!-- =========================
+<!-- =====================================================
      FAVORITES
-========================= -->
+===================================================== -->
 
 <section
     class="section favorites-section"
@@ -2448,9 +3037,38 @@ footer p{
 </section>
 
 
-<!-- =========================
+<!-- =====================================================
+     CTA
+===================================================== -->
+
+<section class="cta-section">
+
+<div class="cta-box">
+
+<h2>
+    Hayalinizdeki Evi Bulmaya Hazır mısınız?
+</h2>
+
+<p>
+    Nova Emlak'taki güncel satılık ve kiralık
+    gayrimenkulleri şimdi keşfedin.
+</p>
+
+<a
+    href="#ilanlar"
+    class="cta-button"
+>
+    🏠 İlanları İncele
+</a>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
      CONTACT
-========================= -->
+===================================================== -->
 
 <section
     class="contact-section"
@@ -2534,9 +3152,9 @@ footer p{
 </div>
 
 
-<!-- =========================
+<!-- =====================================================
      WHATSAPP
-========================= -->
+===================================================== -->
 
 <a
     class="whatsapp-float"
@@ -2549,9 +3167,9 @@ footer p{
 </a>
 
 
-<!-- =========================
+<!-- =====================================================
      FOOTER
-========================= -->
+===================================================== -->
 
 <footer>
 
@@ -2586,18 +3204,18 @@ footer p{
 ===================================================== */
 
 
-/* =========================
+/* =====================================================
    GLOBAL
-========================= */
+===================================================== */
 
 let allListings = [];
 
 let favorites = [];
 
 
-/* =========================
+/* =====================================================
    FAVORİLERİ YÜKLE
-========================= */
+===================================================== */
 
 try{
 
@@ -2626,9 +3244,9 @@ try{
 }
 
 
-/* =========================
+/* =====================================================
    FAVORİ KAYDET
-========================= */
+===================================================== */
 
 function saveFavorites(){
 
@@ -2640,9 +3258,9 @@ function saveFavorites(){
 }
 
 
-/* =========================
+/* =====================================================
    FAVORİ Mİ?
-========================= */
+===================================================== */
 
 function isFavorite(id){
 
@@ -2653,9 +3271,9 @@ function isFavorite(id){
 }
 
 
-/* =========================
+/* =====================================================
    FAVORİ DEĞİŞTİR
-========================= */
+===================================================== */
 
 function toggleFavorite(id){
 
@@ -2692,9 +3310,9 @@ function toggleFavorite(id){
 }
 
 
-/* =========================
+/* =====================================================
    FAVORİ İSTATİSTİĞİ
-========================= */
+===================================================== */
 
 function updateFavoriteStats(){
 
@@ -2713,9 +3331,9 @@ function updateFavoriteStats(){
 }
 
 
-/* =========================
+/* =====================================================
    HTML GÜVENLİĞİ
-========================= */
+===================================================== */
 
 function escapeHTML(value){
 
@@ -2731,9 +3349,9 @@ function escapeHTML(value){
 }
 
 
-/* =========================
+/* =====================================================
    FOTOĞRAF
-========================= */
+===================================================== */
 
 function getImage(ilan){
 
@@ -2760,9 +3378,9 @@ function getImage(ilan){
 }
 
 
-/* =========================
+/* =====================================================
    İLANLARI YÜKLE
-========================= */
+===================================================== */
 
 async function loadListings(){
 
@@ -2949,9 +3567,9 @@ async function loadListings(){
 }
 
 
-/* =========================
+/* =====================================================
    FİLTRE
-========================= */
+===================================================== */
 
 function getCurrentFilteredListings(){
 
@@ -3052,9 +3670,9 @@ function getCurrentFilteredListings(){
 }
 
 
-/* =========================
+/* =====================================================
    SIRALAMA
-========================= */
+===================================================== */
 
 function sortListings(list){
 
@@ -3121,9 +3739,9 @@ function sortListings(list){
 }
 
 
-/* =========================
+/* =====================================================
    SIRALA + GÖSTER
-========================= */
+===================================================== */
 
 function sortAndDisplay(){
 
@@ -3144,9 +3762,9 @@ function sortAndDisplay(){
 }
 
 
-/* =========================
+/* =====================================================
    İLAN KARTI
-========================= */
+===================================================== */
 
 function createListingCard(
     ilan,
@@ -3243,6 +3861,7 @@ function createListingCard(
                         border-radius:6px;
                         font-size:10px;
                         font-weight:900;
+                        box-shadow:0 4px 12px rgba(0,0,0,.15);
                     "
                 >
                     ⭐ ÖNE ÇIKAN
@@ -3256,8 +3875,10 @@ function createListingCard(
             <button
                 class="favorite ${
                     favorite
-                    ? "active"
-                    : ""
+                    ?
+                    "active"
+                    :
+                    ""
                 }"
                 onclick="
                     toggleFavorite(
@@ -3419,9 +4040,9 @@ function createListingCard(
 }
 
 
-/* =========================
+/* =====================================================
    İLANLARI GÖSTER
-========================= */
+===================================================== */
 
 function displayListings(
     ilanlar
@@ -3506,9 +4127,9 @@ function displayListings(
 }
 
 
-/* =========================
+/* =====================================================
    ÖNE ÇIKANLAR
-========================= */
+===================================================== */
 
 function displayFeatured(){
 
@@ -3585,9 +4206,9 @@ function displayFeatured(){
 }
 
 
-/* =========================
+/* =====================================================
    FAVORİLER
-========================= */
+===================================================== */
 
 function displayFavorites(){
 
@@ -3681,9 +4302,9 @@ function displayFavorites(){
 }
 
 
-/* =========================
+/* =====================================================
    ARAMA
-========================= */
+===================================================== */
 
 function searchListings(){
 
@@ -3699,9 +4320,9 @@ function searchListings(){
 }
 
 
-/* =========================
+/* =====================================================
    FİLTRE TEMİZLE
-========================= */
+===================================================== */
 
 function resetSearch(){
 
@@ -3747,9 +4368,9 @@ function resetSearch(){
 }
 
 
-/* =========================
+/* =====================================================
    ŞEHİR SEÇ
-========================= */
+===================================================== */
 
 function selectCity(city){
 
@@ -3764,9 +4385,9 @@ function selectCity(city){
 }
 
 
-/* =========================
+/* =====================================================
    HIZLI ŞEHİR
-========================= */
+===================================================== */
 
 function quickCity(city){
 
@@ -3777,9 +4398,9 @@ function quickCity(city){
 }
 
 
-/* =========================
+/* =====================================================
    HIZLI TİP
-========================= */
+===================================================== */
 
 function quickType(type){
 
@@ -3794,9 +4415,9 @@ function quickType(type){
 }
 
 
-/* =========================
+/* =====================================================
    HIZLI ODA
-========================= */
+===================================================== */
 
 function quickRooms(rooms){
 
@@ -3811,9 +4432,9 @@ function quickRooms(rooms){
 }
 
 
-/* =========================
+/* =====================================================
    ENTER İLE ARAMA
-========================= */
+===================================================== */
 
 document.addEventListener(
     "keydown",
@@ -3832,6 +4453,7 @@ document.addEventListener(
                 (
                     active.tagName ===
                     "INPUT" ||
+
                     active.tagName ===
                     "SELECT"
                 )
@@ -3847,9 +4469,9 @@ document.addEventListener(
 );
 
 
-/* =========================
+/* =====================================================
    BAŞLAT
-========================= */
+===================================================== */
 
 document.addEventListener(
     "DOMContentLoaded",
@@ -3867,3 +4489,4 @@ document.addEventListener(
 </body>
 
 </html>
+```
