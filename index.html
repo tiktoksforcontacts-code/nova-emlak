@@ -1,5 +1,5 @@
-```html
 <!DOCTYPE html>
+
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
@@ -18,6 +18,8 @@ body{
     background:#f5f7fb;
     color:#172033;
 }
+
+/* HEADER */
 
 header{
     position:sticky;
@@ -51,10 +53,14 @@ nav a{
     font-weight:bold;
 }
 
-nav a:hover{color:#60a5fa}
+nav a:hover{
+    color:#60a5fa;
+}
+
+/* HERO */
 
 .hero{
-    min-height:540px;
+    min-height:560px;
     display:flex;
     align-items:center;
     justify-content:center;
@@ -62,49 +68,53 @@ nav a:hover{color:#60a5fa}
     color:white;
     padding:80px 20px;
     background:
-        linear-gradient(rgba(15,23,42,.72),rgba(15,23,42,.58)),
+        linear-gradient(rgba(15,23,42,.75),rgba(15,23,42,.58)),
         url("https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1800&q=85");
     background-size:cover;
     background-position:center;
 }
 
 .hero-content{
-    max-width:850px;
+    max-width:900px;
 }
 
 .hero-badge{
     display:inline-block;
-    padding:9px 17px;
+    padding:10px 18px;
     border-radius:50px;
     background:rgba(255,255,255,.15);
     border:1px solid rgba(255,255,255,.3);
     font-size:13px;
     font-weight:bold;
-    margin-bottom:20px;
+    margin-bottom:22px;
+    backdrop-filter:blur(5px);
 }
 
 .hero h1{
-    font-size:56px;
+    font-size:58px;
     margin:0 0 18px;
+    line-height:1.1;
 }
 
 .hero p{
-    max-width:680px;
+    max-width:700px;
     margin:auto;
     font-size:18px;
     line-height:1.7;
     color:#e5e7eb;
 }
 
+/* SEARCH */
+
 .search-box{
     max-width:1120px;
-    margin:-60px auto 70px;
+    margin:-65px auto 75px;
     position:relative;
     z-index:10;
-    padding:30px;
+    padding:32px;
     background:white;
-    border-radius:20px;
-    box-shadow:0 15px 45px rgba(15,23,42,.15);
+    border-radius:22px;
+    box-shadow:0 18px 50px rgba(15,23,42,.16);
 }
 
 .search-title h2{
@@ -112,7 +122,7 @@ nav a:hover{color:#60a5fa}
 }
 
 .search-title p{
-    margin:0 0 20px;
+    margin:0 0 22px;
     color:#64748b;
 }
 
@@ -136,6 +146,7 @@ nav a:hover{color:#60a5fa}
 .filters select:focus,
 .filters input:focus{
     border-color:#2563eb;
+    box-shadow:0 0 0 3px rgba(37,99,235,.08);
 }
 
 .search-button{
@@ -155,6 +166,8 @@ nav a:hover{color:#60a5fa}
     background:#1d4ed8;
 }
 
+/* CONTAINER */
+
 .container{
     max-width:1200px;
     margin:auto;
@@ -162,11 +175,11 @@ nav a:hover{color:#60a5fa}
 }
 
 .section{
-    margin-bottom:75px;
+    margin-bottom:80px;
 }
 
 .section-heading{
-    margin-bottom:25px;
+    margin-bottom:28px;
 }
 
 .section-heading h2{
@@ -179,9 +192,11 @@ nav a:hover{color:#60a5fa}
     color:#64748b;
 }
 
+/* STATS */
+
 .stats{
     max-width:1200px;
-    margin:0 auto 75px;
+    margin:0 auto 80px;
     padding:0 20px;
 }
 
@@ -194,23 +209,25 @@ nav a:hover{color:#60a5fa}
 .stat{
     background:white;
     border:1px solid #e5e7eb;
-    border-radius:16px;
-    padding:25px;
+    border-radius:18px;
+    padding:27px;
     text-align:center;
-    box-shadow:0 5px 20px rgba(15,23,42,.05);
+    box-shadow:0 7px 25px rgba(15,23,42,.05);
 }
 
 .stat-number{
     color:#2563eb;
-    font-size:29px;
+    font-size:30px;
     font-weight:900;
 }
 
 .stat-text{
     color:#64748b;
-    margin-top:6px;
+    margin-top:7px;
     font-size:14px;
 }
+
+/* CITIES */
 
 .city-grid{
     display:grid;
@@ -220,8 +237,8 @@ nav a:hover{color:#60a5fa}
 
 .city-card{
     position:relative;
-    height:220px;
-    border-radius:18px;
+    height:230px;
+    border-radius:20px;
     overflow:hidden;
     cursor:pointer;
     box-shadow:0 8px 25px rgba(15,23,42,.12);
@@ -231,11 +248,11 @@ nav a:hover{color:#60a5fa}
     width:100%;
     height:100%;
     object-fit:cover;
-    transition:.3s;
+    transition:.35s;
 }
 
 .city-card:hover img{
-    transform:scale(1.06);
+    transform:scale(1.07);
 }
 
 .city-overlay{
@@ -243,14 +260,17 @@ nav a:hover{color:#60a5fa}
     inset:0;
     display:flex;
     align-items:flex-end;
-    padding:24px;
-    background:linear-gradient(transparent,rgba(15,23,42,.8));
+    padding:25px;
+    background:linear-gradient(
+        transparent,
+        rgba(15,23,42,.88)
+    );
     color:white;
 }
 
 .city-overlay h3{
     margin:0;
-    font-size:25px;
+    font-size:26px;
 }
 
 .city-overlay span{
@@ -260,16 +280,18 @@ nav a:hover{color:#60a5fa}
     font-size:14px;
 }
 
+/* LISTINGS */
+
 .listings{
     display:grid;
     grid-template-columns:repeat(3,1fr);
-    gap:24px;
+    gap:25px;
 }
 
 .card{
     position:relative;
     background:white;
-    border-radius:18px;
+    border-radius:20px;
     overflow:hidden;
     border:1px solid #e5e7eb;
     box-shadow:0 7px 25px rgba(15,23,42,.07);
@@ -277,13 +299,15 @@ nav a:hover{color:#60a5fa}
 }
 
 .card:hover{
-    transform:translateY(-5px);
-    box-shadow:0 18px 40px rgba(15,23,42,.13);
+    transform:translateY(-6px);
+    box-shadow:0 20px 45px rgba(15,23,42,.14);
 }
 
 .card-image{
     position:relative;
-    height:230px;
+    height:240px;
+    background:#e5e7eb;
+    overflow:hidden;
 }
 
 .card-image img{
@@ -291,32 +315,43 @@ nav a:hover{color:#60a5fa}
     height:100%;
     object-fit:cover;
     display:block;
+    transition:.35s;
+}
+
+.card:hover .card-image img{
+    transform:scale(1.04);
 }
 
 .badge{
     position:absolute;
-    top:13px;
-    left:13px;
+    top:14px;
+    left:14px;
     background:#2563eb;
     color:white;
-    padding:7px 11px;
-    border-radius:7px;
+    padding:8px 12px;
+    border-radius:8px;
     font-size:12px;
     font-weight:bold;
+    box-shadow:0 4px 12px rgba(0,0,0,.15);
 }
 
 .favorite{
     position:absolute;
     top:13px;
     right:13px;
-    width:43px;
-    height:43px;
+    width:44px;
+    height:44px;
     border:0;
     border-radius:50%;
     background:white;
     font-size:22px;
     cursor:pointer;
-    box-shadow:0 4px 15px rgba(0,0,0,.2);
+    box-shadow:0 5px 18px rgba(0,0,0,.2);
+    transition:.2s;
+}
+
+.favorite:hover{
+    transform:scale(1.08);
 }
 
 .favorite.active{
@@ -324,38 +359,40 @@ nav a:hover{color:#60a5fa}
 }
 
 .card-content{
-    padding:20px;
+    padding:21px;
 }
 
 .card h3{
-    margin:3px 0 10px;
+    margin:3px 0 9px;
     font-size:20px;
+    line-height:1.35;
 }
 
 .location{
     color:#64748b;
     font-size:14px;
-    margin-bottom:13px;
+    margin-bottom:14px;
+    line-height:1.5;
 }
 
 .details{
     display:flex;
     flex-wrap:wrap;
     gap:8px;
-    margin-bottom:17px;
+    margin-bottom:18px;
 }
 
 .detail-item{
     background:#f1f5f9;
-    padding:7px 9px;
-    border-radius:7px;
+    padding:7px 10px;
+    border-radius:8px;
     font-size:13px;
-    color:#64748b;
+    color:#475569;
 }
 
 .price{
     color:#2563eb;
-    font-size:22px;
+    font-size:23px;
     font-weight:900;
     margin-bottom:16px;
 }
@@ -366,19 +403,22 @@ nav a:hover{color:#60a5fa}
     background:#0f172a;
     color:white;
     padding:13px;
-    border-radius:9px;
+    border-radius:10px;
     text-decoration:none;
     font-weight:bold;
+    transition:.2s;
 }
 
 .detail-button:hover{
     background:#1e293b;
 }
 
+/* EMPTY */
+
 .empty{
     grid-column:1/-1;
     background:white;
-    padding:50px 20px;
+    padding:55px 20px;
     text-align:center;
     border-radius:18px;
     border:1px solid #e5e7eb;
@@ -386,6 +426,10 @@ nav a:hover{color:#60a5fa}
 
 .empty h2{
     color:#172033;
+}
+
+.empty p{
+    color:#64748b;
 }
 
 .empty button{
@@ -398,14 +442,18 @@ nav a:hover{color:#60a5fa}
     font-weight:bold;
 }
 
+/* FAVORITES */
+
 .favorites-section{
-    margin-top:80px;
+    margin-top:85px;
 }
 
 .favorite-count{
     color:#64748b;
     font-size:14px;
 }
+
+/* CONTACT */
 
 .contact-section{
     margin-top:90px;
@@ -414,8 +462,8 @@ nav a:hover{color:#60a5fa}
 .contact-box{
     background:#0f172a;
     color:white;
-    border-radius:22px;
-    padding:40px;
+    border-radius:24px;
+    padding:42px;
     display:grid;
     grid-template-columns:1.2fr 1fr;
     gap:35px;
@@ -453,12 +501,14 @@ nav a:hover{color:#60a5fa}
     font-size:14px;
 }
 
+/* WHATSAPP */
+
 .whatsapp-float{
     position:fixed;
     right:22px;
     bottom:22px;
-    width:57px;
-    height:57px;
+    width:58px;
+    height:58px;
     border-radius:50%;
     background:#16a34a;
     color:white;
@@ -469,19 +519,28 @@ nav a:hover{color:#60a5fa}
     font-size:27px;
     z-index:900;
     box-shadow:0 7px 25px rgba(22,163,74,.35);
+    transition:.2s;
 }
 
+.whatsapp-float:hover{
+    transform:scale(1.08);
+}
+
+/* FOOTER */
+
 footer{
-    margin-top:80px;
+    margin-top:85px;
     background:#020617;
     color:white;
-    padding:45px 20px;
+    padding:48px 20px;
     text-align:center;
 }
 
 footer p{
     color:#94a3b8;
 }
+
+/* RESPONSIVE */
 
 @media(max-width:950px){
 
@@ -530,6 +589,7 @@ footer p{
 
     .search-box{
         margin:20px;
+        padding:22px;
     }
 
     .filters{
@@ -547,8 +607,13 @@ footer p{
     .contact-box{
         padding:25px;
     }
+
+    .card-image{
+        height:250px;
+    }
 }
 </style>
+
 </head>
 
 <body>
@@ -667,7 +732,9 @@ Filtrelerinizi seçin ve size uygun ilanları bulun.
 
 <h2>📍 Popüler Şehirler</h2>
 
-<p>Türkiye'nin popüler şehirlerindeki gayrimenkulleri keşfedin.</p>
+<p>
+Türkiye'nin popüler şehirlerindeki gayrimenkulleri keşfedin.
+</p>
 
 </div>
 
@@ -675,7 +742,12 @@ Filtrelerinizi seçin ve size uygun ilanları bulun.
 
 <div class="city-card" onclick="selectCity('İstanbul')">
 
-<img src="https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=1000&q=80">
+<img
+src="https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=1000&q=80"
+alt="İstanbul"
+onerror="this.style.display='none'"
+
+>
 
 <div class="city-overlay">
 <div>
@@ -688,7 +760,12 @@ Filtrelerinizi seçin ve size uygun ilanları bulun.
 
 <div class="city-card" onclick="selectCity('Ankara')">
 
-<img src="https://images.unsplash.com/photo-1596484552834-6a58f850e0a1?auto=format&fit=crop&w=1000&q=80">
+<img
+src="https://images.unsplash.com/photo-1596484552834-6a58f850e0a1?auto=format&fit=crop&w=1000&q=80"
+alt="Ankara"
+onerror="this.style.display='none'"
+
+>
 
 <div class="city-overlay">
 <div>
@@ -701,7 +778,12 @@ Filtrelerinizi seçin ve size uygun ilanları bulun.
 
 <div class="city-card" onclick="selectCity('İzmir')">
 
-<img src="https://images.unsplash.com/photo-1601581875309-fafbf2d3ed3a?auto=format&fit=crop&w=1000&q=80">
+<img
+src="https://images.unsplash.com/photo-1601581875309-fafbf2d3ed3a?auto=format&fit=crop&w=1000&q=80"
+alt="İzmir"
+onerror="this.style.display='none'"
+
+>
 
 <div class="city-overlay">
 <div>
@@ -776,7 +858,9 @@ evinizi satmak veya kiralamak için bizimle iletişime geçebilirsiniz.
 
 <div class="contact-card">
 <strong>💬 WhatsApp</strong>
-<span>Hızlı iletişim için WhatsApp'tan ulaşabilirsiniz.</span>
+<span>
+Hızlı iletişim için WhatsApp'tan ulaşabilirsiniz.
+</span>
 </div>
 
 <div class="contact-card">
@@ -797,9 +881,10 @@ class="whatsapp-float"
 href="https://wa.me/905555555555"
 target="_blank"
 rel="noopener noreferrer"
+
 >
-💬
-</a>
+
+💬 </a>
 
 <footer>
 
@@ -818,23 +903,30 @@ rel="noopener noreferrer"
 <script>
 
 let allListings = [];
-
 let favorites = [];
 
-try {
-    favorites = JSON.parse(
-        localStorage.getItem("novaFavorites") || "[]"
-    );
+try{
 
-    if (!Array.isArray(favorites)) {
-        favorites = [];
+    favorites =
+        JSON.parse(
+            localStorage.getItem("novaFavorites") || "[]"
+        );
+
+    if(!Array.isArray(favorites)){
+        favorites=[];
     }
 
-    favorites = favorites.map(Number);
+    favorites =
+        favorites.map(Number);
 
-} catch(error) {
-    favorites = [];
+}catch(error){
+
+    favorites=[];
+
 }
+
+
+/* FAVORİLER */
 
 function saveFavorites(){
 
@@ -847,48 +939,23 @@ function saveFavorites(){
 
 function isFavorite(id){
 
-    return favorites.includes(Number(id));
-
-}
-
-function escapeHTML(value){
-
-    return String(value ?? "")
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;");
-
-}
-
-function getImage(ilan){
-
-    if(
-        Array.isArray(ilan.images) &&
-        ilan.images.length > 0 &&
-        ilan.images[0]
-    ){
-        return ilan.images[0];
-    }
-
-    if(ilan.image){
-        return ilan.image;
-    }
-
-    return "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80";
+    return favorites.includes(
+        Number(id)
+    );
 
 }
 
 function toggleFavorite(id){
 
-    id = Number(id);
+    id=Number(id);
 
     if(favorites.includes(id)){
 
-        favorites = favorites.filter(
-            favoriteId => favoriteId !== id
-        );
+        favorites =
+            favorites.filter(
+                favoriteId =>
+                    favoriteId !== id
+            );
 
     }else{
 
@@ -906,6 +973,48 @@ function toggleFavorite(id){
 
 }
 
+
+/* GÜVENLİ HTML */
+
+function escapeHTML(value){
+
+    return String(value ?? "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+/* FOTOĞRAF */
+
+function getImage(ilan){
+
+    if(
+        Array.isArray(ilan.images) &&
+        ilan.images.length>0 &&
+        ilan.images[0]
+    ){
+
+        return ilan.images[0];
+
+    }
+
+    if(ilan.image){
+
+        return ilan.image;
+
+    }
+
+    return "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80";
+
+}
+
+
+/* İLANLARI YÜKLE */
+
 async function loadListings(){
 
     const resultElement =
@@ -918,7 +1027,8 @@ async function loadListings(){
 
         const response =
             await fetch(
-                "/api/ilanlar?t=" + Date.now(),
+                "/api/ilanlar?t=" +
+                Date.now(),
                 {
                     method:"GET",
                     cache:"no-store",
@@ -952,13 +1062,17 @@ async function loadListings(){
             data.map(function(ilan){
 
                 return {
+
                     ...ilan,
 
-                    id:Number(ilan.id),
+                    id:
+                        Number(ilan.id),
 
-                    price:Number(ilan.price) || 0,
+                    price:
+                        Number(ilan.price) || 0,
 
-                    area:Number(ilan.area) || 0,
+                    area:
+                        Number(ilan.area) || 0,
 
                     buildingAge:
                         Number(ilan.buildingAge) || 0,
@@ -968,12 +1082,13 @@ async function loadListings(){
 
                     images:
                         Array.isArray(ilan.images)
-                            ? ilan.images
-                            : (
-                                ilan.image
-                                    ? [ilan.image]
-                                    : []
-                            )
+                        ? ilan.images
+                        : (
+                            ilan.image
+                            ? [ilan.image]
+                            : []
+                        )
+
                 };
 
             });
@@ -983,14 +1098,11 @@ async function loadListings(){
         ).textContent =
             allListings.length;
 
-        displayListings(allListings);
-
-        displayFavorites();
-
-        console.log(
-            "Nova Emlak ilanları yüklendi:",
+        displayListings(
             allListings
         );
+
+        displayFavorites();
 
     }catch(error){
 
@@ -1001,18 +1113,20 @@ async function loadListings(){
 
         document.getElementById(
             "totalListings"
-        ).textContent = "0";
+        ).textContent="0";
 
         resultElement.textContent =
             "İlanlar yüklenemedi.";
 
         document.getElementById(
             "listings"
-        ).innerHTML = `
+        ).innerHTML=`
 
             <div class="empty">
 
-                <h2>⚠️ İlanlar yüklenemedi</h2>
+                <h2>
+                    ⚠️ İlanlar yüklenemedi
+                </h2>
 
                 <p>
                     Sunucu bağlantısında bir sorun oluştu.
@@ -1030,49 +1144,85 @@ async function loadListings(){
 
 }
 
+
+/* FİLTRE */
+
 function getCurrentFilteredListings(){
 
     const type =
-        document.getElementById("type").value;
+        document.getElementById(
+            "type"
+        ).value;
 
     const city =
-        document.getElementById("city").value;
+        document.getElementById(
+            "city"
+        ).value;
 
     const rooms =
-        document.getElementById("rooms").value;
+        document.getElementById(
+            "rooms"
+        ).value;
 
     const minPrice =
         Number(
-            document.getElementById("minPrice").value
+            document.getElementById(
+                "minPrice"
+            ).value
         ) || 0;
 
     const maxPriceInput =
-        document.getElementById("maxPrice").value;
+        document.getElementById(
+            "maxPrice"
+        ).value;
 
     const maxPrice =
         maxPriceInput === ""
-            ? Infinity
-            : Number(maxPriceInput);
+        ? Infinity
+        : Number(maxPriceInput);
 
     return allListings.filter(
         function(ilan){
 
-            return (
-                (!type || ilan.type === type) &&
+            return(
 
-                (!city || ilan.city === city) &&
+                (!type ||
+                    ilan.type === type
+                )
 
-                (!rooms || ilan.rooms === rooms) &&
+                &&
 
-                Number(ilan.price || 0) >= minPrice &&
+                (!city ||
+                    ilan.city === city
+                )
 
-                Number(ilan.price || 0) <= maxPrice
+                &&
+
+                (!rooms ||
+                    ilan.rooms === rooms
+                )
+
+                &&
+
+                Number(
+                    ilan.price || 0
+                ) >= minPrice
+
+                &&
+
+                Number(
+                    ilan.price || 0
+                ) <= maxPrice
+
             );
 
         }
     );
 
 }
+
+
+/* İLAN KARTI */
 
 function createListingCard(ilan){
 
@@ -1094,16 +1244,17 @@ function createListingCard(ilan){
     const card =
         document.createElement("div");
 
-    card.className = "card";
+    card.className="card";
 
-    card.innerHTML = `
+    card.innerHTML=`
 
         <div class="card-image">
 
             <img
                 src="${escapeHTML(image)}"
                 alt="${escapeHTML(
-                    ilan.title || "Nova Emlak ilanı"
+                    ilan.title ||
+                    "Nova Emlak ilanı"
                 )}"
                 loading="lazy"
                 onerror="
@@ -1113,7 +1264,9 @@ function createListingCard(ilan){
             >
 
             <span class="badge">
-                ${escapeHTML(ilan.type || "")}
+                ${escapeHTML(
+                    ilan.type || ""
+                )}
             </span>
 
             <button
@@ -1150,7 +1303,9 @@ function createListingCard(ilan){
 
                 <span class="detail-item">
                     📐 ${escapeHTML(
-                        String(ilan.area || "-")
+                        String(
+                            ilan.area || "-"
+                        )
                     )} m²
                 </span>
 
@@ -1160,8 +1315,26 @@ function createListingCard(ilan){
                     `
                     <span class="detail-item">
                         🏢 ${escapeHTML(
-                            String(ilan.buildingAge)
+                            String(
+                                ilan.buildingAge
+                            )
                         )} yaş
+                    </span>
+                    `
+                    :
+                    ""
+                }
+
+                ${
+                    ilan.bathrooms
+                    ?
+                    `
+                    <span class="detail-item">
+                        🛁 ${escapeHTML(
+                            String(
+                                ilan.bathrooms
+                            )
+                        )} Banyo
                     </span>
                     `
                     :
@@ -1171,9 +1344,13 @@ function createListingCard(ilan){
             </div>
 
             <div class="price">
+
                 ${Number(
                     ilan.price || 0
-                ).toLocaleString("tr-TR")} TL
+                ).toLocaleString(
+                    "tr-TR"
+                )} TL
+
             </div>
 
             <a
@@ -1193,12 +1370,17 @@ function createListingCard(ilan){
 
 }
 
+
+/* İLANLARI GÖSTER */
+
 function displayListings(ilanlar){
 
     const container =
-        document.getElementById("listings");
+        document.getElementById(
+            "listings"
+        );
 
-    container.innerHTML = "";
+    container.innerHTML="";
 
     document.getElementById(
         "result"
@@ -1206,13 +1388,15 @@ function displayListings(ilanlar){
         ilanlar.length +
         " ilan bulundu.";
 
-    if(ilanlar.length === 0){
+    if(ilanlar.length===0){
 
-        container.innerHTML = `
+        container.innerHTML=`
 
             <div class="empty">
 
-                <h2>😔 İlan bulunamadı</h2>
+                <h2>
+                    😔 İlan bulunamadı
+                </h2>
 
                 <p>
                     Arama kriterlerini değiştirip tekrar deneyin.
@@ -1242,6 +1426,9 @@ function displayListings(ilanlar){
 
 }
 
+
+/* FAVORİLERİ GÖSTER */
+
 function displayFavorites(){
 
     const container =
@@ -1266,11 +1453,11 @@ function displayFavorites(){
         favoriteListings.length +
         " favori";
 
-    container.innerHTML = "";
+    container.innerHTML="";
 
-    if(favoriteListings.length === 0){
+    if(favoriteListings.length===0){
 
-        container.innerHTML = `
+        container.innerHTML=`
 
             <div class="empty">
 
@@ -1286,10 +1473,10 @@ function displayFavorites(){
                 <button
                     onclick="
                         document
-                            .getElementById('ilanlar')
-                            .scrollIntoView({
-                                behavior:'smooth'
-                            })
+                        .getElementById('ilanlar')
+                        .scrollIntoView({
+                            behavior:'smooth'
+                        })
                     "
                 >
                     İlanlara Göz At
@@ -1315,6 +1502,9 @@ function displayFavorites(){
 
 }
 
+
+/* ARAMA */
+
 function searchListings(){
 
     displayListings(
@@ -1329,27 +1519,30 @@ function searchListings(){
 
 }
 
+
+/* FİLTRELERİ TEMİZLE */
+
 function resetSearch(){
 
     document.getElementById(
         "type"
-    ).value = "";
+    ).value="";
 
     document.getElementById(
         "city"
-    ).value = "";
+    ).value="";
 
     document.getElementById(
         "rooms"
-    ).value = "";
+    ).value="";
 
     document.getElementById(
         "minPrice"
-    ).value = "";
+    ).value="";
 
     document.getElementById(
         "maxPrice"
-    ).value = "";
+    ).value="";
 
     displayListings(
         allListings
@@ -1357,15 +1550,21 @@ function resetSearch(){
 
 }
 
+
+/* ŞEHİR SEÇ */
+
 function selectCity(city){
 
     document.getElementById(
         "city"
-    ).value = city;
+    ).value=city;
 
     searchListings();
 
 }
+
+
+/* BAŞLAT */
 
 document.addEventListener(
     "DOMContentLoaded",
@@ -1380,4 +1579,3 @@ document.addEventListener(
 
 </body>
 </html>
-```
