@@ -34,12 +34,28 @@
 
 <meta
     name="googlebot"
-    content="index, follow"
+    content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
 >
 
 <link
     rel="canonical"
     href="https://nova-emlak.onrender.com/"
+>
+
+<link
+    rel="alternate"
+    hreflang="tr"
+    href="https://nova-emlak.onrender.com/"
+>
+
+<link
+    rel="preconnect"
+    href="https://images.unsplash.com"
+>
+
+<link
+    rel="dns-prefetch"
+    href="//images.unsplash.com"
 >
 
 
@@ -69,7 +85,7 @@ OPEN GRAPH
 
 <meta
     property="og:description"
-    content="Satılık ve kiralık gayrimenkulleri keşfedin. Konum, fiyat, oda sayısı ve metrekareye göre kolayca arayın."
+    content="İstanbul ve Türkiye'deki satılık ve kiralık gayrimenkulleri keşfedin. Konum, fiyat, oda sayısı ve metrekareye göre kolayca arayın."
 >
 
 <meta
@@ -84,7 +100,7 @@ OPEN GRAPH
 
 <meta
     property="og:image:alt"
-    content="Nova Emlak gayrimenkul"
+    content="Nova Emlak satılık ve kiralık gayrimenkul"
 >
 
 
@@ -110,6 +126,11 @@ TWITTER / X
 <meta
     name="twitter:image"
     content="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=85"
+>
+
+<meta
+    name="twitter:image:alt"
+    content="Nova Emlak gayrimenkul"
 >
 
 
@@ -148,8 +169,7 @@ SCHEMA.ORG
     "@type": "RealEstateAgent",
     "name": "Nova Emlak",
     "url": "https://nova-emlak.onrender.com/",
-    "description": "Nova Emlak satılık ve kiralık gayrimenkul ilanlarını modern ve kolay bir deneyimle sunan gayrimenkul platformudur.",
-    "telephone": "+905555555555",
+    "description": "Nova Emlak, İstanbul ve Türkiye'deki satılık ve kiralık gayrimenkul ilanlarını modern ve kolay bir deneyimle sunan gayrimenkul platformudur.",
     "address": {
         "@type": "PostalAddress",
         "addressLocality": "İstanbul",
@@ -169,8 +189,16 @@ SCHEMA.ORG
     "@type": "WebSite",
     "name": "Nova Emlak",
     "url": "https://nova-emlak.onrender.com/",
-    "description": "Satılık ve kiralık gayrimenkul ilanları.",
-    "inLanguage": "tr-TR"
+    "description": "İstanbul ve Türkiye'deki satılık ve kiralık gayrimenkul ilanları.",
+    "inLanguage": "tr-TR",
+    "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://nova-emlak.onrender.com/?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+    }
 }
 </script>
 
@@ -2124,7 +2152,7 @@ Kolay iletişim ve hızlı ulaşım
 
 <img
     src="https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=1200&q=85"
-    alt="İstanbul"
+    alt="İstanbul gayrimenkul ve emlak"
     loading="lazy"
 >
 
@@ -2152,7 +2180,7 @@ Kolay iletişim ve hızlı ulaşım
 
 <img
     src="https://images.unsplash.com/photo-1596484552834-6a58f850e0a1?auto=format&fit=crop&w=1200&q=85"
-    alt="Ankara"
+    alt="Ankara gayrimenkul ve emlak"
     loading="lazy"
 >
 
@@ -2180,7 +2208,7 @@ Kolay iletişim ve hızlı ulaşım
 
 <img
     src="https://images.unsplash.com/photo-1601581875309-fafbf2d3ed3a?auto=format&fit=crop&w=1200&q=85"
-    alt="İzmir"
+    alt="İzmir gayrimenkul ve emlak"
     loading="lazy"
 >
 
@@ -2235,7 +2263,7 @@ PROJELER
 
 <img
     src="https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=1200&q=85"
-    alt="Lüks Villalar"
+    alt="Lüks villa gayrimenkul ilanları"
     loading="lazy"
 >
 
@@ -2265,7 +2293,7 @@ PROJELER
 
 <img
     src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=85"
-    alt="Deniz Manzaralı Daireler"
+    alt="Satılık seçkin daire ilanları"
     loading="lazy"
 >
 
@@ -2295,7 +2323,7 @@ PROJELER
 
 <img
     src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=85"
-    alt="Modern Rezidanslar"
+    alt="Modern rezidans gayrimenkul ilanları"
     loading="lazy"
 >
 
@@ -2367,7 +2395,7 @@ ALL LISTINGS
 <div class="section-heading">
 
 <h2>
-    🏡 Güncel İlanlar
+    🏡 Güncel Satılık ve Kiralık İlanlar
 </h2>
 
 <p id="result">
@@ -2676,7 +2704,7 @@ SABİT WHATSAPP
     href="https://wa.me/905555555555"
     target="_blank"
     rel="noopener noreferrer"
-    aria-label="WhatsApp ile iletişime geç"
+    aria-label="Nova Emlak WhatsApp ile iletişime geç"
 >
 
 <span class="whatsapp-tooltip">
@@ -2831,6 +2859,7 @@ function toggleFavorite(id){
     displayFavorites();
 
     displayFeatured();
+
 
 }
 
@@ -3603,7 +3632,7 @@ function createListingCard(
                 src="${escapeHTML(image)}"
                 alt="${escapeHTML(
                     ilan.title ||
-                    "Nova Emlak ilanı"
+                    "Nova Emlak gayrimenkul ilanı"
                 )}"
                 loading="lazy"
                 onerror="
@@ -3672,7 +3701,7 @@ function createListingCard(
 
             <h3>
                 ${escapeHTML(
-                    ilan.title || "İlan"
+                    ilan.title || "Gayrimenkul İlanı"
                 )}
             </h3>
 
