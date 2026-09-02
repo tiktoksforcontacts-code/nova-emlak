@@ -1,3 +1,4 @@
+```js
 const express = require("express");
 const fs = require("fs");
 const path = require("path");
@@ -38,18 +39,19 @@ ROBOTS.TXT
 
 app.get("/robots.txt", (req, res) => {
 
-    res.type("text/plain");
-
-    res.send(
-`User-agent: *
+    const robots = `User-agent: *
 Allow: /
 Disallow: /admin.html
 Disallow: /api/
 Disallow: /uploads/
 
 Sitemap: ${SITE_URL}/sitemap.xml
-`
-    );
+`;
+
+    res
+        .status(200)
+        .set("Content-Type", "text/plain; charset=utf-8")
+        .send(robots);
 
 });
 
@@ -68,7 +70,6 @@ function escapeXml(value) {
 
 }
 
-
 app.get("/sitemap.xml", (req, res) => {
 
     try {
@@ -79,12 +80,16 @@ app.get("/sitemap.xml", (req, res) => {
 
             try {
 
-                ilanlar = JSON.parse(
-                    fs.readFileSync(
-                        DATA_FILE,
-                        "utf8"
-                    )
+                const data = fs.readFileSync(
+                    DATA_FILE,
+                    "utf8"
                 );
+
+                const parsed = JSON.parse(data);
+
+                if (Array.isArray(parsed)) {
+                    ilanlar = parsed;
+                }
 
             } catch (error) {
 
@@ -99,9 +104,9 @@ app.get("/sitemap.xml", (req, res) => {
 
         }
 
-
         const urls = [];
 
+        /* ANA SAYFA */
 
         urls.push(`
     <url>
@@ -110,6 +115,7 @@ app.get("/sitemap.xml", (req, res) => {
         <priority>1.0</priority>
     </url>`);
 
+        /* İLANLAR SAYFASI */
 
         urls.push(`
     <url>
@@ -118,23 +124,30 @@ app.get("/sitemap.xml", (req, res) => {
         <priority>0.8</priority>
     </url>`);
 
+        /* TÜM İLANLAR */
 
         if (Array.isArray(ilanlar)) {
 
-            ilanlar.forEach(ilan => {
+            ilanlar.forEach((ilan) => {
 
-                if (!ilan || !ilan.id) {
+                if (
+                    !ilan ||
+                    ilan.id === undefined ||
+                    ilan.id === null
+                ) {
                     return;
                 }
 
+                const ilanUrl =
+                    SITE_URL +
+                    "/ilan.html?id=" +
+                    encodeURIComponent(
+                        String(ilan.id)
+                    );
 
                 urls.push(`
     <url>
-        <loc>${escapeXml(
-            SITE_URL +
-            "/ilan.html?id=" +
-            encodeURIComponent(ilan.id)
-        )}</loc>
+        <loc>${escapeXml(ilanUrl)}</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>`);
@@ -143,18 +156,19 @@ app.get("/sitemap.xml", (req, res) => {
 
         }
 
+        /* XML */
 
-        const sitemap =
-`<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${urls.join("\n")}
+        const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urls.join("")}
 </urlset>`;
 
-
         res
-            .type("application/xml")
+            .status(200)
+            .set(
+                "Content-Type",
+                "application/xml; charset=utf-8"
+            )
             .send(sitemap);
-
 
     } catch (error) {
 
@@ -163,14 +177,19 @@ ${urls.join("\n")}
             error
         );
 
-        res.status(500).send(
-            "Sitemap oluşturulamadı."
-        );
+        res
+            .status(500)
+            .set(
+                "Content-Type",
+                "text/plain; charset=utf-8"
+            )
+            .send(
+                "Sitemap oluşturulamadı."
+            );
 
     }
 
 });
-
 
 /* =========================
 STATİK DOSYALAR
@@ -179,7 +198,6 @@ STATİK DOSYALAR
 app.use(
     express.static(__dirname)
 );
-
 
 /* =========================
 KLASÖRLER
@@ -195,7 +213,6 @@ if (!fs.existsSync(DATA_FILE)) {
 
 }
 
-
 if (!fs.existsSync(UPLOADS_DIR)) {
 
     fs.mkdirSync(
@@ -206,7 +223,6 @@ if (!fs.existsSync(UPLOADS_DIR)) {
     );
 
 }
-
 
 /* =========================
 FOTOĞRAF YÜKLEME
@@ -245,7 +261,6 @@ const storage = multer.diskStorage({
 
 });
 
-
 const upload = multer({
 
     storage: storage,
@@ -281,13 +296,11 @@ const upload = multer({
 
 });
 
-
 /* =========================
 ADMIN OTURUMLARI
 ========================= */
 
 const adminTokens = new Set();
-
 
 /* =========================
 ADMIN GİRİŞ
@@ -300,7 +313,6 @@ app.post(
         const password =
             req.body.password;
 
-
         if (
             process.env.ADMIN_PASSWORD &&
             password === process.env.ADMIN_PASSWORD
@@ -311,9 +323,7 @@ app.post(
                     .randomBytes(32)
                     .toString("hex");
 
-
             adminTokens.add(token);
-
 
             return res.json({
 
@@ -324,7 +334,6 @@ app.post(
 
         }
 
-
         return res.status(401).json({
 
             success: false,
@@ -334,7 +343,6 @@ app.post(
 
     }
 );
-
 
 /* =========================
 ADMIN KONTROL
@@ -349,7 +357,6 @@ function requireAdmin(
     const auth =
         req.headers.authorization || "";
 
-
     if (!auth.startsWith("Bearer ")) {
 
         return res.status(401).json({
@@ -361,10 +368,8 @@ function requireAdmin(
 
     }
 
-
     const token =
         auth.substring(7);
-
 
     if (!adminTokens.has(token)) {
 
@@ -378,11 +383,9 @@ function requireAdmin(
 
     }
 
-
     next();
 
 }
-
 
 /* =========================
 ADMIN ÇIKIŞ
@@ -396,13 +399,10 @@ app.post(
         const auth =
             req.headers.authorization || "";
 
-
         const token =
             auth.substring(7);
 
-
         adminTokens.delete(token);
-
 
         res.json({
 
@@ -412,7 +412,6 @@ app.post(
 
     }
 );
-
 
 /* =========================
 İLANLARI GETİR
@@ -432,11 +431,9 @@ app.get(
                     )
                 );
 
-
             res.json(
                 ilanlar
             );
-
 
         } catch (error) {
 
@@ -444,7 +441,6 @@ app.get(
                 "İlanları okuma hatası:",
                 error
             );
-
 
             res.status(500).json({
 
@@ -457,7 +453,6 @@ app.get(
 
     }
 );
-
 
 /* =========================
 İLAN EKLE
@@ -479,9 +474,7 @@ app.post(
                     )
                 );
 
-
             let images = [];
-
 
             if (
                 req.files &&
@@ -499,7 +492,6 @@ app.post(
 
             }
 
-
             if (
                 images.length === 0 &&
                 req.body.images
@@ -511,7 +503,6 @@ app.post(
                         typeof req.body.images === "string"
                             ? JSON.parse(req.body.images)
                             : req.body.images;
-
 
                     if (
                         Array.isArray(bodyImages)
@@ -534,7 +525,6 @@ app.post(
 
             }
 
-
             if (
                 images.length === 0 &&
                 req.body.image
@@ -545,7 +535,6 @@ app.post(
                 ];
 
             }
-
 
             const yeniIlan = {
 
@@ -609,11 +598,9 @@ app.post(
 
             };
 
-
             ilanlar.push(
                 yeniIlan
             );
-
 
             fs.writeFileSync(
                 DATA_FILE,
@@ -625,7 +612,6 @@ app.post(
                 "utf8"
             );
 
-
             res.json({
 
                 success: true,
@@ -633,14 +619,12 @@ app.post(
 
             });
 
-
         } catch (error) {
 
             console.error(
                 "İlan ekleme hatası:",
                 error
             );
-
 
             res.status(500).json({
 
@@ -653,7 +637,6 @@ app.post(
 
     }
 );
-
 
 /* =========================
 İLAN GÜNCELLE
@@ -670,7 +653,6 @@ app.put(
             const id =
                 Number(req.params.id);
 
-
             const ilanlar =
                 JSON.parse(
                     fs.readFileSync(
@@ -679,13 +661,11 @@ app.put(
                     )
                 );
 
-
             const index =
                 ilanlar.findIndex(
                     ilan =>
                         Number(ilan.id) === id
                 );
-
 
             if (index === -1) {
 
@@ -698,7 +678,6 @@ app.put(
 
             }
 
-
             let images =
                 Array.isArray(
                     ilanlar[index].images
@@ -709,7 +688,6 @@ app.put(
                             ? [ilanlar[index].image]
                             : []
                     );
-
 
             if (
                 req.files &&
@@ -726,7 +704,6 @@ app.put(
                         );
 
             }
-
 
             ilanlar[index] = {
 
@@ -813,7 +790,6 @@ app.put(
 
             };
 
-
             fs.writeFileSync(
                 DATA_FILE,
                 JSON.stringify(
@@ -824,7 +800,6 @@ app.put(
                 "utf8"
             );
 
-
             res.json({
 
                 success: true,
@@ -832,14 +807,12 @@ app.put(
 
             });
 
-
         } catch (error) {
 
             console.error(
                 "İlan güncelleme hatası:",
                 error
             );
-
 
             res.status(500).json({
 
@@ -852,7 +825,6 @@ app.put(
 
     }
 );
-
 
 /* =========================
 İLAN SİL
@@ -868,7 +840,6 @@ app.delete(
             const id =
                 Number(req.params.id);
 
-
             const ilanlar =
                 JSON.parse(
                     fs.readFileSync(
@@ -877,13 +848,11 @@ app.delete(
                     )
                 );
 
-
             const index =
                 ilanlar.findIndex(
                     ilan =>
                         Number(ilan.id) === id
                 );
-
 
             if (index === -1) {
 
@@ -896,13 +865,11 @@ app.delete(
 
             }
 
-
             const deleted =
                 ilanlar.splice(
                     index,
                     1
                 )[0];
-
 
             const images =
                 Array.isArray(deleted.images)
@@ -913,7 +880,6 @@ app.delete(
                             : []
                     );
 
-
             images.forEach(
                 image => {
 
@@ -923,24 +889,20 @@ app.delete(
                         return;
                     }
 
-
                     if (
                         !image.startsWith("/uploads/")
                     ) {
                         return;
                     }
 
-
                     const filename =
                         path.basename(image);
-
 
                     const filePath =
                         path.join(
                             UPLOADS_DIR,
                             filename
                         );
-
 
                     if (
                         fs.existsSync(filePath)
@@ -966,7 +928,6 @@ app.delete(
                 }
             );
 
-
             fs.writeFileSync(
                 DATA_FILE,
                 JSON.stringify(
@@ -977,7 +938,6 @@ app.delete(
                 "utf8"
             );
 
-
             res.json({
 
                 success: true,
@@ -985,14 +945,12 @@ app.delete(
 
             });
 
-
         } catch (error) {
 
             console.error(
                 "İlan silme hatası:",
                 error
             );
-
 
             res.status(500).json({
 
@@ -1006,7 +964,6 @@ app.delete(
     }
 );
 
-
 /* =========================
 HATA YAKALAMA
 ========================= */
@@ -1015,7 +972,6 @@ app.use(
     (error, req, res, next) => {
 
         console.error(error);
-
 
         if (
             error instanceof multer.MulterError
@@ -1035,7 +991,6 @@ app.use(
 
             }
 
-
             if (
                 error.code === "LIMIT_FILE_COUNT"
             ) {
@@ -1050,7 +1005,6 @@ app.use(
 
             }
 
-
             return res.status(400).json({
 
                 success: false,
@@ -1060,7 +1014,6 @@ app.use(
             });
 
         }
-
 
         if (
             error &&
@@ -1077,7 +1030,6 @@ app.use(
 
         }
 
-
         res.status(500).json({
 
             success: false,
@@ -1088,13 +1040,13 @@ app.use(
     }
 );
 
-
 /* =========================
 SUNUCU
 ========================= */
 
 app.listen(
     PORT,
+    "0.0.0.0",
     () => {
 
         console.log(
@@ -1121,3 +1073,4 @@ app.listen(
 
     }
 );
+```
