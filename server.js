@@ -7,20 +7,12 @@ const multer = require("multer");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-/* =========================
-TEMEL AYARLAR
-========================= */
-
 const DATA_FILE = path.join(__dirname, "ilanlar.json");
 const UPLOADS_DIR = path.join(__dirname, "uploads");
 
-/*
-   Gerçek domain aldığında Render Environment Variables
-   kısmından SITE_URL oluşturabilirsin.
-
-   Örnek:
-   SITE_URL=https://www.novaemlak.com
-*/
+/* =========================
+SITE AYARI
+========================= */
 
 const SITE_URL = (
     process.env.SITE_URL ||
@@ -73,6 +65,7 @@ function escapeXml(value) {
         .replace(/>/g, "&gt;")
         .replace(/"/g, "&quot;")
         .replace(/'/g, "&apos;");
+
 }
 
 
@@ -101,14 +94,14 @@ app.get("/sitemap.xml", (req, res) => {
                 );
 
                 ilanlar = [];
+
             }
+
         }
 
 
         const urls = [];
 
-
-        /* ANA SAYFA */
 
         urls.push(`
     <url>
@@ -118,8 +111,6 @@ app.get("/sitemap.xml", (req, res) => {
     </url>`);
 
 
-        /* İLAN DETAY SAYFASI */
-
         urls.push(`
     <url>
         <loc>${escapeXml(SITE_URL + "/ilan.html")}</loc>
@@ -128,8 +119,6 @@ app.get("/sitemap.xml", (req, res) => {
     </url>`);
 
 
-        /* TÜM İLANLAR */
-
         if (Array.isArray(ilanlar)) {
 
             ilanlar.forEach(ilan => {
@@ -137,6 +126,7 @@ app.get("/sitemap.xml", (req, res) => {
                 if (!ilan || !ilan.id) {
                     return;
                 }
+
 
                 urls.push(`
     <url>
@@ -150,14 +140,13 @@ app.get("/sitemap.xml", (req, res) => {
     </url>`);
 
             });
+
         }
 
 
         const sitemap =
 `<?xml version="1.0" encoding="UTF-8"?>
-<urlset
-    xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${urls.join("\n")}
 </urlset>`;
 
@@ -177,6 +166,7 @@ ${urls.join("\n")}
         res.status(500).send(
             "Sitemap oluşturulamadı."
         );
+
     }
 
 });
@@ -192,7 +182,7 @@ app.use(
 
 
 /* =========================
-KLASÖRLERİ OLUŞTUR
+KLASÖRLER
 ========================= */
 
 if (!fs.existsSync(DATA_FILE)) {
@@ -243,9 +233,7 @@ const storage = multer.diskStorage({
         const filename =
             Date.now() +
             "-" +
-            crypto
-                .randomBytes(6)
-                .toString("hex") +
+            crypto.randomBytes(6).toString("hex") +
             extension;
 
         cb(
@@ -263,38 +251,33 @@ const upload = multer({
     storage: storage,
 
     limits: {
-
         files: 4,
-
-        fileSize:
-            10 * 1024 * 1024
-
+        fileSize: 10 * 1024 * 1024
     },
 
-    fileFilter:
-        function (req, file, cb) {
+    fileFilter: function (req, file, cb) {
 
-            if (
-                file.mimetype &&
-                file.mimetype.startsWith("image/")
-            ) {
+        if (
+            file.mimetype &&
+            file.mimetype.startsWith("image/")
+        ) {
 
-                cb(
-                    null,
-                    true
-                );
+            cb(
+                null,
+                true
+            );
 
-            } else {
+        } else {
 
-                cb(
-                    new Error(
-                        "Sadece resim dosyaları yüklenebilir."
-                    )
-                );
-
-            }
+            cb(
+                new Error(
+                    "Sadece resim dosyaları yüklenebilir."
+                )
+            );
 
         }
+
+    }
 
 });
 
@@ -303,8 +286,7 @@ const upload = multer({
 ADMIN OTURUMLARI
 ========================= */
 
-const adminTokens =
-    new Set();
+const adminTokens = new Set();
 
 
 /* =========================
@@ -321,8 +303,7 @@ app.post(
 
         if (
             process.env.ADMIN_PASSWORD &&
-            password ===
-            process.env.ADMIN_PASSWORD
+            password === process.env.ADMIN_PASSWORD
         ) {
 
             const token =
@@ -337,7 +318,6 @@ app.post(
             return res.json({
 
                 success: true,
-
                 token: token
 
             });
@@ -348,9 +328,7 @@ app.post(
         return res.status(401).json({
 
             success: false,
-
-            error:
-                "Şifre hatalı."
+            error: "Şifre hatalı."
 
         });
 
@@ -369,20 +347,15 @@ function requireAdmin(
 ) {
 
     const auth =
-        req.headers.authorization ||
-        "";
+        req.headers.authorization || "";
 
 
-    if (
-        !auth.startsWith("Bearer ")
-    ) {
+    if (!auth.startsWith("Bearer ")) {
 
         return res.status(401).json({
 
             success: false,
-
-            error:
-                "Admin girişi gerekli."
+            error: "Admin girişi gerekli."
 
         });
 
@@ -393,14 +366,11 @@ function requireAdmin(
         auth.substring(7);
 
 
-    if (
-        !adminTokens.has(token)
-    ) {
+    if (!adminTokens.has(token)) {
 
         return res.status(401).json({
 
             success: false,
-
             error:
                 "Oturum geçersiz veya süresi dolmuş."
 
@@ -424,8 +394,7 @@ app.post(
     (req, res) => {
 
         const auth =
-            req.headers.authorization ||
-            "";
+            req.headers.authorization || "";
 
 
         const token =
@@ -480,9 +449,7 @@ app.get(
             res.status(500).json({
 
                 success: false,
-
-                error:
-                    "İlanlar okunamadı."
+                error: "İlanlar okunamadı."
 
             });
 
@@ -542,16 +509,12 @@ app.post(
 
                     const bodyImages =
                         typeof req.body.images === "string"
-                            ? JSON.parse(
-                                req.body.images
-                            )
+                            ? JSON.parse(req.body.images)
                             : req.body.images;
 
 
                     if (
-                        Array.isArray(
-                            bodyImages
-                        )
+                        Array.isArray(bodyImages)
                     ) {
 
                         images =
@@ -586,8 +549,7 @@ app.post(
 
             const yeniIlan = {
 
-                id:
-                    Date.now(),
+                id: Date.now(),
 
                 title:
                     req.body.title || "",
@@ -605,30 +567,22 @@ app.post(
                     req.body.neighborhood || "",
 
                 price:
-                    Number(
-                        req.body.price
-                    ) || 0,
+                    Number(req.body.price) || 0,
 
                 rooms:
                     req.body.rooms || "",
 
                 area:
-                    Number(
-                        req.body.area
-                    ) || 0,
+                    Number(req.body.area) || 0,
 
                 buildingAge:
-                    Number(
-                        req.body.buildingAge
-                    ) || 0,
+                    Number(req.body.buildingAge) || 0,
 
                 floor:
                     req.body.floor || "",
 
                 totalFloors:
-                    Number(
-                        req.body.totalFloors
-                    ) || 0,
+                    Number(req.body.totalFloors) || 0,
 
                 heating:
                     req.body.heating || "",
@@ -645,8 +599,7 @@ app.post(
                 deed:
                     req.body.deed || "",
 
-                images:
-                    images,
+                images: images,
 
                 image:
                     images[0] || "",
@@ -676,9 +629,7 @@ app.post(
             res.json({
 
                 success: true,
-
-                ilan:
-                    yeniIlan
+                ilan: yeniIlan
 
             });
 
@@ -694,9 +645,7 @@ app.post(
             res.status(500).json({
 
                 success: false,
-
-                error:
-                    "İlan eklenemedi."
+                error: "İlan eklenemedi."
 
             });
 
@@ -719,9 +668,7 @@ app.put(
         try {
 
             const id =
-                Number(
-                    req.params.id
-                );
+                Number(req.params.id);
 
 
             const ilanlar =
@@ -736,22 +683,16 @@ app.put(
             const index =
                 ilanlar.findIndex(
                     ilan =>
-                        Number(
-                            ilan.id
-                        ) === id
+                        Number(ilan.id) === id
                 );
 
 
-            if (
-                index === -1
-            ) {
+            if (index === -1) {
 
                 return res.status(404).json({
 
                     success: false,
-
-                    error:
-                        "İlan bulunamadı."
+                    error: "İlan bulunamadı."
 
                 });
 
@@ -765,9 +706,7 @@ app.put(
                     ? ilanlar[index].images
                     : (
                         ilanlar[index].image
-                            ? [
-                                ilanlar[index].image
-                            ]
+                            ? [ilanlar[index].image]
                             : []
                     );
 
@@ -815,9 +754,7 @@ app.put(
 
                 price:
                     req.body.price !== undefined
-                        ? Number(
-                            req.body.price
-                        ) || 0
+                        ? Number(req.body.price) || 0
                         : ilanlar[index].price,
 
                 rooms:
@@ -826,16 +763,12 @@ app.put(
 
                 area:
                     req.body.area !== undefined
-                        ? Number(
-                            req.body.area
-                        ) || 0
+                        ? Number(req.body.area) || 0
                         : ilanlar[index].area,
 
                 buildingAge:
                     req.body.buildingAge !== undefined
-                        ? Number(
-                            req.body.buildingAge
-                        ) || 0
+                        ? Number(req.body.buildingAge) || 0
                         : ilanlar[index].buildingAge,
 
                 floor:
@@ -844,9 +777,7 @@ app.put(
 
                 totalFloors:
                     req.body.totalFloors !== undefined
-                        ? Number(
-                            req.body.totalFloors
-                        ) || 0
+                        ? Number(req.body.totalFloors) || 0
                         : ilanlar[index].totalFloors,
 
                 heating:
@@ -869,8 +800,7 @@ app.put(
                     req.body.deed ??
                     ilanlar[index].deed,
 
-                images:
-                    images,
+                images: images,
 
                 image:
                     images[0] ||
@@ -898,9 +828,7 @@ app.put(
             res.json({
 
                 success: true,
-
-                ilan:
-                    ilanlar[index]
+                ilan: ilanlar[index]
 
             });
 
@@ -916,9 +844,7 @@ app.put(
             res.status(500).json({
 
                 success: false,
-
-                error:
-                    "İlan güncellenemedi."
+                error: "İlan güncellenemedi."
 
             });
 
@@ -940,9 +866,7 @@ app.delete(
         try {
 
             const id =
-                Number(
-                    req.params.id
-                );
+                Number(req.params.id);
 
 
             const ilanlar =
@@ -957,22 +881,16 @@ app.delete(
             const index =
                 ilanlar.findIndex(
                     ilan =>
-                        Number(
-                            ilan.id
-                        ) === id
+                        Number(ilan.id) === id
                 );
 
 
-            if (
-                index === -1
-            ) {
+            if (index === -1) {
 
                 return res.status(404).json({
 
                     success: false,
-
-                    error:
-                        "İlan bulunamadı."
+                    error: "İlan bulunamadı."
 
                 });
 
@@ -987,15 +905,11 @@ app.delete(
 
 
             const images =
-                Array.isArray(
-                    deleted.images
-                )
+                Array.isArray(deleted.images)
                     ? deleted.images
                     : (
                         deleted.image
-                            ? [
-                                deleted.image
-                            ]
+                            ? [deleted.image]
                             : []
                     );
 
@@ -1011,18 +925,14 @@ app.delete(
 
 
                     if (
-                        !image.startsWith(
-                            "/uploads/"
-                        )
+                        !image.startsWith("/uploads/")
                     ) {
                         return;
                     }
 
 
                     const filename =
-                        path.basename(
-                            image
-                        );
+                        path.basename(image);
 
 
                     const filePath =
@@ -1033,9 +943,7 @@ app.delete(
 
 
                     if (
-                        fs.existsSync(
-                            filePath
-                        )
+                        fs.existsSync(filePath)
                     ) {
 
                         try {
@@ -1073,9 +981,7 @@ app.delete(
             res.json({
 
                 success: true,
-
-                ilan:
-                    deleted
+                ilan: deleted
 
             });
 
@@ -1091,9 +997,7 @@ app.delete(
             res.status(500).json({
 
                 success: false,
-
-                error:
-                    "İlan silinemedi."
+                error: "İlan silinemedi."
 
             });
 
@@ -1110,25 +1014,20 @@ HATA YAKALAMA
 app.use(
     (error, req, res, next) => {
 
-        console.error(
-            error
-        );
+        console.error(error);
 
 
         if (
-            error instanceof
-            multer.MulterError
+            error instanceof multer.MulterError
         ) {
 
             if (
-                error.code ===
-                "LIMIT_FILE_SIZE"
+                error.code === "LIMIT_FILE_SIZE"
             ) {
 
                 return res.status(400).json({
 
                     success: false,
-
                     error:
                         "Fotoğraf boyutu en fazla 10 MB olabilir."
 
@@ -1138,14 +1037,12 @@ app.use(
 
 
             if (
-                error.code ===
-                "LIMIT_FILE_COUNT"
+                error.code === "LIMIT_FILE_COUNT"
             ) {
 
                 return res.status(400).json({
 
                     success: false,
-
                     error:
                         "En fazla 4 fotoğraf yükleyebilirsiniz."
 
@@ -1157,7 +1054,6 @@ app.use(
             return res.status(400).json({
 
                 success: false,
-
                 error:
                     "Fotoğraf yükleme hatası."
 
@@ -1175,9 +1071,7 @@ app.use(
             return res.status(400).json({
 
                 success: false,
-
-                error:
-                    error.message
+                error: error.message
 
             });
 
@@ -1187,9 +1081,7 @@ app.use(
         res.status(500).json({
 
             success: false,
-
-            error:
-                "Sunucu hatası."
+            error: "Sunucu hatası."
 
         });
 
