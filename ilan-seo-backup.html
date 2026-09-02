@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+
+<html lang="tr">
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+
+>
+
+<title>Nova Emlak | İlan Detayı</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f5f7fb;
+    color:#172033;
+}
+
+/* HEADER */
+
+header{
+    background:#0f172a;
+    color:white;
+    padding:18px 6%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.logo{
+    color:white;
+    text-decoration:none;
+    font-size:24px;
+    font-weight:900;
+}
+
+.back{
+    color:white;
+    text-decoration:none;
+    background:#2563eb;
+    padding:11px 17px;
+    border-radius:9px;
+    font-weight:bold;
+}
+
+.back:hover{
+    background:#1d4ed8;
+}
+
+/* CONTAINER */
+
+.container{
+    max-width:1150px;
+    margin:40px auto;
+    padding:0 20px;
+}
+
+/* MAIN */
+
+.property{
+    background:white;
+    border-radius:22px;
+    overflow:hidden;
+    box-shadow:0 10px 35px rgba(15,23,42,.08);
+    border:1px solid #e5e7eb;
+}
+
+/* GALERİ */
+
+.gallery{
+    padding:20px;
+}
+
+.main-image{
+    width:100%;
+    height:500px;
+    object-fit:cover;
+    border-radius:16px;
+    display:block;
+    background:#e2e8f0;
+}
+
+.thumbnails{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+    margin-top:12px;
+}
+
+.thumbnail{
+    width:100%;
+    height:110px;
+    object-fit:cover;
+    border-radius:10px;
+    cursor:pointer;
+    border:3px solid transparent;
+    transition:.2s;
+}
+
+.thumbnail:hover{
+    transform:translateY(-2px);
+}
+
+.thumbnail.active{
+    border-color:#2563eb;
+}
+
+/* CONTENT */
+
+.content{
+    padding:30px;
+}
+
+.top{
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
+    align-items:flex-start;
+}
+
+.title-area{
+    flex:1;
+}
+
+.badge{
+    display:inline-block;
+    background:#2563eb;
+    color:white;
+    padding:8px 13px;
+    border-radius:8px;
+    font-size:13px;
+    font-weight:bold;
+    margin-bottom:12px;
+}
+
+h1{
+    margin:0 0 12px;
+    font-size:34px;
+    line-height:1.2;
+}
+
+.location{
+    color:#64748b;
+    font-size:16px;
+}
+
+.price{
+    color:#2563eb;
+    font-size:30px;
+    font-weight:900;
+    white-space:nowrap;
+}
+
+/* FAVORİ */
+
+.favorite{
+    margin-top:20px;
+    border:0;
+    background:#f1f5f9;
+    color:#172033;
+    padding:12px 18px;
+    border-radius:10px;
+    font-size:15px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.favorite.active{
+    background:#fee2e2;
+    color:#dc2626;
+}
+
+/* DETAILS */
+
+.details-title{
+    margin-top:35px;
+    margin-bottom:15px;
+    font-size:22px;
+}
+
+.details-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+}
+
+.detail{
+    background:#f8fafc;
+    border:1px solid #e5e7eb;
+    border-radius:12px;
+    padding:17px;
+}
+
+.detail-label{
+    color:#64748b;
+    font-size:13px;
+    margin-bottom:7px;
+}
+
+.detail-value{
+    font-weight:bold;
+    font-size:15px;
+}
+
+/* AÇIKLAMA */
+
+.description{
+    margin-top:35px;
+    padding-top:25px;
+    border-top:1px solid #e5e7eb;
+}
+
+.description h2{
+    margin-top:0;
+    font-size:22px;
+}
+
+.description p{
+    color:#475569;
+    line-height:1.8;
+    font-size:16px;
+    white-space:pre-line;
+}
+
+/* HARİTA */
+
+.map-section{
+    margin-top:35px;
+}
+
+.map-section h2{
+    font-size:22px;
+    margin-bottom:15px;
+}
+
+.map-container{
+    width:100%;
+    height:350px;
+    border-radius:16px;
+    overflow:hidden;
+    border:1px solid #e5e7eb;
+    background:#e2e8f0;
+}
+
+.map-container iframe{
+    width:100%;
+    height:100%;
+    border:0;
+}
+
+.map-note{
+    margin-top:10px;
+    color:#64748b;
+    font-size:13px;
+    line-height:1.5;
+}
+
+/* İLETİŞİM */
+
+.contact{
+    margin-top:35px;
+    background:#0f172a;
+    color:white;
+    padding:30px;
+    border-radius:16px;
+    text-align:center;
+}
+
+.contact h2{
+    margin-top:0;
+}
+
+.contact p{
+    color:#cbd5e1;
+    line-height:1.6;
+}
+
+.whatsapp{
+    display:inline-block;
+    background:#16a34a;
+    color:white;
+    padding:14px 25px;
+    border-radius:10px;
+    text-decoration:none;
+    font-weight:bold;
+    margin-top:10px;
+}
+
+/* HATA */
+
+.error{
+    background:white;
+    border-radius:18px;
+    padding:50px 20px;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(0,0,0,.06);
+}
+
+.error h2{
+    margin-top:0;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:800px){
+
+    header{
+        padding:15px 20px;
+    }
+
+    .logo{
+        font-size:20px;
+    }
+
+    .back{
+        font-size:13px;
+        padding:9px 12px;
+    }
+
+    .container{
+        margin:20px auto;
+    }
+
+    .main-image{
+        height:320px;
+    }
+
+    .thumbnails{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .thumbnail{
+        height:100px;
+    }
+
+    .content{
+        padding:22px;
+    }
+
+    .top{
+        flex-direction:column;
+    }
+
+    h1{
+        font-size:27px;
+    }
+
+    .price{
+        font-size:25px;
+    }
+
+    .details-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .map-container{
+        height:280px;
+    }
+
+}
+
+@media(max-width:450px){
+
+    .main-image{
+        height:250px;
+    }
+
+    .details-grid{
+        grid-template-columns:1fr;
+    }
+
+    .map-container{
+        height:250px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<a
+href="index.html"
+class="logo"
+
+>
+
+🏠 NOVA EMLAK </a>
+
+<a
+href="index.html"
+class="back"
+
+>
+
+← İlanlara Dön </a>
+
+</header>
+
+<div class="container">
+
+<div
+    id="property"
+    class="property"
+    style="display:none"
+>
+
+<!-- GALERİ -->
+
+<div class="gallery">
+
+<img
+id="mainImage"
+class="main-image"
+src=""
+alt="İlan fotoğrafı"
+
+>
+
+<div
+    id="thumbnails"
+    class="thumbnails"
+></div>
+
+</div>
+
+<!-- İLAN BİLGİLERİ -->
+
+<div class="content">
+
+<div class="top">
+
+<div class="title-area">
+
+<div
+    id="type"
+    class="badge"
+>
+</div>
+
+<h1 id="title">
+İlan
+</h1>
+
+<div
+    id="location"
+    class="location"
+>
+</div>
+
+</div>
+
+<div
+    id="price"
+    class="price"
+>
+</div>
+
+</div>
+
+<button
+id="favoriteButton"
+class="favorite"
+onclick="toggleFavorite()"
+
+>
+
+♡ Favorilere Ekle </button>
+
+<!-- DETAYLAR -->
+
+<h2 class="details-title">
+🏠 İlan Detayları
+</h2>
+
+<div class="details-grid">
+
+<div class="detail">
+
+<div class="detail-label">
+Oda Sayısı
+</div>
+
+<div
+    id="rooms"
+    class="detail-value"
+>
+-
+</div>
+
+</div>
+
+<div class="detail">
+
+<div class="detail-label">
+Metrekare
+</div>
+
+<div
+    id="area"
+    class="detail-value"
+>
+-
+</div>
+
+</div>
+
+<div class="detail">
+
+<div class="detail-label">
+Bina Yaşı
+</div>
+
+<div
+    id="buildingAge"
+    class="detail-value"
+>
+-
+</div>
+
+</div>
+
+<div class="detail">
+
+<div class="detail-label">
+Bulunduğu Kat
+</div>
+
+<div
+    id="floor"
+    class="detail-value"
+>
+-
+</div>
+
+</div>
+
+<div class="detail">
+
+<div class="detail-label">
+Toplam Kat
+</div>
+
+<div
+    id="totalFloors"
+    class="detail-value"
+>
+-
+</div>
+
+</div>
+
+<div class="detail">
+
+<div class="detail-label">
+Isıtma
+</div>
+
+<div
+    id="heating"
+    class="detail-value"
+>
+-
+</div>
+
+</div>
+
+<div class="detail">
+
+<div class="detail-label">
+Banyo
+</div>
+
+<div
+    id="bathrooms"
+    class="detail-value"
+>
+-
+</div>
+
+</div>
+
+<div class="detail">
+
+<div class="detail-label">
+Balkon
+</div>
+
+<div
+    id="balcony"
+    class="detail-value"
+>
+-
+</div>
+
+</div>
+
+<div class="detail">
+
+<div class="detail-label">
+Krediye Uygun
+</div>
+
+<div
+    id="credit"
+    class="detail-value"
+>
+-
+</div>
+
+</div>
+
+<div class="detail">
+
+<div class="detail-label">
+Tapu Durumu
+</div>
+
+<div
+    id="deed"
+    class="detail-value"
+>
+-
+</div>
+
+</div>
+
+</div>
+
+<!-- AÇIKLAMA -->
+
+<div class="description">
+
+<h2>
+📝 İlan Açıklaması
+</h2>
+
+<p id="description">
+Açıklama yükleniyor...
+</p>
+
+</div>
+
+<!-- HARİTA -->
+
+<div class="map-section">
+
+<h2>
+📍 Konum
+</h2>
+
+<div class="map-container">
+
+<iframe
+    id="mapFrame"
+    loading="lazy"
+    allowfullscreen
+    referrerpolicy="no-referrer-when-downgrade"
+>
+</iframe>
+
+</div>
+
+<div class="map-note">
+📍 İlanın şehir, ilçe ve mahalle bilgisine göre yaklaşık konumu gösterilmektedir.
+</div>
+
+</div>
+
+<!-- İLETİŞİM -->
+
+<div class="contact">
+
+<h2>
+📞 İlan Hakkında Bilgi Alın
+</h2>
+
+<p>
+Bu ilan hakkında daha fazla bilgi almak
+için bizimle iletişime geçebilirsiniz.
+</p>
+
+<a
+class="whatsapp"
+href="https://wa.me/905555555555"
+target="_blank"
+
+>
+
+💬 WhatsApp'tan İletişime Geç </a>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- HATA -->
+
+<div
+    id="error"
+    class="error"
+    style="display:none"
+>
+
+<h2>
+😔 İlan Bulunamadı
+</h2>
+
+<p>
+Bu ilan mevcut değil veya kaldırılmış olabilir.
+</p>
+
+<a
+href="index.html"
+class="back"
+style="display:inline-block;margin-top:15px"
+
+>
+
+Ana Sayfaya Dön </a>
+
+</div>
+
+</div>
+
+<script>
+
+let currentListing = null;
+
+let favorites =
+    JSON.parse(
+        localStorage.getItem("novaFavorites") || "[]"
+    );
+
+
+/* URL'DEN ID AL */
+
+const params =
+    new URLSearchParams(
+        window.location.search
+    );
+
+const listingId =
+    params.get("id");
+
+
+/* FAVORİ KONTROL */
+
+function isFavorite(id){
+
+    return favorites.includes(
+        Number(id)
+    );
+
+}
+
+
+/* FAVORİ DEĞİŞTİR */
+
+function toggleFavorite(){
+
+    if(!currentListing){
+        return;
+    }
+
+    const id =
+        Number(currentListing.id);
+
+
+    if(
+        favorites.includes(id)
+    ){
+
+        favorites =
+            favorites.filter(
+                x => x !== id
+            );
+
+    }else{
+
+        favorites.push(id);
+
+    }
+
+
+    localStorage.setItem(
+        "novaFavorites",
+        JSON.stringify(favorites)
+    );
+
+
+    updateFavoriteButton();
+
+}
+
+
+/* FAVORİ BUTONU */
+
+function updateFavoriteButton(){
+
+    const button =
+        document.getElementById(
+            "favoriteButton"
+        );
+
+
+    if(
+        isFavorite(currentListing.id)
+    ){
+
+        button.textContent =
+            "❤️ Favorilerden Çıkar";
+
+        button.classList.add(
+            "active"
+        );
+
+    }else{
+
+        button.textContent =
+            "♡ Favorilere Ekle";
+
+        button.classList.remove(
+            "active"
+        );
+
+    }
+
+}
+
+
+/* FOTOĞRAFLARI GÖSTER */
+
+function displayImages(images){
+
+    const mainImage =
+        document.getElementById(
+            "mainImage"
+        );
+
+    const thumbnails =
+        document.getElementById(
+            "thumbnails"
+        );
+
+
+    thumbnails.innerHTML="";
+
+
+    if(
+        !Array.isArray(images) ||
+        images.length===0
+    ){
+
+        images=[
+            "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=85"
+        ];
+
+    }
+
+
+    mainImage.src =
+        images[0];
+
+
+    images
+        .slice(0,4)
+        .forEach(
+            function(src,index){
+
+                const img =
+                    document.createElement(
+                        "img"
+                    );
+
+
+                img.className =
+                    "thumbnail";
+
+
+                if(index===0){
+
+                    img.classList.add(
+                        "active"
+                    );
+
+                }
+
+
+                img.src=src;
+
+
+                img.onclick =
+                    function(){
+
+                        mainImage.src=src;
+
+
+                        document
+                            .querySelectorAll(
+                                ".thumbnail"
+                            )
+                            .forEach(
+                                x =>
+                                x.classList.remove(
+                                    "active"
+                                )
+                            );
+
+
+                        img.classList.add(
+                            "active"
+                        );
+
+                    };
+
+
+                thumbnails.appendChild(
+                    img
+                );
+
+            }
+        );
+
+}
+
+
+/* İLANI GÖSTER */
+
+function displayListing(ilan){
+
+    currentListing=ilan;
+
+
+    document.getElementById(
+        "property"
+    ).style.display="block";
+
+
+    document.getElementById(
+        "error"
+    ).style.display="none";
+
+
+    document.getElementById(
+        "title"
+    ).textContent =
+        ilan.title || "İlan";
+
+
+    document.getElementById(
+        "type"
+    ).textContent =
+        ilan.type || "";
+
+
+    const location =
+        [
+            ilan.city,
+            ilan.district,
+            ilan.neighborhood
+        ]
+        .filter(Boolean)
+        .join(" • ");
+
+
+    document.getElementById(
+        "location"
+    ).textContent =
+        "📍 " + (location || "-");
+
+
+    /* HARİTA */
+
+    const mapLocation =
+        [
+            ilan.neighborhood,
+            ilan.district,
+            ilan.city,
+            "Türkiye"
+        ]
+        .filter(Boolean)
+        .join(", ");
+
+
+    const mapFrame =
+        document.getElementById(
+            "mapFrame"
+        );
+
+
+    if(mapFrame && mapLocation){
+
+        mapFrame.src =
+            "https://www.google.com/maps?q=" +
+            encodeURIComponent(mapLocation) +
+            "&output=embed";
+
+    }
+
+
+    document.getElementById(
+        "price"
+    ).textContent =
+        Number(
+            ilan.price || 0
+        )
+        .toLocaleString(
+            "tr-TR"
+        ) + " TL";
+
+
+    document.getElementById(
+        "rooms"
+    ).textContent =
+        ilan.rooms || "-";
+
+
+    document.getElementById(
+        "area"
+    ).textContent =
+        (ilan.area || "-") + " m²";
+
+
+    document.getElementById(
+        "buildingAge"
+    ).textContent =
+        (ilan.buildingAge ?? "-") + " yaş";
+
+
+    document.getElementById(
+        "floor"
+    ).textContent =
+        ilan.floor || "-";
+
+
+    document.getElementById(
+        "totalFloors"
+    ).textContent =
+        ilan.totalFloors
+        ? ilan.totalFloors + " kat"
+        : "-";
+
+
+    document.getElementById(
+        "heating"
+    ).textContent =
+        ilan.heating || "-";
+
+
+    document.getElementById(
+        "bathrooms"
+    ).textContent =
+        ilan.bathrooms || "-";
+
+
+    document.getElementById(
+        "balcony"
+    ).textContent =
+        ilan.balcony || "-";
+
+
+    document.getElementById(
+        "credit"
+    ).textContent =
+        ilan.credit || "-";
+
+
+    document.getElementById(
+        "deed"
+    ).textContent =
+        ilan.deed || "-";
+
+
+    document.getElementById(
+        "description"
+    ).textContent =
+        ilan.description ||
+        "Bu ilan için açıklama bulunmuyor.";
+
+
+    const images =
+        Array.isArray(ilan.images)
+        ? ilan.images
+        : (
+            ilan.image
+            ? [ilan.image]
+            : []
+        );
+
+
+    displayImages(images);
+
+
+    updateFavoriteButton();
+
+
+    document.title =
+        (
+            ilan.title ||
+            "Nova Emlak"
+        ) +
+        " | Nova Emlak";
+
+}
+
+
+/* İLANI API'DEN AL */
+
+async function loadListing(){
+
+    if(!listingId){
+
+        document.getElementById(
+            "property"
+        ).style.display="none";
+
+
+        document.getElementById(
+            "error"
+        ).style.display="block";
+
+
+        return;
+
+    }
+
+
+    try{
+
+        const response =
+            await fetch(
+                "/api/ilanlar",
+                {
+                    cache:"no-store"
+                }
+            );
+
+
+        if(!response.ok){
+
+            throw new Error(
+                "API bağlantısı başarısız"
+            );
+
+        }
+
+
+        const listings =
+            await response.json();
+
+
+        if(
+            !Array.isArray(listings)
+        ){
+
+            throw new Error(
+                "Geçersiz veri"
+            );
+
+        }
+
+
+        const ilan =
+            listings.find(
+                x =>
+                String(x.id) ===
+                String(listingId)
+            );
+
+
+        if(!ilan){
+
+            document.getElementById(
+                "property"
+            ).style.display="none";
+
+
+            document.getElementById(
+                "error"
+            ).style.display="block";
+
+
+            return;
+
+        }
+
+
+        displayListing(ilan);
+
+
+    }catch(error){
+
+        console.error(error);
+
+
+        document.getElementById(
+            "property"
+        ).style.display="none";
+
+
+        document.getElementById(
+            "error"
+        ).style.display="block";
+
+    }
+
+}
+
+
+/* BAŞLAT */
+
+loadListing();
+
+</script>
+
+</body>
+</html>
+```
