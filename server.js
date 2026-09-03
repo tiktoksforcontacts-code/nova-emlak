@@ -1,4 +1,3 @@
-```js
 const express = require("express");
 const fs = require("fs");
 const path = require("path");
@@ -39,14 +38,13 @@ ROBOTS.TXT
 
 app.get("/robots.txt", (req, res) => {
 
-    const robots = `User-agent: *
-Allow: /
-Disallow: /admin.html
-Disallow: /api/
-Disallow: /uploads/
-
-Sitemap: ${SITE_URL}/sitemap.xml
-`;
+    const robots =
+        "User-agent: *\n" +
+        "Allow: /\n" +
+        "Disallow: /admin.html\n" +
+        "Disallow: /api/\n" +
+        "Disallow: /uploads/\n\n" +
+        "Sitemap: " + SITE_URL + "/sitemap.xml\n";
 
     res
         .status(200)
@@ -108,21 +106,27 @@ app.get("/sitemap.xml", (req, res) => {
 
         /* ANA SAYFA */
 
-        urls.push(`
-    <url>
-        <loc>${escapeXml(SITE_URL + "/")}</loc>
-        <changefreq>daily</changefreq>
-        <priority>1.0</priority>
-    </url>`);
+        urls.push(
+            "<url>" +
+            "<loc>" +
+            escapeXml(SITE_URL + "/") +
+            "</loc>" +
+            "<changefreq>daily</changefreq>" +
+            "<priority>1.0</priority>" +
+            "</url>"
+        );
 
         /* İLANLAR SAYFASI */
 
-        urls.push(`
-    <url>
-        <loc>${escapeXml(SITE_URL + "/ilan.html")}</loc>
-        <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-    </url>`);
+        urls.push(
+            "<url>" +
+            "<loc>" +
+            escapeXml(SITE_URL + "/ilan.html") +
+            "</loc>" +
+            "<changefreq>daily</changefreq>" +
+            "<priority>0.8</priority>" +
+            "</url>"
+        );
 
         /* TÜM İLANLAR */
 
@@ -145,12 +149,15 @@ app.get("/sitemap.xml", (req, res) => {
                         String(ilan.id)
                     );
 
-                urls.push(`
-    <url>
-        <loc>${escapeXml(ilanUrl)}</loc>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>`);
+                urls.push(
+                    "<url>" +
+                    "<loc>" +
+                    escapeXml(ilanUrl) +
+                    "</loc>" +
+                    "<changefreq>weekly</changefreq>" +
+                    "<priority>0.8</priority>" +
+                    "</url>"
+                );
 
             });
 
@@ -158,9 +165,11 @@ app.get("/sitemap.xml", (req, res) => {
 
         /* XML */
 
-        const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urls.join("")}
-</urlset>`;
+        const sitemap =
+            '<?xml version="1.0" encoding="UTF-8"?>' +
+            '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' +
+            urls.join("") +
+            "</urlset>";
 
         res
             .status(200)
@@ -1073,4 +1082,3 @@ app.listen(
 
     }
 );
-```
