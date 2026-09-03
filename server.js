@@ -22,7 +22,10 @@ const SITE_URL = (
    BODY AYARLARI
 ========================= */
 
-app.use(express.json({ limit: "50mb" }));
+app.use(express.json({
+    limit: "50mb"
+}));
+
 app.use(express.urlencoded({
     extended: true,
     limit: "50mb"
@@ -37,8 +40,20 @@ if (!fs.existsSync(DATA_FILE)) {
 }
 
 if (!fs.existsSync(UPLOADS_DIR)) {
-    fs.mkdirSync(UPLOADS_DIR, { recursive: true });
+    fs.mkdirSync(UPLOADS_DIR, {
+        recursive: true
+    });
 }
+
+/* =========================
+   ANA SAYFA
+========================= */
+
+app.get("/", (req, res) => {
+    res.sendFile(
+        path.join(__dirname, "index.html")
+    );
+});
 
 /* =========================
    ROBOTS.TXT
@@ -53,7 +68,7 @@ app.get("/robots.txt", (req, res) => {
         "Disallow: /uploads/\n\n" +
         "Sitemap: " +
         SITE_URL +
-        "/sitemap.xml";
+        "/sitemap.xml\n";
 
     res
         .status(200)
@@ -126,7 +141,9 @@ app.get("/sitemap.xml", (req, res) => {
         urls.push(
             "    <url>\n" +
             "        <loc>" +
-            escapeXml(SITE_URL + "/ilan.html") +
+            escapeXml(
+                SITE_URL + "/ilan.html"
+            ) +
             "</loc>\n" +
             "        <changefreq>daily</changefreq>\n" +
             "        <priority>0.8</priority>\n" +
@@ -190,7 +207,9 @@ app.get("/sitemap.xml", (req, res) => {
                 "Content-Type",
                 "text/plain; charset=utf-8"
             )
-            .send("Sitemap oluşturulamadı.");
+            .send(
+                "Sitemap oluşturulamadı."
+            );
     }
 });
 
@@ -198,21 +217,36 @@ app.get("/sitemap.xml", (req, res) => {
    STATİK DOSYALAR
 ========================= */
 
-app.use(express.static(__dirname));
+app.use(
+    express.static(__dirname)
+);
 
 /* =========================
    FOTOĞRAF YÜKLEME
 ========================= */
 
 const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, UPLOADS_DIR);
+
+    destination: function (
+        req,
+        file,
+        cb
+    ) {
+        cb(
+            null,
+            UPLOADS_DIR
+        );
     },
 
-    filename: function (req, file, cb) {
-        const extension = path.extname(
-            file.originalname
-        );
+    filename: function (
+        req,
+        file,
+        cb
+    ) {
+        const extension =
+            path.extname(
+                file.originalname
+            );
 
         const filename =
             Date.now() +
@@ -222,39 +256,56 @@ const storage = multer.diskStorage({
                 .toString("hex") +
             extension;
 
-        cb(null, filename);
+        cb(
+            null,
+            filename
+        );
     }
 });
 
 const upload = multer({
+
     storage: storage,
 
     limits: {
         files: 4,
-        fileSize: 10 * 1024 * 1024
+        fileSize:
+            10 * 1024 * 1024
     },
 
-    fileFilter: function (req, file, cb) {
-        if (
-            file.mimetype &&
-            file.mimetype.startsWith("image/")
+    fileFilter:
+        function (
+            req,
+            file,
+            cb
         ) {
-            cb(null, true);
-        } else {
-            cb(
-                new Error(
-                    "Sadece resim dosyaları yüklenebilir."
+
+            if (
+                file.mimetype &&
+                file.mimetype.startsWith(
+                    "image/"
                 )
-            );
+            ) {
+                cb(
+                    null,
+                    true
+                );
+            } else {
+                cb(
+                    new Error(
+                        "Sadece resim dosyaları yüklenebilir."
+                    )
+                );
+            }
         }
-    }
 });
 
 /* =========================
    ADMIN OTURUMLARI
 ========================= */
 
-const adminTokens = new Set();
+const adminTokens =
+    new Set();
 
 /* =========================
    ADMIN GİRİŞ
@@ -263,17 +314,24 @@ const adminTokens = new Set();
 app.post(
     "/api/admin-login",
     (req, res) => {
-        const password = req.body.password;
+
+        const password =
+            req.body.password;
 
         if (
             process.env.ADMIN_PASSWORD &&
-            password === process.env.ADMIN_PASSWORD
+            password ===
+                process.env.ADMIN_PASSWORD
         ) {
-            const token = crypto
-                .randomBytes(32)
-                .toString("hex");
 
-            adminTokens.add(token);
+            const token =
+                crypto
+                    .randomBytes(32)
+                    .toString("hex");
+
+            adminTokens.add(
+                token
+            );
 
             return res.json({
                 success: true,
@@ -281,10 +339,12 @@ app.post(
             });
         }
 
-        return res.status(401).json({
-            success: false,
-            error: "Şifre hatalı."
-        });
+        return res
+            .status(401)
+            .json({
+                success: false,
+                error: "Şifre hatalı."
+            });
     }
 );
 
@@ -292,25 +352,45 @@ app.post(
    ADMIN KONTROL
 ========================= */
 
-function requireAdmin(req, res, next) {
-    const auth =
-        req.headers.authorization || "";
+function requireAdmin(
+    req,
+    res,
+    next
+) {
 
-    if (!auth.startsWith("Bearer ")) {
-        return res.status(401).json({
-            success: false,
-            error: "Admin girişi gerekli."
-        });
+    const auth =
+        req.headers.authorization ||
+        "";
+
+    if (
+        !auth.startsWith(
+            "Bearer "
+        )
+    ) {
+        return res
+            .status(401)
+            .json({
+                success: false,
+                error:
+                    "Admin girişi gerekli."
+            });
     }
 
-    const token = auth.substring(7);
+    const token =
+        auth.substring(7);
 
-    if (!adminTokens.has(token)) {
-        return res.status(401).json({
-            success: false,
-            error:
-                "Oturum geçersiz veya süresi dolmuş."
-        });
+    if (
+        !adminTokens.has(
+            token
+        )
+    ) {
+        return res
+            .status(401)
+            .json({
+                success: false,
+                error:
+                    "Oturum geçersiz veya süresi dolmuş."
+            });
     }
 
     next();
@@ -324,12 +404,17 @@ app.post(
     "/api/admin-logout",
     requireAdmin,
     (req, res) => {
+
         const auth =
-            req.headers.authorization || "";
+            req.headers.authorization ||
+            "";
 
-        const token = auth.substring(7);
+        const token =
+            auth.substring(7);
 
-        adminTokens.delete(token);
+        adminTokens.delete(
+            token
+        );
 
         res.json({
             success: true
@@ -344,27 +429,35 @@ app.post(
 app.get(
     "/api/ilanlar",
     (req, res) => {
+
         try {
-            const ilanlar = JSON.parse(
-                fs.readFileSync(
-                    DATA_FILE,
-                    "utf8"
-                )
+
+            const ilanlar =
+                JSON.parse(
+                    fs.readFileSync(
+                        DATA_FILE,
+                        "utf8"
+                    )
+                );
+
+            res.json(
+                ilanlar
             );
 
-            res.json(ilanlar);
-
         } catch (error) {
+
             console.error(
                 "İlanları okuma hatası:",
                 error
             );
 
-            res.status(500).json({
-                success: false,
-                error:
-                    "İlanlar okunamadı."
-            });
+            res
+                .status(500)
+                .json({
+                    success: false,
+                    error:
+                        "İlanlar okunamadı."
+                });
         }
     }
 );
@@ -376,31 +469,39 @@ app.get(
 app.post(
     "/api/ilanlar",
     requireAdmin,
-    upload.array("images", 4),
+    upload.array(
+        "images",
+        4
+    ),
     (req, res) => {
+
         try {
-            const ilanlar = JSON.parse(
-                fs.readFileSync(
-                    DATA_FILE,
-                    "utf8"
-                )
-            );
+
+            const ilanlar =
+                JSON.parse(
+                    fs.readFileSync(
+                        DATA_FILE,
+                        "utf8"
+                    )
+                );
 
             let images = [];
 
-            /* YÜKLENEN DOSYALAR */
+            /* DOSYA OLARAK GELENLER */
 
             if (
                 req.files &&
                 req.files.length > 0
             ) {
-                images = req.files
-                    .slice(0, 4)
-                    .map(
-                        (file) =>
-                            "/uploads/" +
-                            file.filename
-                    );
+
+                images =
+                    req.files
+                        .slice(0, 4)
+                        .map(
+                            (file) =>
+                                "/uploads/" +
+                                file.filename
+                        );
             }
 
             /* JSON IMAGES */
@@ -409,7 +510,9 @@ app.post(
                 images.length === 0 &&
                 req.body.images
             ) {
+
                 try {
+
                     const bodyImages =
                         typeof req.body.images ===
                         "string"
@@ -423,11 +526,20 @@ app.post(
                             bodyImages
                         )
                     ) {
-                        images = bodyImages
-                            .filter(Boolean)
-                            .slice(0, 4);
+
+                        images =
+                            bodyImages
+                                .filter(
+                                    Boolean
+                                )
+                                .slice(
+                                    0,
+                                    4
+                                );
                     }
+
                 } catch (error) {
+
                     console.log(
                         "images okunamadı."
                     );
@@ -440,37 +552,50 @@ app.post(
                 images.length === 0 &&
                 req.body.image
             ) {
+
                 images = [
                     req.body.image
                 ];
             }
 
             const yeniIlan = {
-                id: Date.now(),
+
+                id:
+                    Date.now(),
 
                 title:
-                    req.body.title || "",
+                    req.body.title ||
+                    "",
 
                 type:
-                    req.body.type || "",
+                    req.body.type ||
+                    "",
 
                 city:
-                    req.body.city || "",
+                    req.body.city ||
+                    "",
 
                 district:
-                    req.body.district || "",
+                    req.body.district ||
+                    "",
 
                 neighborhood:
-                    req.body.neighborhood || "",
+                    req.body.neighborhood ||
+                    "",
 
                 price:
-                    Number(req.body.price) || 0,
+                    Number(
+                        req.body.price
+                    ) || 0,
 
                 rooms:
-                    req.body.rooms || "",
+                    req.body.rooms ||
+                    "",
 
                 area:
-                    Number(req.body.area) || 0,
+                    Number(
+                        req.body.area
+                    ) || 0,
 
                 buildingAge:
                     Number(
@@ -478,7 +603,8 @@ app.post(
                     ) || 0,
 
                 floor:
-                    req.body.floor || "",
+                    req.body.floor ||
+                    "",
 
                 totalFloors:
                     Number(
@@ -486,30 +612,40 @@ app.post(
                     ) || 0,
 
                 heating:
-                    req.body.heating || "",
+                    req.body.heating ||
+                    "",
 
                 bathrooms:
-                    req.body.bathrooms || "",
+                    req.body.bathrooms ||
+                    "",
 
                 balcony:
-                    req.body.balcony || "",
+                    req.body.balcony ||
+                    "",
 
                 credit:
-                    req.body.credit || "",
+                    req.body.credit ||
+                    "",
 
                 deed:
-                    req.body.deed || "",
+                    req.body.deed ||
+                    "",
 
-                images: images,
+                images:
+                    images,
 
                 image:
-                    images[0] || "",
+                    images[0] ||
+                    "",
 
                 description:
-                    req.body.description || ""
+                    req.body.description ||
+                    ""
             };
 
-            ilanlar.push(yeniIlan);
+            ilanlar.push(
+                yeniIlan
+            );
 
             fs.writeFileSync(
                 DATA_FILE,
@@ -527,16 +663,19 @@ app.post(
             });
 
         } catch (error) {
+
             console.error(
                 "İlan ekleme hatası:",
                 error
             );
 
-            res.status(500).json({
-                success: false,
-                error:
-                    "İlan eklenemedi."
-            });
+            res
+                .status(500)
+                .json({
+                    success: false,
+                    error:
+                        "İlan eklenemedi."
+                });
         }
     }
 );
@@ -548,40 +687,58 @@ app.post(
 app.put(
     "/api/ilanlar/:id",
     requireAdmin,
-    upload.array("images", 4),
+    upload.array(
+        "images",
+        4
+    ),
     (req, res) => {
-        try {
-            const id =
-                Number(req.params.id);
 
-            const ilanlar = JSON.parse(
-                fs.readFileSync(
-                    DATA_FILE,
-                    "utf8"
-                )
-            );
+        try {
+
+            const id =
+                Number(
+                    req.params.id
+                );
+
+            const ilanlar =
+                JSON.parse(
+                    fs.readFileSync(
+                        DATA_FILE,
+                        "utf8"
+                    )
+                );
 
             const index =
                 ilanlar.findIndex(
                     (ilan) =>
-                        Number(ilan.id) === id
+                        Number(
+                            ilan.id
+                        ) === id
                 );
 
-            if (index === -1) {
-                return res.status(404).json({
-                    success: false,
-                    error:
-                        "İlan bulunamadı."
-                });
+            if (
+                index === -1
+            ) {
+
+                return res
+                    .status(404)
+                    .json({
+                        success: false,
+                        error:
+                            "İlan bulunamadı."
+                    });
             }
 
             let images =
                 Array.isArray(
-                    ilanlar[index].images
+                    ilanlar[index]
+                        .images
                 )
-                    ? ilanlar[index].images
+                    ? ilanlar[index]
+                          .images
                     : (
-                          ilanlar[index].image
+                          ilanlar[index]
+                              .image
                               ? [
                                     ilanlar[index]
                                         .image
@@ -589,22 +746,23 @@ app.put(
                               : []
                       );
 
-            /* YENİ FOTOĞRAFLAR */
-
             if (
                 req.files &&
                 req.files.length > 0
             ) {
-                images = req.files
-                    .slice(0, 4)
-                    .map(
-                        (file) =>
-                            "/uploads/" +
-                            file.filename
-                    );
+
+                images =
+                    req.files
+                        .slice(0, 4)
+                        .map(
+                            (file) =>
+                                "/uploads/" +
+                                file.filename
+                        );
             }
 
             ilanlar[index] = {
+
                 ...ilanlar[index],
 
                 title:
@@ -629,7 +787,8 @@ app.put(
                         .neighborhood,
 
                 price:
-                    req.body.price !== undefined
+                    req.body.price !==
+                    undefined
                         ? Number(
                               req.body.price
                           ) || 0
@@ -638,14 +797,17 @@ app.put(
 
                 rooms:
                     req.body.rooms ??
-                    ilanlar[index].rooms,
+                    ilanlar[index]
+                        .rooms,
 
                 area:
-                    req.body.area !== undefined
+                    req.body.area !==
+                    undefined
                         ? Number(
                               req.body.area
                           ) || 0
-                        : ilanlar[index].area,
+                        : ilanlar[index]
+                              .area,
 
                 buildingAge:
                     req.body.buildingAge !==
@@ -671,7 +833,8 @@ app.put(
 
                 heating:
                     req.body.heating ??
-                    ilanlar[index].heating,
+                    ilanlar[index]
+                        .heating,
 
                 bathrooms:
                     req.body.bathrooms ??
@@ -680,21 +843,26 @@ app.put(
 
                 balcony:
                     req.body.balcony ??
-                    ilanlar[index].balcony,
+                    ilanlar[index]
+                        .balcony,
 
                 credit:
                     req.body.credit ??
-                    ilanlar[index].credit,
+                    ilanlar[index]
+                        .credit,
 
                 deed:
                     req.body.deed ??
-                    ilanlar[index].deed,
+                    ilanlar[index]
+                        .deed,
 
-                images: images,
+                images:
+                    images,
 
                 image:
                     images[0] ||
-                    ilanlar[index].image ||
+                    ilanlar[index]
+                        .image ||
                     "",
 
                 description:
@@ -715,20 +883,24 @@ app.put(
 
             res.json({
                 success: true,
-                ilan: ilanlar[index]
+                ilan:
+                    ilanlar[index]
             });
 
         } catch (error) {
+
             console.error(
                 "İlan güncelleme hatası:",
                 error
             );
 
-            res.status(500).json({
-                success: false,
-                error:
-                    "İlan güncellenemedi."
-            });
+            res
+                .status(500)
+                .json({
+                    success: false,
+                    error:
+                        "İlan güncellenemedi."
+                });
         }
     }
 );
@@ -741,29 +913,41 @@ app.delete(
     "/api/ilanlar/:id",
     requireAdmin,
     (req, res) => {
-        try {
-            const id =
-                Number(req.params.id);
 
-            const ilanlar = JSON.parse(
-                fs.readFileSync(
-                    DATA_FILE,
-                    "utf8"
-                )
-            );
+        try {
+
+            const id =
+                Number(
+                    req.params.id
+                );
+
+            const ilanlar =
+                JSON.parse(
+                    fs.readFileSync(
+                        DATA_FILE,
+                        "utf8"
+                    )
+                );
 
             const index =
                 ilanlar.findIndex(
                     (ilan) =>
-                        Number(ilan.id) === id
+                        Number(
+                            ilan.id
+                        ) === id
                 );
 
-            if (index === -1) {
-                return res.status(404).json({
-                    success: false,
-                    error:
-                        "İlan bulunamadı."
-                });
+            if (
+                index === -1
+            ) {
+
+                return res
+                    .status(404)
+                    .json({
+                        success: false,
+                        error:
+                            "İlan bulunamadı."
+                    });
             }
 
             const deleted =
@@ -785,10 +969,9 @@ app.delete(
                               : []
                       );
 
-            /* FOTOĞRAFLARI SİL */
-
             images.forEach(
                 (image) => {
+
                     if (
                         typeof image !==
                         "string"
@@ -820,11 +1003,17 @@ app.delete(
                             filePath
                         )
                     ) {
+
                         try {
+
                             fs.unlinkSync(
                                 filePath
                             );
-                        } catch (error) {
+
+                        } catch (
+                            error
+                        ) {
+
                             console.log(
                                 "Fotoğraf silinemedi:",
                                 error.message
@@ -850,16 +1039,19 @@ app.delete(
             });
 
         } catch (error) {
+
             console.error(
                 "İlan silme hatası:",
                 error
             );
 
-            res.status(500).json({
-                success: false,
-                error:
-                    "İlan silinemedi."
-            });
+            res
+                .status(500)
+                .json({
+                    success: false,
+                    error:
+                        "İlan silinemedi."
+                });
         }
     }
 );
@@ -869,64 +1061,81 @@ app.delete(
 ========================= */
 
 app.use(
-    (error, req, res, next) => {
-        console.error(error);
+    (
+        error,
+        req,
+        res,
+        next
+    ) => {
 
-        /* MULTER HATASI */
+        console.error(
+            error
+        );
 
         if (
             error instanceof
             multer.MulterError
         ) {
+
             if (
                 error.code ===
                 "LIMIT_FILE_SIZE"
             ) {
-                return res.status(400).json({
-                    success: false,
-                    error:
-                        "Fotoğraf boyutu en fazla 10 MB olabilir."
-                });
+
+                return res
+                    .status(400)
+                    .json({
+                        success: false,
+                        error:
+                            "Fotoğraf boyutu en fazla 10 MB olabilir."
+                    });
             }
 
             if (
                 error.code ===
                 "LIMIT_FILE_COUNT"
             ) {
-                return res.status(400).json({
-                    success: false,
-                    error:
-                        "En fazla 4 fotoğraf yükleyebilirsiniz."
-                });
+
+                return res
+                    .status(400)
+                    .json({
+                        success: false,
+                        error:
+                            "En fazla 4 fotoğraf yükleyebilirsiniz."
+                    });
             }
 
-            return res.status(400).json({
-                success: false,
-                error:
-                    "Fotoğraf yükleme hatası."
-            });
+            return res
+                .status(400)
+                .json({
+                    success: false,
+                    error:
+                        "Fotoğraf yükleme hatası."
+                });
         }
-
-        /* DOSYA TİPİ HATASI */
 
         if (
             error &&
             error.message ===
                 "Sadece resim dosyaları yüklenebilir."
         ) {
-            return res.status(400).json({
-                success: false,
-                error: error.message
-            });
+
+            return res
+                .status(400)
+                .json({
+                    success: false,
+                    error:
+                        error.message
+                });
         }
 
-        /* GENEL HATA */
-
-        res.status(500).json({
-            success: false,
-            error:
-                "Sunucu hatası."
-        });
+        res
+            .status(500)
+            .json({
+                success: false,
+                error:
+                    "Sunucu hatası."
+            });
     }
 );
 
@@ -938,6 +1147,7 @@ app.listen(
     PORT,
     "0.0.0.0",
     () => {
+
         console.log(
             "Nova Emlak sunucusu çalışıyor. PORT: " +
             PORT
