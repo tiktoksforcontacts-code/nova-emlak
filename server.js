@@ -1,3 +1,4 @@
+```js
 const express = require("express");
 const fs = require("fs");
 const path = require("path");
@@ -5,135 +6,120 @@ const crypto = require("crypto");
 const multer = require("multer");
 
 const app = express();
-const PORT = process.env.PORT || 3000;
 
+const PORT = process.env.PORT || 3000;
 const DATA_FILE = path.join(__dirname, "ilanlar.json");
 const UPLOADS_DIR = path.join(__dirname, "uploads");
 
 /* =========================
-SITE AYARI
+   SITE AYARI
 ========================= */
 
 const SITE_URL = (
-    process.env.SITE_URL ||
-    "https://nova-emlak.onrender.com"
+    process.env.SITE_URL || "https://nova-emlak.onrender.com"
 ).replace(/\/$/, "");
 
 /* =========================
-BODY AYARLARI
+   BODY AYARLARI
 ========================= */
 
-app.use(express.json({
-    limit: "50mb"
-}));
-
-app.use(express.urlencoded({
-    extended: true,
-    limit: "50mb"
-}));
+app.use(express.json({ limit: "50mb" }));
+app.use(express.urlencoded({ extended: true, limit: "50mb" }));
 
 /* =========================
-ROBOTS.TXT
+   KLASÖRLER
+========================= */
+
+if (!fs.existsSync(DATA_FILE)) {
+    fs.writeFileSync(DATA_FILE, "[]", "utf8");
+}
+
+if (!fs.existsSync(UPLOADS_DIR)) {
+    fs.mkdirSync(UPLOADS_DIR, { recursive: true });
+}
+
+/* =========================
+   ROBOTS.TXT
 ========================= */
 
 app.get("/robots.txt", (req, res) => {
+    const robots = `User-agent: *
+Allow: /
+Disallow: /admin.html
+Disallow: /api/
+Disallow: /uploads/
 
-    const robots =
-        "User-agent: *\n" +
-        "Allow: /\n" +
-        "Disallow: /admin.html\n" +
-        "Disallow: /api/\n" +
-        "Disallow: /uploads/\n\n" +
-        "Sitemap: " + SITE_URL + "/sitemap.xml\n";
+Sitemap: ${SITE_URL}/sitemap.xml`;
 
     res
         .status(200)
         .set("Content-Type", "text/plain; charset=utf-8")
         .send(robots);
-
 });
 
 /* =========================
-SITEMAP.XML
+   XML ESCAPE
 ========================= */
 
 function escapeXml(value) {
-
     return String(value)
         .replace(/&/g, "&amp;")
         .replace(/</g, "&lt;")
         .replace(/>/g, "&gt;")
         .replace(/"/g, "&quot;")
         .replace(/'/g, "&apos;");
-
 }
 
+/* =========================
+   SITEMAP.XML
+========================= */
+
 app.get("/sitemap.xml", (req, res) => {
-
     try {
-
         let ilanlar = [];
 
         if (fs.existsSync(DATA_FILE)) {
-
             try {
-
-                const data = fs.readFileSync(
-                    DATA_FILE,
-                    "utf8"
-                );
-
+                const data = fs.readFileSync(DATA_FILE, "utf8");
                 const parsed = JSON.parse(data);
 
                 if (Array.isArray(parsed)) {
                     ilanlar = parsed;
                 }
-
             } catch (error) {
-
                 console.error(
                     "Sitemap ilan verisi okuma hatası:",
                     error
                 );
 
                 ilanlar = [];
-
             }
-
         }
 
         const urls = [];
 
         /* ANA SAYFA */
 
-        urls.push(
-            "<url>" +
-            "<loc>" +
-            escapeXml(SITE_URL + "/") +
-            "</loc>" +
-            "<changefreq>daily</changefreq>" +
-            "<priority>1.0</priority>" +
-            "</url>"
-        );
+        urls.push(`
+    <url>
+        <loc>${escapeXml(SITE_URL + "/")}</loc>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+    </url>`);
 
         /* İLANLAR SAYFASI */
 
-        urls.push(
-            "<url>" +
-            "<loc>" +
-            escapeXml(SITE_URL + "/ilan.html") +
-            "</loc>" +
-            "<changefreq>daily</changefreq>" +
-            "<priority>0.8</priority>" +
-            "</url>"
-        );
+        urls.push(`
+    <url>
+        <loc>${escapeXml(SITE_URL + "/ilan.html")}</loc>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+    </url>`);
 
         /* TÜM İLANLAR */
 
         if (Array.isArray(ilanlar)) {
-
             ilanlar.forEach((ilan) => {
-
                 if (
                     !ilan ||
                     ilan.id === undefined ||
@@ -145,31 +131,22 @@ app.get("/sitemap.xml", (req, res) => {
                 const ilanUrl =
                     SITE_URL +
                     "/ilan.html?id=" +
-                    encodeURIComponent(
-                        String(ilan.id)
-                    );
+                    encodeURIComponent(String(ilan.id));
 
-                urls.push(
-                    "<url>" +
-                    "<loc>" +
-                    escapeXml(ilanUrl) +
-                    "</loc>" +
-                    "<changefreq>weekly</changefreq>" +
-                    "<priority>0.8</priority>" +
-                    "</url>"
-                );
-
+                urls.push(`
+    <url>
+        <loc>${escapeXml(ilanUrl)}</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>`);
             });
-
         }
 
         /* XML */
 
-        const sitemap =
-            '<?xml version="1.0" encoding="UTF-8"?>' +
-            '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' +
-            urls.join("") +
-            "</urlset>";
+        const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urls.join("")}
+</urlset>`;
 
         res
             .status(200)
@@ -180,7 +157,6 @@ app.get("/sitemap.xml", (req, res) => {
             .send(sitemap);
 
     } catch (error) {
-
         console.error(
             "Sitemap oluşturma hatası:",
             error
@@ -192,68 +168,29 @@ app.get("/sitemap.xml", (req, res) => {
                 "Content-Type",
                 "text/plain; charset=utf-8"
             )
-            .send(
-                "Sitemap oluşturulamadı."
-            );
-
+            .send("Sitemap oluşturulamadı.");
     }
-
 });
 
 /* =========================
-STATİK DOSYALAR
+   STATİK DOSYALAR
 ========================= */
 
-app.use(
-    express.static(__dirname)
-);
+app.use(express.static(__dirname));
 
 /* =========================
-KLASÖRLER
-========================= */
-
-if (!fs.existsSync(DATA_FILE)) {
-
-    fs.writeFileSync(
-        DATA_FILE,
-        "[]",
-        "utf8"
-    );
-
-}
-
-if (!fs.existsSync(UPLOADS_DIR)) {
-
-    fs.mkdirSync(
-        UPLOADS_DIR,
-        {
-            recursive: true
-        }
-    );
-
-}
-
-/* =========================
-FOTOĞRAF YÜKLEME
+   FOTOĞRAF YÜKLEME
 ========================= */
 
 const storage = multer.diskStorage({
-
     destination: function (req, file, cb) {
-
-        cb(
-            null,
-            UPLOADS_DIR
-        );
-
+        cb(null, UPLOADS_DIR);
     },
 
     filename: function (req, file, cb) {
-
-        const extension =
-            path.extname(
-                file.originalname
-            );
+        const extension = path.extname(
+            file.originalname
+        );
 
         const filename =
             Date.now() +
@@ -261,17 +198,11 @@ const storage = multer.diskStorage({
             crypto.randomBytes(6).toString("hex") +
             extension;
 
-        cb(
-            null,
-            filename
-        );
-
+        cb(null, filename);
     }
-
 });
 
 const upload = multer({
-
     storage: storage,
 
     limits: {
@@ -280,191 +211,134 @@ const upload = multer({
     },
 
     fileFilter: function (req, file, cb) {
-
         if (
             file.mimetype &&
             file.mimetype.startsWith("image/")
         ) {
-
-            cb(
-                null,
-                true
-            );
-
+            cb(null, true);
         } else {
-
             cb(
                 new Error(
                     "Sadece resim dosyaları yüklenebilir."
                 )
             );
-
         }
-
     }
-
 });
 
 /* =========================
-ADMIN OTURUMLARI
+   ADMIN OTURUMLARI
 ========================= */
 
 const adminTokens = new Set();
 
 /* =========================
-ADMIN GİRİŞ
+   ADMIN GİRİŞ
 ========================= */
 
-app.post(
-    "/api/admin-login",
-    (req, res) => {
+app.post("/api/admin-login", (req, res) => {
+    const password = req.body.password;
 
-        const password =
-            req.body.password;
+    if (
+        process.env.ADMIN_PASSWORD &&
+        password === process.env.ADMIN_PASSWORD
+    ) {
+        const token = crypto
+            .randomBytes(32)
+            .toString("hex");
 
-        if (
-            process.env.ADMIN_PASSWORD &&
-            password === process.env.ADMIN_PASSWORD
-        ) {
+        adminTokens.add(token);
 
-            const token =
-                crypto
-                    .randomBytes(32)
-                    .toString("hex");
-
-            adminTokens.add(token);
-
-            return res.json({
-
-                success: true,
-                token: token
-
-            });
-
-        }
-
-        return res.status(401).json({
-
-            success: false,
-            error: "Şifre hatalı."
-
+        return res.json({
+            success: true,
+            token: token
         });
-
     }
-);
+
+    return res.status(401).json({
+        success: false,
+        error: "Şifre hatalı."
+    });
+});
 
 /* =========================
-ADMIN KONTROL
+   ADMIN KONTROL
 ========================= */
 
-function requireAdmin(
-    req,
-    res,
-    next
-) {
-
+function requireAdmin(req, res, next) {
     const auth =
         req.headers.authorization || "";
 
     if (!auth.startsWith("Bearer ")) {
-
         return res.status(401).json({
-
             success: false,
             error: "Admin girişi gerekli."
-
         });
-
     }
 
-    const token =
-        auth.substring(7);
+    const token = auth.substring(7);
 
     if (!adminTokens.has(token)) {
-
         return res.status(401).json({
-
             success: false,
-            error:
-                "Oturum geçersiz veya süresi dolmuş."
-
+            error: "Oturum geçersiz veya süresi dolmuş."
         });
-
     }
 
     next();
-
 }
 
 /* =========================
-ADMIN ÇIKIŞ
+   ADMIN ÇIKIŞ
 ========================= */
 
 app.post(
     "/api/admin-logout",
     requireAdmin,
     (req, res) => {
-
         const auth =
             req.headers.authorization || "";
 
-        const token =
-            auth.substring(7);
+        const token = auth.substring(7);
 
         adminTokens.delete(token);
 
         res.json({
-
             success: true
-
         });
-
     }
 );
 
 /* =========================
-İLANLARI GETİR
+   İLANLARI GETİR
 ========================= */
 
-app.get(
-    "/api/ilanlar",
-    (req, res) => {
+app.get("/api/ilanlar", (req, res) => {
+    try {
+        const ilanlar = JSON.parse(
+            fs.readFileSync(
+                DATA_FILE,
+                "utf8"
+            )
+        );
 
-        try {
+        res.json(ilanlar);
 
-            const ilanlar =
-                JSON.parse(
-                    fs.readFileSync(
-                        DATA_FILE,
-                        "utf8"
-                    )
-                );
+    } catch (error) {
+        console.error(
+            "İlanları okuma hatası:",
+            error
+        );
 
-            res.json(
-                ilanlar
-            );
-
-        } catch (error) {
-
-            console.error(
-                "İlanları okuma hatası:",
-                error
-            );
-
-            res.status(500).json({
-
-                success: false,
-                error: "İlanlar okunamadı."
-
-            });
-
-        }
-
+        res.status(500).json({
+            success: false,
+            error: "İlanlar okunamadı."
+        });
     }
-);
+});
 
 /* =========================
-İLAN EKLE
+   İLAN EKLE
 ========================= */
 
 app.post(
@@ -472,16 +346,13 @@ app.post(
     requireAdmin,
     upload.array("images", 4),
     (req, res) => {
-
         try {
-
-            const ilanlar =
-                JSON.parse(
-                    fs.readFileSync(
-                        DATA_FILE,
-                        "utf8"
-                    )
-                );
+            const ilanlar = JSON.parse(
+                fs.readFileSync(
+                    DATA_FILE,
+                    "utf8"
+                )
+            );
 
             let images = [];
 
@@ -489,64 +360,55 @@ app.post(
                 req.files &&
                 req.files.length > 0
             ) {
-
-                images =
-                    req.files
-                        .slice(0, 4)
-                        .map(
-                            file =>
-                                "/uploads/" +
-                                file.filename
-                        );
-
+                images = req.files
+                    .slice(0, 4)
+                    .map(
+                        file =>
+                            "/uploads/" +
+                            file.filename
+                    );
             }
 
             if (
                 images.length === 0 &&
                 req.body.images
             ) {
-
                 try {
-
                     const bodyImages =
-                        typeof req.body.images === "string"
-                            ? JSON.parse(req.body.images)
+                        typeof req.body.images ===
+                        "string"
+                            ? JSON.parse(
+                                  req.body.images
+                              )
                             : req.body.images;
 
                     if (
-                        Array.isArray(bodyImages)
-                    ) {
-
-                        images =
+                        Array.isArray(
                             bodyImages
-                                .filter(Boolean)
-                                .slice(0, 4);
-
+                        )
+                    ) {
+                        images = bodyImages
+                            .filter(Boolean)
+                            .slice(0, 4);
                     }
 
                 } catch (error) {
-
                     console.log(
                         "images okunamadı."
                     );
-
                 }
-
             }
 
             if (
                 images.length === 0 &&
                 req.body.image
             ) {
-
                 images = [
                     req.body.image
                 ];
-
             }
 
             const yeniIlan = {
-
                 id: Date.now(),
 
                 title:
@@ -574,13 +436,17 @@ app.post(
                     Number(req.body.area) || 0,
 
                 buildingAge:
-                    Number(req.body.buildingAge) || 0,
+                    Number(
+                        req.body.buildingAge
+                    ) || 0,
 
                 floor:
                     req.body.floor || "",
 
                 totalFloors:
-                    Number(req.body.totalFloors) || 0,
+                    Number(
+                        req.body.totalFloors
+                    ) || 0,
 
                 heating:
                     req.body.heating || "",
@@ -604,12 +470,9 @@ app.post(
 
                 description:
                     req.body.description || ""
-
             };
 
-            ilanlar.push(
-                yeniIlan
-            );
+            ilanlar.push(yeniIlan);
 
             fs.writeFileSync(
                 DATA_FILE,
@@ -622,33 +485,26 @@ app.post(
             );
 
             res.json({
-
                 success: true,
                 ilan: yeniIlan
-
             });
 
         } catch (error) {
-
             console.error(
                 "İlan ekleme hatası:",
                 error
             );
 
             res.status(500).json({
-
                 success: false,
                 error: "İlan eklenemedi."
-
             });
-
         }
-
     }
 );
 
 /* =========================
-İLAN GÜNCELLE
+   İLAN GÜNCELLE
 ========================= */
 
 app.put(
@@ -656,19 +512,16 @@ app.put(
     requireAdmin,
     upload.array("images", 4),
     (req, res) => {
-
         try {
-
             const id =
                 Number(req.params.id);
 
-            const ilanlar =
-                JSON.parse(
-                    fs.readFileSync(
-                        DATA_FILE,
-                        "utf8"
-                    )
-                );
+            const ilanlar = JSON.parse(
+                fs.readFileSync(
+                    DATA_FILE,
+                    "utf8"
+                )
+            );
 
             const index =
                 ilanlar.findIndex(
@@ -677,14 +530,10 @@ app.put(
                 );
 
             if (index === -1) {
-
                 return res.status(404).json({
-
                     success: false,
                     error: "İlan bulunamadı."
-
                 });
-
             }
 
             let images =
@@ -693,29 +542,28 @@ app.put(
                 )
                     ? ilanlar[index].images
                     : (
-                        ilanlar[index].image
-                            ? [ilanlar[index].image]
-                            : []
-                    );
+                          ilanlar[index].image
+                              ? [
+                                    ilanlar[index]
+                                        .image
+                                ]
+                              : []
+                      );
 
             if (
                 req.files &&
                 req.files.length > 0
             ) {
-
-                images =
-                    req.files
-                        .slice(0, 4)
-                        .map(
-                            file =>
-                                "/uploads/" +
-                                file.filename
-                        );
-
+                images = req.files
+                    .slice(0, 4)
+                    .map(
+                        file =>
+                            "/uploads/" +
+                            file.filename
+                    );
             }
 
             ilanlar[index] = {
-
                 ...ilanlar[index],
 
                 title:
@@ -736,12 +584,16 @@ app.put(
 
                 neighborhood:
                     req.body.neighborhood ??
-                    ilanlar[index].neighborhood,
+                    ilanlar[index]
+                        .neighborhood,
 
                 price:
                     req.body.price !== undefined
-                        ? Number(req.body.price) || 0
-                        : ilanlar[index].price,
+                        ? Number(
+                              req.body.price
+                          ) || 0
+                        : ilanlar[index]
+                              .price,
 
                 rooms:
                     req.body.rooms ??
@@ -749,22 +601,32 @@ app.put(
 
                 area:
                     req.body.area !== undefined
-                        ? Number(req.body.area) || 0
+                        ? Number(
+                              req.body.area
+                          ) || 0
                         : ilanlar[index].area,
 
                 buildingAge:
-                    req.body.buildingAge !== undefined
-                        ? Number(req.body.buildingAge) || 0
-                        : ilanlar[index].buildingAge,
+                    req.body.buildingAge !==
+                    undefined
+                        ? Number(
+                              req.body.buildingAge
+                          ) || 0
+                        : ilanlar[index]
+                              .buildingAge,
 
                 floor:
                     req.body.floor ??
                     ilanlar[index].floor,
 
                 totalFloors:
-                    req.body.totalFloors !== undefined
-                        ? Number(req.body.totalFloors) || 0
-                        : ilanlar[index].totalFloors,
+                    req.body.totalFloors !==
+                    undefined
+                        ? Number(
+                              req.body.totalFloors
+                          ) || 0
+                        : ilanlar[index]
+                              .totalFloors,
 
                 heating:
                     req.body.heating ??
@@ -772,7 +634,8 @@ app.put(
 
                 bathrooms:
                     req.body.bathrooms ??
-                    ilanlar[index].bathrooms,
+                    ilanlar[index]
+                        .bathrooms,
 
                 balcony:
                     req.body.balcony ??
@@ -795,8 +658,8 @@ app.put(
 
                 description:
                     req.body.description ??
-                    ilanlar[index].description
-
+                    ilanlar[index]
+                        .description
             };
 
             fs.writeFileSync(
@@ -810,52 +673,42 @@ app.put(
             );
 
             res.json({
-
                 success: true,
                 ilan: ilanlar[index]
-
             });
 
         } catch (error) {
-
             console.error(
                 "İlan güncelleme hatası:",
                 error
             );
 
             res.status(500).json({
-
                 success: false,
                 error: "İlan güncellenemedi."
-
             });
-
         }
-
     }
 );
 
 /* =========================
-İLAN SİL
+   İLAN SİL
 ========================= */
 
 app.delete(
     "/api/ilanlar/:id",
     requireAdmin,
     (req, res) => {
-
         try {
-
             const id =
                 Number(req.params.id);
 
-            const ilanlar =
-                JSON.parse(
-                    fs.readFileSync(
-                        DATA_FILE,
-                        "utf8"
-                    )
-                );
+            const ilanlar = JSON.parse(
+                fs.readFileSync(
+                    DATA_FILE,
+                    "utf8"
+                )
+            );
 
             const index =
                 ilanlar.findIndex(
@@ -864,14 +717,10 @@ app.delete(
                 );
 
             if (index === -1) {
-
                 return res.status(404).json({
-
                     success: false,
                     error: "İlan bulunamadı."
-
                 });
-
             }
 
             const deleted =
@@ -881,61 +730,62 @@ app.delete(
                 )[0];
 
             const images =
-                Array.isArray(deleted.images)
+                Array.isArray(
+                    deleted.images
+                )
                     ? deleted.images
                     : (
-                        deleted.image
-                            ? [deleted.image]
-                            : []
+                          deleted.image
+                              ? [
+                                    deleted.image
+                                ]
+                              : []
+                      );
+
+            images.forEach(image => {
+                if (
+                    typeof image !==
+                    "string"
+                ) {
+                    return;
+                }
+
+                if (
+                    !image.startsWith(
+                        "/uploads/"
+                    )
+                ) {
+                    return;
+                }
+
+                const filename =
+                    path.basename(
+                        image
                     );
 
-            images.forEach(
-                image => {
+                const filePath =
+                    path.join(
+                        UPLOADS_DIR,
+                        filename
+                    );
 
-                    if (
-                        typeof image !== "string"
-                    ) {
-                        return;
-                    }
-
-                    if (
-                        !image.startsWith("/uploads/")
-                    ) {
-                        return;
-                    }
-
-                    const filename =
-                        path.basename(image);
-
-                    const filePath =
-                        path.join(
-                            UPLOADS_DIR,
-                            filename
+                if (
+                    fs.existsSync(
+                        filePath
+                    )
+                ) {
+                    try {
+                        fs.unlinkSync(
+                            filePath
                         );
-
-                    if (
-                        fs.existsSync(filePath)
-                    ) {
-
-                        try {
-
-                            fs.unlinkSync(
-                                filePath
-                            );
-
-                        } catch (error) {
-
-                            console.log(
-                                "Fotoğraf silinemedi:",
-                                error.message
-                            );
-
-                        }
-
+                    } catch (error) {
+                        console.log(
+                            "Fotoğraf silinemedi:",
+                            error.message
+                        );
                     }
-
                 }
-            );
+            });
 
             fs.writeFileSync(
                 DATA_FILE,
@@ -948,137 +798,112 @@ app.delete(
             );
 
             res.json({
-
                 success: true,
                 ilan: deleted
-
             });
 
         } catch (error) {
-
             console.error(
                 "İlan silme hatası:",
                 error
             );
 
             res.status(500).json({
-
                 success: false,
                 error: "İlan silinemedi."
-
             });
-
         }
-
     }
 );
 
 /* =========================
-HATA YAKALAMA
+   HATA YAKALAMA
 ========================= */
 
 app.use(
     (error, req, res, next) => {
-
         console.error(error);
 
         if (
-            error instanceof multer.MulterError
+            error instanceof
+            multer.MulterError
         ) {
-
             if (
-                error.code === "LIMIT_FILE_SIZE"
+                error.code ===
+                "LIMIT_FILE_SIZE"
             ) {
-
                 return res.status(400).json({
-
                     success: false,
                     error:
                         "Fotoğraf boyutu en fazla 10 MB olabilir."
-
                 });
-
             }
 
             if (
-                error.code === "LIMIT_FILE_COUNT"
+                error.code ===
+                "LIMIT_FILE_COUNT"
             ) {
-
                 return res.status(400).json({
-
                     success: false,
                     error:
                         "En fazla 4 fotoğraf yükleyebilirsiniz."
-
                 });
-
             }
 
             return res.status(400).json({
-
                 success: false,
                 error:
                     "Fotoğraf yükleme hatası."
-
             });
-
         }
 
         if (
             error &&
             error.message ===
-            "Sadece resim dosyaları yüklenebilir."
+                "Sadece resim dosyaları yüklenebilir."
         ) {
-
             return res.status(400).json({
-
                 success: false,
                 error: error.message
-
             });
-
         }
 
         res.status(500).json({
-
             success: false,
             error: "Sunucu hatası."
-
         });
-
     }
 );
 
 /* =========================
-SUNUCU
+   SUNUCU
 ========================= */
 
 app.listen(
     PORT,
     "0.0.0.0",
     () => {
-
         console.log(
             "Nova Emlak sunucusu çalışıyor. PORT: " +
-            PORT
+                PORT
         );
 
         console.log(
             "Site URL: " +
-            SITE_URL
+                SITE_URL
         );
 
         console.log(
             "Robots: " +
-            SITE_URL +
-            "/robots.txt"
+                SITE_URL +
+                "/robots.txt"
         );
 
         console.log(
             "Sitemap: " +
-            SITE_URL +
-            "/sitemap.xml"
+                SITE_URL +
+                "/sitemap.xml"
         );
-
     }
 );
+```
